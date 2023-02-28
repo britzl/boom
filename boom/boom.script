@@ -1,0 +1,19 @@
+local boom = require "boom.boom"
+
+function init(self)
+	msg.post(".", "acquire_input_focus")
+	math.randomseed(os.time())
+	boom.init()
+end
+
+function update(self, dt)
+	boom.update(dt)
+end
+
+function on_message(self, message_id, message, sender)
+	boom.on_message(message_id, message, sender)
+end
+
+function on_input(self, action_id, action)
+	boom.on_input(action_id, action)
+end

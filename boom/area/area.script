@@ -1,0 +1,8 @@
+local COLLISION_RESPONSE = hash("collision_response")
+
+function on_message(self, message_id, message, sender)
+	if message_id == COLLISION_RESPONSE then
+		print("crash")
+		msg.post("/boom/boom#boom", message_id, message)
+	end
+end

@@ -52,11 +52,11 @@ local function game()
 	on_key_press("key_down", function() player.move(player.vel.x, -100) end)
 
 	on_update(function(cancel)
-		if not is_key_down("key_left")
-		and not is_key_down("key_right")
-		and not is_key_down("key_up")
-		and not is_key_down("key_down") then
-			player.move(0, 0)
+		if not is_key_down("key_left") and not is_key_down("key_right") then
+			player.move(0, player.vel.y)
+		end
+		if not is_key_down("key_up") and not is_key_down("key_down") then
+			player.move(player.vel.x, 0)
 		end
 	end)
 end

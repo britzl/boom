@@ -1,7 +1,9 @@
 local WIDTH = sys.get_config_int("display.width")
 local HEIGHT = sys.get_config_int("display.width")
 
-return function(direction, speed)
+local M = {}
+
+function M.move(direction, speed)
 	local c = {}
 	c.tag = "move"
 	c.direction = direction
@@ -29,3 +31,6 @@ return function(direction, speed)
 
 	return c
 end
+
+
+return M

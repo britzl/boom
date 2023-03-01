@@ -1,8 +1,10 @@
+local M = {}
+
 local function update_rotation(object)
 	go.set_rotation(vmath.quat_rotation_z(math.rad(object.angle)), object.id)
 end
 
-return function(angle)
+function M.rotate(angle)
 	local c = {}
 	c.tag = "rotate"
 	c.angle = angle
@@ -17,3 +19,5 @@ return function(angle)
 
 	return c
 end
+
+return M

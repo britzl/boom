@@ -1,4 +1,6 @@
-return function(text)
+local M = {}
+
+function M.text(text)
 	local c = {}
 	c.tag = "text"
 	c.text = text
@@ -11,8 +13,11 @@ return function(text)
 	end
 
 	c.update = function(dt)
+		-- worth checking if text has changed?
 		label.set_text(url, c.object.text)
 	end
 
 	return c
 end
+
+return M

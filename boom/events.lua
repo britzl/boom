@@ -15,6 +15,7 @@ local function register_listener(event, data)
 	end
 
 	listeners[event][cancel] = data
+	return cancel
 end
 
 -----------
@@ -75,26 +76,36 @@ end
 
 ---------------------
 
-
+---
+-- Register an event that runs when two game objects with certain tags collide
+-- @param tag1
+-- @param tag2
+-- @param fn Will receive (first, second, cancel) as args
+-- @return Cance event function
 function M.on_collide(tag1, tag2, fn)
 	register_listener("collision_response", function(message, cancel)
 		local id = message.id
 		local other_id = message.other_id
 		local object = gameobject.object(id)
 		local other_object = gameobject.object(other_id)
-		if object.comps[tag1] and other_object.comps[tag2] then
+		if object.destroyed or other_object.destroyed then
+			return
+		end
+		if (object.tags[tag1] and other_object.tags[tag2])
+		or (object.tags[tag2] and other_object.tags[tag1]) then
 			fn(object, other_object, cancel)
 		end
 	end)
 end
 
+-- 
 function M.on_collision_response(cb)
-	register_listener("collision_response", cb)
+	return register_listener("collision_response", cb)
 end
 
 function M.on_message(message_id, message, sender)
 	if message_id == hash("collision_response") then
-		message.id = go.get_parent(message.id)
+		message.id = go.get_parent(sender)
 		message.other_id = go.get_parent(message.other_id)
 		for cancel,listener in pairs(listeners.collision_response or {}) do
 			listener(message, cancel)
@@ -104,6 +115,10 @@ end
 
 ---------------------
 
+--- register an event that runs every frame, optionally for all
+-- game objects with certain tag
+-- @param tag [optional] run event for all objects matching tag
+-- @param fn event function to call. Will receive object and cancel function
 function M.on_update(tag, fn)
 	if not fn then
 		fn = tag

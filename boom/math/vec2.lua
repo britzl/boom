@@ -12,7 +12,7 @@ M.LEFT = new(-1, 0)
 M.RIGHT = new(1, 0)
 
 return setmetatable(M, {
-	_call = function(t, ...)
+	__call = function(t, ...)
 		return new(...)
 	end
 })

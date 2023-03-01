@@ -1,6 +1,8 @@
+local M = {}
+
 local sprite = _G.sprite
 
-return function(anim, options)
+function M.sprite(anim, options)
 	local c = {}
 	c.tag = "sprite"
 	c.anim = anim
@@ -26,3 +28,5 @@ return function(anim, options)
 	end
 	return c
 end
+
+return M

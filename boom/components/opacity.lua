@@ -1,4 +1,6 @@
-return function(opacity)
+local M = {}
+
+function M.opacity(opacity)
 	local c = {}
 	c.tag = "opacity"
 	c.opacity = opacity
@@ -11,3 +13,5 @@ return function(opacity)
 	end
 	return c
 end
+
+return M

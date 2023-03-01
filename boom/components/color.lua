@@ -1,4 +1,6 @@
-return function(r, g, b)
+local M = {}
+
+function M.color(r, g, b)
 	local c = {}
 	c.tag = "color"
 	c.r = r / 255
@@ -17,3 +19,5 @@ return function(r, g, b)
 	end
 	return c
 end
+
+return M

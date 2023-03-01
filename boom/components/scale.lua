@@ -1,4 +1,6 @@
-return function(x, y)
+local M = {}
+
+function M.scale(x, y)
 	local c = {}
 	c.tag = "scale"
 	c.scale = vmath.vector3(x, y, 1)
@@ -13,3 +15,5 @@ return function(x, y)
 
 	return c
 end
+
+return M

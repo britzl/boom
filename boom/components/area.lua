@@ -1,8 +1,15 @@
 local gameobject = require "boom.gameobject"
 local events = require "boom.events"
-local factories = require "boom.factories"
 
-return function(options)
+local M = {}
+
+local AREA_RECT = nil
+
+function M.init()
+	AREA_RECT = msg.url("#arearectfactory")
+end
+
+function M.area(options)
 	local c = {}
 	c.tag = "area"
 
@@ -12,20 +19,27 @@ return function(options)
 		local rotation = nil
 		local properties = nil
 		local scale = vmath.vector3(20)
-		local area_id = factory.create(factories.AREA_RECT, pos, rotation, properties, scale)
+		local area_id = factory.create(AREA_RECT, pos, rotation, properties, scale)
 		go.set_parent(area_id, c.object.id, false)
-
 	end
 
+	local registered_events = {}
 	c.on_collide = function(tag, cb)
-		events.on_collision_response(function(message, cancel)
-			local other_id = message.other_id
-			local other_object = gameobject.object(other_id)
-			if other_object.comps[tag] then
-				cb(other_object, cancel)
-			end
+		local cancel = events.on_collide(c.object.id, tag, function(object1, object2, cancel)
+			cb(object2, cancel)
 		end)
+		registered_events[#registered_events + 1] = cancel
+	end
+
+	c.destroy = function()
+		for i = #registered_events,1,-1 do
+			local cancel = registered_events[i]
+			cancel()
+			registered_events[i] = nil
+		end
 	end
 
 	return c
 end
+
+return M

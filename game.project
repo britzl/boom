@@ -21,3 +21,7 @@ game_binding = /builtins/input/all.input_bindingc
 default_texture_min_filter = nearest
 default_texture_mag_filter = nearest
 
+[render]
+clear_color_red = 1.0
+clear_color_green = 0.0
+

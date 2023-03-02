@@ -1,18 +1,24 @@
 local M = {}
 
+local vec2 = {}
+
 local function new(x, y)
 	x = x or 0
 	y = y or x
 	return vmath.vector3(x, y, 0)
 end
 
-M.UP = new(0, 1)
-M.DOWN = new(0, -1)
-M.LEFT = new(-1, 0)
-M.RIGHT = new(1, 0)
+vec2.UP = new(0, 1)
+vec2.DOWN = new(0, -1)
+vec2.LEFT = new(-1, 0)
+vec2.RIGHT = new(1, 0)
 
-return setmetatable(M, {
+local mt = {
 	__call = function(t, ...)
 		return new(...)
 	end
-})
+}
+
+M.vec2 = setmetatable(vec2, mt)
+
+return setmetatable(M, mt)

@@ -1,7 +1,5 @@
 local M = {}
 
-M.vec2 = require "boom.math.vec2"
-
 function M.rand(a, b)
 	local r = math.random()
 	if not a then return r end

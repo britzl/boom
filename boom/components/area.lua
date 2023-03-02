@@ -1,11 +1,11 @@
-local gameobject = require "boom.gameobject"
-local events = require "boom.events"
+local gameobject = require "boom.gameobject.gameobject"
+local collision = require "boom.events.collision"
 
 local M = {}
 
 local AREA_RECT = nil
 
-function M.init()
+function M.__init()
 	AREA_RECT = msg.url("#arearectfactory")
 end
 
@@ -25,7 +25,7 @@ function M.area(options)
 
 	local registered_events = {}
 	c.on_collide = function(tag, cb)
-		local cancel = events.on_collide(c.object.id, tag, function(object1, object2, cancel)
+		local cancel = collision.on_collide(c.object.id, tag, function(object1, object2, cancel)
 			cb(object2, cancel)
 		end)
 		registered_events[#registered_events + 1] = cancel

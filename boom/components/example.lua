@@ -2,7 +2,7 @@ local M = {}
 
 -- this function will be run once on game startup in the context of the
 -- boom game object
-function M.init()
+function M.__init()
 end
 
 -- this is the main component function, it will be set as a global and can be

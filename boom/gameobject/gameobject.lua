@@ -5,14 +5,14 @@ local objects_to_delete = {}
 
 local OBJECT_FACTORY = nil
 
-function M.init()
+function M.__init()
 	OBJECT_FACTORY = msg.url("#objectfactory")
 end
 
 ---
 -- Update all game objects
 -- @param dt Delta time (seconds)
-function M.update(dt)
+function M.__update(dt)
 	-- delete objects
 	for i=#objects_to_delete,1,-1 do
 		local id_to_delete = objects_to_delete[i]
@@ -121,6 +121,17 @@ function M.destroy(object)
 	end
 end
 
+---
+-- Destroy all objects with a certain tag
+-- @param tag The tag to destroy or nil to destroy all objects
+function M.destroy_all(tag)
+	for _,object in pairs(objects) do
+		if not tag or object.tags[tag] then
+			M.destroy(object)
+		end
+	end
+end
+
 --- 
 -- Get game object with specific id
 -- @param id
@@ -144,6 +155,26 @@ function M.get(tag)
 		end
 	end
 	return tagged
+end
+
+---
+-- Run callback on every object with a certain tag
+-- @param tag
+-- @param cb
+function M.every(tag, cb)
+	for _,object in pairs(objects) do
+		if object.tags[tag] then
+			cb(object)
+		end
+	end
+end
+
+function M.__destroy()
+	for id,object in pairs(objects) do
+		go.delete(id, true)
+	end
+	objects = {}
+	objects_to_delete = {}
 end
 
 return M

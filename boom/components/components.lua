@@ -8,4 +8,5 @@ return {
 	require("boom.components.opacity"),
 	require("boom.components.color"),
 	require("boom.components.area"),
+	require("boom.components.stay"),
 }

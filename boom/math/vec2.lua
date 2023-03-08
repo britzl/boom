@@ -3,6 +3,9 @@ local M = {}
 local vec2 = {}
 
 local function new(x, y)
+	if type(x) == "userdata" then
+		return vmath.vector3(x)
+	end
 	x = x or 0
 	y = y or x
 	return vmath.vector3(x, y, 0)

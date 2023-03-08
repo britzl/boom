@@ -12,7 +12,7 @@ systems.add(events)
 systems.add(math)
 systems.add(components)
 systems.add({ gameobject })
-systems.add({ info })
+systems.add(info)
 systems.add({ scene })
 systems.add({ timer })
 
@@ -20,6 +20,7 @@ local M = {}
 
 local initialized = false
 local game = nil
+local game_url = nil
 
 local function start_game()
 	if initialized then
@@ -28,14 +29,15 @@ local function start_game()
 	end
 end
 
-function M.init()
-	systems.init()
-	initialized = true
+function M.boom(_game)
+	game = _game
+	game_url = msg.url()
 	start_game()
 end
 
-function M.boom(_game)
-	game = _game
+function M.init()
+	systems.init(game_url)
+	initialized = true
 	start_game()
 end
 

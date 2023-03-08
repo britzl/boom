@@ -2,6 +2,11 @@ local vec2 = require "boom.math.vec2"
 
 local M = {}
 
+---
+-- Position an object
+-- @param x
+-- @param y
+-- @return The component
 function M.pos(x, y)
 	if type(x) == "userdata" then
 		local pos = x
@@ -31,7 +36,7 @@ function M.pos(x, y)
 		pos.y = pos.y + vel.y * dt
 		go.set_position(pos, object.id)
 	end
-	
+
 	return c
 end
 

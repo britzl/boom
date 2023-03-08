@@ -1,5 +1,5 @@
 [bootstrap]
-main_collection = /game/game.collectionc
+main_collection = /examples/examples.collectionc
 
 [script]
 shared_state = 1
@@ -13,6 +13,7 @@ input_method = HiddenInputField
 
 [project]
 title = boom
+dependencies#0 = https://github.com/defold/lua-language-server/releases/download/v0.0.3/release.zip
 
 [input]
 game_binding = /builtins/input/all.input_bindingc
@@ -24,4 +25,7 @@ default_texture_mag_filter = nearest
 [render]
 clear_color_red = 1.0
 clear_color_green = 0.0
+
+[physics]
+debug = 1
 

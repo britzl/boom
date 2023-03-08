@@ -5,55 +5,36 @@ local objects_to_delete = {}
 
 local OBJECT_FACTORY = nil
 
-function M.__init()
-	OBJECT_FACTORY = msg.url("#objectfactory")
-end
 
----
--- Update all game objects
--- @param dt Delta time (seconds)
-function M.__update(dt)
-	-- delete objects
-	for i=#objects_to_delete,1,-1 do
-		local id_to_delete = objects_to_delete[i]
-		objects_to_delete[i] = nil
-		local object = objects[id_to_delete]
-		-- the hash might have been reused in the same frame for a new object
-		-- make sure to only remove the object if it has the 'destroyed' flag
-		if object.destroyed then
-			objects[id_to_delete] = nil
-		end
-	end
-
-	-- update active objects
-	for id,object in pairs(objects) do
-		if not object.destroyed then
-			for tag,comp in pairs(object.comps) do
-				if comp.update then comp.update(dt) end
-			end
-		end
-	end
-end
-
+local ROOT = hash("/root")
+local SPRITE = hash("/sprite")
+local LABEL_LEFT = hash("/label_left")
+local LABEL_RIGHT = hash("/label_right")
+local LABEL_CENTER = hash("/label_center")
 
 ---
 -- Add a game object with a set of components
 -- @param comps The components for the game object
 -- @return The created game object
 function M.add(comps)
-	local id = factory.create(OBJECT_FACTORY)
-	msg.post(msg.url(nil, id, "sprite"), "disable")
-	msg.post(msg.url(nil, id, "label"), "disable")
+	local ids = collectionfactory.create(OBJECT_FACTORY)
+	local id = ids[ROOT]
+	msg.post(ids[SPRITE], "disable")
+	msg.post(ids[LABEL_LEFT], "disable")
+	msg.post(ids[LABEL_RIGHT], "disable")
+	msg.post(ids[LABEL_CENTER], "disable")
 
 	local object = {}
 	objects[id] = object
 	object.id = id
+	object.ids = ids
 	object.comps = {}
 	object.tags = {}
+	object.children = {}
 
 	-- set the game object id as a tag
 	object.tags[id] = true
-	
+
 	-- add components to object
 	for i=1,#comps do
 		local comp = comps[i]
@@ -72,7 +53,10 @@ function M.add(comps)
 
 		-- apply comp properties to object
 		for k,v in pairs(comp) do
-			if k ~= "update" and k ~= "init" and k ~= "destroy" and k ~= "tag" then
+			-- ignore tag
+			-- ignore private properties (starting with __)
+			-- ignore component lifecycle functions (init, update, destroy, on_input)
+			if k ~= "update" and k ~= "init" and k ~= "destroy" and k ~= "on_input" and k ~= "tag" and k:sub(1,2) ~= "__" then
 				if object[k] then error(("Object '%s' already has key '%s'"):format(object.id, k)) end
 				object[k] = v
 				comp[k] = nil
@@ -80,6 +64,7 @@ function M.add(comps)
 		end
 
 		-- assign object to comp and vice versa
+		object.comps[i] = comp
 		object.comps[comp.tag] = comp
 		comp.object = object
 
@@ -87,8 +72,15 @@ function M.add(comps)
 		object.tags[comp.tag] = true
 	end
 
+	object.add = function(...)
+		local o = M.add(...)
+		go.set_parent(o.id, object.id)
+		object.children[#object.children + 1] = o
+	end
+
 	-- init components
-	for tag,comp in pairs(object.comps) do
+	for i=1,#object.comps do
+		local comp = object.comps[i]
 		if comp.init then
 			comp.init()
 		end
@@ -140,6 +132,11 @@ function M.object(id)
 	return objects[id]
 end
 
+
+function M.objects()
+	return objects
+end
+
 ---
 -- Get all game objects with the specified tag
 -- @param tag The tag to get objects for, nil to get all objects
@@ -168,6 +165,46 @@ function M.every(tag, cb)
 		end
 	end
 end
+
+---- lifecycle functions
+
+function M.__init()
+	OBJECT_FACTORY = msg.url("#objectfactory")
+end
+
+function M.__update(dt)
+	-- delete objects
+	for i=#objects_to_delete,1,-1 do
+		local id_to_delete = objects_to_delete[i]
+		objects_to_delete[i] = nil
+		local object = objects[id_to_delete]
+		-- the hash might have been reused in the same frame for a new object
+		-- make sure to only remove the object if it has the 'destroyed' flag
+		if object.destroyed then
+			objects[id_to_delete] = nil
+		end
+	end
+
+	-- update active objects
+	for id,object in pairs(objects) do
+		if not object.destroyed then
+			for tag,comp in pairs(object.comps) do
+				if comp.update then comp.update(dt) end
+			end
+		end
+	end
+end
+
+function M.__on_input(action_id, action)
+	for id,object in pairs(objects) do
+		if not object.destroyed then
+			for tag,comp in pairs(object.comps) do
+				if comp.on_input then comp.on_input(action_id, action) end
+			end
+		end
+	end
+end
+
 
 function M.__destroy()
 	for id,object in pairs(objects) do

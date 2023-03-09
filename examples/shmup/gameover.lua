@@ -5,9 +5,9 @@ return function()
 	})
 
 	on_click(function()
-		show("game")
+		show("examples")
 	end)
 	on_key_press(function()
-		show("game")
+		show("examples")
 	end)
 end

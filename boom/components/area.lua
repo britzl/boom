@@ -10,53 +10,76 @@ local M = {}
 
 local AREA_RECT = nil
 
-local function intersects(a, b)
-	local polygons = { a, b }
-	for i=1,#polygons do
-		local polygon = polygons[i]
-		for i1=1,#polygon do
-			local i2 = (i1 + 1)
-			i2 = i2 > #polygon and 1 or i2
-			local p1 = polygon[i1]
-			local p2 = polygon[i2]
-			local normal = vec2(p2.y - p1.y, p1.x - p2.x)
-			local mina = nil
-			local maxa = nil
-			for j=1,#a do
-				local projected = normal.x * a[j].x + normal.y * a[j].y
-				if not mina or projected < mina then mina = projected end
-				if not maxa or projected > maxa then maxa = projected end
-			end
+local V2_ZERO = vec2(0)
+local V2_ONE = vec2(1)
+local GREEN = vmath.vector4(0,1,0,1)
 
-			local minb = nil
-			local maxb = nil
-			for j=1,#b do
-				local projected = normal.x * b[j].x + normal.y * b[j].y
-				if not minb or projected < minb then minb = projected end
-				if not maxb or projected > maxb then maxb = projected end
-			end
-
-			if maxa < minb or maxb < mina then
-				print("polygons don't intersect!")
-				return false
-			end
-		end
-	end
-	return true
-end
-
-
-local p1 = { vec2(0,0), vec2(0,10), vec2(30,10), vec2(30,0)  }
-
-local p2 = { vec2(5,0), vec2(5,10), vec2(35,10), vec2(35,0)  }
-
-
+-- rotate a point (vec2)
+-- will return a new vec2
 local function rotate_point(p, a)
+	if not a or a == 0 then return vec2(p) end
 	local cosa = cos(rad(a))
 	local sina = sin(rad(a))
 	local x = (p.x * cosa) - (p.y * sina)
 	local y = (p.y * cosa) + (p.x * sina)
 	return vec2(x, y)
+end
+
+-- create a rect structure
+-- @param rect Optional rect to copy from
+-- @param pos Optional position of rect center (default 0,0)
+-- @param angle Angle to rotate rect by (default 0)
+local function create_rect(rect, center, angle)
+	local topleft
+	local topright
+	local bottomleft
+	local bottomright
+
+	if rect and angle and angle ~= 0 then
+		topleft = rotate_point(rect.topleft, angle)
+		topright = rotate_point(rect.topright, angle)
+		bottomleft = rotate_point(rect.bottomleft, angle)
+		bottomright = rotate_point(rect.bottomright, angle)
+	else
+		topleft = vec2(rect and rect.topleft)
+		topright = vec2(rect and rect.topright)
+		bottomleft = vec2(rect and rect.bottomleft)
+		bottomright = vec2(rect and rect.bottomright)
+	end
+
+	if center then
+		topleft.x = topleft.x + center.x
+		topleft.y = topleft.y + center.y
+		topright.x = topright.x + center.x
+		topright.y = topright.y + center.y
+		bottomleft.x = bottomleft.x + center.x
+		bottomleft.y = bottomleft.y + center.y
+		bottomright.x = bottomright.x + center.x
+		bottomright.y = bottomright.y + center.y
+	end
+
+	return {
+		topleft = topleft,
+		topright = topright,
+		bottomleft = bottomleft,
+		bottomright = bottomright,
+	}
+end
+
+local function point_in_rect(point, rect, center, angle)
+	-- rotate distance vector from area center to point onto rect
+	local dist = rotate_point(center - point, -angle)
+
+	local topleft = rect.topleft
+	local topright = rect.topright
+	local bottomleft = rect.bottomleft
+	local bottomright = rect.bottomright
+
+	-- check if distance vector is within the unrotated rect
+	return dist.x > topleft.x and dist.y < topleft.y
+		and dist.x < topright.x and dist.y < topright.y
+		and dist.x > bottomleft.x and dist.y > bottomleft.y
+		and dist.x < bottomright.x and dist.y > bottomright.y
 end
 
 
@@ -71,16 +94,53 @@ function M.area(options)
 	local width = options and options.width or 20
 	local height = options and options.height or 20
 
-	local shape = { vec2(), vec2(), vec2(), vec2() }
-	local center = vec2()
-
 	c.init = function()
+		c.local_rect = create_rect()
+		c.world_rect = create_rect()
+		c.radius = math.sqrt(((width / 2) * (width / 2)) + ((height / 2) * (height / 2)))
+
 		local pos = vmath.vector3(0)
 		local rotation = nil
 		local properties = nil
 		local scale = vmath.vector3(math.max(width, height))
 		local area_id = factory.create(AREA_RECT, pos, rotation, properties, scale)
 		go.set_parent(area_id, c.object.id, false)
+	end
+
+	c.check_collision = function(other_object)
+		local other_area = other_object.comps.area
+		if not other_area then return false end
+
+		local object = c.object
+		local angle = object.angle or 0
+		local center = object.pos or V2_ZERO
+		local radius = c.radius
+		local other_angle = other_object.angle or 0
+		local other_center = other_object.pos or V2_ZERO
+		local other_radius = other_area.radius
+
+		local cx = center.x
+		local cy = center.y
+		local ocx = other_center.x
+		local ocy = other_center.y
+		local distance = math.sqrt((cx - ocx) * (cx - ocx) + (cy - ocy) * (cy - ocy))
+		if distance > (radius + other_radius) then
+			return false
+		end
+
+		local local_rect = c.local_rect
+		local world_rect = c.world_rect
+		local other_local_rect = other_area.local_rect
+		local other_world_rect = other_area.world_rect
+
+		return point_in_rect(other_world_rect.topleft, local_rect, center, angle)
+			or point_in_rect(other_world_rect.topright, local_rect, center, angle)
+			or point_in_rect(other_world_rect.bottomleft, local_rect, center, angle)
+			or point_in_rect(other_world_rect.bottomright, local_rect, center, angle) 
+			or point_in_rect(world_rect.topleft, other_local_rect, other_center, other_angle) 
+			or point_in_rect(world_rect.topright, other_local_rect, other_center, other_angle) 
+			or point_in_rect(world_rect.bottomleft, other_local_rect, other_center, other_angle) 
+			or point_in_rect(world_rect.bottomright, other_local_rect, other_center, other_angle) 
 	end
 
 	local registered_events = {}
@@ -92,7 +152,7 @@ function M.area(options)
 	end
 
 	c.on_click = function(cb)
-		local cancel = mouse.on_click(c.object.id, function(obejct, cancel)
+		local cancel = mouse.on_click(c.object.id, function(object, cancel)
 			cb(object, cancel)
 		end)
 		registered_events[#registered_events + 1] = cancel
@@ -110,65 +170,47 @@ function M.area(options)
 	-- from the rectangle center to this point and rotate it backward (by the
 	-- angle -a). Then check if it is inside the corresponding unrotated
 	-- rectangle
-	c.has_point = function(p)
+	-- https://love2d.org/forums/viewtopic.php?p=69469&sid=4a77ba2c0052546e8b7a6d32c74fdbcc#p69469
+	c.has_point = function(point)
 		local object = c.object
-		local a = object.angle or 0
-		local c = object.pos or center
-
-		local dist = rotate_point(c - p, -a)
-
-		local topleft = shape[1]
-		local topright = shape[2]
-		local bottomleft = shape[3]
-		local bottomright = shape[4]
-
-		if dist.x > topleft.x and dist.y < topleft.y
-		and dist.x < topright.x and dist.y < topright.y
-		and dist.x > bottomleft.x and dist.y > bottomleft.y
-		and dist.x < bottomright.x and dist.y > bottomright.y
-		then
-			return true
-		end
-		return false
+		local angle = object.angle or 0
+		local center = object.pos or V2_ZERO
+		return point_in_rect(point, c.local_rect, center, angle)
 	end
 
-	local V2_ONE = vec2(1)
-	local GREEN = vmath.vector4(0,1,0,1)
 	c.update = function(dt)
 		local object = c.object
 		local comps = object.comps
 		local sprite = comps.sprite
-		local pos = comps.pos
-		local s = object.scale or V2_ONE
-		local a = object.angle or 0
-		local w = (sprite and sprite.width or width) * s.x
-		local h = (sprite and sprite.height or height) * s.y
-		local c = object.pos or center
-
+		local scale = object.scale or V2_ONE
+		local w = (sprite and sprite.width or width) * scale.x
+		local h = (sprite and sprite.height or height) * scale.y
 		local w2 = w / 2
 		local h2 = h / 2
 
-		shape[1] = vec2(-w2,  h2) -- topleft
-		shape[2] = vec2( w2,  h2) -- topright
-		shape[3] = vec2(-w2, -h2) -- bottomleft
-		shape[4] = vec2( w2, -h2) -- bottomright
+		-- for quick collision check
+		c.radius = math.sqrt((w2 * w2) + (h2 * h2))
 
-		local tl = c + rotate_point(shape[1], a)
-		local tr = c + rotate_point(shape[2], a)
-		local bl = c + rotate_point(shape[3], a)
-		local br = c + rotate_point(shape[4], a)
+		-- make sure the local space unrotated rect is of correct size
+		-- (in case the width or height has changed)
+		local local_rect = c.local_rect
+		local_rect.topleft = vec2(-w2,  h2)
+		local_rect.topright = vec2( w2,  h2)
+		local_rect.bottomleft = vec2(-w2, -h2)
+		local_rect.bottomright = vec2( w2, -h2)
 
-		msg.post("@render:", "draw_line", { start_point = tl, end_point = tr, color = GREEN })
-		msg.post("@render:", "draw_line", { start_point = tr, end_point = br, color = GREEN })
-		msg.post("@render:", "draw_line", { start_point = br, end_point = bl, color = GREEN })
-		msg.post("@render:", "draw_line", { start_point = bl, end_point = tl, color = GREEN })
+		-- create world space rotated rect
+		local center = object.pos or V2_ZERO
+		local angle = object.angle or 0
+		local world_rect = create_rect(local_rect, center, angle)
+		c.world_rect = world_rect
+
+		-- debug
+		msg.post("@render:", "draw_line", { start_point = world_rect.topleft,     end_point = world_rect.topright, color = GREEN })
+		msg.post("@render:", "draw_line", { start_point = world_rect.topright,    end_point = world_rect.bottomright, color = GREEN })
+		msg.post("@render:", "draw_line", { start_point = world_rect.bottomright, end_point = world_rect.bottomleft, color = GREEN })
+		msg.post("@render:", "draw_line", { start_point = world_rect.bottomleft,  end_point = world_rect.topleft, color = GREEN })
 	end
-
-	c.on_input = function(action_id, action)
-		local object = c.object
-		--print("action", action.x, "pos", object.pos, "w,h", w, h)
-	end
-
 
 	return c
 end

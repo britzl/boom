@@ -5,9 +5,8 @@ return function()
 			sprite("grey_button00", { atlas = "ui" }),
 			pos(p),
 			area(),
-			--scale(2),
-			--rotate(45),
-			--scale(1),
+			rotate(math.random(0,180)),
+			scale(2),
 			--anchor("center"),
 			"button",
 		})
@@ -31,10 +30,16 @@ return function()
 		print("foo")
 	end)
 
+
+
 	on_click("button", function(o)
 		print("a button was clicked")
 	end)
 	on_update(function()
+		foo.pos = mouse_pos()
+		if foo.check_collision(shmup) then
+			print("collide")
+		end
 	end)
 	
 end

@@ -14,61 +14,66 @@ local V2_ZERO = vec2(0)
 local V2_ONE = vec2(1)
 local GREEN = vmath.vector4(0,1,0,1)
 
+
+-- create a rect, either a new empty rect or a copy of another rect
+local function create_rect(rect)
+	return {
+		topleft = vec2(rect and rect.topleft),
+		topright = vec2(rect and rect.topright),
+		bottomleft = vec2(rect and rect.bottomleft),
+		bottomright = vec2(rect and rect.bottomright),
+		center = vec2(rect and rect.center),
+	}
+end
+
 -- rotate a point (vec2)
--- will return a new vec2
-local function rotate_point(p, a)
-	if not a or a == 0 then return vec2(p) end
+-- the provided point will be modified
+local function rotate_point_inline(p, a)
+	if not a or a == 0 then return end
+	if p.x == 0 and p.y == 0 then return end
 	local cosa = cos(rad(a))
 	local sina = sin(rad(a))
 	local x = (p.x * cosa) - (p.y * sina)
 	local y = (p.y * cosa) + (p.x * sina)
-	return vec2(x, y)
+	p.x = x
+	p.y = y
 end
 
--- create a rect structure
--- @param rect Optional rect to copy from
--- @param pos Optional position of rect center (default 0,0)
--- @param angle Angle to rotate rect by (default 0)
-local function create_rect(rect, center, angle)
-	local topleft
-	local topright
-	local bottomleft
-	local bottomright
+-- apply an offset to a rect
+-- the provided rect will be modified
+local function offset_rect_inline(rect, offset)
+	local tl = rect.topleft
+	local tr = rect.topright
+	local bl = rect.bottomleft
+	local br = rect.bottomright
+	local c = rect.center
+	tl.x = tl.x + offset.x
+	tl.y = tl.y + offset.y
+	tr.x = tr.x + offset.x
+	tr.y = tr.y + offset.y
+	bl.x = bl.x + offset.x
+	bl.y = bl.y + offset.y
+	br.x = br.x + offset.x
+	br.y = br.y + offset.y
+	c.x = c.x + offset.x
+	c.y = c.y + offset.y
+end
 
-	if rect and angle and angle ~= 0 then
-		topleft = rotate_point(rect.topleft, angle)
-		topright = rotate_point(rect.topright, angle)
-		bottomleft = rotate_point(rect.bottomleft, angle)
-		bottomright = rotate_point(rect.bottomright, angle)
-	else
-		topleft = vec2(rect and rect.topleft)
-		topright = vec2(rect and rect.topright)
-		bottomleft = vec2(rect and rect.bottomleft)
-		bottomright = vec2(rect and rect.bottomright)
-	end
-
-	if center then
-		topleft.x = topleft.x + center.x
-		topleft.y = topleft.y + center.y
-		topright.x = topright.x + center.x
-		topright.y = topright.y + center.y
-		bottomleft.x = bottomleft.x + center.x
-		bottomleft.y = bottomleft.y + center.y
-		bottomright.x = bottomright.x + center.x
-		bottomright.y = bottomright.y + center.y
-	end
-
-	return {
-		topleft = topleft,
-		topright = topright,
-		bottomleft = bottomleft,
-		bottomright = bottomright,
-	}
+-- rotate a rect
+-- the provided rect will be modified
+local function rotate_rect_inline(rect, angle)
+	if not angle or angle == 0 then return end
+	rotate_point_inline(rect.topleft, angle)
+	rotate_point_inline(rect.topright, angle)
+	rotate_point_inline(rect.bottomleft, angle)
+	rotate_point_inline(rect.bottomright, angle)
+	rotate_point_inline(rect.center, angle)
 end
 
 local function point_in_rect(point, rect, center, angle)
 	-- rotate distance vector from area center to point onto rect
-	local dist = rotate_point(center - point, -angle)
+	local dist = center - point
+	rotate_point_inline(dist, -angle)
 
 	local topleft = rect.topleft
 	local topright = rect.topright
@@ -79,7 +84,7 @@ local function point_in_rect(point, rect, center, angle)
 	return dist.x > topleft.x and dist.y < topleft.y
 		and dist.x < topright.x and dist.y < topright.y
 		and dist.x > bottomleft.x and dist.y > bottomleft.y
-		and dist.x < bottomright.x and dist.y > bottomright.y
+		and dist.x < bottomright.x  and dist.y > bottomright.y
 end
 
 
@@ -112,12 +117,15 @@ function M.area(options)
 		if not other_area then return false end
 
 		local object = c.object
-		local angle = object.angle or 0
-		local center = object.pos or V2_ZERO
+
 		local radius = c.radius
-		local other_angle = other_object.angle or 0
-		local other_center = other_object.pos or V2_ZERO
 		local other_radius = other_area.radius
+
+		local world_rect = c.world_rect
+		local other_world_rect = other_area.world_rect
+
+		local center = world_rect.center
+		local other_center = other_world_rect.center
 
 		local cx = center.x
 		local cy = center.y
@@ -129,9 +137,10 @@ function M.area(options)
 		end
 
 		local local_rect = c.local_rect
-		local world_rect = c.world_rect
 		local other_local_rect = other_area.local_rect
-		local other_world_rect = other_area.world_rect
+
+		local angle = object.angle or 0
+		local other_angle = other_object.angle or 0
 
 		return point_in_rect(other_world_rect.topleft, local_rect, center, angle)
 			or point_in_rect(other_world_rect.topright, local_rect, center, angle)
@@ -174,7 +183,7 @@ function M.area(options)
 	c.has_point = function(point)
 		local object = c.object
 		local angle = object.angle or 0
-		local center = object.pos or V2_ZERO
+		local center = c.world_rect.center
 		return point_in_rect(point, c.local_rect, center, angle)
 	end
 
@@ -182,6 +191,7 @@ function M.area(options)
 		local object = c.object
 		local comps = object.comps
 		local sprite = comps.sprite
+		local anchor = object.anchor or V2_ZERO
 		local scale = object.scale or V2_ONE
 		local w = (sprite and sprite.width or width) * scale.x
 		local h = (sprite and sprite.height or height) * scale.y
@@ -193,16 +203,27 @@ function M.area(options)
 
 		-- make sure the local space unrotated rect is of correct size
 		-- (in case the width or height has changed)
+		-- local space rect does not have an offset
 		local local_rect = c.local_rect
-		local_rect.topleft = vec2(-w2,  h2)
-		local_rect.topright = vec2( w2,  h2)
-		local_rect.bottomleft = vec2(-w2, -h2)
-		local_rect.bottomright = vec2( w2, -h2)
+		local_rect.topleft.x = -w2
+		local_rect.topleft.y = h2
+		local_rect.topright.x = w2
+		local_rect.topright.y =  h2
+		local_rect.bottomleft.x = -w2
+		local_rect.bottomleft.y = -h2
+		local_rect.bottomright.x = w2
+		local_rect.bottomright.y = -h2
 
-		-- create world space rotated rect
+		-- create world space rotated rect and offset rect
 		local center = object.pos or V2_ZERO
 		local angle = object.angle or 0
-		local world_rect = create_rect(local_rect, center, angle)
+		local offset = vec2(w2 * anchor.x, h2 * anchor.y)
+
+		--local world_rect = create_rect(local_rect, center, angle)
+		local world_rect = create_rect(local_rect)
+		offset_rect_inline(world_rect, offset)
+		rotate_rect_inline(world_rect, angle)
+		offset_rect_inline(world_rect, center)
 		c.world_rect = world_rect
 
 		-- debug

@@ -15,11 +15,15 @@ return function()
 			sprite("ship_0005", { flip_y = true, atlas = "shmup" }),
 			move(vec2.DOWN, 100),
 			area(),
+			health(3),
 			"enemy",
 		})
 		enemy.on_collide("bullet", function(bullet)
-			destroy(enemy)
 			destroy(bullet)
+			enemy.hurt(1)
+		end)
+		enemy.on_death(function()
+			destroy(enemy)
 			score.score = score.score + 1
 			score.text = "Score: " .. tostring(score.score)
 		end)

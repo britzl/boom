@@ -155,7 +155,11 @@ function M.area(options)
 	local registered_events = {}
 	c.on_collide = function(tag, cb)
 		local cancel = collision.on_collide(c.object.id, tag, function(object1, object2, cancel)
-			cb(object2, cancel)
+			if object1 == c.object then
+				cb(object2, cancel)
+			else
+				cb(object1, cancel)
+			end
 		end)
 		registered_events[#registered_events + 1] = cancel
 	end

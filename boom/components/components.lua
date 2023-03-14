@@ -10,4 +10,7 @@ return {
 	require("boom.components.area"),
 	require("boom.components.stay"),
 	require("boom.components.anchor"),
+	require("boom.components.fadein"),
+	require("boom.components.health"),
+	require("boom.components.lifespan"),
 }

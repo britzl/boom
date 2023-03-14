@@ -7,13 +7,13 @@ local V2_ONE = vec2(1)
 
 local ANCHORS = {
 	center = vec2(0),
-	topleft = vec2(-1, 1),
-	left = vec2(-1, 0),
-	topright = vec2(1, 1),
-	right = vec2(1, 0),
-	bottomright = vec2(1, -1),
-	bottom = vec2(0, -1),
-	bottomleft = vec2(-1, 0),
+	topleft = vec2(1, -1),
+	left = vec2(1, 0),
+	topright = vec2(-1, -1),
+	right = vec2(-1, 0),
+	bottomright = vec2(-1, 1),
+	bottom = vec2(0, 1),
+	bottomleft = vec2(1, 0),
 }
 ---
 -- Anchor point for render

@@ -53,8 +53,27 @@ function M.text(text, options)
 	end
 
 	c.update = function(dt)
+		local url = c.__url
+		local object = c.object
+
+		local color = object.color
+		local opacity = object.opacity
+		if color or opacity then
+			local text_color = go.get(url, "color")
+			text_color.x = color and color.r or text_color.x
+			text_color.y = color and color.g or text_color.y
+			text_color.z = color and color.b or text_color.z
+			text_color.w = opacity or text_color.w
+			go.set(url, "color", text_color)
+		end
+
 		-- worth checking if text has changed?
-		label.set_text(c.__url, c.object.text)
+		label.set_text(url, object.text)
+
+		local scale = object.scale
+		if scale then
+			go.set(url, "scale", scale)
+		end
 	end
 
 	return c

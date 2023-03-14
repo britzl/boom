@@ -9,4 +9,5 @@ return {
 	require("boom.components.color"),
 	require("boom.components.area"),
 	require("boom.components.stay"),
+	require("boom.components.anchor"),
 }

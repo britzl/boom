@@ -11,7 +11,7 @@ return function()
 
 	loop(1.5, function()
 		local enemy = add({
-			pos(rand(0, width()), height() - 20),
+			pos(rand(0, width()), height() + 40),
 			sprite("ship_0005", { flip_y = true, atlas = "shmup" }),
 			move(vec2.DOWN, 100),
 			area(),

@@ -13,4 +13,5 @@ return {
 	require("boom.components.fadein"),
 	require("boom.components.health"),
 	require("boom.components.lifespan"),
+	require("boom.components.offscreen"),
 }

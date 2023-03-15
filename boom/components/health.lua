@@ -43,7 +43,4 @@ function M.health(hp)
 	return c
 end
 
-
-
-
 return M

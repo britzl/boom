@@ -1,5 +1,4 @@
 local gameobject = require "boom.gameobject.gameobject"
-local color = require "boom.math.color"
 
 local M = {}
 

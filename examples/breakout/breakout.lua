@@ -77,7 +77,6 @@ return function()
 
 		-- follow paddle if ball is attached
 		if ball.attached then
-			print("attached")
 			ball.pos.x = paddle.pos.x
 			return
 		end

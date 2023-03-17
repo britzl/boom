@@ -1,5 +1,6 @@
 [bootstrap]
 main_collection = /examples/examples.collectionc
+render = /boom/render/boom.renderc
 
 [script]
 shared_state = 1
@@ -26,6 +27,9 @@ default_texture_mag_filter = nearest
 clear_color_red = 1.0
 clear_color_green = 0.0
 
-[physics]
-debug = 1
+[label]
+max_count = 1000
+
+[collection]
+max_instances = 500
 

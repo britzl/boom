@@ -5,17 +5,19 @@ return function()
 	local score = add({
 		pos(20, height() - 30),
 		text("Score: 0", { font = "upheaval", align = "left" }),
+		fixed(),
 		{ score = 0 }
 	})
 	--pprint(score)
 
-	loop(1.5, function()
+	loop(0.1, function()
 		local enemy = add({
 			pos(rand(0, width()), height() + 40),
 			sprite("ship_0005", { flip_y = true, atlas = "shmup" }),
 			move(vec2.DOWN, 100),
 			area(),
 			health(3),
+			offscreen({ destroy = true, distance = 100}),
 			"enemy",
 		})
 		enemy.on_collide("bullet", function(bullet)
@@ -37,9 +39,9 @@ return function()
 		area(),
 	})
 	player.on_collide("enemy", function(cancel)
-		show("gameover")
+		show("shmup-gameover")
 	end)
-	
+
 	on_key_press("key_space", function()
 		add({
 			area(),
@@ -62,5 +64,7 @@ return function()
 		if not is_key_down("key_up") and not is_key_down("key_down") then
 			player.move(player.vel.x, 0)
 		end
+
+		cam_pos(player.pos.x, height()  / 2)
 	end)
 end

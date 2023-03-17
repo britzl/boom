@@ -1,5 +1,7 @@
 local M = {}
 
+local timer = _G.timer
+
 local timers = {}
 
 local function cancel(handle)

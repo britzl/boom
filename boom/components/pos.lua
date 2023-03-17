@@ -2,6 +2,18 @@ local vec2 = require "boom.math.vec2"
 
 local M = {}
 
+local function to_vec2(x, y)
+	if not x then return nil end
+	if x and y then return vec2(x, y) end
+	return x
+end
+
+local function to_xy(x, y)
+	if not x then return 0, 0 end
+	if x and y then return x, y end
+	local v2 = x
+	return v2.x, v2.y
+end
 ---
 -- Position an object
 -- @param x
@@ -23,7 +35,8 @@ function M.pos(x, y)
 		go.set_position(c.object.pos, c.object.id)
 	end
 
-	c.move = function(xvel, yvel)
+	c.move = function(...)
+		local xvel, yvel = to_xy(...)
 		c.object.vel.x = xvel
 		c.object.vel.y = yvel
 	end

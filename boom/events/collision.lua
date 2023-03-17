@@ -22,16 +22,22 @@ function M.on_collide(tag1, tag2, fn)
 		if not object or object.destroyed or not other_object or other_object.destroyed then
 			return
 		end
+
 		if (object.tags[tag1] and other_object.tags[tag2])
 		or (object.tags[tag2] and other_object.tags[tag1]) then
-			fn(object, other_object, cancel)
+			-- make sure object has tag1
+			-- and other_object has tag2
+			if not object.tags[tag1] then
+				object, other_object = other_object, object
+			end
+
+			if object.check_collision(other_object) then
+				fn(object, other_object, cancel)
+			end
 		end
 	end)
 end
 
-function M.on_collision_response(cb)
-	return listener.register(collision_listeners, COLLISION_RESPONSE, cb)
-end
 
 function M.__on_message(message_id, message, sender)
 	if message_id == COLLISION_RESPONSE then

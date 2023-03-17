@@ -1,0 +1,59 @@
+images {
+  image: "/examples/assets/images/breakout/ballGrey.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
+images {
+  image: "/examples/assets/images/breakout/element_blue_rectangle.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
+images {
+  image: "/examples/assets/images/breakout/element_blue_rectangle_glossy.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
+images {
+  image: "/examples/assets/images/breakout/element_green_rectangle.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
+images {
+  image: "/examples/assets/images/breakout/element_green_rectangle_glossy.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
+images {
+  image: "/examples/assets/images/breakout/element_grey_rectangle.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
+images {
+  image: "/examples/assets/images/breakout/element_grey_rectangle_glossy.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
+images {
+  image: "/examples/assets/images/breakout/element_purple_rectangle.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
+images {
+  image: "/examples/assets/images/breakout/element_purple_rectangle_glossy.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
+images {
+  image: "/examples/assets/images/breakout/element_red_rectangle.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
+images {
+  image: "/examples/assets/images/breakout/element_red_rectangle_glossy.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
+images {
+  image: "/examples/assets/images/breakout/element_yellow_rectangle.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
+images {
+  image: "/examples/assets/images/breakout/element_yellow_rectangle_glossy.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
+images {
+  image: "/examples/assets/images/breakout/paddleRed.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
+margin: 0
+extrude_borders: 2
+inner_padding: 0

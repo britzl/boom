@@ -20,7 +20,7 @@ function M.example(foo, bar)
 		-- a function which will be available on the game object
 	end
 
-	f.destroy = function()
+	c.destroy = function()
 		-- will be run when the game object is destroyed
 	end
 

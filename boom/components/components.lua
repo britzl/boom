@@ -14,4 +14,6 @@ return {
 	require("boom.components.health"),
 	require("boom.components.lifespan"),
 	require("boom.components.offscreen"),
+	require("boom.components.timer"),
+	require("boom.components.fixed"),
 }

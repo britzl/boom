@@ -5,6 +5,7 @@ local math = require "boom.math.math"
 local timer = require "boom.timer.timer"
 local info = require "boom.info.info"
 local scene = require "boom.scene.scene"
+local debug = require "boom.debug.debug"
 
 local systems = require "boom.systems"
 
@@ -13,30 +14,46 @@ systems.add(math)
 systems.add(components)
 systems.add({ gameobject })
 systems.add(info)
+systems.add(debug)
 systems.add({ scene })
 systems.add({ timer })
 
 local M = {}
 
 local initialized = false
-local game = nil
-local game_url = nil
+local game_fn = nil
+
+local config = {
+	game_url = nil,
+	boom_url = nil,
+	label_screen_material = nil,
+	sprite_screen_material = nil,
+}
 
 local function start_game()
 	if initialized then
 		--setfenv(game, ENV)
-		game()
+		game_fn()
 	end
 end
 
-function M.boom(_game)
-	game = _game
-	game_url = msg.url()
+---
+-- Start a boom game
+-- Call this from your own game script
+-- @param game Game loop function
+function M.boom(game)
+	game_fn = game
+	config.game_url = msg.url()
 	start_game()
 end
 
+-- initialize boom
+-- called from boom.script
 function M.init()
-	systems.init(game_url)
+	config.boom_url = msg.url()
+	config.label_screen_material = go.get(config.boom_url, "label_screen_material")
+	config.sprite_screen_material = go.get(config.boom_url, "sprite_screen_material")
+	systems.init(config)
 	initialized = true
 	start_game()
 end

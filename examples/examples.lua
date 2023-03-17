@@ -22,7 +22,7 @@ return function()
 
 	local p = vec2(width() / 2, height() - 40)
 	local shmup = add_button("shmup", p, function()
-		show("game")
+		show("shmup")
 	end)
 
 	local p = vec2(width() / 2, height() - 150)

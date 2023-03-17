@@ -1,6 +1,8 @@
 return function()
+	cam_pos(width() / 2, height()  / 2)
+
 	add({
-		text("GAME OVER"),
+		text("GAME OVER", { font = "upheaval", align = "center" }),
 		pos(width() / 2, height() / 2)
 	})
 

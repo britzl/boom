@@ -34,9 +34,9 @@ function M.add(modules)
 	end
 end
 
-function M.init(game_url)
+function M.init(config)
 	for _,fn in ipairs(init) do
-		fn(game_url)
+		fn(config)
 	end
 end
 

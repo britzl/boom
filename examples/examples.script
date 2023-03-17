@@ -1,18 +1,21 @@
 go.property("upheaval", resource.font("/examples/assets/upheaval.font"))
 go.property("shmup", resource.atlas("/examples/assets/shmup.atlas"))
+go.property("breakout", resource.atlas("/examples/assets/breakout.atlas"))
 go.property("ui", resource.atlas("/examples/assets/ui.atlas"))
 
 local boom = require("boom.boom")
 
 local examples = require "examples.examples"
-local game = require "examples.shmup.game"
-local gameover = require "examples.shmup.gameover"
+local breakout = require "examples.breakout.breakout"
+local shmupgame = require "examples.shmup.game"
+local shmupgameover = require "examples.shmup.gameover"
 
 function init(self)
 	boom(function()
 		scene("examples", examples)
-		scene("game", game)
-		scene("gameover", gameover)
-		show("examples")
+		scene("breakout", breakout)
+		scene("shmup", shmupgame)
+		scene("shmup-gameover", shmupgameover)
+		show("breakout")
 	end)
 end

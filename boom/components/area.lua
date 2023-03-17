@@ -12,7 +12,6 @@ local AREA_RECT = nil
 
 local V2_ZERO = vec2(0)
 local V2_ONE = vec2(1)
-local GREEN = vmath.vector4(0,1,0,1)
 
 
 -- create a rect, either a new empty rect or a copy of another rect
@@ -98,6 +97,7 @@ function M.area(options)
 
 	local width = options and options.width or 20
 	local height = options and options.height or 20
+	local area_id = nil
 
 	c.init = function()
 		c.local_rect = create_rect()
@@ -108,7 +108,7 @@ function M.area(options)
 		local rotation = nil
 		local properties = nil
 		local scale = vmath.vector3(math.max(width, height))
-		local area_id = factory.create(AREA_RECT, pos, rotation, properties, scale)
+		area_id = factory.create(AREA_RECT, pos, rotation, properties, scale)
 		go.set_parent(area_id, c.object.id, false)
 	end
 
@@ -177,6 +177,7 @@ function M.area(options)
 			cancel()
 			registered_events[i] = nil
 		end
+		go.delete(area_id)
 	end
 
 	-- To find if a point is inside your rectangle, take the distance-vector
@@ -193,14 +194,15 @@ function M.area(options)
 
 	c.update = function(dt)
 		local object = c.object
-		local comps = object.comps
-		local sprite = comps.sprite
 		local anchor = object.anchor or V2_ZERO
 		local scale = object.scale or V2_ONE
-		local w = (sprite and sprite.width or width) * scale.x
-		local h = (sprite and sprite.height or height) * scale.y
+		local w = (object.width or width) * scale.x
+		local h = (object.height or height) * scale.y
 		local w2 = w / 2
 		local h2 = h / 2
+
+		-- resize collision object
+		go.set_scale(math.max(w, h), area_id)
 
 		-- for quick collision check
 		c.radius = math.sqrt((w2 * w2) + (h2 * h2))
@@ -229,12 +231,6 @@ function M.area(options)
 		rotate_rect_inline(world_rect, angle)
 		offset_rect_inline(world_rect, center)
 		c.world_rect = world_rect
-
-		-- debug
-		msg.post("@render:", "draw_line", { start_point = world_rect.topleft,     end_point = world_rect.topright, color = GREEN })
-		msg.post("@render:", "draw_line", { start_point = world_rect.topright,    end_point = world_rect.bottomright, color = GREEN })
-		msg.post("@render:", "draw_line", { start_point = world_rect.bottomright, end_point = world_rect.bottomleft, color = GREEN })
-		msg.post("@render:", "draw_line", { start_point = world_rect.bottomleft,  end_point = world_rect.topleft, color = GREEN })
 	end
 
 	return c

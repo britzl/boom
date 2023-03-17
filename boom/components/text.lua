@@ -1,9 +1,11 @@
 local M = {}
 
 local game_url = nil
+local label_screen_material = nil
 
-function M.__init(_game_url)
-	game_url = _game_url
+function M.__init(config)
+	game_url = config.game_url
+	label_screen_material = config.label_screen_material
 end
 
 local LABEL_LEFT = hash("/label_left")
@@ -49,6 +51,12 @@ function M.text(text, options)
 		if font then
 			local font_hash = go.get(game_url, font)
 			go.set(url, "font", font_hash)
+		end
+
+		-- set to a fixed material if the object has the fixed component
+		local fixed = c.object.comps.fixed
+		if fixed then
+			go.set(url, "material", label_screen_material)
 		end
 	end
 

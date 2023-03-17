@@ -8,9 +8,11 @@ local SPRITE = hash("/sprite")
 local V2_ZERO = vec2()
 
 local game_url = nil
+local sprite_screen_material = nil
 
-function M.__init(_game_url)
-	game_url = _game_url
+function M.__init(config)
+	game_url = config.game_url
+	sprite_screen_material = config.sprite_screen_material
 end
 
 ---
@@ -22,6 +24,8 @@ function M.sprite(anim, options)
 	local c = {}
 	c.tag = "sprite"
 	c.anim = anim
+	c.width = 1
+	c.height = 1
 
 	c.init = function()
 		local url = msg.url(nil, c.object.ids[SPRITE], "sprite")
@@ -42,6 +46,12 @@ function M.sprite(anim, options)
 
 		-- set correct animation
 		sprite.play_flipbook(url, anim)
+
+		-- set to a fixed material if the object has the fixed component
+		local fixed = c.object.comps.fixed
+		if fixed then
+			go.set(url, "material", sprite_screen_material)
+		end
 	end
 
 	c.update = function(dt)
@@ -62,8 +72,8 @@ function M.sprite(anim, options)
 		local size = go.get(url, "size")
 		local width = options and options.width or size.x
 		local height = options and options.height or size.y
-		c.width = width
-		c.height = height
+		object.width = width
+		object.height = height
 
 		local scale = object.scale
 		if scale then

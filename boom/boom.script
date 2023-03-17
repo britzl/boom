@@ -1,3 +1,6 @@
+go.property("label_screen_material", resource.material("/boom/render/label-screen.material"))
+go.property("sprite_screen_material", resource.material("/boom/render/sprite-screen.material"))
+
 local boom = require "boom.boom"
 
 function init(self)

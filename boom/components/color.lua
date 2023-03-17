@@ -5,6 +5,7 @@ local M = {}
 ---
 -- Color of object
 -- @param ... r,g,b components or color
+-- @return The color component
 function M.color(...)
 	local c = {}
 	c.tag = "color"

@@ -31,7 +31,8 @@ return function()
 	})
 
 	-- handle ball bounce on paddle
-	paddle.on_collide("ball", function(ball)
+	paddle.on_collide("ball", function(collision)
+		local ball = collision.target
 		if ball.attached then return end
 		if ball.dir.y < 0 then
 			ball.dir.y = -ball.dir.y
@@ -41,7 +42,9 @@ return function()
 
 	-- ball to brick collision
 	-- bounce ball and destroy brick
-	on_collide("ball", "brick", function(ball, brick)
+	on_collide("ball", "brick", function(collision)
+		local ball = collision.source
+		local brick = collision.target
 		if ball.pos.y < brick.pos.y then
 			if ball.dir.y > 0 then
 				ball.dir.y = -ball.dir.y

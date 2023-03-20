@@ -5,6 +5,7 @@ local math = require "boom.math.math"
 local timer = require "boom.timer.timer"
 local info = require "boom.info.info"
 local scene = require "boom.scene.scene"
+local level = require "boom.level.level"
 local debug = require "boom.debug.debug"
 
 local systems = require "boom.systems"
@@ -15,6 +16,7 @@ systems.add(components)
 systems.add({ gameobject })
 systems.add(info)
 systems.add(debug)
+systems.add({ level })
 systems.add({ scene })
 systems.add({ timer })
 

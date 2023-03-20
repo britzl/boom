@@ -5,8 +5,8 @@ return function()
 			sprite("grey_button00", { atlas = "ui" }),
 			pos(p),
 			area(),
-			rotate(math.random(0,180)),
-			scale(2),
+			--rotate(math.random(0,180)),
+			scale(1),
 			--anchor("center"),
 			"button",
 		})
@@ -20,23 +20,28 @@ return function()
 	end
 
 
-	local p = vec2(width() / 2, height() - 40)
+	local p = vec2(width() / 2, height() - 60)
 	local shmup = add_button("shmup", p, function()
 		show("shmup")
 	end)
 
-	local p = vec2(width() / 2, height() - 150)
-	local foo = add_button("foo", p, function()
-		print("foo")
+	local p = vec2(width() / 2, height() - 120)
+	local foo = add_button("breakout", p, function()
+		show("breakout")
 	end)
 
+	local p = vec2(width() / 2, height() - 180)
+	local foo = add_button("platformer", p, function()
+		show("platformer")
+	end)
 
+	
 
 	on_click("button", function(o)
 		print("a button was clicked")
 	end)
 	on_update(function()
-		foo.pos = mouse_pos()
+		--foo.pos = mouse_pos()
 		if foo.check_collision(shmup) then
 			print("collide")
 		end

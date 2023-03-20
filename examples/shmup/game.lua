@@ -20,8 +20,8 @@ return function()
 			offscreen({ destroy = true, distance = 100}),
 			"enemy",
 		})
-		enemy.on_collide("bullet", function(bullet)
-			destroy(bullet)
+		enemy.on_collide("bullet", function(collision)
+			destroy(collision.target)
 			enemy.hurt(1)
 		end)
 		enemy.on_death(function()
@@ -38,7 +38,7 @@ return function()
 		--color(1, 0, 0),
 		area(),
 	})
-	player.on_collide("enemy", function(cancel)
+	player.on_collide("enemy", function(collision)
 		show("shmup-gameover")
 	end)
 
@@ -65,6 +65,6 @@ return function()
 			player.move(player.vel.x, 0)
 		end
 
-		cam_pos(player.pos.x, height()  / 2)
+		--cam_pos(player.pos.x, height()  / 2)
 	end)
 end

@@ -71,8 +71,8 @@ end
 
 local function point_in_rect(point, rect, center, angle)
 	-- rotate distance vector from area center to point onto rect
-	local dist = center - point
-	rotate_point_inline(dist, -angle)
+	local distance = center - point
+	rotate_point_inline(distance, -angle)
 
 	local topleft = rect.topleft
 	local topright = rect.topright
@@ -80,10 +80,13 @@ local function point_in_rect(point, rect, center, angle)
 	local bottomright = rect.bottomright
 
 	-- check if distance vector is within the unrotated rect
-	return dist.x > topleft.x and dist.y < topleft.y
-		and dist.x < topright.x and dist.y < topright.y
-		and dist.x > bottomleft.x and dist.y > bottomleft.y
-		and dist.x < bottomright.x  and dist.y > bottomright.y
+	local inside = distance.x > topleft.x and distance.y < topleft.y
+		and distance.x < topright.x and distance.y < topright.y
+		and distance.x > bottomleft.x and distance.y > bottomleft.y
+		and distance.x < bottomright.x  and distance.y > bottomright.y
+
+	-- return distance if inside, otherwise return nil
+	if not inside then return nil else return distance end
 end
 
 
@@ -91,6 +94,11 @@ function M.__init()
 	AREA_RECT = msg.url("#arearectfactory")
 end
 
+
+---
+-- Create a collider area and enabled collision detection
+-- @param options (width and height)
+-- @return The component
 function M.area(options)
 	local c = {}
 	c.tag = "area"
@@ -112,6 +120,11 @@ function M.area(options)
 		go.set_parent(area_id, c.object.id, false)
 	end
 
+	---
+	-- Check collision with other object
+	-- @param other_object
+	-- @return collision Return true if colliding with other object
+	-- @return data Collision data
 	c.check_collision = function(other_object)
 		local other_area = other_object.comps.area
 		if not other_area then return false end
@@ -142,7 +155,7 @@ function M.area(options)
 		local angle = object.angle or 0
 		local other_angle = other_object.angle or 0
 
-		return point_in_rect(other_world_rect.topleft, local_rect, center, angle)
+		local distance = point_in_rect(other_world_rect.topleft, local_rect, center, angle)
 			or point_in_rect(other_world_rect.topright, local_rect, center, angle)
 			or point_in_rect(other_world_rect.bottomleft, local_rect, center, angle)
 			or point_in_rect(other_world_rect.bottomright, local_rect, center, angle) 
@@ -150,20 +163,33 @@ function M.area(options)
 			or point_in_rect(world_rect.topright, other_local_rect, other_center, other_angle) 
 			or point_in_rect(world_rect.bottomleft, other_local_rect, other_center, other_angle) 
 			or point_in_rect(world_rect.bottomright, other_local_rect, other_center, other_angle) 
+
+		if not distance then
+			return false
+		end
+
+		local data = {
+			distance = distance,
+		}
+		return true, data
 	end
 
 	local registered_events = {}
+
+	---
+	-- Register event listener when colliding
+	-- @param tag Optional tag which colliding object must have, nil for all collisions
+	-- @param cb Function to call when collision is detected
 	c.on_collide = function(tag, cb)
-		local cancel = collision.on_collide(c.object.id, tag, function(object1, object2, cancel)
-			if object1 == c.object then
-				cb(object2, cancel)
-			else
-				cb(object1, cancel)
-			end
+		local cancel = collision.on_collide(c.object.id, tag, function(collision_data, cancel)
+			cb(collision_data, cancel)
 		end)
 		registered_events[#registered_events + 1] = cancel
 	end
 
+	---
+	-- Register event listener when this object is clicked
+	-- @param cb Function to call when clicked
 	c.on_click = function(cb)
 		local cancel = mouse.on_click(c.object.id, function(object, cancel)
 			cb(object, cancel)
@@ -171,20 +197,16 @@ function M.area(options)
 		registered_events[#registered_events + 1] = cancel
 	end
 
-	c.destroy = function()
-		for i = #registered_events,1,-1 do
-			local cancel = registered_events[i]
-			cancel()
-			registered_events[i] = nil
-		end
-		go.delete(area_id)
-	end
-
 	-- To find if a point is inside your rectangle, take the distance-vector
 	-- from the rectangle center to this point and rotate it backward (by the
 	-- angle -a). Then check if it is inside the corresponding unrotated
 	-- rectangle
 	-- https://love2d.org/forums/viewtopic.php?p=69469&sid=4a77ba2c0052546e8b7a6d32c74fdbcc#p69469
+
+	---
+	-- Check if a point is within the area
+	-- @param point
+	-- @return true if point is within area
 	c.has_point = function(point)
 		local object = c.object
 		local angle = object.angle or 0
@@ -233,6 +255,15 @@ function M.area(options)
 		c.world_rect = world_rect
 	end
 
+	c.destroy = function()
+		for i = #registered_events,1,-1 do
+			local cancel = registered_events[i]
+			cancel()
+			registered_events[i] = nil
+		end
+		go.delete(area_id)
+	end
+	
 	return c
 end
 

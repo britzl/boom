@@ -8,12 +8,14 @@ local collision_listeners = {}
 local COLLISION_RESPONSE = hash("collision_response")
 
 ---
--- Register an event that runs when two game objects with certain tags collide
--- @param tag1
--- @param tag2
--- @param fn Will receive (first, second, cancel) as args
+-- Register an event that runs when two game objects collide
+-- @param tag1 Tag which the first game object must have
+-- @param tag2 Optional tag which the second game object must have
+-- @param fn Will receive (collision, cancel) as args
 -- @return Cancel event function
 function M.on_collide(tag1, tag2, fn)
+	assert(tag1)
+	assert(fn)
 	return listener.register(collision_listeners, COLLISION_RESPONSE, function(message, cancel)
 		local id = message.id
 		local other_id = message.other_id
@@ -23,17 +25,21 @@ function M.on_collide(tag1, tag2, fn)
 			return
 		end
 
-		if (object.tags[tag1] and other_object.tags[tag2])
-		or (object.tags[tag2] and other_object.tags[tag1]) then
+		if (object.tags[tag1] and tag2 and other_object.tags[tag2])
+		or (tag2 and object.tags[tag2] and other_object.tags[tag1]) then
 			-- make sure object has tag1
 			-- and other_object has tag2
 			if not object.tags[tag1] then
 				object, other_object = other_object, object
 			end
 
-			if object.check_collision(other_object) then
-				fn(object, other_object, cancel)
+			local collision, data = object.check_collision(other_object)
+			if not collision then
+				return
 			end
+			data.source = object
+			data.target = other_object
+			fn(data, cancel)
 		end
 	end)
 end

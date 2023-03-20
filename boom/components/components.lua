@@ -16,4 +16,5 @@ return {
 	require("boom.components.offscreen"),
 	require("boom.components.timer"),
 	require("boom.components.fixed"),
+	require("boom.components.body"),
 }

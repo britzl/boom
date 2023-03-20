@@ -9,33 +9,56 @@ function M.body(options)
 	local c = {}
 	c.tag = "body"
 
+	c.is_grounded = false
+	c.is_falling = false
+	c.is_jumping = false
+	c.jump_force = options and options.jump_force or 800
+
+	local is_static = options and options.is_static or false
+	local acc = 0
+
 	c.init = function()
 		local object = c.object
 		assert(object.comps.pos, "Component 'body' requires component 'pos'")
 		assert(object.comps.area, "Component 'body' requires component 'area'")
 	end
 
-	local registered_events = {}
-	c.on_collide = function(tag, cb)
-		local cancel = collision.on_collide(c.object.id, tag, function(object1, object2, cancel)
-			cb(object2, cancel)
+	c.init = function()
+		if is_static then return end
+		local object = c.object
+		object.on_collide("body", function(collision_data)
+			acc = 0
+			object.is_grounded = true
+			print(collision_data.distance)
+			object.pos.y = object.pos.y - collision_data.distance.y
 		end)
-		registered_events[#registered_events + 1] = cancel
 	end
 
-	c.update = function(dt)
-		local g = gravity.get_gravity()
+
+	c.jump = function(force)
 		local object = c.object
-		local pos = object.pos
-		pos.y = pos.y + gravity * dt
+		force = force or object.jump_force
+		object.is_grounded = false
+		acc = force
+	end
+
+	if not is_static then
+		c.update = function(dt)
+			local object = c.object
+			if not object.is_grounded then
+				local g = gravity.get_gravity()
+				acc = acc - g * dt
+
+				object.is_jumping = acc > 0
+				object.is_falling = acc < 0
+
+				local pos = object.pos
+				pos.y = pos.y + acc * dt
+			end
+		end
 	end
 
 	c.destroy = function()
-		for i = #registered_events,1,-1 do
-			local cancel = registered_events[i]
-			cancel()
-			registered_events[i] = nil
-		end
 	end
 
 	return c

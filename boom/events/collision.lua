@@ -33,10 +33,11 @@ function M.on_collide(tag1, tag2, fn)
 				object, other_object = other_object, object
 			end
 
-			local collision, data = object.check_collision(other_object)
+			local collision = object.check_collision(other_object)
 			if not collision then
 				return
 			end
+			local data = {}
 			data.source = object
 			data.target = other_object
 			fn(data, cancel)

@@ -26,11 +26,9 @@ function M.body(options)
 	c.init = function()
 		if is_static then return end
 		local object = c.object
-		object.on_collide("body", function(collision_data)
+		object.on_collide("body", function()
 			acc = 0
 			object.is_grounded = true
-			print(collision_data.distance)
-			object.pos.y = object.pos.y - collision_data.distance.y
 		end)
 	end
 

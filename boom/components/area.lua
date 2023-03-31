@@ -85,8 +85,7 @@ local function point_in_rect(point, rect, center, angle)
 		and distance.x > bottomleft.x and distance.y > bottomleft.y
 		and distance.x < bottomright.x  and distance.y > bottomright.y
 
-	-- return distance if inside, otherwise return nil
-	if not inside then return nil else return distance end
+	return inside
 end
 
 
@@ -155,7 +154,7 @@ function M.area(options)
 		local angle = object.angle or 0
 		local other_angle = other_object.angle or 0
 
-		local distance = point_in_rect(other_world_rect.topleft, local_rect, center, angle)
+		local inside = point_in_rect(other_world_rect.topleft, local_rect, center, angle)
 			or point_in_rect(other_world_rect.topright, local_rect, center, angle)
 			or point_in_rect(other_world_rect.bottomleft, local_rect, center, angle)
 			or point_in_rect(other_world_rect.bottomright, local_rect, center, angle) 
@@ -164,14 +163,7 @@ function M.area(options)
 			or point_in_rect(world_rect.bottomleft, other_local_rect, other_center, other_angle) 
 			or point_in_rect(world_rect.bottomright, other_local_rect, other_center, other_angle) 
 
-		if not distance then
-			return false
-		end
-
-		local data = {
-			distance = distance,
-		}
-		return true, data
+		return inside
 	end
 
 	local registered_events = {}
@@ -181,8 +173,8 @@ function M.area(options)
 	-- @param tag Optional tag which colliding object must have, nil for all collisions
 	-- @param cb Function to call when collision is detected
 	c.on_collide = function(tag, cb)
-		local cancel = collision.on_collide(c.object.id, tag, function(collision_data, cancel)
-			cb(collision_data, cancel)
+		local cancel = collision.on_collide(c.object.id, tag, function(cancel)
+			cb(cancel)
 		end)
 		registered_events[#registered_events + 1] = cancel
 	end

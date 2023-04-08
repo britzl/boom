@@ -8,7 +8,7 @@ local inspecting = false
 
 function M.inspect()
 	inspecting = not inspecting
-	--msg.post("@system:", "toggle_physics_debug")
+	msg.post("@system:", "toggle_physics_debug")
 end
 
 function M.__update()
@@ -16,11 +16,14 @@ function M.__update()
 		local objects = gameobject.get("area")
 		for i=1,#objects do
 			local object = objects[i]
-			local world_rect = object.comps.area.world_rect
-			msg.post("@render:", "draw_line", { start_point = world_rect.topleft,     end_point = world_rect.topright, color = GREEN })
-			msg.post("@render:", "draw_line", { start_point = world_rect.topright,    end_point = world_rect.bottomright, color = GREEN })
-			msg.post("@render:", "draw_line", { start_point = world_rect.bottomright, end_point = world_rect.bottomleft, color = GREEN })
-			msg.post("@render:", "draw_line", { start_point = world_rect.bottomleft,  end_point = world_rect.topleft, color = GREEN })
+			local world_shape = object.world_shape
+			if world_shape.radius then
+			else
+				msg.post("@render:", "draw_line", { start_point = world_shape.topleft,     end_point = world_shape.topright, color = GREEN })
+				msg.post("@render:", "draw_line", { start_point = world_shape.topright,    end_point = world_shape.bottomright, color = GREEN })
+				msg.post("@render:", "draw_line", { start_point = world_shape.bottomright, end_point = world_shape.bottomleft, color = GREEN })
+				msg.post("@render:", "draw_line", { start_point = world_shape.bottomleft,  end_point = world_shape.topleft, color = GREEN })
+			end
 		end
 
 	end

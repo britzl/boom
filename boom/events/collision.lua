@@ -6,6 +6,7 @@ local M = {}
 local collision_listeners = {}
 
 local COLLISION_RESPONSE = hash("collision_response")
+local CONTACT_POINT_RESPONSE = hash("contact_point_response")
 
 ---
 -- Register an event that runs when two game objects collide
@@ -16,7 +17,7 @@ local COLLISION_RESPONSE = hash("collision_response")
 function M.on_collide(tag1, tag2, fn)
 	assert(tag1)
 	assert(fn)
-	return listener.register(collision_listeners, COLLISION_RESPONSE, function(message, cancel)
+	return listener.register(collision_listeners, CONTACT_POINT_RESPONSE, function(message, cancel)
 		local id = message.id
 		local other_id = message.other_id
 		local object = gameobject.object(id)
@@ -25,21 +26,24 @@ function M.on_collide(tag1, tag2, fn)
 			return
 		end
 
-		if (object.tags[tag1] and tag2 and other_object.tags[tag2])
-		or (tag2 and object.tags[tag2] and other_object.tags[tag1]) then
+		local tag1_match = object.tags[tag1]
+		local tag2_match = object.tags[tag2]
+		--local tag1_match = (object.tags[tag1] or other_object.tags[tag1])
+		--local tag2_match = (object.tags[tag2] or other_object.tags[tag2])
+
+		if (not tag2 and tag1_match)
+		or (tag1_match and tag2_match) then
 			-- make sure object has tag1
 			-- and other_object has tag2
 			if not object.tags[tag1] then
 				object, other_object = other_object, object
 			end
 
-			local collision = object.check_collision(other_object)
-			if not collision then
-				return
-			end
 			local data = {}
 			data.source = object
 			data.target = other_object
+			data.normal = message.normal
+			data.distance = message.distance
 			fn(data, cancel)
 		end
 	end)
@@ -47,10 +51,10 @@ end
 
 
 function M.__on_message(message_id, message, sender)
-	if message_id == COLLISION_RESPONSE then
+	if message_id == CONTACT_POINT_RESPONSE then
 		message.id = go.get_parent(sender)
 		message.other_id = go.get_parent(message.other_id)
-		listener.trigger(collision_listeners, COLLISION_RESPONSE, message)
+		listener.trigger(collision_listeners, CONTACT_POINT_RESPONSE, message)
 	end
 end
 

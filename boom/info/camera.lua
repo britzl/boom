@@ -44,7 +44,7 @@ function M.cam_zoom(zoom)
 	if not zoom then
 		return go.get(CAMERA_ID, "zoom")
 	end
-	go.set(CAMERA_ID, "zoom", zoom)
+	go.set(CAMERA_ID, "orthographic_zoom", zoom)
 end
 
 

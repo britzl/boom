@@ -28,8 +28,14 @@ clear_color_red = 1.0
 clear_color_green = 0.0
 
 [label]
-max_count = 1000
+max_count = 30000
 
 [collection]
-max_instances = 500
+max_instances = 30000
+
+[sprite]
+max_count = 30000
+
+[physics]
+max_collision_object_count = 30000
 

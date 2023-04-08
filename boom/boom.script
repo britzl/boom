@@ -5,6 +5,8 @@ local boom = require "boom.boom"
 
 function init(self)
 	msg.post(".", "acquire_input_focus")
+	msg.post("#collisionobject_area", "disable")
+	msg.post("#collisionobject_static", "disable")
 	math.randomseed(os.time())
 	boom.init()
 end

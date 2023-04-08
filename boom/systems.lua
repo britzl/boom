@@ -1,6 +1,8 @@
 local M = {}
 
+local pre_update = {}
 local update = {}
+local post_update = {}
 local init = {}
 local destroy = {}
 local on_message = {}
@@ -19,6 +21,14 @@ function M.add(modules)
 		if module.__update then
 			update[#update + 1] = module.__update
 			module.__update = nil
+		end
+		if module.__pre_update then
+			pre_update[#pre_update + 1] = module.__pre_update
+			module.__pre_update = nil
+		end
+		if module.__post_update then
+			post_update[#post_update + 1] = module.__post_update
+			module.__post_update = nil
 		end
 		if module.__on_message then
 			on_message[#on_message + 1] = module.__on_message
@@ -47,7 +57,13 @@ function M.destroy()
 end
 
 function M.update(dt)
+	for _,fn in ipairs(pre_update) do
+		fn(dt)
+	end
 	for _,fn in ipairs(update) do
+		fn(dt)
+	end
+	for _,fn in ipairs(post_update) do
 		fn(dt)
 	end
 end

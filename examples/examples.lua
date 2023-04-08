@@ -1,5 +1,7 @@
 return function()
 
+	--inspect()
+
 	local function add_button(txt, p, fn)
 		local btn = add({
 			sprite("grey_button00", { atlas = "ui" }),
@@ -19,32 +21,23 @@ return function()
 		return btn
 	end
 
+	local BUTTONS = { "shmup", "breakout", "platformer" }
 
-	local p = vec2(width() / 2, height() - 60)
-	local shmup = add_button("shmup", p, function()
-		show("shmup")
-	end)
+	for i=1,#BUTTONS do
+		local b = BUTTONS[i]
+		local p = vec2(width() / 2, height() - i * 60)
+		BUTTONS[b] = add_button(b, p, function() show(b) end)
+	end
 
-	local p = vec2(width() / 2, height() - 120)
-	local foo = add_button("breakout", p, function()
-		show("breakout")
-	end)
-
-	local p = vec2(width() / 2, height() - 180)
-	local foo = add_button("platformer", p, function()
-		show("platformer")
-	end)
-
-	
+	local foo = add_button("foo", vec2(), function() end)
 
 	on_click("button", function(o)
 		print("a button was clicked")
 	end)
+
+	local shmup = BUTTONS.shmup
 	on_update(function()
-		--foo.pos = mouse_pos()
-		if foo.check_collision(shmup) then
-			print("collide")
-		end
+		foo.pos = mouse_pos()
 	end)
 	
 end

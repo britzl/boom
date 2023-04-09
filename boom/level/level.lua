@@ -19,10 +19,10 @@ function M.add_level(map, options)
 			local tile = tiles[c]
 			if tile then
 				local comps = tile()
-				local tx = first_tile_pos.x + (x * tile_width)
-				local ty = first_tile_pos.y + (y * tile_height)
+				local tx = first_tile_pos.x + ((x - 1) * tile_width)
+				local ty = first_tile_pos.y + ((y - 1) * tile_height)
 				comps[#comps + 1] = pos.pos(tx, ty)
-				local object = gameobject.add(comps)
+				gameobject.add(comps)
 			end
 		end
 	end

@@ -15,7 +15,7 @@ function M.body(options)
 	c.jump_force = options and options.jump_force or 800
 	c.is_static = options and options.is_static or false
 
-	local acc = 0
+	local acc = vec2()
 	local correction = vmath.vector3()
 
 	c.init = function()
@@ -41,18 +41,17 @@ function M.body(options)
 				object.is_grounded = ground
 
 				if bump or ground then
-					acc = 0
+					acc.y = 0
 				end
 			end
 		end)
 	end
 
-
 	c.jump = function(force)
 		local object = c.object
 		force = force or object.jump_force
 		object.is_grounded = false
-		acc = force
+		acc.y = force
 	end
 
 	if not c.is_static then
@@ -60,18 +59,18 @@ function M.body(options)
 			local object = c.object
 			if not object.is_grounded then
 				local g = gravity.get_gravity()
-				acc = acc - g * dt
-				if acc < -300 then
-					acc = -300
+				acc.y = acc.y - g * dt
+				if acc.y < -300 then
+					acc.y = -300
 				end
 
-				object.is_jumping = acc > 0
-				object.is_falling = acc < 0
-
-				local pos = object.pos
-				pos.y = pos.y + acc * dt
+				object.is_jumping = acc.y > 0
+				object.is_falling = acc.y < 0
+				object.pos = object.pos + acc * dt
 			end
-			object.is_grounded = false
+			if object.is_grounded == true then
+				object.is_grounded = false
+			end
 			correction.x = 0
 			correction.y = 0
 		end

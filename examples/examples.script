@@ -19,6 +19,6 @@ function init(self)
 		scene("platformer", platformer)
 		scene("shmup", shmupgame)
 		scene("shmup-gameover", shmupgameover)
-		show("examples")
+		show("platformer")
 	end)
 end

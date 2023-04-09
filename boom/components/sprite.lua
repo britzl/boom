@@ -26,6 +26,8 @@ function M.sprite(anim, options)
 	c.anim = anim
 	c.width = 1
 	c.height = 1
+	c.flip_x = options.flip_x
+	c.flip_y = options.flip_y
 
 	c.init = function()
 		local url = msg.url(nil, c.object.ids[SPRITE], "sprite")
@@ -39,7 +41,8 @@ function M.sprite(anim, options)
 			end
 			if options.flip_y then
 				sprite.set_vflip(url, true)
-			elseif options.flip_x then
+			end
+			if options.flip_x then
 				sprite.set_hflip(url, true)
 			end
 		end
@@ -89,11 +92,21 @@ function M.sprite(anim, options)
 			p.y = (h / 2) * anchor.y
 			go.set_position(p, url)
 		end
+
+		sprite.set_vflip(url, object.flip_y)
+		sprite.set_hflip(url, object.flip_x)
 	end
 
 	c.play = function(anim)
-		c.object.anim = anim
-		sprite.play_flipbook(c.__url, anim)
+		local object = c.object
+		if object.anim ~= anim then
+			object.anim = anim
+			sprite.play_flipbook(c.__url, anim)
+		end
+	end
+
+	c.stop = function()
+		go.set(c.__url, "playback_rate", 0)
 	end
 	return c
 end

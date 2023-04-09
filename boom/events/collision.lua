@@ -27,18 +27,12 @@ function M.on_collide(tag1, tag2, fn)
 		end
 
 		local tag1_match = object.tags[tag1]
-		local tag2_match = object.tags[tag2]
+		local tag2_match = other_object.tags[tag2]
 		--local tag1_match = (object.tags[tag1] or other_object.tags[tag1])
 		--local tag2_match = (object.tags[tag2] or other_object.tags[tag2])
 
 		if (not tag2 and tag1_match)
 		or (tag1_match and tag2_match) then
-			-- make sure object has tag1
-			-- and other_object has tag2
-			if not object.tags[tag1] then
-				object, other_object = other_object, object
-			end
-
 			local data = {}
 			data.source = object
 			data.target = other_object

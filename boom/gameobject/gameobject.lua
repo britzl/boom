@@ -3,6 +3,9 @@ local M = {}
 local objects = {}
 local objects_to_delete = {}
 
+local components_update = {}
+local components_on_input = {}
+
 local OBJECT_FACTORY = nil
 
 
@@ -24,6 +27,8 @@ function M.add(comps)
 	msg.post(ids[LABEL_RIGHT], "disable")
 	msg.post(ids[LABEL_CENTER], "disable")
 
+	local properties = {}
+
 	local object = {}
 	objects[id] = object
 	object.id = id
@@ -31,6 +36,7 @@ function M.add(comps)
 	object.comps = {}
 	object.tags = {}
 	object.children = {}
+	object.properties = properties
 
 	-- set the game object id as a tag
 	object.tags[id] = true
@@ -55,10 +61,22 @@ function M.add(comps)
 		for k,v in pairs(comp) do
 			-- ignore tag
 			-- ignore private properties (starting with __)
-			-- ignore component lifecycle functions (init, update, destroy, on_input)
-			if k ~= "update" and k ~= "init" and k ~= "destroy" and k ~= "on_input" and k ~= "tag" and k:sub(1,2) ~= "__" then
-				if object[k] then error(("Object '%s' already has key '%s'"):format(object.id, k)) end
-				object[k] = v
+			-- ignore component lifecycle functions init and destroy
+			-- handle component lifecycle functions update and on_input
+			-- for all others we set the component key and value on the object itself
+			if k == "update" then
+				components_update[comp] = v
+			elseif k == "on_input" then
+				components_on_input[comp] = v
+			elseif k == "init" or k == "destroy" or k == "tag" or k:sub(1,2) == "__" then
+				-- no-op
+			else
+				if object[k] or properties[k] then error(("Object '%s' already has key '%s'"):format(object.id, k)) end
+				if type(v) == "function" then
+					object[k] = v
+				else
+					properties[k] = v
+				end
 				comp[k] = nil
 			end
 		end
@@ -77,6 +95,24 @@ function M.add(comps)
 		go.set_parent(o.id, object.id)
 		object.children[#object.children + 1] = o
 	end
+
+	local mt = {}
+	mt.__index = function(t, k)
+		local v = rawget(t, k)
+		if v then return v end
+		if properties[k] then return properties[k] end
+	end
+	mt.__newindex = function(t, k, v)
+		local current = rawget(t, k)
+		if current then
+			rawset(t, k, v)
+		elseif properties[k] ~= v then
+			properties[k] = v
+			rawset(object, "dirty", true)
+			--print("object", rawget(object, "id"), "became dirty when setting", k, "to", v)
+		end
+	end
+	object = setmetatable(object, mt)
 
 	-- init components
 	for i=1,#object.comps do
@@ -110,6 +146,12 @@ function M.destroy(object)
 		if comp.destroy then
 			comp.destroy()
 		end
+		if comp.update then
+			components_update[comp] = nil
+		end
+		if comp.on_input then
+			components_on_input[comp] = nil
+		end
 	end
 end
 
@@ -132,7 +174,9 @@ function M.object(id)
 	return objects[id]
 end
 
-
+---
+-- Get all game objects
+-- @return All game objects
 function M.objects()
 	return objects
 end
@@ -185,9 +229,15 @@ function M.__update(dt)
 		end
 	end
 
+	--[[for _,fn in pairs(components_update) do
+		fn(dt)
+	end--]]
+
 	-- update active objects
 	for id,object in pairs(objects) do
-		if not object.destroyed then
+		if not object.destroyed and object.dirty then
+			--print("update", object.name)
+			object.dirty = false
 			for tag,comp in pairs(object.comps) do
 				if comp.update then comp.update(dt) end
 			end
@@ -196,13 +246,16 @@ function M.__update(dt)
 end
 
 function M.__on_input(action_id, action)
-	for id,object in pairs(objects) do
+	for _,fn in pairs(components_on_input) do
+		fn(action_id, action)
+	end
+	--[[for id,object in pairs(objects) do
 		if not object.destroyed then
 			for tag,comp in pairs(object.comps) do
 				if comp.on_input then comp.on_input(action_id, action) end
 			end
 		end
-	end
+	end--]]
 end
 
 

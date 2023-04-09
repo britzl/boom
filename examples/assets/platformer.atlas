@@ -19,14 +19,6 @@ images {
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
 images {
-  image: "/examples/assets/images/platformer/characters/character_0000.png"
-  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
-}
-images {
-  image: "/examples/assets/images/platformer/characters/character_0001.png"
-  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
-}
-images {
   image: "/examples/assets/images/platformer/characters/character_0002.png"
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
@@ -126,6 +118,94 @@ images {
   image: "/examples/assets/images/platformer/characters/character_0026.png"
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
+images {
+  image: "/examples/assets/images/platformer/items/tile_0151.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
+images {
+  image: "/examples/assets/images/platformer/items/tile_0152.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
+images {
+  image: "/examples/assets/images/platformer/tiles/tile_0020.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
+images {
+  image: "/examples/assets/images/platformer/tiles/tile_0021.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
+images {
+  image: "/examples/assets/images/platformer/tiles/tile_0022.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
+images {
+  image: "/examples/assets/images/platformer/tiles/tile_0023.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
+images {
+  image: "/examples/assets/images/platformer/tiles/tile_0095_1.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
+images {
+  image: "/examples/assets/images/platformer/tiles/tile_0095_2.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
+images {
+  image: "/examples/assets/images/platformer/tiles/tile_0115_1.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
+images {
+  image: "/examples/assets/images/platformer/tiles/tile_0115_2.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
+images {
+  image: "/examples/assets/images/platformer/tiles/tile_0122.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
+images {
+  image: "/examples/assets/images/platformer/tiles/tile_0000.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
+images {
+  image: "/examples/assets/images/platformer/tiles/tile_0047.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
+images {
+  image: "/examples/assets/images/platformer/characters/character_0000.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
+images {
+  image: "/examples/assets/images/platformer/characters/character_0001.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
+animations {
+  id: "player_walk"
+  images {
+    image: "/examples/assets/images/platformer/characters/character_0000.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  images {
+    image: "/examples/assets/images/platformer/characters/character_0001.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 10
+  flip_horizontal: 0
+  flip_vertical: 0
+}
+animations {
+  id: "player_idle"
+  images {
+    image: "/examples/assets/images/platformer/characters/character_0000.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  playback: PLAYBACK_ONCE_FORWARD
+  fps: 1
+  flip_horizontal: 0
+  flip_vertical: 0
+}
 margin: 0
 extrude_borders: 2
 inner_padding: 0
+max_page_width: 0
+max_page_height: 0

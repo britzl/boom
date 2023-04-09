@@ -16,12 +16,12 @@ function M.create(circle)
 	}
 end
 
-
-function M.foo(p, circle, center, angle)
-	-- rotate distance vector from area center to point onto rect
-	local distance = vmath.length(center - p)
-	return distance <= circle.radius
+function M.copy(from, to)
+	to.radius = from.radius
+	to.center.x = from.center.x
+	to.center.y = from.center.y
 end
+
 
 function M.point_inside(p, circle, center, angle)
 	-- rotate distance vector from area center to point onto rect

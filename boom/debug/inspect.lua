@@ -11,18 +11,35 @@ function M.inspect()
 	msg.post("@system:", "toggle_physics_debug")
 end
 
+local P1 = vmath.vector3()
+local P2 = vmath.vector3()
+
 function M.__update()
 	if inspecting then
 		local objects = gameobject.get("area")
 		for i=1,#objects do
 			local object = objects[i]
-			local world_shape = object.world_shape
-			if world_shape.radius then
+			local world_area = object.world_area
+			if world_area.radius then
+				local center = world_area.center
+				local r = world_area.radius
+				local segments = 8
+				local arc = 2 * math.pi / segments
+				for i=1,segments do
+					local a1 = (i - 1) * arc
+					P1.x = center.x + r * math.cos(a1)
+					P1.y = center.y + r * math.sin(a1)
+
+					local a2 = i * arc
+					P2.x = center.x + r * math.cos(a2)
+					P2.y = center.y + r * math.sin(a2)
+					msg.post("@render:", "draw_line", { start_point = P1, end_point = P2, color = GREEN })
+				end
 			else
-				msg.post("@render:", "draw_line", { start_point = world_shape.topleft,     end_point = world_shape.topright, color = GREEN })
-				msg.post("@render:", "draw_line", { start_point = world_shape.topright,    end_point = world_shape.bottomright, color = GREEN })
-				msg.post("@render:", "draw_line", { start_point = world_shape.bottomright, end_point = world_shape.bottomleft, color = GREEN })
-				msg.post("@render:", "draw_line", { start_point = world_shape.bottomleft,  end_point = world_shape.topleft, color = GREEN })
+				msg.post("@render:", "draw_line", { start_point = world_area.topleft,     end_point = world_area.topright, color = GREEN })
+				msg.post("@render:", "draw_line", { start_point = world_area.topright,    end_point = world_area.bottomright, color = GREEN })
+				msg.post("@render:", "draw_line", { start_point = world_area.bottomright, end_point = world_area.bottomleft, color = GREEN })
+				msg.post("@render:", "draw_line", { start_point = world_area.bottomleft,  end_point = world_area.topleft, color = GREEN })
 			end
 		end
 

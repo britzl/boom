@@ -57,13 +57,16 @@ function M.destroy()
 end
 
 function M.update(dt)
-	for _,fn in ipairs(pre_update) do
+	for i=1,#pre_update do
+		local fn = pre_update[i]
 		fn(dt)
 	end
-	for _,fn in ipairs(update) do
+	for i=1,#update do
+		local fn = update[i]
 		fn(dt)
 	end
-	for _,fn in ipairs(post_update) do
+	for i=1,#post_update do
+		local fn = post_update[i]
 		fn(dt)
 	end
 end

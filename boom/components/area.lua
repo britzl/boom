@@ -27,7 +27,7 @@ function M.area(options)
 	c.tag = "area"
 
 	local shape = options and options.shape or "rect"
-	local radius = options and options.radius or 20
+	local radius = options and options.radius or 10
 	local width = options and options.width or 20
 	local height = options and options.height or 20
 	local area_id = nil
@@ -40,28 +40,28 @@ function M.area(options)
 		local object = c.object
 
 		if shape == "rect" then
-			object.local_shape = rect.create()
-			object.world_shape = rect.create()
+			object.local_area = rect.create()
+			object.world_area = rect.create()
 		elseif shape == "circle" then
-			object.local_shape = circle.create()
-			object.world_shape = circle.create()
+			object.local_area = circle.create()
+			object.world_area = circle.create()
 		else
 			error("Unknown shape " .. shape)
 		end
 
 		local is_static = object.is_static
-
 		local pos = vmath.vector3(0)
 		local rotation = nil
 		local properties = {
 			group = is_static and hash("static") or hash("area"),
 			area_mask = true,
-			static_mask = (is_static == false),
+			static_mask = (is_static ~= true),
 		}
-		local scale = vmath.vector3(math.min(width, height))
 		if shape == "rect" then
+			local scale = vmath.vector3(math.min(width, height))
 			area_id = factory.create(AREA_RECT, pos, rotation, properties, scale)
 		elseif shape == "circle" then
+			local scale = vmath.vector3(radius * 2)
 			area_id = factory.create(AREA_CIRCLE, pos, rotation, properties, scale)
 		end
 		go.set_parent(area_id, c.object.id, false)
@@ -84,12 +84,9 @@ function M.area(options)
 	-- @return collision Return true if colliding with other object
 	-- @return data Collision data
 	c.check_collision = function(other_object)
-		print("check_collision")
-
 		for i=1,#collisions do
 			local collision = collisions[i]
 		end
-
 		return false
 	end
 
@@ -124,9 +121,9 @@ function M.area(options)
 		local angle = object.angle or 0
 
 		if shape == "rect" then
-			return rect.point_inside(point, object.local_shape, object.world_shape.center, angle)
+			return rect.point_inside(point, object.local_area, object.world_area.center, angle)
 		elseif shape == "cirlce" then
-			return circle.point_inside(point, object.local_shape, object.world_shape.center, angle)
+			return circle.point_inside(point, object.local_area, object.world_area.center, angle)
 		end
 	end
 
@@ -150,35 +147,37 @@ function M.area(options)
 			-- resize collision object
 			go.set_scale(math.min(w, h), area_id)
 
-			rect.resize(object.local_shape, w, h)
+			rect.resize(object.local_area, w, h)
 
 			-- create world space rotated rect and offset rect
 			local center = object.pos or V2_ZERO
 			local angle = object.angle or 0
 			local offset = vec2(w2 * anchor.x, h2 * anchor.y)
 
-			local world_shape = rect.create(object.local_shape)
-			rect.offset_inline(world_shape, offset)
-			rect.rotate_inline(world_shape, angle)
-			rect.offset_inline(world_shape, center)
-			object.world_shape = world_shape
+			go.set_position(offset, area_id)
+
+			rect.copy(object.local_area, object.world_area)
+			rect.offset_inline(object.world_area, offset)
+			rect.rotate_inline(object.world_area, angle)
+			rect.offset_inline(object.world_area, center)
 		elseif shape == "circle" then
-			local r = (object.radius or radius) * scale
-			r.z = 1
+			local r = (object.radius or radius) * scale.x
 
 			-- resize collision object
-			go.set_scale(r, area_id)
+			go.set_scale(r * 2, area_id)
 
-			circle.resize(object.local_shape, r)
-			
+			circle.resize(object.local_area, r)
+
 			local center = object.pos or V2_ZERO
-			local offset = vec2(r, r)
-			local world_shape = circle.create(object.local_shape)
-			circle.offset_inline(world_shape, offset)
-			circle.offset_inline(world_shape, center)
-			object.world_shape = world_shape
-		end
+			local offset = vec2(r * anchor.x, r * anchor.y)
+			circle.copy(object.local_area, object.world_area)
 
+			go.set_position(offset, area_id)
+
+			circle.create(object.local_area)
+			circle.offset_inline(object.world_area, offset)
+			circle.offset_inline(object.world_area, center)
+		end
 	end
 
 	c.destroy = function()

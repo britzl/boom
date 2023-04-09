@@ -92,5 +92,18 @@ function M.create(rect)
 	}
 end
 
+function M.copy(from, to)
+	to.topleft.x = from.topleft.x
+	to.topleft.y = from.topleft.y
+	to.topright.x = from.topright.x
+	to.topright.y = from.topright.y
+	to.bottomleft.x = from.bottomleft.x
+	to.bottomleft.y = from.bottomleft.y
+	to.bottomright.x = from.bottomright.x
+	to.bottomright.y = from.bottomright.y
+	to.center.x = from.center.x
+	to.center.y = from.center.y
+end
+
 
 return M

@@ -37,8 +37,9 @@ function M.pos(x, y)
 
 	c.move = function(...)
 		local xvel, yvel = to_xy(...)
-		c.object.vel.x = xvel
-		c.object.vel.y = yvel
+		local object = c.object
+		object.vel.x = xvel
+		object.vel.y = yvel
 	end
 
 	c.update = function(dt)

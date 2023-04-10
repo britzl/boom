@@ -97,6 +97,9 @@ function M.sprite(anim, options)
 		sprite.set_hflip(url, object.flip_x)
 	end
 
+	---
+	-- Play an animation
+	-- @param anim The animation to play
 	c.play = function(anim)
 		local object = c.object
 		if object.anim ~= anim then
@@ -105,6 +108,8 @@ function M.sprite(anim, options)
 		end
 	end
 
+	---
+	-- Stop the current animation
 	c.stop = function()
 		go.set(c.__url, "playback_rate", 0)
 	end

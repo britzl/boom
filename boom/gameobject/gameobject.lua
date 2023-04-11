@@ -2,18 +2,87 @@ local M = {}
 
 local objects = {}
 local objects_to_delete = {}
-
-local components_update = {}
 local components_on_input = {}
 
 local OBJECT_FACTORY = nil
-
 
 local ROOT = hash("/root")
 local SPRITE = hash("/sprite")
 local LABEL_LEFT = hash("/label_left")
 local LABEL_RIGHT = hash("/label_right")
 local LABEL_CENTER = hash("/label_center")
+
+
+local function destroy_component(comp)
+	if comp.destroy then
+		comp.destroy()
+	end
+	if comp.on_input then
+		components_on_input[comp] = nil
+	end
+end
+
+local function use(object, comp_or_tag)
+	local comp = comp_or_tag
+
+	-- convert tag into comp object
+	if type(comp_or_tag) == "string" then
+		comp = {
+			tag = comp_or_tag
+		}
+	end
+
+	-- data components don't have an id, assign one!
+	-- example: { score = 0 }
+	if not comp.tag then
+		comp.tag = "data" .. #object.comps
+	end
+
+	-- apply comp properties to object
+	for k,v in pairs(comp) do
+		-- ignore tag
+		-- ignore private properties (starting with __)
+		-- ignore component lifecycle functions init, update and destroy
+		-- handle component lifecycle functions on_input
+		-- for all others we set the component key and value on the object itself
+		if k == "update" or k == "init" or k == "destroy" or k == "tag" or k:sub(1,2) == "__" then
+			-- no-op
+		elseif k == "on_input" then
+			components_on_input[comp] = v
+		else
+			if object[k] or object.properties[k] then error(("Object '%s' already has key '%s'"):format(object.id, k)) end
+			if type(v) == "function" then
+				object[k] = v
+			else
+				object.properties[k] = v
+			end
+			comp[k] = nil
+		end
+	end
+
+	-- assign object to comp and vice versa
+	object.comps[#object.comps + 1] = comp
+	object.comps[comp.tag] = comp
+	comp.object = object
+
+	-- set tag on object
+	object.tags[comp.tag] = true
+end
+
+
+local function unuse(object, tag)
+	for i=1,#object.comps do
+		local comp = object.comps[i]
+		if comp.tag == tag then
+			table.remove(object.comps, i)
+			destroy_component(comp)
+			break
+		end
+	end
+	object.comps[tag] = nil
+	object.tags[tag] = nil
+end
+
 
 ---
 -- Add a game object with a set of components
@@ -27,8 +96,6 @@ function M.add(comps)
 	msg.post(ids[LABEL_RIGHT], "disable")
 	msg.post(ids[LABEL_CENTER], "disable")
 
-	local properties = {}
-
 	local object = {}
 	objects[id] = object
 	object.id = id
@@ -36,7 +103,7 @@ function M.add(comps)
 	object.comps = {}
 	object.tags = {}
 	object.children = {}
-	object.properties = properties
+	object.properties = {}
 
 	-- set the game object id as a tag
 	object.tags[id] = true
@@ -44,58 +111,57 @@ function M.add(comps)
 	-- add components to object
 	for i=1,#comps do
 		local comp = comps[i]
-		-- convert tag into comp object
-		if type(comp) == "string" then
-			comp = {
-				tag = comp
-			}
-		end
-
-		-- data components don't have an id, assign one!
-		-- example: { score = 0 }
-		if not comp.tag then
-			comp.tag = "data" .. i
-		end
-
-		-- apply comp properties to object
-		for k,v in pairs(comp) do
-			-- ignore tag
-			-- ignore private properties (starting with __)
-			-- ignore component lifecycle functions init and destroy
-			-- handle component lifecycle functions update and on_input
-			-- for all others we set the component key and value on the object itself
-			if k == "update" then
-				components_update[comp] = v
-			elseif k == "on_input" then
-				components_on_input[comp] = v
-			elseif k == "init" or k == "destroy" or k == "tag" or k:sub(1,2) == "__" then
-				-- no-op
-			else
-				if object[k] or properties[k] then error(("Object '%s' already has key '%s'"):format(object.id, k)) end
-				if type(v) == "function" then
-					object[k] = v
-				else
-					properties[k] = v
-				end
-				comp[k] = nil
-			end
-		end
-
-		-- assign object to comp and vice versa
-		object.comps[i] = comp
-		object.comps[comp.tag] = comp
-		comp.object = object
-
-		-- set tag on object
-		object.tags[comp.tag] = true
+		use(object, comp)
 	end
 
-	object.add = function(...)
-		local o = M.add(...)
+	---
+	-- Add a game object as a child
+	-- @params comps The game object components
+	-- @return The game object
+	object.add = function(comps)
+		local o = M.add(comps)
 		go.set_parent(o.id, object.id)
 		object.children[#object.children + 1] = o
+		return o
 	end
 
+	---
+	-- Destroy this game object
+	object.destroy = function()
+		M.destroy(object)
+	end
+
+	---
+	-- Check if there is a certain tag on the game object
+	-- @param tag The tag to check
+	-- @return true if the tag exists on the game object
+	object.is = function(tag)
+		return object.tags[tag] ~= nil
+	end
+
+	---
+	-- Add a component to game object
+	-- @param comp The component to use
+	object.use = function(comp)
+		use(object, comp)
+	end
+
+	---
+	-- Remove a component from a game object
+	-- @param tag The component tag to remove
+	object.unuse = function(tag)
+		unuse(object, tag)
+	end
+
+	---
+	-- Get state for a specific component
+	-- @param tag The component to get state for
+	-- @return The component state
+	object.c = function(tag)
+		return object.comps[tag]
+	end
+
+	local properties = object.properties
 	local mt = {}
 	mt.__index = function(t, k)
 		local v = rawget(t, k)
@@ -143,15 +209,7 @@ function M.destroy(object)
 
 	-- destroy object components
 	for tag,comp in pairs(object.comps) do
-		if comp.destroy then
-			comp.destroy()
-		end
-		if comp.update then
-			components_update[comp] = nil
-		end
-		if comp.on_input then
-			components_on_input[comp] = nil
-		end
+		destroy_component(comp)
 	end
 end
 
@@ -228,10 +286,6 @@ function M.__update(dt)
 			objects[id_to_delete] = nil
 		end
 	end
-
-	--[[for _,fn in pairs(components_update) do
-		fn(dt)
-	end--]]
 
 	-- update active objects
 	for id,object in pairs(objects) do

@@ -2,15 +2,11 @@ local gravity = require "boom.info.gravity"
 
 local M = {}
 
-function M.body(options)
+function M.double_jump(options)
 	local c = {}
-	c.tag = "body"
+	c.tag = "double_jump"
 
-	c.is_grounded = false
-	c.is_falling = false
-	c.is_jumping = false
-	c.jump_force = options and options.jump_force or 800
-	c.is_static = options and options.is_static or false
+	c.num_jumps = options and options.num_jumps or 1
 
 	local acc = vec2()
 	local correction = vmath.vector3()
@@ -75,8 +71,5 @@ function M.body(options)
 
 	return c
 end
-
-
-
 
 return M

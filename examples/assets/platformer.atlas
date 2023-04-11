@@ -83,14 +83,6 @@ images {
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
 images {
-  image: "/examples/assets/images/platformer/characters/character_0018.png"
-  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
-}
-images {
-  image: "/examples/assets/images/platformer/characters/character_0019.png"
-  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
-}
-images {
   image: "/examples/assets/images/platformer/characters/character_0020.png"
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
@@ -201,6 +193,36 @@ animations {
   }
   playback: PLAYBACK_ONCE_FORWARD
   fps: 1
+  flip_horizontal: 0
+  flip_vertical: 0
+}
+animations {
+  id: "littleblue"
+  images {
+    image: "/examples/assets/images/platformer/characters/character_0018.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  images {
+    image: "/examples/assets/images/platformer/characters/character_0019.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 2
+  flip_horizontal: 0
+  flip_vertical: 0
+}
+animations {
+  id: "player_run"
+  images {
+    image: "/examples/assets/images/platformer/characters/character_0000.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  images {
+    image: "/examples/assets/images/platformer/characters/character_0001.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 15
   flip_horizontal: 0
   flip_vertical: 0
 }

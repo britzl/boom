@@ -8,65 +8,7 @@ function M.double_jump(options)
 
 	c.num_jumps = options and options.num_jumps or 1
 
-	local acc = vec2()
-	local correction = vmath.vector3()
-
-	c.init = function()
-		local object = c.object
-		assert(object.comps.pos, "Component 'body' requires component 'pos'")
-		assert(object.comps.area, "Component 'body' requires component 'area'")
-
-		if object.is_static then return end
-
-		object.on_collide("body", function(data)
-			local distance = data.distance
-			local normal = data.normal
-			if distance <= 0 then return end
-
-			local proj = vmath.project(correction, normal * distance)
-			if proj < 1 then
-				local comp = (distance - distance * proj) * normal
-				object.pos = object.pos + comp
-				correction = correction + comp
-
-				local bump = normal.y <= -1
-				local ground = normal.y >= 1
-				object.is_grounded = ground
-
-				if bump or ground then
-					acc.y = 0
-				end
-			end
-		end)
-	end
-
-	c.jump = function(force)
-		local object = c.object
-		force = force or object.jump_force
-		object.is_grounded = false
-		acc.y = force
-	end
-
-	if not c.is_static then
-		c.update = function(dt)
-			local object = c.object
-			if not object.is_grounded then
-				local g = gravity.get_gravity()
-				acc.y = acc.y - g * dt
-				if acc.y < -300 then
-					acc.y = -300
-				end
-
-				object.is_jumping = acc.y > 0
-				object.is_falling = acc.y < 0
-				object.pos = object.pos + acc * dt
-			end
-			if object.is_grounded == true then
-				object.is_grounded = false
-			end
-			correction.x = 0
-			correction.y = 0
-		end
+	c.double_jump = function(force)
 	end
 
 	return c

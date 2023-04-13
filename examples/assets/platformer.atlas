@@ -83,10 +83,6 @@ images {
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
 images {
-  image: "/examples/assets/images/platformer/characters/character_0020.png"
-  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
-}
-images {
   image: "/examples/assets/images/platformer/characters/character_0021.png"
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
@@ -108,14 +104,6 @@ images {
 }
 images {
   image: "/examples/assets/images/platformer/characters/character_0026.png"
-  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
-}
-images {
-  image: "/examples/assets/images/platformer/items/tile_0151.png"
-  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
-}
-images {
-  image: "/examples/assets/images/platformer/items/tile_0152.png"
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
 images {
@@ -223,6 +211,32 @@ animations {
   }
   playback: PLAYBACK_LOOP_FORWARD
   fps: 15
+  flip_horizontal: 0
+  flip_vertical: 0
+}
+animations {
+  id: "littleblue_dead"
+  images {
+    image: "/examples/assets/images/platformer/characters/character_0020.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  playback: PLAYBACK_ONCE_FORWARD
+  fps: 1
+  flip_horizontal: 0
+  flip_vertical: 0
+}
+animations {
+  id: "coin"
+  images {
+    image: "/examples/assets/images/platformer/items/tile_0151.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  images {
+    image: "/examples/assets/images/platformer/items/tile_0152.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 10
   flip_horizontal: 0
   flip_vertical: 0
 }

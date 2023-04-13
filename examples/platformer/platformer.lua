@@ -11,6 +11,26 @@ local function tile(id, tag)
 	end
 end
 
+local function create_coin(x, y)
+	local c = add({
+		sprite("coin", { atlas = "platformer" }),
+		pos(x, y),
+	})
+	local duration = 0.2
+	local y = c.pos.y
+	tween(y, y + 10, duration, go.EASING_OUTQUAD, function(value)
+		c.pos.y = value
+		c.dirty = true
+	end).on_end(function()
+		tween(c.pos.y, c.pos.y - 10, duration, go.EASING_OUTQUAD, function(value)
+			c.pos.y = value
+			c.dirty = true
+		end).on_end(function()
+			c.destroy()
+		end)
+	end)
+end
+
 local function littleblue()
 	return {
 		sprite("littleblue", { atlas = "platformer" }),
@@ -106,9 +126,11 @@ return function()
 	end)
 	player.on_collide("coinbump", function(data)
 		if data.target.pos.y > player.pos.y and player.is_jumping then
-			bump_up_down(data.target)
-			data.target.unuse("coinbump")
-			data.target.play("tile_0009")
+			local target = data.target
+			bump_up_down(target)
+			target.unuse("coinbump")
+			target.play("tile_0009")
+			create_coin(target.pos.x, target.pos.y + 20)
 		end
 	end)
 	player.on_collide("mushroombump", function(data)
@@ -119,6 +141,8 @@ return function()
 		end
 	end)
 	player.on_collide("enemy", function(data)
+		print("PLATFORMER enemy collision", player.is_falling)
+		os.exit()
 		if player.pos.y > data.target.pos.y and player.is_falling then
 			local enemy = data.target
 			enemy.unuse("enemy")
@@ -151,6 +175,8 @@ return function()
 			player.move(0, player.vel.y)
 			player.play("player_idle")
 		end
+
+		print("PLATFORMER update")
 
 		if player.pos.x < 0 then player.pos.x = 0 end
 

@@ -61,6 +61,7 @@ function M.init()
 end
 
 function M.update(dt)
+	systems.pre_update(dt)
 	systems.update(dt)
 end
 

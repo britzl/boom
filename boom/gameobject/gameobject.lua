@@ -166,7 +166,7 @@ function M.add(comps)
 	mt.__index = function(t, k)
 		local v = rawget(t, k)
 		if v then return v end
-		if properties[k] then return properties[k] end
+		if properties[k] ~= nil then return properties[k] end
 	end
 	mt.__newindex = function(t, k, v)
 		local current = rawget(t, k)

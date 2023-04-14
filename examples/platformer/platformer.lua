@@ -141,9 +141,7 @@ return function()
 		end
 	end)
 	player.on_collide("enemy", function(data)
-		print("PLATFORMER enemy collision", player.is_falling)
-		os.exit()
-		if player.pos.y > data.target.pos.y and player.is_falling then
+		if (player.pos.y - data.target.pos.y) > 5 then
 			local enemy = data.target
 			enemy.unuse("enemy")
 			enemy.unuse("body")
@@ -175,8 +173,6 @@ return function()
 			player.move(0, player.vel.y)
 			player.play("player_idle")
 		end
-
-		print("PLATFORMER update")
 
 		if player.pos.x < 0 then player.pos.x = 0 end
 

@@ -303,13 +303,6 @@ function M.__on_input(action_id, action)
 	for _,fn in pairs(components_on_input) do
 		fn(action_id, action)
 	end
-	--[[for id,object in pairs(objects) do
-		if not object.destroyed then
-			for tag,comp in pairs(object.comps) do
-				if comp.on_input then comp.on_input(action_id, action) end
-			end
-		end
-	end--]]
 end
 
 

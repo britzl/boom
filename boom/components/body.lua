@@ -1,4 +1,5 @@
 local gravity = require "boom.info.gravity"
+local collisions = require "boom.collisions"
 
 local M = {}
 
@@ -15,6 +16,8 @@ function M.body(options)
 	local acc = vec2()
 	local correction = vmath.vector3()
 
+	local collision_handle = nil
+
 	c.init = function()
 		local object = c.object
 		assert(object.comps.pos, "Component 'body' requires component 'pos'")
@@ -22,7 +25,7 @@ function M.body(options)
 
 		if object.is_static then return end
 
-		object.on_collide("body", function(data)
+		collision_handle = collisions.on_object_collision(object, "body", function(data)
 			local distance = data.distance
 			local normal = data.normal
 			if distance <= 0 then return end
@@ -70,6 +73,13 @@ function M.body(options)
 			end
 			correction.x = 0
 			correction.y = 0
+		end
+	end
+
+	c.destroy = function()
+		if collision_handle then
+			collision_handle()
+			collision_handle = nil
 		end
 	end
 

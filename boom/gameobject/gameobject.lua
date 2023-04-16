@@ -4,7 +4,7 @@ local objects = {}
 local objects_to_delete = {}
 local components_on_input = {}
 
-local OBJECT_FACTORY = nil
+local GAMEOBJECT_FACTORY = nil
 
 local ROOT = hash("/root")
 local SPRITE = hash("/sprite")
@@ -89,7 +89,7 @@ end
 -- @param comps The components for the game object
 -- @return The created game object
 function M.add(comps)
-	local ids = collectionfactory.create(OBJECT_FACTORY)
+	local ids = collectionfactory.create(GAMEOBJECT_FACTORY)
 	local id = ids[ROOT]
 	msg.post(ids[SPRITE], "disable")
 	msg.post(ids[LABEL_LEFT], "disable")
@@ -100,6 +100,7 @@ function M.add(comps)
 	objects[id] = object
 	object.id = id
 	object.ids = ids
+	object.parent = nil
 	object.comps = {}
 	object.tags = {}
 	object.children = {}
@@ -119,10 +120,11 @@ function M.add(comps)
 	-- @params comps The game object components
 	-- @return The game object
 	object.add = function(comps)
-		local o = M.add(comps)
-		go.set_parent(o.id, object.id)
-		object.children[#object.children + 1] = o
-		return o
+		local child = M.add(comps)
+		child.parent = object.id
+		go.set_parent(child.id, object.id)
+		object.children[child.id] = child
+		return child
 	end
 
 	---
@@ -211,6 +213,17 @@ function M.destroy(object)
 	for tag,comp in pairs(object.comps) do
 		destroy_component(comp)
 	end
+
+	-- destroy children
+	for _,child in pairs(object.children) do
+		M.destroy(child)
+	end
+
+	-- remove from parent
+	if object.parent then
+		local parent = objects[object.parent]
+		parent.children[object.id] = nil
+	end
 end
 
 ---
@@ -270,8 +283,8 @@ end
 
 ---- lifecycle functions
 
-function M.__init()
-	OBJECT_FACTORY = msg.url("#objectfactory")
+function M.__init(url)
+	GAMEOBJECT_FACTORY = url or msg.url("#gameobjectfactory")
 end
 
 function M.__update(dt)
@@ -304,7 +317,6 @@ function M.__on_input(action_id, action)
 		fn(action_id, action)
 	end
 end
-
 
 function M.__destroy()
 	for id,object in pairs(objects) do

@@ -1,3 +1,4 @@
+go.property("test", false)
 go.property("label_screen_material", resource.material("/boom/render/label-screen.material"))
 go.property("sprite_screen_material", resource.material("/boom/render/sprite-screen.material"))
 
@@ -8,17 +9,43 @@ function init(self)
 	msg.post("#collisionobject_area", "disable")
 	msg.post("#collisionobject_static", "disable")
 	math.randomseed(os.time())
-	boom.init()
+	if not self.test then
+		boom.init()
+	end
+end
+
+function final(self)
+	if not self.test then
+		boom.final()
+	end
 end
 
 function update(self, dt)
-	boom.update(dt)
+	if not self.test then
+		boom.update(dt)
+	end
 end
 
 function on_message(self, message_id, message, sender)
-	boom.on_message(message_id, message, sender)
+	if not self.test then
+		boom.on_message(message_id, message, sender)
+	else
+		if message_id == hash("boom_init") then
+			boom.init()
+		elseif message_id == hash("boom_update") then
+			boom.update(message.dt)
+		elseif message_id == hash("boom_on_input") then
+			boom.on_input(message.action_id, message.action)
+		elseif message_id == hash("boom_on_message") then
+			boom.on_message(message.message_id, message.message, message.sender)
+		elseif message_id == hash("boom_final") then
+			boom.final()
+		end
+	end
 end
 
 function on_input(self, action_id, action)
-	boom.on_input(action_id, action)
+	if not self.test then
+		boom.on_input(action_id, action)
+	end
 end

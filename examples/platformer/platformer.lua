@@ -114,7 +114,7 @@ return function()
 		area({ shape = "circle" }),
 		anchor("bottom"),
 		body(),
-		pos(40, 50),
+		pos(40, 60),
 		"player",
 		{ name = "player" },
 	})

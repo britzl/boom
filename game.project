@@ -15,6 +15,7 @@ input_method = HiddenInputField
 [project]
 title = boom
 dependencies#0 = https://github.com/defold/lua-language-server/releases/download/v0.0.3/release.zip
+dependencies#1 = https://github.com/britzl/deftest/archive/refs/tags/2.7.2.zip
 
 [input]
 game_binding = /builtins/input/all.input_bindingc

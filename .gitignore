@@ -2,3 +2,5 @@
 /build
 .DS_Store
 Thumbs.db
+luacov.report.out
+luacov.stats.out

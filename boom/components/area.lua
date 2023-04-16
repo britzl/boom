@@ -1,4 +1,4 @@
-local collision = require "boom.events.collision"
+local collisions = require "boom.collisions"
 local mouse = require "boom.events.mouse"
 local vec2 = require "boom.math.vec2"
 local rect = require "boom.area.rect"
@@ -32,7 +32,7 @@ function M.area(options)
 	local height = options and options.height or 20
 	local area_id = nil
 
-	local collisions = {}
+	local registered_collisions = {}
 
 	local registered_events = {}
 
@@ -64,18 +64,20 @@ function M.area(options)
 			local scale = vmath.vector3(radius * 2)
 			area_id = factory.create(AREA_CIRCLE, pos, rotation, properties, scale)
 		end
-		go.set_parent(area_id, c.object.id, false)
+		go.set_parent(area_id, object.id, false)
 
-		local cancel = collision.on_collide(c.object.id, nil, function(data, cancel)
-			collisions[#collisions + 1] = data
-		end)
-		registered_events[#registered_events + 1] = cancel
+		if not is_static then
+			local cancel = collisions.on_object_collision(object, nil, function(data, cancel)
+				registered_collisions[#registered_collisions + 1] = data
+			end)
+			registered_events[#registered_events + 1] = cancel
+		end
 	end
 
 	--- Get all collisions currently happening
 	-- @return list of collisions
 	c.get_collisions = function()
-		return collisions
+		return registered_collisions
 	end
 
 	---
@@ -84,8 +86,8 @@ function M.area(options)
 	-- @return collision Return true if colliding with other object
 	-- @return data Collision data
 	c.check_collision = function(other_object)
-		for i=1,#collisions do
-			local collision = collisions[i]
+		for i=1,#registered_collisions do
+			local collision = registered_collisions[i]
 		end
 		return false
 	end
@@ -95,7 +97,7 @@ function M.area(options)
 	-- @param tag Optional tag which colliding object must have, nil for all collisions
 	-- @param cb Function to call when collision is detected
 	c.on_collide = function(tag, cb)
-		local cancel = collision.on_collide(c.object.id, tag, function(cancel)
+		local cancel = collisions.on_object_collision(c.object, tag, function(cancel)
 			cb(cancel)
 		end)
 		registered_events[#registered_events + 1] = cancel

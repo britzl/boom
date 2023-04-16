@@ -7,33 +7,20 @@ local info = require "boom.info.info"
 local scene = require "boom.scene.scene"
 local level = require "boom.level.level"
 local debug = require "boom.debug.debug"
+local collisions = require "boom.collisions"
 
 local systems = require "boom.systems"
 
-systems.add(events)
-systems.add(math)
-systems.add(components)
-systems.add({ gameobject })
-systems.add(info)
-systems.add(debug)
-systems.add({ level })
-systems.add({ scene })
-systems.add({ timer })
 
 local M = {}
 
+
 local initialized = false
 local game_fn = nil
-
-local config = {
-	game_url = nil,
-	boom_url = nil,
-	label_screen_material = nil,
-	sprite_screen_material = nil,
-}
+local config = {}
 
 local function start_game()
-	if initialized then
+	if initialized and game_fn then
 		--setfenv(game, ENV)
 		game_fn()
 	end
@@ -51,25 +38,58 @@ end
 
 -- initialize boom
 -- called from boom.script
-function M.init()
-	config.boom_url = msg.url()
+-- @param url URL of the boom.script (only used for unit tests)
+function M.init(url, skip_systems)
+	config.boom_url = url or msg.url()
 	config.label_screen_material = go.get(config.boom_url, "label_screen_material")
 	config.sprite_screen_material = go.get(config.boom_url, "sprite_screen_material")
+
+	if not skip_systems then
+		systems.add(events)
+		systems.add(math)
+		systems.add(components)
+		systems.add({ gameobject })
+		systems.add(info)
+		systems.add(debug)
+		systems.add({ level })
+		systems.add({ scene })
+		systems.add({ timer })
+	end
+
 	systems.init(config)
 	initialized = true
 	start_game()
 end
 
+-- finalize boom
+-- called from boom.script
+function M.final()
+	systems.destroy()
+	initialized = false
+	game_fn = nil
+	config = {}
+end
+
+-- update boom
+-- called from boom.script
 function M.update(dt)
-	systems.pre_update(dt)
+	--message_queue.process()
+	--input_queue.process()
 	systems.update(dt)
 end
 
+-- handle messages
+-- called from boom.script
 function M.on_message(message_id, message, sender)
+	--message_queue.queue(message_id, message, sender)
+	collisions.on_message(message_id, message, sender)
 	systems.on_message(message_id, message, sender)
 end
 
+-- handle input
+-- called from boom.script
 function M.on_input(action_id, action)
+	--input_queue.queue(action_id, action)
 	systems.on_input(action_id, action)
 end
 

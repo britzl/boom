@@ -1,0 +1,13 @@
+local deftest = require "deftest.deftest"
+
+local test_boom = require "test.test_boom"
+local test_systems = require "test.test_systems"
+local test_gameobject = require "test.test_gameobject"
+
+function init(self)
+	deftest.add(test_boom)
+	deftest.add(test_systems)
+	deftest.add(test_gameobject)
+	deftest.run({ coverage = { enabled = true }, pattern = nil })
+end
+

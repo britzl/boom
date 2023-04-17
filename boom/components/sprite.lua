@@ -90,6 +90,7 @@ function M.sprite(anim, options)
 			local h = height * (scale and scale.y or 1)
 			p.x = (w / 2) * anchor.x
 			p.y = (h / 2) * anchor.y
+			p.z = object.z or 0
 			go.set_position(p, url)
 		end
 

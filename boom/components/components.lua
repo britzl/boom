@@ -17,4 +17,5 @@ return {
 	require("boom.components.timer"),
 	require("boom.components.fixed"),
 	require("boom.components.body"),
+	require("boom.components.z"),
 }

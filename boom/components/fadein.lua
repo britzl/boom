@@ -3,6 +3,7 @@ local M = {}
 ---
 -- Fade object in
 -- @param time
+-- @return The component
 function M.fadein(time)
 	local c = {}
 	c.tag = "fadein"

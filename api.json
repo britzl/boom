@@ -1,0 +1,1466 @@
+{
+    "groups": [
+        {
+            "files": [
+                {
+                    "description": null,
+                    "entries": [
+                        {
+                            "description": "Start a boom game Call this from your own game script",
+                            "has_params": true,
+                            "has_returns": false,
+                            "name": "boom",
+                            "params": {
+                                "description": "Game loop function",
+                                "name": "game",
+                                "type": null
+                            },
+                            "returns": []
+                        }
+                    ],
+                    "file_description": "It is heavily inspired by the Kaboom.js game framework.",
+                    "file_summary": "Boom is a game framework built on top of Defold.",
+                    "filename": "boom/boom.lua",
+                    "group": "boom",
+                    "has_params": false,
+                    "has_returns": false,
+                    "module": "boom",
+                    "name": null,
+                    "params": [],
+                    "returns": [],
+                    "summary": null
+                }
+            ],
+            "group": "boom"
+        },
+        {
+            "files": [
+                {
+                    "description": null,
+                    "entries": [
+                        {
+                            "description": "Anchor point for render.",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "anchor",
+                            "params": {
+                                "description": "Anchor (center, topleft, left, topright, right, bottomright, bottom, bottomleft)",
+                                "name": "anchor",
+                                "type": "string"
+                            },
+                            "returns": [
+                                {
+                                    "description": "The anchor component.",
+                                    "name": "component",
+                                    "type": "Anchor"
+                                }
+                            ]
+                        }
+                    ],
+                    "file_description": "Use this component to offset any rendered component such as a SpriteComp from the center of the game object.",
+                    "file_summary": "Anchor component.",
+                    "filename": "boom/components/anchor.lua",
+                    "group": "components",
+                    "has_params": false,
+                    "has_returns": false,
+                    "module": "anchor",
+                    "name": null,
+                    "params": [],
+                    "returns": [],
+                    "summary": null
+                },
+                {
+                    "description": null,
+                    "entries": [
+                        {
+                            "description": "This will create an area component which is used to describe an area which can collide with other area components.",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "area",
+                            "params": {
+                                "description": "Component options (width and height)",
+                                "name": "options",
+                                "type": "table"
+                            },
+                            "returns": [
+                                {
+                                    "description": "The area component",
+                                    "name": "area",
+                                    "type": "AreaComp"
+                                }
+                            ],
+                            "summary": "Create a collider area and enabled collision detection."
+                        },
+                        {
+                            "class": "AreaComp",
+                            "description": "",
+                            "has_params": false,
+                            "has_returns": true,
+                            "name": "get_collisions",
+                            "params": [],
+                            "returns": [
+                                {
+                                    "description": "List of collisions",
+                                    "name": "collisions",
+                                    "type": "table"
+                                }
+                            ],
+                            "summary": "Get all collisions currently happening for this component."
+                        },
+                        {
+                            "class": "AreaComp",
+                            "description": "",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "check_collision",
+                            "params": [
+                                {
+                                    "description": "The game object to check collisions with.",
+                                    "name": "other_object",
+                                    "type": "GameObject"
+                                }
+                            ],
+                            "returns": [
+                                {
+                                    "description": "Return true if colliding with the other object",
+                                    "name": "collision",
+                                    "type": "bool"
+                                },
+                                {
+                                    "description": "Collision data",
+                                    "name": "data",
+                                    "type": "table"
+                                }
+                            ],
+                            "summary": "Check collision between this component and another object."
+                        },
+                        {
+                            "class": "AreaComp",
+                            "description": "",
+                            "has_params": true,
+                            "has_returns": false,
+                            "name": "on_collide",
+                            "params": {
+                                "description": "Function to call when collision is detected",
+                                "name": "cb",
+                                "type": "function"
+                            },
+                            "returns": [],
+                            "summary": "Register event listener when this component is colliding."
+                        },
+                        {
+                            "class": "AreaComp",
+                            "description": "",
+                            "has_params": true,
+                            "has_returns": false,
+                            "name": "on_click",
+                            "params": {
+                                "description": "Function to call when clicked",
+                                "name": "cb",
+                                "type": "function"
+                            },
+                            "returns": [],
+                            "summary": "Register event listener when this component is clicked."
+                        },
+                        {
+                            "class": "AreaComp",
+                            "description": "",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "has_point",
+                            "params": {
+                                "description": "The point to check",
+                                "name": "point",
+                                "type": null
+                            },
+                            "returns": [
+                                {
+                                    "description": "Will return true if point is within area",
+                                    "name": "result",
+                                    "type": "bool"
+                                }
+                            ],
+                            "summary": "Check if a point is within the area of this component."
+                        }
+                    ],
+                    "file_description": "Use this component to define a collider area and bounds for a game object.",
+                    "file_summary": "Area component.",
+                    "filename": "boom/components/area.lua",
+                    "group": "components",
+                    "has_params": false,
+                    "has_returns": false,
+                    "module": "area",
+                    "name": null,
+                    "params": [],
+                    "returns": [],
+                    "summary": null
+                },
+                {
+                    "entries": [
+                        {
+                            "description": "Requires AreaComp and PosComp components on the game object. This also makes the object solid.",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "body",
+                            "params": {
+                                "description": "Component options (jump_force, is_static)",
+                                "name": "options",
+                                "type": "table"
+                            },
+                            "returns": [
+                                {
+                                    "description": "The body component",
+                                    "name": "component",
+                                    "type": "BodyComp"
+                                }
+                            ],
+                            "summary": "Physical body that responds to gravity."
+                        },
+                        {
+                            "class": "BodyComp",
+                            "description": "",
+                            "has_params": true,
+                            "has_returns": false,
+                            "name": "jump",
+                            "params": {
+                                "description": "The upward force to apply",
+                                "name": "force",
+                                "type": "number"
+                            },
+                            "returns": [],
+                            "summary": "Add upward force"
+                        }
+                    ],
+                    "filename": "boom/components/body.lua",
+                    "group": "components",
+                    "module": "body"
+                },
+                {
+                    "entries": [
+                        {
+                            "description": "Color of object",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "color",
+                            "params": {
+                                "description": "R,g,b components or color",
+                                "name": "...",
+                                "type": null
+                            },
+                            "returns": [
+                                {
+                                    "description": "The color component",
+                                    "name": "component",
+                                    "type": "ColorComp"
+                                }
+                            ]
+                        }
+                    ],
+                    "filename": "boom/components/color.lua",
+                    "group": "components",
+                    "module": "color"
+                },
+                {
+                    "entries": [
+                        {
+                            "description": "Requires \"body\" component",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "double_jump",
+                            "params": {
+                                "description": "Component options",
+                                "name": "options",
+                                "type": "table"
+                            },
+                            "returns": [
+                                {
+                                    "description": "The double jump component",
+                                    "name": "component",
+                                    "type": "DoubleJumpComp"
+                                }
+                            ],
+                            "summary": "Enables double jump."
+                        },
+                        {
+                            "class": "DoubleJumpComp",
+                            "description": "",
+                            "has_params": true,
+                            "has_returns": false,
+                            "name": "double_jump",
+                            "params": {
+                                "description": "The upward force to apply",
+                                "name": "force",
+                                "type": "number"
+                            },
+                            "returns": []
+                        }
+                    ],
+                    "filename": "boom/components/double_jump.lua",
+                    "group": "components",
+                    "module": "double_jump"
+                },
+                {
+                    "entries": [
+                        {
+                            "description": "Fade object in",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "fadein",
+                            "params": {
+                                "description": "",
+                                "name": "time",
+                                "type": null
+                            },
+                            "returns": [
+                                {
+                                    "description": "Component",
+                                    "name": "The"
+                                }
+                            ]
+                        }
+                    ],
+                    "filename": "boom/components/fadein.lua",
+                    "group": "components",
+                    "module": "fadein"
+                },
+                {
+                    "entries": [
+                        {
+                            "description": "Make object unaffected by camera",
+                            "has_params": false,
+                            "has_returns": true,
+                            "name": "fixed",
+                            "params": [],
+                            "returns": [
+                                {
+                                    "description": "Component",
+                                    "name": "The"
+                                }
+                            ]
+                        }
+                    ],
+                    "filename": "boom/components/fixed.lua",
+                    "group": "components",
+                    "module": "fixed"
+                },
+                {
+                    "entries": [
+                        {
+                            "description": "Handles health related logic",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "health",
+                            "params": {
+                                "description": "Initial health",
+                                "name": "hp",
+                                "type": null
+                            },
+                            "returns": [
+                                {
+                                    "description": "Component",
+                                    "name": "The"
+                                }
+                            ]
+                        },
+                        {
+                            "description": "Register an event that runs when heal() is called",
+                            "has_params": true,
+                            "has_returns": false,
+                            "name": "on_heal",
+                            "params": {
+                                "description": "Function to call",
+                                "name": "cb",
+                                "type": null
+                            },
+                            "returns": []
+                        },
+                        {
+                            "description": "Register an event that runs when hurt() is called",
+                            "has_params": true,
+                            "has_returns": false,
+                            "name": "on_hurt",
+                            "params": {
+                                "description": "Function to call",
+                                "name": "cb",
+                                "type": null
+                            },
+                            "returns": []
+                        },
+                        {
+                            "description": "Register an event that runs when health is 0 or less",
+                            "has_params": true,
+                            "has_returns": false,
+                            "name": "on_death",
+                            "params": {
+                                "description": "Function to call",
+                                "name": "cb",
+                                "type": null
+                            },
+                            "returns": []
+                        },
+                        {
+                            "description": "Increase hp. Will trigger on_heal.",
+                            "has_params": true,
+                            "has_returns": false,
+                            "name": "heal",
+                            "params": {
+                                "description": "Amount to increase",
+                                "name": "n",
+                                "type": null
+                            },
+                            "returns": []
+                        },
+                        {
+                            "description": "Decrease hp. Will trigger on_hurt",
+                            "has_params": true,
+                            "has_returns": false,
+                            "name": "hurt",
+                            "params": {
+                                "description": "Amount to decrease",
+                                "name": "n",
+                                "type": null
+                            },
+                            "returns": []
+                        }
+                    ],
+                    "filename": "boom/components/health.lua",
+                    "group": "components",
+                    "module": "health"
+                },
+                {
+                    "entries": [
+                        {
+                            "description": "Destroy the game obj after certain amount of time param options (fade)",
+                            "has_params": true,
+                            "has_returns": false,
+                            "name": "lifespan",
+                            "params": {
+                                "description": "",
+                                "name": "time",
+                                "type": null
+                            },
+                            "returns": []
+                        }
+                    ],
+                    "filename": "boom/components/lifespan.lua",
+                    "group": "components",
+                    "module": "lifespan"
+                },
+                {
+                    "entries": [
+                        {
+                            "description": "Move towards a direction infinitely, and destroys when it leaves game view",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "move",
+                            "params": {
+                                "description": "Speed of movement in pixels per second",
+                                "name": "speed",
+                                "type": null
+                            },
+                            "returns": [
+                                {
+                                    "description": "Component",
+                                    "name": "The"
+                                }
+                            ]
+                        }
+                    ],
+                    "filename": "boom/components/move.lua",
+                    "group": "components",
+                    "module": "move"
+                },
+                {
+                    "entries": [
+                        {
+                            "description": "Control the behavior of object when it goes out of view",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "offscreen",
+                            "params": {
+                                "description": "(distance, destroy)",
+                                "name": "options",
+                                "type": null
+                            },
+                            "returns": [
+                                {
+                                    "description": "Component",
+                                    "name": "The"
+                                }
+                            ]
+                        }
+                    ],
+                    "filename": "boom/components/offscreen.lua",
+                    "group": "components",
+                    "module": "offscreen"
+                },
+                {
+                    "entries": [
+                        {
+                            "description": "Opacity of object",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "opacity",
+                            "params": {
+                                "description": "0.0 to 1.0",
+                                "name": "opacity",
+                                "type": null
+                            },
+                            "returns": [
+                                {
+                                    "description": "Component",
+                                    "name": "The"
+                                }
+                            ]
+                        }
+                    ],
+                    "filename": "boom/components/opacity.lua",
+                    "group": "components",
+                    "module": "opacity"
+                },
+                {
+                    "entries": [
+                        {
+                            "description": "Position an object",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "pos",
+                            "params": {
+                                "description": "",
+                                "name": "y",
+                                "type": null
+                            },
+                            "returns": [
+                                {
+                                    "description": "Component",
+                                    "name": "The"
+                                }
+                            ]
+                        }
+                    ],
+                    "filename": "boom/components/pos.lua",
+                    "group": "components",
+                    "module": "pos"
+                },
+                {
+                    "entries": [
+                        {
+                            "description": "Apply rotation to object",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "rotate",
+                            "params": {
+                                "description": "Angle in degrees",
+                                "name": "angle",
+                                "type": null
+                            },
+                            "returns": [
+                                {
+                                    "description": "Component",
+                                    "name": "The"
+                                }
+                            ]
+                        }
+                    ],
+                    "filename": "boom/components/rotate.lua",
+                    "group": "components",
+                    "module": "rotate"
+                },
+                {
+                    "entries": [
+                        {
+                            "description": "Apply a scale to the object",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "scale",
+                            "params": {
+                                "description": "",
+                                "name": "y",
+                                "type": null
+                            },
+                            "returns": [
+                                {
+                                    "description": "Component",
+                                    "name": "The"
+                                }
+                            ]
+                        }
+                    ],
+                    "filename": "boom/components/scale.lua",
+                    "group": "components",
+                    "module": "scale"
+                },
+                {
+                    "entries": [
+                        {
+                            "description": "Render as a sprite",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "sprite",
+                            "params": {
+                                "description": "Extra options (flip_x, flip_y, width, height)",
+                                "name": "options",
+                                "type": null
+                            },
+                            "returns": [
+                                {
+                                    "description": "Component",
+                                    "name": "The"
+                                }
+                            ]
+                        },
+                        {
+                            "description": "Play an animation",
+                            "has_params": true,
+                            "has_returns": false,
+                            "name": "play",
+                            "params": {
+                                "description": "The animation to play",
+                                "name": "anim",
+                                "type": null
+                            },
+                            "returns": []
+                        },
+                        {
+                            "description": "Stop the current animation",
+                            "has_params": false,
+                            "has_returns": false,
+                            "name": "stop",
+                            "params": [],
+                            "returns": []
+                        }
+                    ],
+                    "filename": "boom/components/sprite.lua",
+                    "group": "components",
+                    "module": "sprite"
+                },
+                {
+                    "entries": [
+                        {
+                            "description": "Do not get destroyed on scene switch",
+                            "has_params": false,
+                            "has_returns": true,
+                            "name": "stay",
+                            "params": [],
+                            "returns": [
+                                {
+                                    "description": "The created component",
+                                    "name": "component"
+                                }
+                            ]
+                        }
+                    ],
+                    "filename": "boom/components/stay.lua",
+                    "group": "components",
+                    "module": "stay"
+                },
+                {
+                    "entries": [
+                        {
+                            "description": "A text component",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "text",
+                            "params": {
+                                "description": "Text options (width, font, align)",
+                                "name": "options",
+                                "type": null
+                            },
+                            "returns": [
+                                {
+                                    "description": "Component",
+                                    "name": "The"
+                                }
+                            ]
+                        }
+                    ],
+                    "filename": "boom/components/text.lua",
+                    "group": "components",
+                    "module": "text"
+                },
+                {
+                    "entries": [
+                        {
+                            "description": "Run certain action after some time.",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "timer",
+                            "params": {
+                                "description": "The function to call",
+                                "name": "fn",
+                                "type": null
+                            },
+                            "returns": [
+                                {
+                                    "description": "Component",
+                                    "name": "The"
+                                }
+                            ]
+                        }
+                    ],
+                    "filename": "boom/components/timer.lua",
+                    "group": "components",
+                    "module": "timer"
+                },
+                {
+                    "entries": [
+                        {
+                            "description": "Determines the draw order for objects. Object will be drawn on top if z value is bigger.",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "z",
+                            "params": {
+                                "description": "Z-value of the object.",
+                                "name": "z",
+                                "type": null
+                            },
+                            "returns": [
+                                {
+                                    "description": "Component",
+                                    "name": "The"
+                                }
+                            ]
+                        }
+                    ],
+                    "filename": "boom/components/z.lua",
+                    "group": "components",
+                    "module": "z"
+                }
+            ],
+            "group": "components"
+        },
+        {
+            "files": [
+                {
+                    "entries": [
+                        {
+                            "description": "Register an event that runs when two game objects collide",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "on_collide",
+                            "params": {
+                                "description": "Will receive (collision, cancel) as args",
+                                "name": "fn",
+                                "type": null
+                            },
+                            "returns": [
+                                {
+                                    "description": "Event function",
+                                    "name": "Cancel"
+                                }
+                            ]
+                        }
+                    ],
+                    "filename": "boom/events/collision.lua",
+                    "group": "events",
+                    "module": "collision"
+                },
+                {
+                    "entries": [
+                        {
+                            "description": "Register callback that runs when a certain key is pressed",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "on_key_press",
+                            "params": {
+                                "description": "The callback",
+                                "name": "cb",
+                                "type": null
+                            },
+                            "returns": [
+                                {
+                                    "description": "Callback",
+                                    "name": "Cancel"
+                                }
+                            ]
+                        },
+                        {
+                            "description": "Register callback that runs when a certain key is released",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "on_key_release",
+                            "params": {
+                                "description": "The callback",
+                                "name": "cb",
+                                "type": null
+                            },
+                            "returns": [
+                                {
+                                    "description": "Callback",
+                                    "name": "Cancel"
+                                }
+                            ]
+                        },
+                        {
+                            "description": "Check if a certain key is down",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "is_key_down",
+                            "params": {
+                                "description": "The key that must be down, or nil for any key",
+                                "name": "key_id",
+                                "type": null
+                            },
+                            "returns": [
+                                {
+                                    "description": "If down",
+                                    "name": "True"
+                                }
+                            ]
+                        }
+                    ],
+                    "filename": "boom/events/key.lua",
+                    "group": "events",
+                    "module": "key"
+                },
+                {
+                    "entries": [
+                        {
+                            "description": "Set mouse click listener",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "on_click",
+                            "params": {
+                                "description": "Callback when mouse button is clicked",
+                                "name": "cb",
+                                "type": null
+                            },
+                            "returns": [
+                                {
+                                    "description": "Listener function",
+                                    "name": "Cancel"
+                                }
+                            ]
+                        },
+                        {
+                            "description": "Get mouse position (screen coordinates)",
+                            "has_params": false,
+                            "has_returns": true,
+                            "name": "mouse_pos",
+                            "params": [],
+                            "returns": [
+                                {
+                                    "description": "Position (vec2)",
+                                    "name": "Mouse"
+                                }
+                            ]
+                        }
+                    ],
+                    "filename": "boom/events/mouse.lua",
+                    "group": "events",
+                    "module": "mouse"
+                },
+                {
+                    "entries": [
+                        {
+                            "description": "Register an event that runs every frame, optionally for all game objects with certain tag",
+                            "has_params": true,
+                            "has_returns": false,
+                            "name": "on_update",
+                            "params": {
+                                "description": "Event function to call. Will receive object and cancel function",
+                                "name": "fn",
+                                "type": null
+                            },
+                            "returns": [],
+                            "summary": "Run a function every frame"
+                        }
+                    ],
+                    "filename": "boom/events/update.lua",
+                    "group": "events",
+                    "module": "update"
+                }
+            ],
+            "group": "events"
+        },
+        {
+            "files": [
+                {
+                    "entries": [
+                        {
+                            "description": "Add a game object with a set of components",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "add",
+                            "params": {
+                                "description": "The components for the game object",
+                                "name": "comps",
+                                "type": "table"
+                            },
+                            "returns": [
+                                {
+                                    "description": "The created game object",
+                                    "name": "object",
+                                    "type": "GameObject"
+                                }
+                            ]
+                        },
+                        {
+                            "class": "GameObject",
+                            "description": "Add a game object as a child of this game object",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "add",
+                            "params": {
+                                "description": "The game object components",
+                                "name": "comps",
+                                "type": "table"
+                            },
+                            "returns": [
+                                {
+                                    "description": "The game object",
+                                    "name": "object"
+                                }
+                            ]
+                        },
+                        {
+                            "class": "GameObject",
+                            "description": "Destroy this game object",
+                            "has_params": false,
+                            "has_returns": false,
+                            "name": "destroy",
+                            "params": [],
+                            "returns": []
+                        },
+                        {
+                            "class": "GameObject",
+                            "description": "Check if there is a certain tag on this game object",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "is",
+                            "params": {
+                                "description": "The tag to check",
+                                "name": "tag",
+                                "type": "string"
+                            },
+                            "returns": [
+                                {
+                                    "description": "Returns true if the tag exists on the game object",
+                                    "name": "result",
+                                    "type": "bool"
+                                }
+                            ]
+                        },
+                        {
+                            "class": "GameObject",
+                            "description": "Add a component to this game object",
+                            "has_params": true,
+                            "has_returns": false,
+                            "name": "use",
+                            "params": {
+                                "description": "The component to use",
+                                "name": "comp",
+                                "type": "table"
+                            },
+                            "returns": []
+                        },
+                        {
+                            "class": "GameObject",
+                            "description": "Remove a component from this game object",
+                            "has_params": true,
+                            "has_returns": false,
+                            "name": "unuse",
+                            "params": {
+                                "description": "The component tag to remove",
+                                "name": "tag",
+                                "type": "string"
+                            },
+                            "returns": []
+                        },
+                        {
+                            "class": "GameObject",
+                            "description": "Get state for a specific component on this game object",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "c",
+                            "params": {
+                                "description": "The component to get state for",
+                                "name": "tag",
+                                "type": "string"
+                            },
+                            "returns": [
+                                {
+                                    "description": "The component state",
+                                    "name": "state",
+                                    "type": "table"
+                                }
+                            ]
+                        },
+                        {
+                            "description": "Destroy a game object and all of its components",
+                            "has_params": true,
+                            "has_returns": false,
+                            "name": "destroy",
+                            "params": {
+                                "description": "The object to destroy",
+                                "name": "object",
+                                "type": "table"
+                            },
+                            "returns": []
+                        },
+                        {
+                            "description": "Destroy all objects with a certain tag",
+                            "has_params": true,
+                            "has_returns": false,
+                            "name": "destroy_all",
+                            "params": {
+                                "description": "The tag to destroy or nil to destroy all objects",
+                                "name": "tag",
+                                "type": "string"
+                            },
+                            "returns": []
+                        },
+                        {
+                            "description": "Get game object with specific id",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "object",
+                            "params": {
+                                "description": "",
+                                "name": "id",
+                                "type": "string"
+                            },
+                            "returns": [
+                                {
+                                    "description": "String The object or nil if it doesn't exist",
+                                    "name": "id"
+                                }
+                            ]
+                        },
+                        {
+                            "description": "Get all game objects",
+                            "has_params": false,
+                            "has_returns": true,
+                            "name": "objects",
+                            "params": [],
+                            "returns": [
+                                {
+                                    "description": "Table All game objects",
+                                    "name": "objects"
+                                }
+                            ]
+                        },
+                        {
+                            "description": "Get all game objects with the specified tag",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "get",
+                            "params": {
+                                "description": "The tag to get objects for, nil to get all objects",
+                                "name": "tag",
+                                "type": "string"
+                            },
+                            "returns": [
+                                {
+                                    "description": "Table List of objects",
+                                    "name": "objects"
+                                }
+                            ]
+                        },
+                        {
+                            "description": "Run callback on every object with a certain tag.",
+                            "has_params": true,
+                            "has_returns": false,
+                            "name": "every",
+                            "params": {
+                                "description": "The callback to run",
+                                "name": "cb",
+                                "type": "function"
+                            },
+                            "returns": []
+                        }
+                    ],
+                    "filename": "boom/gameobject/gameobject.lua",
+                    "group": "gameobject",
+                    "module": "gameobject"
+                }
+            ],
+            "group": "gameobject"
+        },
+        {
+            "files": [
+                {
+                    "entries": [
+                        {
+                            "description": "Get or set camera position.",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "cam_pos",
+                            "params": {
+                                "description": "",
+                                "name": "y",
+                                "type": null
+                            },
+                            "returns": [
+                                {
+                                    "description": "Camera position",
+                                    "name": "position"
+                                }
+                            ]
+                        },
+                        {
+                            "description": "",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "cam_rot",
+                            "params": {
+                                "description": "The angle to set or nil to get current rotation",
+                                "name": "angle",
+                                "type": null
+                            },
+                            "returns": [
+                                {
+                                    "description": "The camera rotation in degrees",
+                                    "name": "rotation"
+                                }
+                            ],
+                            "summary": "Get or set camera rotation."
+                        },
+                        {
+                            "description": "",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "cam_zoom",
+                            "params": {
+                                "description": "The zoom to set or nil to get the current zoom.",
+                                "name": "zoom",
+                                "type": null
+                            },
+                            "returns": [
+                                {
+                                    "description": "Camera zoom",
+                                    "name": "The"
+                                }
+                            ],
+                            "summary": "Get or set the camera zoom."
+                        }
+                    ],
+                    "filename": "boom/info/camera.lua",
+                    "group": "info",
+                    "module": "camera"
+                },
+                {
+                    "entries": [
+                        {
+                            "description": "Get gravity",
+                            "has_params": false,
+                            "has_returns": true,
+                            "name": "get_gravity",
+                            "params": [],
+                            "returns": [
+                                {
+                                    "description": "The gravity in pixels per seconds",
+                                    "name": "gravity"
+                                }
+                            ]
+                        },
+                        {
+                            "description": "Set gravity",
+                            "has_params": true,
+                            "has_returns": false,
+                            "name": "set_gravity",
+                            "params": {
+                                "description": "Gravity in pixels per seconds",
+                                "name": "gravity",
+                                "type": null
+                            },
+                            "returns": []
+                        }
+                    ],
+                    "filename": "boom/info/gravity.lua",
+                    "group": "info",
+                    "module": "gravity"
+                },
+                {
+                    "entries": [
+                        {
+                            "description": "Get screen width",
+                            "has_params": false,
+                            "has_returns": true,
+                            "name": "width",
+                            "params": [],
+                            "returns": [
+                                {
+                                    "description": "Of screen",
+                                    "name": "Width"
+                                }
+                            ]
+                        },
+                        {
+                            "description": "Get screen height",
+                            "has_params": false,
+                            "has_returns": true,
+                            "name": "height",
+                            "params": [],
+                            "returns": [
+                                {
+                                    "description": "Of screen",
+                                    "name": "Height"
+                                }
+                            ]
+                        },
+                        {
+                            "description": "Get screen center position",
+                            "has_params": false,
+                            "has_returns": true,
+                            "name": "center",
+                            "params": [],
+                            "returns": [
+                                {
+                                    "description": "Of screen (vec2)",
+                                    "name": "Center"
+                                }
+                            ]
+                        }
+                    ],
+                    "filename": "boom/info/screen.lua",
+                    "group": "info",
+                    "module": "screen"
+                },
+                {
+                    "entries": [
+                        {
+                            "description": "Get the delta time",
+                            "has_params": false,
+                            "has_returns": true,
+                            "name": "dt",
+                            "params": [],
+                            "returns": [
+                                {
+                                    "description": "Delta time",
+                                    "name": "dt"
+                                }
+                            ]
+                        },
+                        {
+                            "description": "Get time since start",
+                            "has_params": false,
+                            "has_returns": true,
+                            "name": "time",
+                            "params": [],
+                            "returns": [
+                                {
+                                    "description": "Time since start in seconds",
+                                    "name": "time"
+                                }
+                            ]
+                        }
+                    ],
+                    "filename": "boom/info/time.lua",
+                    "group": "info",
+                    "module": "time"
+                }
+            ],
+            "group": "info"
+        },
+        {
+            "files": [
+                {
+                    "entries": [
+                        {
+                            "description": "Construct a level based on symbols",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "add_level",
+                            "params": {
+                                "description": "Level options (tile_width, tile_height, pos, tiles)",
+                                "name": "options",
+                                "type": null
+                            },
+                            "returns": [
+                                {
+                                    "description": "Object with tiles as children",
+                                    "name": "Game"
+                                }
+                            ]
+                        }
+                    ],
+                    "filename": "boom/level/level.lua",
+                    "group": "level",
+                    "module": "level"
+                }
+            ],
+            "group": "level"
+        },
+        {
+            "files": [
+                {
+                    "entries": [
+                        {
+                            "description": "Get a random number. If called with no arguments the function returns a number between 0 and 1. If called with a single argument 'a' a number between 0 and 'a' is returned. If called with two arguments 'a' and 'b' a number between 'a' and 'b' is returned.",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "rand",
+                            "params": {
+                                "description": "",
+                                "name": "b",
+                                "type": null
+                            },
+                            "returns": [
+                                {
+                                    "description": "Number",
+                                    "name": "Random"
+                                }
+                            ]
+                        },
+                        {
+                            "description": "Same as rand() but floored",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "randi",
+                            "params": {
+                                "description": "",
+                                "name": "b",
+                                "type": null
+                            },
+                            "returns": [
+                                {
+                                    "description": "Integer number",
+                                    "name": "Random"
+                                }
+                            ]
+                        }
+                    ],
+                    "filename": "boom/math/random.lua",
+                    "group": "math",
+                    "module": "random"
+                },
+                {
+                    "entries": [
+                        {
+                            "description": "Tween a value from one to another over a certain duration using a specific easing function",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "tween",
+                            "params": {
+                                "description": "Function to call when the value has changed",
+                                "name": "set_value",
+                                "type": null
+                            },
+                            "returns": [
+                                {
+                                    "description": "A tween object",
+                                    "name": "tween"
+                                }
+                            ]
+                        },
+                        {
+                            "description": "Register an event when finished",
+                            "has_params": true,
+                            "has_returns": false,
+                            "name": "on_end",
+                            "params": {
+                                "description": "The function to call when the tween has finished",
+                                "name": "fn",
+                                "type": null
+                            },
+                            "returns": []
+                        },
+                        {
+                            "description": "Finish tween now",
+                            "has_params": false,
+                            "has_returns": false,
+                            "name": "finish",
+                            "params": [],
+                            "returns": []
+                        },
+                        {
+                            "description": "Cancel tween",
+                            "has_params": false,
+                            "has_returns": false,
+                            "name": "cancel",
+                            "params": [],
+                            "returns": []
+                        }
+                    ],
+                    "filename": "boom/math/tween.lua",
+                    "group": "math",
+                    "module": "tween"
+                }
+            ],
+            "group": "math"
+        },
+        {
+            "files": [
+                {
+                    "entries": [
+                        {
+                            "description": "Create a scene",
+                            "has_params": true,
+                            "has_returns": false,
+                            "name": "scene",
+                            "params": {
+                                "description": "The scene code",
+                                "name": "fn",
+                                "type": null
+                            },
+                            "returns": []
+                        },
+                        {
+                            "description": "Show a scene",
+                            "has_params": true,
+                            "has_returns": false,
+                            "name": "show",
+                            "params": {
+                                "description": "Id of the scene to show",
+                                "name": "id",
+                                "type": null
+                            },
+                            "returns": []
+                        }
+                    ],
+                    "filename": "boom/scene/scene.lua",
+                    "group": "scene",
+                    "module": "scene"
+                }
+            ],
+            "group": "scene"
+        },
+        {
+            "files": [
+                {
+                    "entries": [
+                        {
+                            "description": "Run a callback after a certain nummber of seconds",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "wait",
+                            "params": {
+                                "description": "Function to call",
+                                "name": "cb",
+                                "type": null
+                            },
+                            "returns": [
+                                {
+                                    "description": "Call to cancel the timer",
+                                    "name": "cancel"
+                                }
+                            ]
+                        },
+                        {
+                            "description": "Run a callback repeatedly with a certain interval",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "loop",
+                            "params": {
+                                "description": "Function to call",
+                                "name": "cb",
+                                "type": null
+                            },
+                            "returns": [
+                                {
+                                    "description": "Call to cancel the timer",
+                                    "name": "cancel"
+                                }
+                            ]
+                        }
+                    ],
+                    "filename": "boom/timer/timer.lua",
+                    "group": "timer",
+                    "module": "timer"
+                }
+            ],
+            "group": "timer"
+        }
+    ]
+}

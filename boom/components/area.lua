@@ -1,3 +1,6 @@
+--- Area component.
+-- Use this component to define a collider area and bounds for a game object.
+
 local collisions = require "boom.collisions"
 local mouse = require "boom.events.mouse"
 local vec2 = require "boom.math.vec2"
@@ -18,10 +21,11 @@ function M.__init()
 	AREA_CIRCLE = msg.url("#areacirclefactory")
 end
 
----
--- Create a collider area and enabled collision detection
--- @param options (width and height)
--- @return The component
+--- Create a collider area and enabled collision detection.
+-- This will create an area component which is used to describe an area which
+-- can collide with other area components.
+-- @table options Component options (width and height)
+-- @treturn area AreaComp The area component
 function M.area(options)
 	local c = {}
 	c.tag = "area"
@@ -74,17 +78,18 @@ function M.area(options)
 		end
 	end
 
-	--- Get all collisions currently happening
-	-- @return list of collisions
+	--- Get all collisions currently happening for this component.
+	-- @class AreaComp
+	-- @treturn collisions table List of collisions
 	c.get_collisions = function()
 		return registered_collisions
 	end
 
-	---
-	-- Check collision with other object
-	-- @param other_object
-	-- @return collision Return true if colliding with other object
-	-- @return data Collision data
+	--- Check collision between this component and another object.
+	-- @class AreaComp
+	-- @tparam other_object GameObject The game object to check collisions with.
+	-- @treturn collision bool Return true if colliding with the other object
+	-- @treturn data table Collision data
 	c.check_collision = function(other_object)
 		for i=1,#registered_collisions do
 			local collision = registered_collisions[i]
@@ -92,10 +97,10 @@ function M.area(options)
 		return false
 	end
 
-	---
-	-- Register event listener when colliding
-	-- @param tag Optional tag which colliding object must have, nil for all collisions
-	-- @param cb Function to call when collision is detected
+	--- Register event listener when this component is colliding.
+	-- @class AreaComp
+	-- @string tag Optional tag which colliding object must have, nil for all collisions
+	-- @function cb Function to call when collision is detected
 	c.on_collide = function(tag, cb)
 		local cancel = collisions.on_object_collision(c.object, tag, function(cancel)
 			cb(cancel)
@@ -103,9 +108,9 @@ function M.area(options)
 		registered_events[#registered_events + 1] = cancel
 	end
 
-	---
-	-- Register event listener when this object is clicked
-	-- @param cb Function to call when clicked
+	--- Register event listener when this component is clicked.
+	-- @class AreaComp
+	-- @function cb Function to call when clicked
 	c.on_click = function(cb)
 		local cancel = mouse.on_click(c.object.id, function(object, cancel)
 			cb(object, cancel)
@@ -114,10 +119,10 @@ function M.area(options)
 	end
 
 
-	---
-	-- Check if a point is within the area
-	-- @param point
-	-- @return true if point is within area
+	--- Check if a point is within the area of this component.
+	-- @class AreaComp
+	-- @param point The point to check
+	-- @treturn result bool Will return true if point is within area
 	c.has_point = function(point)
 		local object = c.object
 		local angle = object.angle or 0

@@ -86,8 +86,8 @@ end
 
 ---
 -- Add a game object with a set of components
--- @param comps The components for the game object
--- @return The created game object
+-- @table comps The components for the game object
+-- @treturn object GameObject The created game object
 function M.add(comps)
 	local ids = collectionfactory.create(GAMEOBJECT_FACTORY)
 	local id = ids[ROOT]
@@ -116,9 +116,10 @@ function M.add(comps)
 	end
 
 	---
-	-- Add a game object as a child
-	-- @params comps The game object components
-	-- @return The game object
+	-- Add a game object as a child of this game object
+	-- @class GameObject
+	-- @table comps The game object components
+	-- @return object The game object
 	object.add = function(comps)
 		local child = M.add(comps)
 		child.parent = object.id
@@ -129,36 +130,41 @@ function M.add(comps)
 
 	---
 	-- Destroy this game object
+	-- @class GameObject
 	object.destroy = function()
 		M.destroy(object)
 	end
 
 	---
-	-- Check if there is a certain tag on the game object
-	-- @param tag The tag to check
-	-- @return true if the tag exists on the game object
+	-- Check if there is a certain tag on this game object
+	-- @class GameObject
+	-- @string tag The tag to check
+	-- @treturn result bool Returns true if the tag exists on the game object
 	object.is = function(tag)
 		return object.tags[tag] ~= nil
 	end
 
 	---
-	-- Add a component to game object
-	-- @param comp The component to use
+	-- Add a component to this game object
+	-- @class GameObject
+	-- @table comp The component to use
 	object.use = function(comp)
 		use(object, comp)
 	end
 
 	---
-	-- Remove a component from a game object
-	-- @param tag The component tag to remove
+	-- Remove a component from this game object
+	-- @class GameObject
+	-- @string tag The component tag to remove
 	object.unuse = function(tag)
 		unuse(object, tag)
 	end
 
 	---
-	-- Get state for a specific component
-	-- @param tag The component to get state for
-	-- @return The component state
+	-- Get state for a specific component on this game object
+	-- @class GameObject
+	-- @string tag The component to get state for
+	-- @treturn state table The component state
 	object.c = function(tag)
 		return object.comps[tag]
 	end
@@ -195,7 +201,7 @@ end
 
 ---
 -- Destroy a game object and all of its components
--- @param object The object to destroy
+-- @table object The object to destroy
 function M.destroy(object)
 	assert(object)
 	if object.destroyed then
@@ -228,7 +234,7 @@ end
 
 ---
 -- Destroy all objects with a certain tag
--- @param tag The tag to destroy or nil to destroy all objects
+-- @string tag The tag to destroy or nil to destroy all objects
 function M.destroy_all(tag)
 	for _,object in pairs(objects) do
 		if not tag or object.tags[tag] then
@@ -239,23 +245,23 @@ end
 
 --- 
 -- Get game object with specific id
--- @param id
--- @return The object or nil if it doesn't exist
+-- @string id
+-- @return id string The object or nil if it doesn't exist
 function M.object(id)
 	return objects[id]
 end
 
 ---
 -- Get all game objects
--- @return All game objects
+-- @return objects table All game objects
 function M.objects()
 	return objects
 end
 
 ---
 -- Get all game objects with the specified tag
--- @param tag The tag to get objects for, nil to get all objects
--- @return List of objects
+-- @string tag The tag to get objects for, nil to get all objects
+-- @return objects table List of objects
 function M.get(tag)
 	if not tag then
 		return objects
@@ -270,9 +276,9 @@ function M.get(tag)
 end
 
 ---
--- Run callback on every object with a certain tag
--- @param tag
--- @param cb
+-- Run callback on every object with a certain tag.
+-- @string tag The tag that must exist on the object
+-- @function cb The callback to run
 function M.every(tag, cb)
 	for _,object in pairs(objects) do
 		if object.tags[tag] then
@@ -281,9 +287,9 @@ function M.every(tag, cb)
 	end
 end
 
----- lifecycle functions
+--[[ lifecycle functions ]]
 
-function M.__init(url)
+function M.__init(config, url)
 	GAMEOBJECT_FACTORY = url or msg.url("#gameobjectfactory")
 end
 

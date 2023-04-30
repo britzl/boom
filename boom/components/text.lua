@@ -14,8 +14,8 @@ local LABEL_CENTER = hash("/label_center")
 
 ---
 -- A text component
--- @params text The text to show
--- @params options Text options (width, font, align)
+-- @param text The text to show
+-- @param options Text options (width, font, align)
 -- @return The component
 function M.text(text, options)
 	local c = {}

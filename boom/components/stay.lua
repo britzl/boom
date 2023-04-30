@@ -1,8 +1,8 @@
 local M = {}
 
 ---
--- Don't get destroyed on scene switch
--- @return component
+-- Do not get destroyed on scene switch
+-- @return component The created component
 function M.stay()
 	local c = {}
 	c.tag = "stay"

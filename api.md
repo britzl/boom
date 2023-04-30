@@ -1,45 +1,52 @@
 # Boom
 
-Boom is a game framework built on top of Defold, heavily inspired by the Kaboom.js game framework.
-
-* [boom](#boom)
-* [anchor](#anchor)
-* [area](#area)
-* [body](#body)
-* [color](#color)
-* [double_jump](#double_jump)
-* [fadein](#fadein)
-* [fixed](#fixed)
-* [health](#health)
-* [lifespan](#lifespan)
-* [move](#move)
-* [offscreen](#offscreen)
-* [opacity](#opacity)
-* [pos](#pos)
-* [rotate](#rotate)
-* [scale](#scale)
-* [sprite](#sprite)
-* [stay](#stay)
-* [text](#text)
-* [timer](#timer)
-* [z](#z)
-* [collision](#collision)
-* [key](#key)
-* [mouse](#mouse)
-* [update](#update)
-* [gameobject](#gameobject)
-* [camera](#camera)
-* [gravity](#gravity)
-* [screen](#screen)
-* [time](#time)
-* [level](#level)
-* [random](#random)
-* [tween](#tween)
-* [scene](#scene)
-* [timer](#timer)
-
+* boom
+  * [boom](#boom)
+* components
+  * [anchor](#anchor)
+  * [area](#area)
+  * [body](#body)
+  * [color](#color)
+  * [double_jump](#double_jump)
+  * [fadein](#fadein)
+  * [fixed](#fixed)
+  * [health](#health)
+  * [lifespan](#lifespan)
+  * [move](#move)
+  * [offscreen](#offscreen)
+  * [opacity](#opacity)
+  * [pos](#pos)
+  * [rotate](#rotate)
+  * [scale](#scale)
+  * [sprite](#sprite)
+  * [stay](#stay)
+  * [text](#text)
+  * [timer](#timer)
+  * [z](#z)
+* events
+  * [collision](#collision)
+  * [key](#key)
+  * [mouse](#mouse)
+  * [update](#update)
+* gameobject
+  * [gameobject](#gameobject)
+* info
+  * [camera](#camera)
+  * [gravity](#gravity)
+  * [screen](#screen)
+  * [time](#time)
+* level
+  * [level](#level)
+* math
+  * [random](#random)
+  * [tween](#tween)
+* scene
+  * [scene](#scene)
+* timer
+  * [timer](#timer)
 
 # boom
+Boom is a game framework built on top of Defold. It is heavily inspired by the Kaboom.js game framework.
 
 ## boom.boom(game)
 Start a boom game Call this from your own game script
@@ -49,9 +56,8 @@ PARAMS
 
 
 ---
-
-
 # anchor
+Anchor component. Use this component to offset any rendered component such as a SpriteComp from the center of the game object.
 
 ## anchor.anchor(anchor)
 Anchor point for render.
@@ -64,9 +70,8 @@ RETURNS
 
 
 ---
-
-
 # area
+Area component. Use this component to define a collider area and bounds for a game object.
 
 ## area.area(options)
 Create a collider area and enabled collision detection. This will create an area component which is used to describe an area which can collide with other area components.
@@ -121,9 +126,8 @@ RETURNS
 
 
 ---
-
-
 # body
+
 
 ## body.body(options)
 Physical body that responds to gravity. Requires AreaComp and PosComp components on the game object. This also makes the object solid.
@@ -143,9 +147,8 @@ PARAMS
 
 
 ---
-
-
 # color
+
 
 ## color.color(...)
 Color of object
@@ -158,9 +161,8 @@ RETURNS
 
 
 ---
-
-
 # double_jump
+
 
 ## double_jump.double_jump(options)
 Enables double jump. Requires &quot;body&quot; component
@@ -180,9 +182,8 @@ PARAMS
 
 
 ---
-
-
 # fadein
+
 
 ## fadein.fadein(time)
 Fade object in
@@ -195,9 +196,8 @@ RETURNS
 
 
 ---
-
-
 # fixed
+
 
 ## fixed.fixed()
 Make object unaffected by camera
@@ -207,9 +207,8 @@ RETURNS
 
 
 ---
-
-
 # health
+
 
 ## health.health(hp)
 Handles health related logic
@@ -257,9 +256,8 @@ PARAMS
 
 
 ---
-
-
 # lifespan
+
 
 ## lifespan.lifespan(time)
 Destroy the game obj after certain amount of time param options (fade)
@@ -269,9 +267,8 @@ PARAMS
 
 
 ---
-
-
 # move
+
 
 ## move.move(speed)
 Move towards a direction infinitely, and destroys when it leaves game view
@@ -284,9 +281,8 @@ RETURNS
 
 
 ---
-
-
 # offscreen
+
 
 ## offscreen.offscreen(options)
 Control the behavior of object when it goes out of view
@@ -299,9 +295,8 @@ RETURNS
 
 
 ---
-
-
 # opacity
+
 
 ## opacity.opacity(opacity)
 Opacity of object
@@ -314,9 +309,8 @@ RETURNS
 
 
 ---
-
-
 # pos
+
 
 ## pos.pos(y)
 Position an object
@@ -329,9 +323,8 @@ RETURNS
 
 
 ---
-
-
 # rotate
+
 
 ## rotate.rotate(angle)
 Apply rotation to object
@@ -344,9 +337,8 @@ RETURNS
 
 
 ---
-
-
 # scale
+
 
 ## scale.scale(y)
 Apply a scale to the object
@@ -359,9 +351,8 @@ RETURNS
 
 
 ---
-
-
 # sprite
+
 
 ## sprite.sprite(options)
 Render as a sprite
@@ -385,9 +376,8 @@ Stop the current animation
 
 
 ---
-
-
 # stay
+
 
 ## stay.stay()
 Do not get destroyed on scene switch
@@ -397,9 +387,8 @@ RETURNS
 
 
 ---
-
-
 # text
+
 
 ## text.text(options)
 A text component
@@ -412,9 +401,8 @@ RETURNS
 
 
 ---
-
-
 # timer
+
 
 ## timer.timer(fn)
 Run certain action after some time.
@@ -427,9 +415,8 @@ RETURNS
 
 
 ---
-
-
 # z
+
 
 ## z.z(z)
 Determines the draw order for objects. Object will be drawn on top if z value is bigger.
@@ -442,9 +429,8 @@ RETURNS
 
 
 ---
-
-
 # collision
+
 
 ## collision.on_collide(fn)
 Register an event that runs when two game objects collide
@@ -457,9 +443,8 @@ RETURNS
 
 
 ---
-
-
 # key
+
 
 ## key.on_key_press(cb)
 Register callback that runs when a certain key is pressed
@@ -492,9 +477,8 @@ RETURNS
 
 
 ---
-
-
 # mouse
+
 
 ## mouse.on_click(cb)
 Set mouse click listener
@@ -514,9 +498,8 @@ RETURNS
 
 
 ---
-
-
 # update
+
 
 ## update.on_update(fn)
 Run a function every frame Register an event that runs every frame, optionally for all game objects with certain tag
@@ -526,9 +509,8 @@ PARAMS
 
 
 ---
-
-
 # gameobject
+
 
 ## gameobject.add(comps)
 Add a game object with a set of components
@@ -637,9 +619,8 @@ PARAMS
 
 
 ---
-
-
 # camera
+
 
 ## camera.cam_pos(y)
 Get or set camera position.
@@ -672,9 +653,8 @@ RETURNS
 
 
 ---
-
-
 # gravity
+
 
 ## gravity.get_gravity()
 Get gravity
@@ -691,9 +671,8 @@ PARAMS
 
 
 ---
-
-
 # screen
+
 
 ## screen.width()
 Get screen width
@@ -717,9 +696,8 @@ RETURNS
 
 
 ---
-
-
 # time
+
 
 ## time.dt()
 Get the delta time
@@ -736,9 +714,8 @@ RETURNS
 
 
 ---
-
-
 # level
+
 
 ## level.add_level(options)
 Construct a level based on symbols
@@ -751,9 +728,8 @@ RETURNS
 
 
 ---
-
-
 # random
+
 
 ## random.rand(b)
 Get a random number. If called with no arguments the function returns a number between 0 and 1. If called with a single argument &#x27;a&#x27; a number between 0 and &#x27;a&#x27; is returned. If called with two arguments &#x27;a&#x27; and &#x27;b&#x27; a number between &#x27;a&#x27; and &#x27;b&#x27; is returned.
@@ -776,9 +752,8 @@ RETURNS
 
 
 ---
-
-
 # tween
+
 
 ## tween.tween(set_value)
 Tween a value from one to another over a certain duration using a specific easing function
@@ -806,9 +781,8 @@ Cancel tween
 
 
 ---
-
-
 # scene
+
 
 ## scene.scene(fn)
 Create a scene
@@ -825,9 +799,8 @@ PARAMS
 
 
 ---
-
-
 # timer
+
 
 ## timer.wait(cb)
 Run a callback after a certain nummber of seconds
@@ -850,4 +823,3 @@ RETURNS
 
 
 ---
-

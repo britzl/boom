@@ -1,3 +1,6 @@
+--- Boom is a game framework built on top of Defold.
+-- It is heavily inspired by the Kaboom.js game framework.
+
 local gameobject = require "boom.gameobject.gameobject"
 local components = require "boom.components.components"
 local events = require "boom.events.events"

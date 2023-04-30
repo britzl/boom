@@ -1,0 +1,35 @@
+# Boom
+
+{{#groups}}
+* {{group}}
+{{#files}}
+  * [{{#class}}{{class}}{{/class}}{{^class}}{{module}}{{/class}}](#{{#class}}{{class}}{{/class}}{{^class}}{{module}}{{/class}})
+{{/files}}
+{{/groups}}
+
+{{#groups}}
+{{#files}}
+# {{#class}}{{class}}{{/class}}{{^class}}{{module}}{{/class}}
+{{#file_summary}}{{file_summary}} {{/file_summary}}{{file_description}}
+
+{{#entries}}
+{{#class}}
+## {{class}}.{{name}}({{#params}}{{name}}{{/params}})
+{{/class}}
+{{^class}}
+## {{module}}.{{name}}({{#params}}{{name}}{{/params}})
+{{/class}}
+{{#summary}}{{summary}} {{/summary}}{{description}}
+{{#has_params}}
+
+PARAMS
+{{#params}}* {{name}} {{#type}}[{{type}}] {{/type}}- {{description}}
+{{/params}}{{/has_params}}{{#has_returns}}
+RETURNS
+{{#returns}}* {{name}} {{#type}}[{{type}}] {{/type}}- {{description}}
+{{/returns}}{{/has_returns}}
+
+{{/entries}}
+---
+{{/files}}
+{{/groups}}

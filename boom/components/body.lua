@@ -3,6 +3,11 @@ local collisions = require "boom.collisions"
 
 local M = {}
 
+--- Physical body that responds to gravity.
+-- Requires AreaComp and PosComp components on the game object. This also makes
+-- the object solid.
+-- @table options Component options (jump_force, is_static)
+-- @treturn component BodyComp The body component
 function M.body(options)
 	local c = {}
 	c.tag = "body"
@@ -47,6 +52,9 @@ function M.body(options)
 		end)
 	end
 
+	--- Add upward force
+	-- @class BodyComp
+	-- @number force The upward force to apply
 	c.jump = function(force)
 		local object = c.object
 		force = force or object.jump_force

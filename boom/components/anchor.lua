@@ -1,3 +1,7 @@
+--- Anchor component.
+-- Use this component to offset any rendered component such as a SpriteComp from the
+-- center of the game object.
+
 local vec2 = require "boom.math.vec2"
 
 local M = {}
@@ -15,10 +19,11 @@ local ANCHORS = {
 	bottom = vec2(0, 1),
 	bottomleft = vec2(1, 0),
 }
+
 ---
--- Anchor point for render
--- @param anchor Anchor
--- @return The component
+-- Anchor point for render.
+-- @string anchor Anchor (center, topleft, left, topright, right, bottomright, bottom, bottomleft)
+-- @treturn component Anchor The anchor component.
 function M.anchor(anchor)
 	local c = {}
 	c.tag = "anchor"

@@ -15,10 +15,10 @@ local function tovec2(x, y)
 end
 
 ---
--- Get or set camera position
+-- Get or set camera position.
 -- @param x or vec2
 -- @param y
--- @return Camera position
+-- @return position Camera position
 function M.cam_pos(...)
 	local pos = tovec2(...)
 	if not pos then
@@ -27,9 +27,9 @@ function M.cam_pos(...)
 	go.set_position(pos, CAMERA_ID)
 end
 
---- Get or set camera rotation
+--- Get or set camera rotation.
 -- @param angle The angle to set or nil to get current rotation
--- @return The camera rotation in degrees
+-- @return rotation The camera rotation in degrees
 function M.cam_rot(angle)
 	if not angle then
 		return go.get(CAMERA_ID, "euler.z")
@@ -37,8 +37,8 @@ function M.cam_rot(angle)
 	go.set_rotation(vmath.quat_rotation_y(math.rad(angle)))
 end
 
---- Get or set the camera zoom
--- @param zoom The zoom to set or nil to get the current zoom
+--- Get or set the camera zoom.
+-- @param zoom The zoom to set or nil to get the current zoom.
 -- @return The camera zoom
 function M.cam_zoom(zoom)
 	if not zoom then

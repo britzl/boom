@@ -4,7 +4,8 @@ local M = {}
 
 local update_listeners = {}
 
---- register an event that runs every frame, optionally for all
+--- Run a function every frame 
+-- Register an event that runs every frame, optionally for all
 -- game objects with certain tag
 -- @param tag [optional] run event for all objects matching tag
 -- @param fn event function to call. Will receive object and cancel function

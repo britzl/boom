@@ -1,3 +1,18 @@
+local function up_down(object, amount_up, amount_down, speed, cb)
+	local duration = amount_up / speed
+	local y = object.pos.y
+	tween(y, y + amount_up, duration, go.EASING_OUTSINE, function(value)
+		object.pos.y = value
+		object.dirty = true
+	end).on_end(function()
+		duration = amount_down / speed
+		tween(object.pos.y, object.pos.y - amount_down, duration, go.EASING_INSINE, function(value)
+			object.pos.y = value
+			object.dirty = true
+		end).on_end(cb)
+	end)
+end
+
 local function tile(id, tag)
 	tag = tag or "tile"
 	return function()
@@ -16,18 +31,8 @@ local function create_coin(x, y)
 		sprite("coin", { atlas = "platformer" }),
 		pos(x, y),
 	})
-	local duration = 0.2
-	local y = c.pos.y
-	tween(y, y + 10, duration, go.EASING_OUTQUAD, function(value)
-		c.pos.y = value
-		c.dirty = true
-	end).on_end(function()
-		tween(c.pos.y, c.pos.y - 10, duration, go.EASING_OUTQUAD, function(value)
-			c.pos.y = value
-			c.dirty = true
-		end).on_end(function()
-			c.destroy()
-		end)
+	up_down(c, 10, 10, 50, function()
+		c.destroy()
 	end)
 end
 
@@ -37,27 +42,20 @@ local function littleblue()
 		area({ shape = "circle" }),
 		anchor("bottom"),
 		body(),
+		z(1),
+		health(1),
 		"littleblue",
 		"enemy",
 		{ name = "littleblue" },
 	}
 end
 
+
 local function bump_up_down(object)
 	if object.bumping then return end
 	object.bumping = true
-	local duration = 0.1
-	local y = object.pos.y
-	tween(y, y + 5, duration, go.EASING_OUTQUAD, function(value)
-		object.pos.y = value
-		object.dirty = true
-	end).on_end(function()
-		tween(object.pos.y, object.pos.y - 5, duration, go.EASING_OUTQUAD, function(value)
-			object.pos.y = value
-			object.dirty = true
-		end).on_end(function()
-			object.bumping = false
-		end)
+	up_down(object, 5, 5, 100, function()
+		object.bumping = false
 	end)
 end
 
@@ -143,10 +141,15 @@ return function()
 	player.on_collide("enemy", function(data)
 		if (player.pos.y - data.target.pos.y) > 5 then
 			local enemy = data.target
+			enemy.hurt(1)
+			enemy.move(0, 0)
 			enemy.unuse("enemy")
 			enemy.unuse("body")
 			enemy.unuse("area")
 			enemy.flip_y = true
+			up_down(enemy, 15, enemy.pos.y + 50, 100, function()
+				enemy.destroy()
+			end)
 		end
 	end)
 
@@ -166,7 +169,9 @@ return function()
 		local lb = get("littleblue")
 		for i=1,#lb do
 			local littleblue = lb[i]
-			littleblue.move(-20, littleblue.vel.y)
+			if littleblue.hp > 0 then
+				littleblue.move(-20, littleblue.vel.y)
+			end
 		end
 
 		if not is_key_down("key_left") and not is_key_down("key_right") then

@@ -1,8 +1,9 @@
+--- Make object unaffected by camera.
+
 local M = {}
 
----
--- Make object unaffected by camera
--- @return The component
+--- Create a fixed component
+-- @treturn component Fixed The component
 function M.fixed(...)
 	local c = {}
 	c.tag = "fixed"

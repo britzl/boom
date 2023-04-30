@@ -1,9 +1,10 @@
+--- Fade in game object visual components such as sprites.
+
 local M = {}
 
----
--- Fade object in
--- @param time
--- @return The component
+--- Fade object in.
+-- @number time In seconds
+-- @treturn component FadeInComp The fade in component.
 function M.fadein(time)
 	local c = {}
 	c.tag = "fadein"

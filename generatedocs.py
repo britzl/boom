@@ -68,19 +68,19 @@ def process_entry(line, lines):
         
         line = line.replace("-- ", "")
         if line.startswith("@param"):
-            entry["params"] = parse_param(line, "param")
+            entry["params"].append(parse_param(line, "param"))
         elif line.startswith("@number"):
-            entry["params"] = parse_param(line, "number")
+            entry["params"].append(parse_param(line, "number"))
         elif line.startswith("@string"):
-            entry["params"] = parse_param(line, "string")
+            entry["params"].append(parse_param(line, "string"))
         elif line.startswith("@table"):
-            entry["params"] = parse_param(line, "table")
+            entry["params"].append(parse_param(line, "table"))
         elif line.startswith("@function"):
-            entry["params"] = parse_param(line, "function")
+            entry["params"].append(parse_param(line, "function"))
         elif line.startswith("@bool"):
-            entry["params"] = parse_param(line, "bool")
-        elif line.startswith("@userdata"):
-            entry["params"] = parse_param(line, "userdata")
+            entry["params"].append(parse_param(line, "bool"))
+        elif line.startswith("@vec2"):
+            entry["params"].append(parse_param(line, "vec2"))
         elif line.startswith("@return"):
             line = line.replace("@return", "").strip()
             m = re.match("(\w*?) (.*)", line)
@@ -121,6 +121,8 @@ def process_entry(line, lines):
                 tag = m.groups()[0]
                 text = m.groups()[1]
                 entry[tag] = text
+            else:
+                print("Found unknown tag: " + line)
         else:
             entry["description"] = entry["description"] + line + " "
 

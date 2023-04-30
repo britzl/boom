@@ -56,6 +56,7 @@ PARAMS
 
 
 ---
+
 # anchor
 Anchor component. Use this component to offset any rendered component such as a SpriteComp from the center of the game object.
 
@@ -70,6 +71,7 @@ RETURNS
 
 
 ---
+
 # area
 Area component. Use this component to define a collider area and bounds for a game object.
 
@@ -101,10 +103,11 @@ RETURNS
 * `data` [`table`] - Collision data
 
 
-## AreaComp.on_collide(cb)
+## AreaComp.on_collide(tagcb)
 Register event listener when this component is colliding. 
 
 PARAMS
+* `tag` [`string`] - Optional tag which colliding object must have, nil for all collisions
 * `cb` [`function`] - Function to call when collision is detected
 
 
@@ -126,6 +129,7 @@ RETURNS
 
 
 ---
+
 # body
 
 
@@ -147,6 +151,7 @@ PARAMS
 
 
 ---
+
 # color
 
 
@@ -161,6 +166,7 @@ RETURNS
 
 
 ---
+
 # double_jump
 
 
@@ -182,105 +188,116 @@ PARAMS
 
 
 ---
-# fadein
 
+# fadein
+Fade in game object visual components such as sprites. 
 
 ## fadein.fadein(time)
-Fade object in
+Fade object in. 
 
 PARAMS
-* `time` - 
+* `time` [`number`] - In seconds
 
 RETURNS
-* `The` - Component
+* `component` [`FadeInComp`] - The fade in component.
 
 
 ---
-# fixed
 
+# fixed
+Make object unaffected by camera. 
 
 ## fixed.fixed()
-Make object unaffected by camera
+Create a fixed component 
 
 RETURNS
-* `The` - Component
+* `component` [`Fixed`] - The component
 
 
 ---
-# health
 
+# health
+Handles health related logic. 
 
 ## health.health(hp)
-Handles health related logic
+Create a health component 
 
 PARAMS
-* `hp` - Initial health
+* `hp` [`number`] - Initial health
 
 RETURNS
-* `The` - Component
+* `component` [`HealthComp`] - The health component
 
 
-## health.on_heal(cb)
-Register an event that runs when heal() is called
-
-PARAMS
-* `cb` - Function to call
-
-
-## health.on_hurt(cb)
-Register an event that runs when hurt() is called
+## HealthComp.on_heal(cb)
+Register an event that runs when heal() is called. 
 
 PARAMS
-* `cb` - Function to call
+* `cb` [`function`] - Function to call
 
 
-## health.on_death(cb)
-Register an event that runs when health is 0 or less
+## HealthComp.on_hurt(cb)
+Register an event that runs when hurt() is called. 
 
 PARAMS
-* `cb` - Function to call
+* `cb` [`function`] - Function to call
 
 
-## health.heal(n)
+## HealthComp.on_death(cb)
+Register an event that runs when health is 0 or less. 
+
+PARAMS
+* `cb` [`function`] - Function to call
+
+
+## HealthComp.heal(n)
 Increase hp. Will trigger on_heal.
 
 PARAMS
-* `n` - Amount to increase
+* `n` [`number`] - Amount to increase
 
 
-## health.hurt(n)
+## HealthComp.hurt(n)
 Decrease hp. Will trigger on_hurt
 
 PARAMS
-* `n` - Amount to decrease
+* `n` [`number`] - Amount to decrease
 
 
 ---
+
 # lifespan
+Destroy the game object after certain amount of time. Use this component when you need a game object to be destroyed after a period of time.
 
-
-## lifespan.lifespan(time)
-Destroy the game obj after certain amount of time param options (fade)
-
-PARAMS
-* `time` - 
-
-
----
-# move
-
-
-## move.move(speed)
-Move towards a direction infinitely, and destroys when it leaves game view
+## lifespan.lifespan(timeoptions)
+Create a Lifespan component. 
 
 PARAMS
-* `speed` - Speed of movement in pixels per second
+* `time` [`number`] - In seconds
+* `options` [`table`] - (fade)
 
 RETURNS
-* `The` - Component
+* `component` [`Lifespan`] - The created component
 
 
 ---
+
+# move
+Move towards a direction infinitely, and destroys when it leaves the game view. 
+
+## move.move(directionspeed)
+Create a move component. 
+
+PARAMS
+* `direction` [`vec2`] - Direction of movement.
+* `speed` [`number`] - Speed of movement in pixels per second.
+
+RETURNS
+* `component` [`Move`] - The created component.
+
+
+---
+
 # offscreen
 
 
@@ -295,6 +312,7 @@ RETURNS
 
 
 ---
+
 # opacity
 
 
@@ -309,13 +327,15 @@ RETURNS
 
 
 ---
+
 # pos
 
 
-## pos.pos(y)
+## pos.pos(xy)
 Position an object
 
 PARAMS
+* `x` - 
 * `y` - 
 
 RETURNS
@@ -323,6 +343,7 @@ RETURNS
 
 
 ---
+
 # rotate
 
 
@@ -337,13 +358,15 @@ RETURNS
 
 
 ---
+
 # scale
 
 
-## scale.scale(y)
+## scale.scale(xy)
 Apply a scale to the object
 
 PARAMS
+* `x` - 
 * `y` - 
 
 RETURNS
@@ -351,13 +374,15 @@ RETURNS
 
 
 ---
+
 # sprite
 
 
-## sprite.sprite(options)
+## sprite.sprite(animoptions)
 Render as a sprite
 
 PARAMS
+* `anim` - Which animation or image to use
 * `options` - Extra options (flip_x, flip_y, width, height)
 
 RETURNS
@@ -376,6 +401,7 @@ Stop the current animation
 
 
 ---
+
 # stay
 
 
@@ -387,13 +413,15 @@ RETURNS
 
 
 ---
+
 # text
 
 
-## text.text(options)
+## text.text(textoptions)
 A text component
 
 PARAMS
+* `text` - The text to show
 * `options` - Text options (width, font, align)
 
 RETURNS
@@ -401,13 +429,15 @@ RETURNS
 
 
 ---
+
 # timer
 
 
-## timer.timer(fn)
+## timer.timer(nfn)
 Run certain action after some time.
 
 PARAMS
+* `n` - Number of seconds to wait
 * `fn` - The function to call
 
 RETURNS
@@ -415,6 +445,7 @@ RETURNS
 
 
 ---
+
 # z
 
 
@@ -429,13 +460,16 @@ RETURNS
 
 
 ---
+
 # collision
 
 
-## collision.on_collide(fn)
+## collision.on_collide(tag1tag2fn)
 Register an event that runs when two game objects collide
 
 PARAMS
+* `tag1` - Tag which the first game object must have
+* `tag2` - Optional tag which the second game object must have
 * `fn` - Will receive (collision, cancel) as args
 
 RETURNS
@@ -443,23 +477,26 @@ RETURNS
 
 
 ---
+
 # key
 
 
-## key.on_key_press(cb)
+## key.on_key_press(key_idcb)
 Register callback that runs when a certain key is pressed
 
 PARAMS
+* `key_id` - The key that must be pressed or nil for any key
 * `cb` - The callback
 
 RETURNS
 * `Cancel` - Callback
 
 
-## key.on_key_release(cb)
+## key.on_key_release(key_idcb)
 Register callback that runs when a certain key is released
 
 PARAMS
+* `key_id` - The key that must be released or nil for any key
 * `cb` - The callback
 
 RETURNS
@@ -477,13 +514,15 @@ RETURNS
 
 
 ---
+
 # mouse
 
 
-## mouse.on_click(cb)
+## mouse.on_click(tagcb)
 Set mouse click listener
 
 PARAMS
+* `tag` - Optional click on object with tag filter
 * `cb` - Callback when mouse button is clicked
 
 RETURNS
@@ -498,17 +537,20 @@ RETURNS
 
 
 ---
+
 # update
 
 
-## update.on_update(fn)
+## update.on_update(tagfn)
 Run a function every frame Register an event that runs every frame, optionally for all game objects with certain tag
 
 PARAMS
+* `tag` - [optional] run event for all objects matching tag
 * `fn` - Event function to call. Will receive object and cancel function
 
 
 ---
+
 # gameobject
 
 
@@ -611,21 +653,24 @@ RETURNS
 * `objects` - Table List of objects
 
 
-## gameobject.every(cb)
+## gameobject.every(tagcb)
 Run callback on every object with a certain tag.
 
 PARAMS
+* `tag` [`string`] - The tag that must exist on the object
 * `cb` [`function`] - The callback to run
 
 
 ---
+
 # camera
 
 
-## camera.cam_pos(y)
+## camera.cam_pos(xy)
 Get or set camera position.
 
 PARAMS
+* `x` - Or vec2
 * `y` - 
 
 RETURNS
@@ -653,6 +698,7 @@ RETURNS
 
 
 ---
+
 # gravity
 
 
@@ -671,6 +717,7 @@ PARAMS
 
 
 ---
+
 # screen
 
 
@@ -696,6 +743,7 @@ RETURNS
 
 
 ---
+
 # time
 
 
@@ -714,13 +762,15 @@ RETURNS
 
 
 ---
+
 # level
 
 
-## level.add_level(options)
+## level.add_level(mapoptions)
 Construct a level based on symbols
 
 PARAMS
+* `map` - List of strings presenting horizontal rows of tiles
 * `options` - Level options (tile_width, tile_height, pos, tiles)
 
 RETURNS
@@ -728,23 +778,26 @@ RETURNS
 
 
 ---
+
 # random
 
 
-## random.rand(b)
+## random.rand(ab)
 Get a random number. If called with no arguments the function returns a number between 0 and 1. If called with a single argument &#x27;a&#x27; a number between 0 and &#x27;a&#x27; is returned. If called with two arguments &#x27;a&#x27; and &#x27;b&#x27; a number between &#x27;a&#x27; and &#x27;b&#x27; is returned.
 
 PARAMS
+* `a` - 
 * `b` - 
 
 RETURNS
 * `Random` - Number
 
 
-## random.randi(b)
+## random.randi(ab)
 Same as rand() but floored
 
 PARAMS
+* `a` - 
 * `b` - 
 
 RETURNS
@@ -752,13 +805,18 @@ RETURNS
 
 
 ---
+
 # tween
 
 
-## tween.tween(set_value)
+## tween.tween(fromtodurationeasingset_value)
 Tween a value from one to another over a certain duration using a specific easing function
 
 PARAMS
+* `from` - Start value (number or vec2)
+* `to` - End value (same as from)
+* `duration` - Time in seconds to go from start to end value
+* `easing` - Which easing algorithm to use
 * `set_value` - Function to call when the value has changed
 
 RETURNS
@@ -781,13 +839,15 @@ Cancel tween
 
 
 ---
+
 # scene
 
 
-## scene.scene(fn)
+## scene.scene(idfn)
 Create a scene
 
 PARAMS
+* `id` - Unique id of the scene
 * `fn` - The scene code
 
 
@@ -799,23 +859,26 @@ PARAMS
 
 
 ---
+
 # timer
 
 
-## timer.wait(cb)
+## timer.wait(secondscb)
 Run a callback after a certain nummber of seconds
 
 PARAMS
+* `seconds` - Number of seconds to wait
 * `cb` - Function to call
 
 RETURNS
 * `cancel` - Call to cancel the timer
 
 
-## timer.loop(cb)
+## timer.loop(secondscb)
 Run a callback repeatedly with a certain interval
 
 PARAMS
+* `seconds` - Interval between calls
 * `cb` - Function to call
 
 RETURNS
@@ -823,3 +886,4 @@ RETURNS
 
 
 ---
+

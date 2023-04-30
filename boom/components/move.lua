@@ -1,3 +1,5 @@
+--- Move towards a direction infinitely, and destroys when it leaves the game view.
+
 local gameobject = require "boom.gameobject.gameobject"
 
 local WIDTH = sys.get_config_int("display.width")
@@ -5,11 +7,10 @@ local HEIGHT = sys.get_config_int("display.width")
 
 local M = {}
 
----
--- Move towards a direction infinitely, and destroys when it leaves game view
--- @param direction Vec 2
--- @param speed Speed of movement in pixels per second
--- @return The component
+--- Create a move component.
+-- @vec2 direction Direction of movement.
+-- @number speed Speed of movement in pixels per second.
+-- @treturn component Move The created component.
 function M.move(direction, speed)
 	local c = {}
 	c.tag = "move"

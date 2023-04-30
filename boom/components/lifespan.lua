@@ -1,11 +1,13 @@
+--- Destroy the game object after certain amount of time.
+-- Use this component when you need a game object to be destroyed after a period of time.
 local gameobject = require "boom.gameobject.gameobject"
 
 local M = {}
 
----
--- Destroy the game obj after certain amount of time
--- @param time
--- param options (fade)
+--- Create a Lifespan component.
+-- @number time In seconds
+-- @table options (fade)
+-- @treturn component Lifespan The created component
 function M.lifespan(time, options)
 	assert(time and time > 0)
 	local c = {}

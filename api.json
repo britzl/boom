@@ -10,11 +10,13 @@
                             "has_params": true,
                             "has_returns": false,
                             "name": "boom",
-                            "params": {
-                                "description": "Game loop function",
-                                "name": "game",
-                                "type": null
-                            },
+                            "params": [
+                                {
+                                    "description": "Game loop function",
+                                    "name": "game",
+                                    "type": null
+                                }
+                            ],
                             "returns": []
                         }
                     ],
@@ -43,11 +45,13 @@
                             "has_params": true,
                             "has_returns": true,
                             "name": "anchor",
-                            "params": {
-                                "description": "Anchor (center, topleft, left, topright, right, bottomright, bottom, bottomleft)",
-                                "name": "anchor",
-                                "type": "string"
-                            },
+                            "params": [
+                                {
+                                    "description": "Anchor (center, topleft, left, topright, right, bottomright, bottom, bottomleft)",
+                                    "name": "anchor",
+                                    "type": "string"
+                                }
+                            ],
                             "returns": [
                                 {
                                     "description": "The anchor component.",
@@ -77,11 +81,13 @@
                             "has_params": true,
                             "has_returns": true,
                             "name": "area",
-                            "params": {
-                                "description": "Component options (width and height)",
-                                "name": "options",
-                                "type": "table"
-                            },
+                            "params": [
+                                {
+                                    "description": "Component options (width and height)",
+                                    "name": "options",
+                                    "type": "table"
+                                }
+                            ],
                             "returns": [
                                 {
                                     "description": "The area component",
@@ -140,11 +146,18 @@
                             "has_params": true,
                             "has_returns": false,
                             "name": "on_collide",
-                            "params": {
-                                "description": "Function to call when collision is detected",
-                                "name": "cb",
-                                "type": "function"
-                            },
+                            "params": [
+                                {
+                                    "description": "Optional tag which colliding object must have, nil for all collisions",
+                                    "name": "tag",
+                                    "type": "string"
+                                },
+                                {
+                                    "description": "Function to call when collision is detected",
+                                    "name": "cb",
+                                    "type": "function"
+                                }
+                            ],
                             "returns": [],
                             "summary": "Register event listener when this component is colliding."
                         },
@@ -154,11 +167,13 @@
                             "has_params": true,
                             "has_returns": false,
                             "name": "on_click",
-                            "params": {
-                                "description": "Function to call when clicked",
-                                "name": "cb",
-                                "type": "function"
-                            },
+                            "params": [
+                                {
+                                    "description": "Function to call when clicked",
+                                    "name": "cb",
+                                    "type": "function"
+                                }
+                            ],
                             "returns": [],
                             "summary": "Register event listener when this component is clicked."
                         },
@@ -168,11 +183,13 @@
                             "has_params": true,
                             "has_returns": true,
                             "name": "has_point",
-                            "params": {
-                                "description": "The point to check",
-                                "name": "point",
-                                "type": null
-                            },
+                            "params": [
+                                {
+                                    "description": "The point to check",
+                                    "name": "point",
+                                    "type": null
+                                }
+                            ],
                             "returns": [
                                 {
                                     "description": "Will return true if point is within area",
@@ -202,11 +219,13 @@
                             "has_params": true,
                             "has_returns": true,
                             "name": "body",
-                            "params": {
-                                "description": "Component options (jump_force, is_static)",
-                                "name": "options",
-                                "type": "table"
-                            },
+                            "params": [
+                                {
+                                    "description": "Component options (jump_force, is_static)",
+                                    "name": "options",
+                                    "type": "table"
+                                }
+                            ],
                             "returns": [
                                 {
                                     "description": "The body component",
@@ -222,11 +241,13 @@
                             "has_params": true,
                             "has_returns": false,
                             "name": "jump",
-                            "params": {
-                                "description": "The upward force to apply",
-                                "name": "force",
-                                "type": "number"
-                            },
+                            "params": [
+                                {
+                                    "description": "The upward force to apply",
+                                    "name": "force",
+                                    "type": "number"
+                                }
+                            ],
                             "returns": [],
                             "summary": "Add upward force"
                         }
@@ -242,11 +263,13 @@
                             "has_params": true,
                             "has_returns": true,
                             "name": "color",
-                            "params": {
-                                "description": "R,g,b components or color",
-                                "name": "...",
-                                "type": null
-                            },
+                            "params": [
+                                {
+                                    "description": "R,g,b components or color",
+                                    "name": "...",
+                                    "type": null
+                                }
+                            ],
                             "returns": [
                                 {
                                     "description": "The color component",
@@ -267,11 +290,13 @@
                             "has_params": true,
                             "has_returns": true,
                             "name": "double_jump",
-                            "params": {
-                                "description": "Component options",
-                                "name": "options",
-                                "type": "table"
-                            },
+                            "params": [
+                                {
+                                    "description": "Component options",
+                                    "name": "options",
+                                    "type": "table"
+                                }
+                            ],
                             "returns": [
                                 {
                                     "description": "The double jump component",
@@ -287,11 +312,13 @@
                             "has_params": true,
                             "has_returns": false,
                             "name": "double_jump",
-                            "params": {
-                                "description": "The upward force to apply",
-                                "name": "force",
-                                "type": "number"
-                            },
+                            "params": [
+                                {
+                                    "description": "The upward force to apply",
+                                    "name": "force",
+                                    "type": "number"
+                                }
+                            ],
                             "returns": []
                         }
                     ],
@@ -300,175 +327,273 @@
                     "module": "double_jump"
                 },
                 {
+                    "description": null,
                     "entries": [
                         {
-                            "description": "Fade object in",
+                            "description": "",
                             "has_params": true,
                             "has_returns": true,
                             "name": "fadein",
-                            "params": {
-                                "description": "",
-                                "name": "time",
-                                "type": null
-                            },
+                            "params": [
+                                {
+                                    "description": "In seconds",
+                                    "name": "time",
+                                    "type": "number"
+                                }
+                            ],
                             "returns": [
                                 {
-                                    "description": "Component",
-                                    "name": "The"
+                                    "description": "The fade in component.",
+                                    "name": "component",
+                                    "type": "FadeInComp"
                                 }
-                            ]
+                            ],
+                            "summary": "Fade object in."
                         }
                     ],
+                    "file_description": "",
+                    "file_summary": "Fade in game object visual components such as sprites.",
                     "filename": "boom/components/fadein.lua",
                     "group": "components",
-                    "module": "fadein"
+                    "has_params": false,
+                    "has_returns": false,
+                    "module": "fadein",
+                    "name": null,
+                    "params": [],
+                    "returns": [],
+                    "summary": null
                 },
                 {
+                    "description": null,
                     "entries": [
                         {
-                            "description": "Make object unaffected by camera",
+                            "description": "",
                             "has_params": false,
                             "has_returns": true,
                             "name": "fixed",
                             "params": [],
                             "returns": [
                                 {
-                                    "description": "Component",
-                                    "name": "The"
+                                    "description": "The component",
+                                    "name": "component",
+                                    "type": "Fixed"
                                 }
-                            ]
+                            ],
+                            "summary": "Create a fixed component"
                         }
                     ],
+                    "file_description": "",
+                    "file_summary": "Make object unaffected by camera.",
                     "filename": "boom/components/fixed.lua",
                     "group": "components",
-                    "module": "fixed"
+                    "has_params": false,
+                    "has_returns": false,
+                    "module": "fixed",
+                    "name": null,
+                    "params": [],
+                    "returns": [],
+                    "summary": null
                 },
                 {
+                    "description": null,
                     "entries": [
                         {
-                            "description": "Handles health related logic",
+                            "description": "",
                             "has_params": true,
                             "has_returns": true,
                             "name": "health",
-                            "params": {
-                                "description": "Initial health",
-                                "name": "hp",
-                                "type": null
-                            },
+                            "params": [
+                                {
+                                    "description": "Initial health",
+                                    "name": "hp",
+                                    "type": "number"
+                                }
+                            ],
                             "returns": [
                                 {
-                                    "description": "Component",
-                                    "name": "The"
+                                    "description": "The health component",
+                                    "name": "component",
+                                    "type": "HealthComp"
                                 }
-                            ]
+                            ],
+                            "summary": "Create a health component"
                         },
                         {
-                            "description": "Register an event that runs when heal() is called",
+                            "class": "HealthComp",
+                            "description": "",
                             "has_params": true,
                             "has_returns": false,
                             "name": "on_heal",
-                            "params": {
-                                "description": "Function to call",
-                                "name": "cb",
-                                "type": null
-                            },
-                            "returns": []
+                            "params": [
+                                {
+                                    "description": "Function to call",
+                                    "name": "cb",
+                                    "type": "function"
+                                }
+                            ],
+                            "returns": [],
+                            "summary": "Register an event that runs when heal() is called."
                         },
                         {
-                            "description": "Register an event that runs when hurt() is called",
+                            "class": "HealthComp",
+                            "description": "",
                             "has_params": true,
                             "has_returns": false,
                             "name": "on_hurt",
-                            "params": {
-                                "description": "Function to call",
-                                "name": "cb",
-                                "type": null
-                            },
-                            "returns": []
+                            "params": [
+                                {
+                                    "description": "Function to call",
+                                    "name": "cb",
+                                    "type": "function"
+                                }
+                            ],
+                            "returns": [],
+                            "summary": "Register an event that runs when hurt() is called."
                         },
                         {
-                            "description": "Register an event that runs when health is 0 or less",
+                            "class": "HealthComp",
+                            "description": "",
                             "has_params": true,
                             "has_returns": false,
                             "name": "on_death",
-                            "params": {
-                                "description": "Function to call",
-                                "name": "cb",
-                                "type": null
-                            },
-                            "returns": []
+                            "params": [
+                                {
+                                    "description": "Function to call",
+                                    "name": "cb",
+                                    "type": "function"
+                                }
+                            ],
+                            "returns": [],
+                            "summary": "Register an event that runs when health is 0 or less."
                         },
                         {
-                            "description": "Increase hp. Will trigger on_heal.",
+                            "class": "HealthComp",
+                            "description": "Will trigger on_heal.",
                             "has_params": true,
                             "has_returns": false,
                             "name": "heal",
-                            "params": {
-                                "description": "Amount to increase",
-                                "name": "n",
-                                "type": null
-                            },
-                            "returns": []
+                            "params": [
+                                {
+                                    "description": "Amount to increase",
+                                    "name": "n",
+                                    "type": "number"
+                                }
+                            ],
+                            "returns": [],
+                            "summary": "Increase hp."
                         },
                         {
-                            "description": "Decrease hp. Will trigger on_hurt",
+                            "class": "HealthComp",
+                            "description": "Will trigger on_hurt",
                             "has_params": true,
                             "has_returns": false,
                             "name": "hurt",
-                            "params": {
-                                "description": "Amount to decrease",
-                                "name": "n",
-                                "type": null
-                            },
-                            "returns": []
+                            "params": [
+                                {
+                                    "description": "Amount to decrease",
+                                    "name": "n",
+                                    "type": "number"
+                                }
+                            ],
+                            "returns": [],
+                            "summary": "Decrease hp."
                         }
                     ],
+                    "file_description": "",
+                    "file_summary": "Handles health related logic.",
                     "filename": "boom/components/health.lua",
                     "group": "components",
-                    "module": "health"
+                    "has_params": false,
+                    "has_returns": false,
+                    "module": "health",
+                    "name": null,
+                    "params": [],
+                    "returns": [],
+                    "summary": null
                 },
                 {
+                    "description": null,
                     "entries": [
                         {
-                            "description": "Destroy the game obj after certain amount of time param options (fade)",
+                            "description": "",
                             "has_params": true,
-                            "has_returns": false,
+                            "has_returns": true,
                             "name": "lifespan",
-                            "params": {
-                                "description": "",
-                                "name": "time",
-                                "type": null
-                            },
-                            "returns": []
+                            "params": [
+                                {
+                                    "description": "In seconds",
+                                    "name": "time",
+                                    "type": "number"
+                                },
+                                {
+                                    "description": "(fade)",
+                                    "name": "options",
+                                    "type": "table"
+                                }
+                            ],
+                            "returns": [
+                                {
+                                    "description": "The created component",
+                                    "name": "component",
+                                    "type": "Lifespan"
+                                }
+                            ],
+                            "summary": "Create a Lifespan component."
                         }
                     ],
+                    "file_description": "Use this component when you need a game object to be destroyed after a period of time.",
+                    "file_summary": "Destroy the game object after certain amount of time.",
                     "filename": "boom/components/lifespan.lua",
                     "group": "components",
-                    "module": "lifespan"
+                    "has_params": false,
+                    "has_returns": false,
+                    "module": "lifespan",
+                    "name": null,
+                    "params": [],
+                    "returns": [],
+                    "summary": null
                 },
                 {
+                    "description": null,
                     "entries": [
                         {
-                            "description": "Move towards a direction infinitely, and destroys when it leaves game view",
+                            "description": "",
                             "has_params": true,
                             "has_returns": true,
                             "name": "move",
-                            "params": {
-                                "description": "Speed of movement in pixels per second",
-                                "name": "speed",
-                                "type": null
-                            },
+                            "params": [
+                                {
+                                    "description": "Direction of movement.",
+                                    "name": "direction",
+                                    "type": "vec2"
+                                },
+                                {
+                                    "description": "Speed of movement in pixels per second.",
+                                    "name": "speed",
+                                    "type": "number"
+                                }
+                            ],
                             "returns": [
                                 {
-                                    "description": "Component",
-                                    "name": "The"
+                                    "description": "The created component.",
+                                    "name": "component",
+                                    "type": "Move"
                                 }
-                            ]
+                            ],
+                            "summary": "Create a move component."
                         }
                     ],
+                    "file_description": "",
+                    "file_summary": "Move towards a direction infinitely, and destroys when it leaves the game view.",
                     "filename": "boom/components/move.lua",
                     "group": "components",
-                    "module": "move"
+                    "has_params": false,
+                    "has_returns": false,
+                    "module": "move",
+                    "name": null,
+                    "params": [],
+                    "returns": [],
+                    "summary": null
                 },
                 {
                     "entries": [
@@ -477,11 +602,13 @@
                             "has_params": true,
                             "has_returns": true,
                             "name": "offscreen",
-                            "params": {
-                                "description": "(distance, destroy)",
-                                "name": "options",
-                                "type": null
-                            },
+                            "params": [
+                                {
+                                    "description": "(distance, destroy)",
+                                    "name": "options",
+                                    "type": null
+                                }
+                            ],
                             "returns": [
                                 {
                                     "description": "Component",
@@ -501,11 +628,13 @@
                             "has_params": true,
                             "has_returns": true,
                             "name": "opacity",
-                            "params": {
-                                "description": "0.0 to 1.0",
-                                "name": "opacity",
-                                "type": null
-                            },
+                            "params": [
+                                {
+                                    "description": "0.0 to 1.0",
+                                    "name": "opacity",
+                                    "type": null
+                                }
+                            ],
                             "returns": [
                                 {
                                     "description": "Component",
@@ -525,11 +654,18 @@
                             "has_params": true,
                             "has_returns": true,
                             "name": "pos",
-                            "params": {
-                                "description": "",
-                                "name": "y",
-                                "type": null
-                            },
+                            "params": [
+                                {
+                                    "description": "",
+                                    "name": "x",
+                                    "type": null
+                                },
+                                {
+                                    "description": "",
+                                    "name": "y",
+                                    "type": null
+                                }
+                            ],
                             "returns": [
                                 {
                                     "description": "Component",
@@ -549,11 +685,13 @@
                             "has_params": true,
                             "has_returns": true,
                             "name": "rotate",
-                            "params": {
-                                "description": "Angle in degrees",
-                                "name": "angle",
-                                "type": null
-                            },
+                            "params": [
+                                {
+                                    "description": "Angle in degrees",
+                                    "name": "angle",
+                                    "type": null
+                                }
+                            ],
                             "returns": [
                                 {
                                     "description": "Component",
@@ -573,11 +711,18 @@
                             "has_params": true,
                             "has_returns": true,
                             "name": "scale",
-                            "params": {
-                                "description": "",
-                                "name": "y",
-                                "type": null
-                            },
+                            "params": [
+                                {
+                                    "description": "",
+                                    "name": "x",
+                                    "type": null
+                                },
+                                {
+                                    "description": "",
+                                    "name": "y",
+                                    "type": null
+                                }
+                            ],
                             "returns": [
                                 {
                                     "description": "Component",
@@ -597,11 +742,18 @@
                             "has_params": true,
                             "has_returns": true,
                             "name": "sprite",
-                            "params": {
-                                "description": "Extra options (flip_x, flip_y, width, height)",
-                                "name": "options",
-                                "type": null
-                            },
+                            "params": [
+                                {
+                                    "description": "Which animation or image to use",
+                                    "name": "anim",
+                                    "type": null
+                                },
+                                {
+                                    "description": "Extra options (flip_x, flip_y, width, height)",
+                                    "name": "options",
+                                    "type": null
+                                }
+                            ],
                             "returns": [
                                 {
                                     "description": "Component",
@@ -614,11 +766,13 @@
                             "has_params": true,
                             "has_returns": false,
                             "name": "play",
-                            "params": {
-                                "description": "The animation to play",
-                                "name": "anim",
-                                "type": null
-                            },
+                            "params": [
+                                {
+                                    "description": "The animation to play",
+                                    "name": "anim",
+                                    "type": null
+                                }
+                            ],
                             "returns": []
                         },
                         {
@@ -661,11 +815,18 @@
                             "has_params": true,
                             "has_returns": true,
                             "name": "text",
-                            "params": {
-                                "description": "Text options (width, font, align)",
-                                "name": "options",
-                                "type": null
-                            },
+                            "params": [
+                                {
+                                    "description": "The text to show",
+                                    "name": "text",
+                                    "type": null
+                                },
+                                {
+                                    "description": "Text options (width, font, align)",
+                                    "name": "options",
+                                    "type": null
+                                }
+                            ],
                             "returns": [
                                 {
                                     "description": "Component",
@@ -685,11 +846,18 @@
                             "has_params": true,
                             "has_returns": true,
                             "name": "timer",
-                            "params": {
-                                "description": "The function to call",
-                                "name": "fn",
-                                "type": null
-                            },
+                            "params": [
+                                {
+                                    "description": "Number of seconds to wait",
+                                    "name": "n",
+                                    "type": null
+                                },
+                                {
+                                    "description": "The function to call",
+                                    "name": "fn",
+                                    "type": null
+                                }
+                            ],
                             "returns": [
                                 {
                                     "description": "Component",
@@ -709,11 +877,13 @@
                             "has_params": true,
                             "has_returns": true,
                             "name": "z",
-                            "params": {
-                                "description": "Z-value of the object.",
-                                "name": "z",
-                                "type": null
-                            },
+                            "params": [
+                                {
+                                    "description": "Z-value of the object.",
+                                    "name": "z",
+                                    "type": null
+                                }
+                            ],
                             "returns": [
                                 {
                                     "description": "Component",
@@ -738,11 +908,23 @@
                             "has_params": true,
                             "has_returns": true,
                             "name": "on_collide",
-                            "params": {
-                                "description": "Will receive (collision, cancel) as args",
-                                "name": "fn",
-                                "type": null
-                            },
+                            "params": [
+                                {
+                                    "description": "Tag which the first game object must have",
+                                    "name": "tag1",
+                                    "type": null
+                                },
+                                {
+                                    "description": "Optional tag which the second game object must have",
+                                    "name": "tag2",
+                                    "type": null
+                                },
+                                {
+                                    "description": "Will receive (collision, cancel) as args",
+                                    "name": "fn",
+                                    "type": null
+                                }
+                            ],
                             "returns": [
                                 {
                                     "description": "Event function",
@@ -762,11 +944,18 @@
                             "has_params": true,
                             "has_returns": true,
                             "name": "on_key_press",
-                            "params": {
-                                "description": "The callback",
-                                "name": "cb",
-                                "type": null
-                            },
+                            "params": [
+                                {
+                                    "description": "The key that must be pressed or nil for any key",
+                                    "name": "key_id",
+                                    "type": null
+                                },
+                                {
+                                    "description": "The callback",
+                                    "name": "cb",
+                                    "type": null
+                                }
+                            ],
                             "returns": [
                                 {
                                     "description": "Callback",
@@ -779,11 +968,18 @@
                             "has_params": true,
                             "has_returns": true,
                             "name": "on_key_release",
-                            "params": {
-                                "description": "The callback",
-                                "name": "cb",
-                                "type": null
-                            },
+                            "params": [
+                                {
+                                    "description": "The key that must be released or nil for any key",
+                                    "name": "key_id",
+                                    "type": null
+                                },
+                                {
+                                    "description": "The callback",
+                                    "name": "cb",
+                                    "type": null
+                                }
+                            ],
                             "returns": [
                                 {
                                     "description": "Callback",
@@ -796,11 +992,13 @@
                             "has_params": true,
                             "has_returns": true,
                             "name": "is_key_down",
-                            "params": {
-                                "description": "The key that must be down, or nil for any key",
-                                "name": "key_id",
-                                "type": null
-                            },
+                            "params": [
+                                {
+                                    "description": "The key that must be down, or nil for any key",
+                                    "name": "key_id",
+                                    "type": null
+                                }
+                            ],
                             "returns": [
                                 {
                                     "description": "If down",
@@ -820,11 +1018,18 @@
                             "has_params": true,
                             "has_returns": true,
                             "name": "on_click",
-                            "params": {
-                                "description": "Callback when mouse button is clicked",
-                                "name": "cb",
-                                "type": null
-                            },
+                            "params": [
+                                {
+                                    "description": "Optional click on object with tag filter",
+                                    "name": "tag",
+                                    "type": null
+                                },
+                                {
+                                    "description": "Callback when mouse button is clicked",
+                                    "name": "cb",
+                                    "type": null
+                                }
+                            ],
                             "returns": [
                                 {
                                     "description": "Listener function",
@@ -857,11 +1062,18 @@
                             "has_params": true,
                             "has_returns": false,
                             "name": "on_update",
-                            "params": {
-                                "description": "Event function to call. Will receive object and cancel function",
-                                "name": "fn",
-                                "type": null
-                            },
+                            "params": [
+                                {
+                                    "description": "[optional] run event for all objects matching tag",
+                                    "name": "tag",
+                                    "type": null
+                                },
+                                {
+                                    "description": "Event function to call. Will receive object and cancel function",
+                                    "name": "fn",
+                                    "type": null
+                                }
+                            ],
                             "returns": [],
                             "summary": "Run a function every frame"
                         }
@@ -882,11 +1094,13 @@
                             "has_params": true,
                             "has_returns": true,
                             "name": "add",
-                            "params": {
-                                "description": "The components for the game object",
-                                "name": "comps",
-                                "type": "table"
-                            },
+                            "params": [
+                                {
+                                    "description": "The components for the game object",
+                                    "name": "comps",
+                                    "type": "table"
+                                }
+                            ],
                             "returns": [
                                 {
                                     "description": "The created game object",
@@ -901,11 +1115,13 @@
                             "has_params": true,
                             "has_returns": true,
                             "name": "add",
-                            "params": {
-                                "description": "The game object components",
-                                "name": "comps",
-                                "type": "table"
-                            },
+                            "params": [
+                                {
+                                    "description": "The game object components",
+                                    "name": "comps",
+                                    "type": "table"
+                                }
+                            ],
                             "returns": [
                                 {
                                     "description": "The game object",
@@ -928,11 +1144,13 @@
                             "has_params": true,
                             "has_returns": true,
                             "name": "is",
-                            "params": {
-                                "description": "The tag to check",
-                                "name": "tag",
-                                "type": "string"
-                            },
+                            "params": [
+                                {
+                                    "description": "The tag to check",
+                                    "name": "tag",
+                                    "type": "string"
+                                }
+                            ],
                             "returns": [
                                 {
                                     "description": "Returns true if the tag exists on the game object",
@@ -947,11 +1165,13 @@
                             "has_params": true,
                             "has_returns": false,
                             "name": "use",
-                            "params": {
-                                "description": "The component to use",
-                                "name": "comp",
-                                "type": "table"
-                            },
+                            "params": [
+                                {
+                                    "description": "The component to use",
+                                    "name": "comp",
+                                    "type": "table"
+                                }
+                            ],
                             "returns": []
                         },
                         {
@@ -960,11 +1180,13 @@
                             "has_params": true,
                             "has_returns": false,
                             "name": "unuse",
-                            "params": {
-                                "description": "The component tag to remove",
-                                "name": "tag",
-                                "type": "string"
-                            },
+                            "params": [
+                                {
+                                    "description": "The component tag to remove",
+                                    "name": "tag",
+                                    "type": "string"
+                                }
+                            ],
                             "returns": []
                         },
                         {
@@ -973,11 +1195,13 @@
                             "has_params": true,
                             "has_returns": true,
                             "name": "c",
-                            "params": {
-                                "description": "The component to get state for",
-                                "name": "tag",
-                                "type": "string"
-                            },
+                            "params": [
+                                {
+                                    "description": "The component to get state for",
+                                    "name": "tag",
+                                    "type": "string"
+                                }
+                            ],
                             "returns": [
                                 {
                                     "description": "The component state",
@@ -991,11 +1215,13 @@
                             "has_params": true,
                             "has_returns": false,
                             "name": "destroy",
-                            "params": {
-                                "description": "The object to destroy",
-                                "name": "object",
-                                "type": "table"
-                            },
+                            "params": [
+                                {
+                                    "description": "The object to destroy",
+                                    "name": "object",
+                                    "type": "table"
+                                }
+                            ],
                             "returns": []
                         },
                         {
@@ -1003,11 +1229,13 @@
                             "has_params": true,
                             "has_returns": false,
                             "name": "destroy_all",
-                            "params": {
-                                "description": "The tag to destroy or nil to destroy all objects",
-                                "name": "tag",
-                                "type": "string"
-                            },
+                            "params": [
+                                {
+                                    "description": "The tag to destroy or nil to destroy all objects",
+                                    "name": "tag",
+                                    "type": "string"
+                                }
+                            ],
                             "returns": []
                         },
                         {
@@ -1015,11 +1243,13 @@
                             "has_params": true,
                             "has_returns": true,
                             "name": "object",
-                            "params": {
-                                "description": "",
-                                "name": "id",
-                                "type": "string"
-                            },
+                            "params": [
+                                {
+                                    "description": "",
+                                    "name": "id",
+                                    "type": "string"
+                                }
+                            ],
                             "returns": [
                                 {
                                     "description": "String The object or nil if it doesn't exist",
@@ -1045,11 +1275,13 @@
                             "has_params": true,
                             "has_returns": true,
                             "name": "get",
-                            "params": {
-                                "description": "The tag to get objects for, nil to get all objects",
-                                "name": "tag",
-                                "type": "string"
-                            },
+                            "params": [
+                                {
+                                    "description": "The tag to get objects for, nil to get all objects",
+                                    "name": "tag",
+                                    "type": "string"
+                                }
+                            ],
                             "returns": [
                                 {
                                     "description": "Table List of objects",
@@ -1062,11 +1294,18 @@
                             "has_params": true,
                             "has_returns": false,
                             "name": "every",
-                            "params": {
-                                "description": "The callback to run",
-                                "name": "cb",
-                                "type": "function"
-                            },
+                            "params": [
+                                {
+                                    "description": "The tag that must exist on the object",
+                                    "name": "tag",
+                                    "type": "string"
+                                },
+                                {
+                                    "description": "The callback to run",
+                                    "name": "cb",
+                                    "type": "function"
+                                }
+                            ],
                             "returns": []
                         }
                     ],
@@ -1086,11 +1325,18 @@
                             "has_params": true,
                             "has_returns": true,
                             "name": "cam_pos",
-                            "params": {
-                                "description": "",
-                                "name": "y",
-                                "type": null
-                            },
+                            "params": [
+                                {
+                                    "description": "Or vec2",
+                                    "name": "x",
+                                    "type": null
+                                },
+                                {
+                                    "description": "",
+                                    "name": "y",
+                                    "type": null
+                                }
+                            ],
                             "returns": [
                                 {
                                     "description": "Camera position",
@@ -1103,11 +1349,13 @@
                             "has_params": true,
                             "has_returns": true,
                             "name": "cam_rot",
-                            "params": {
-                                "description": "The angle to set or nil to get current rotation",
-                                "name": "angle",
-                                "type": null
-                            },
+                            "params": [
+                                {
+                                    "description": "The angle to set or nil to get current rotation",
+                                    "name": "angle",
+                                    "type": null
+                                }
+                            ],
                             "returns": [
                                 {
                                     "description": "The camera rotation in degrees",
@@ -1121,11 +1369,13 @@
                             "has_params": true,
                             "has_returns": true,
                             "name": "cam_zoom",
-                            "params": {
-                                "description": "The zoom to set or nil to get the current zoom.",
-                                "name": "zoom",
-                                "type": null
-                            },
+                            "params": [
+                                {
+                                    "description": "The zoom to set or nil to get the current zoom.",
+                                    "name": "zoom",
+                                    "type": null
+                                }
+                            ],
                             "returns": [
                                 {
                                     "description": "Camera zoom",
@@ -1159,11 +1409,13 @@
                             "has_params": true,
                             "has_returns": false,
                             "name": "set_gravity",
-                            "params": {
-                                "description": "Gravity in pixels per seconds",
-                                "name": "gravity",
-                                "type": null
-                            },
+                            "params": [
+                                {
+                                    "description": "Gravity in pixels per seconds",
+                                    "name": "gravity",
+                                    "type": null
+                                }
+                            ],
                             "returns": []
                         }
                     ],
@@ -1262,11 +1514,18 @@
                             "has_params": true,
                             "has_returns": true,
                             "name": "add_level",
-                            "params": {
-                                "description": "Level options (tile_width, tile_height, pos, tiles)",
-                                "name": "options",
-                                "type": null
-                            },
+                            "params": [
+                                {
+                                    "description": "List of strings presenting horizontal rows of tiles",
+                                    "name": "map",
+                                    "type": null
+                                },
+                                {
+                                    "description": "Level options (tile_width, tile_height, pos, tiles)",
+                                    "name": "options",
+                                    "type": null
+                                }
+                            ],
                             "returns": [
                                 {
                                     "description": "Object with tiles as children",
@@ -1291,11 +1550,18 @@
                             "has_params": true,
                             "has_returns": true,
                             "name": "rand",
-                            "params": {
-                                "description": "",
-                                "name": "b",
-                                "type": null
-                            },
+                            "params": [
+                                {
+                                    "description": "",
+                                    "name": "a",
+                                    "type": null
+                                },
+                                {
+                                    "description": "",
+                                    "name": "b",
+                                    "type": null
+                                }
+                            ],
                             "returns": [
                                 {
                                     "description": "Number",
@@ -1308,11 +1574,18 @@
                             "has_params": true,
                             "has_returns": true,
                             "name": "randi",
-                            "params": {
-                                "description": "",
-                                "name": "b",
-                                "type": null
-                            },
+                            "params": [
+                                {
+                                    "description": "",
+                                    "name": "a",
+                                    "type": null
+                                },
+                                {
+                                    "description": "",
+                                    "name": "b",
+                                    "type": null
+                                }
+                            ],
                             "returns": [
                                 {
                                     "description": "Integer number",
@@ -1332,11 +1605,33 @@
                             "has_params": true,
                             "has_returns": true,
                             "name": "tween",
-                            "params": {
-                                "description": "Function to call when the value has changed",
-                                "name": "set_value",
-                                "type": null
-                            },
+                            "params": [
+                                {
+                                    "description": "Start value (number or vec2)",
+                                    "name": "from",
+                                    "type": null
+                                },
+                                {
+                                    "description": "End value (same as from)",
+                                    "name": "to",
+                                    "type": null
+                                },
+                                {
+                                    "description": "Time in seconds to go from start to end value",
+                                    "name": "duration",
+                                    "type": null
+                                },
+                                {
+                                    "description": "Which easing algorithm to use",
+                                    "name": "easing",
+                                    "type": null
+                                },
+                                {
+                                    "description": "Function to call when the value has changed",
+                                    "name": "set_value",
+                                    "type": null
+                                }
+                            ],
                             "returns": [
                                 {
                                     "description": "A tween object",
@@ -1349,11 +1644,13 @@
                             "has_params": true,
                             "has_returns": false,
                             "name": "on_end",
-                            "params": {
-                                "description": "The function to call when the tween has finished",
-                                "name": "fn",
-                                "type": null
-                            },
+                            "params": [
+                                {
+                                    "description": "The function to call when the tween has finished",
+                                    "name": "fn",
+                                    "type": null
+                                }
+                            ],
                             "returns": []
                         },
                         {
@@ -1389,11 +1686,18 @@
                             "has_params": true,
                             "has_returns": false,
                             "name": "scene",
-                            "params": {
-                                "description": "The scene code",
-                                "name": "fn",
-                                "type": null
-                            },
+                            "params": [
+                                {
+                                    "description": "Unique id of the scene",
+                                    "name": "id",
+                                    "type": null
+                                },
+                                {
+                                    "description": "The scene code",
+                                    "name": "fn",
+                                    "type": null
+                                }
+                            ],
                             "returns": []
                         },
                         {
@@ -1401,11 +1705,13 @@
                             "has_params": true,
                             "has_returns": false,
                             "name": "show",
-                            "params": {
-                                "description": "Id of the scene to show",
-                                "name": "id",
-                                "type": null
-                            },
+                            "params": [
+                                {
+                                    "description": "Id of the scene to show",
+                                    "name": "id",
+                                    "type": null
+                                }
+                            ],
                             "returns": []
                         }
                     ],
@@ -1425,11 +1731,18 @@
                             "has_params": true,
                             "has_returns": true,
                             "name": "wait",
-                            "params": {
-                                "description": "Function to call",
-                                "name": "cb",
-                                "type": null
-                            },
+                            "params": [
+                                {
+                                    "description": "Number of seconds to wait",
+                                    "name": "seconds",
+                                    "type": null
+                                },
+                                {
+                                    "description": "Function to call",
+                                    "name": "cb",
+                                    "type": null
+                                }
+                            ],
                             "returns": [
                                 {
                                     "description": "Call to cancel the timer",
@@ -1442,11 +1755,18 @@
                             "has_params": true,
                             "has_returns": true,
                             "name": "loop",
-                            "params": {
-                                "description": "Function to call",
-                                "name": "cb",
-                                "type": null
-                            },
+                            "params": [
+                                {
+                                    "description": "Interval between calls",
+                                    "name": "seconds",
+                                    "type": null
+                                },
+                                {
+                                    "description": "Function to call",
+                                    "name": "cb",
+                                    "type": null
+                                }
+                            ],
                             "returns": [
                                 {
                                     "description": "Call to cancel the timer",

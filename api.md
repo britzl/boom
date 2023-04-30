@@ -48,6 +48,7 @@
 # boom
 Boom is a game framework built on top of Defold. It is heavily inspired by the Kaboom.js game framework.
 
+
 ## boom.boom(game)
 Start a boom game Call this from your own game script
 
@@ -59,6 +60,7 @@ PARAMS
 
 # anchor
 Anchor component. Use this component to offset any rendered component such as a SpriteComp from the center of the game object.
+
 
 ## anchor.anchor(anchor)
 Anchor point for render.
@@ -74,6 +76,7 @@ RETURNS
 
 # area
 Area component. Use this component to define a collider area and bounds for a game object.
+
 
 ## area.area(options)
 Create a collider area and enabled collision detection. This will create an area component which is used to describe an area which can collide with other area components.
@@ -133,6 +136,7 @@ RETURNS
 # body
 
 
+
 ## body.body(options)
 Physical body that responds to gravity. Requires AreaComp and PosComp components on the game object. This also makes the object solid.
 
@@ -153,10 +157,11 @@ PARAMS
 ---
 
 # color
+Component to control the color of the game object 
 
 
 ## color.color(...)
-Color of object
+Create a color component 
 
 PARAMS
 * `...` - R,g,b components or color
@@ -168,6 +173,7 @@ RETURNS
 ---
 
 # double_jump
+
 
 
 ## double_jump.double_jump(options)
@@ -192,6 +198,7 @@ PARAMS
 # fadein
 Fade in game object visual components such as sprites. 
 
+
 ## fadein.fadein(time)
 Fade object in. 
 
@@ -207,6 +214,7 @@ RETURNS
 # fixed
 Make object unaffected by camera. 
 
+
 ## fixed.fixed()
 Create a fixed component 
 
@@ -218,6 +226,7 @@ RETURNS
 
 # health
 Handles health related logic. 
+
 
 ## health.health(hp)
 Create a health component 
@@ -269,6 +278,7 @@ PARAMS
 # lifespan
 Destroy the game object after certain amount of time. Use this component when you need a game object to be destroyed after a period of time.
 
+
 ## lifespan.lifespan(timeoptions)
 Create a Lifespan component. 
 
@@ -285,6 +295,7 @@ RETURNS
 # move
 Move towards a direction infinitely, and destroys when it leaves the game view. 
 
+
 ## move.move(directionspeed)
 Create a move component. 
 
@@ -299,52 +310,88 @@ RETURNS
 ---
 
 # offscreen
+Control the behavior of a game object when it goes out of view 
 
 
 ## offscreen.offscreen(options)
-Control the behavior of object when it goes out of view
+Create an offscreen component. 
 
 PARAMS
-* `options` - (distance, destroy)
+* `options` [`table`] - (distance, destroy)
 
 RETURNS
-* `The` - Component
+* `component` [`Offscreen`] - The created component
+
+
+## Offscreen.on_exit_screen(cb)
+Register a callback that runs when the object goes out of view 
+
+PARAMS
+* `cb` [`function`] - Function to call when the object goes out of view
+
+
+## Offscreen.on_enter_screen(cb)
+Register a callback that runs when the object enters view 
+
+PARAMS
+* `cb` [`function`] - Function to call when the object enters view
 
 
 ---
 
 # opacity
+Component to control the opacity of a game object. 
 
 
 ## opacity.opacity(opacity)
-Opacity of object
+Create an opacity component. 
 
 PARAMS
-* `opacity` - 0.0 to 1.0
+* `opacity` [`number`] - The opacity from 0.0 to 1.0
 
 RETURNS
-* `The` - Component
+* `component` [`Opacity`] - The created component
+
+
+## Opacity.opacity
+The opacity of the component instance. 
 
 
 ---
 
 # pos
-
+Position of a game object. 
+```
+-- this game object will draw a &quot;bean&quot; sprite at (100, 200)
+add({
+   pos(100, 200),
+   sprite(&quot;bean&quot;)
+})
+```
 
 ## pos.pos(xy)
-Position an object
+Create a position component. 
 
 PARAMS
-* `x` - 
-* `y` - 
+* `x` [`number`] - 
+* `y` [`number`] - 
 
 RETURNS
-* `The` - Component
+* `component` [`Pos`] - The created component
+
+
+## Pos.move(xy)
+Move a number of pixels per second. 
+
+PARAMS
+* `x` [`number`] - 
+* `y` [`number`] - 
 
 
 ---
 
 # rotate
+
 
 
 ## rotate.rotate(angle)
@@ -362,6 +409,7 @@ RETURNS
 # scale
 
 
+
 ## scale.scale(xy)
 Apply a scale to the object
 
@@ -376,6 +424,7 @@ RETURNS
 ---
 
 # sprite
+
 
 
 ## sprite.sprite(animoptions)
@@ -405,6 +454,7 @@ Stop the current animation
 # stay
 
 
+
 ## stay.stay()
 Do not get destroyed on scene switch
 
@@ -415,6 +465,7 @@ RETURNS
 ---
 
 # text
+
 
 
 ## text.text(textoptions)
@@ -433,6 +484,7 @@ RETURNS
 # timer
 
 
+
 ## timer.timer(nfn)
 Run certain action after some time.
 
@@ -447,6 +499,7 @@ RETURNS
 ---
 
 # z
+
 
 
 ## z.z(z)
@@ -464,6 +517,7 @@ RETURNS
 # collision
 
 
+
 ## collision.on_collide(tag1tag2fn)
 Register an event that runs when two game objects collide
 
@@ -479,6 +533,7 @@ RETURNS
 ---
 
 # key
+
 
 
 ## key.on_key_press(key_idcb)
@@ -518,6 +573,7 @@ RETURNS
 # mouse
 
 
+
 ## mouse.on_click(tagcb)
 Set mouse click listener
 
@@ -541,6 +597,7 @@ RETURNS
 # update
 
 
+
 ## update.on_update(tagfn)
 Run a function every frame Register an event that runs every frame, optionally for all game objects with certain tag
 
@@ -552,6 +609,7 @@ PARAMS
 ---
 
 # gameobject
+
 
 
 ## gameobject.add(comps)
@@ -666,6 +724,7 @@ PARAMS
 # camera
 
 
+
 ## camera.cam_pos(xy)
 Get or set camera position.
 
@@ -702,6 +761,7 @@ RETURNS
 # gravity
 
 
+
 ## gravity.get_gravity()
 Get gravity
 
@@ -719,6 +779,7 @@ PARAMS
 ---
 
 # screen
+
 
 
 ## screen.width()
@@ -747,6 +808,7 @@ RETURNS
 # time
 
 
+
 ## time.dt()
 Get the delta time
 
@@ -766,6 +828,7 @@ RETURNS
 # level
 
 
+
 ## level.add_level(mapoptions)
 Construct a level based on symbols
 
@@ -780,6 +843,7 @@ RETURNS
 ---
 
 # random
+
 
 
 ## random.rand(ab)
@@ -807,6 +871,7 @@ RETURNS
 ---
 
 # tween
+
 
 
 ## tween.tween(fromtodurationeasingset_value)
@@ -843,6 +908,7 @@ Cancel tween
 # scene
 
 
+
 ## scene.scene(idfn)
 Create a scene
 
@@ -861,6 +927,7 @@ PARAMS
 ---
 
 # timer
+
 
 
 ## timer.wait(secondscb)

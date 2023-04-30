@@ -32,11 +32,14 @@ def find_files(root_dir, file_pattern):
     matches.sort()
     return matches
 
-def get_function_name(line):
+def get_field_name(line):
     m = re.match("(\w*)\.(\w*) = function.*", line)
     if m:
         return m.groups()[1]
     m = re.match("function (\w*)\.(\w*)", line)
+    if m:
+        return m.groups()[1]
+    m = re.match("(\w*)\.(\w*) = .*", line)
     if m:
         return m.groups()[1]
     return None
@@ -63,10 +66,10 @@ def process_entry(line, lines):
     while len(lines) > 0:
         line = lines.pop(0).strip()
         if not line.startswith("-- "):
-            entry["name"] = get_function_name(line)
+            entry["name"] = get_field_name(line)
             break
         
-        line = line.replace("-- ", "")
+        line = line[3:]
         if line.startswith("@param"):
             entry["params"].append(parse_param(line, "param"))
         elif line.startswith("@number"):
@@ -115,6 +118,11 @@ def process_entry(line, lines):
                     "type": param_type,
                     "description": capitalize(param_desc)
                 })
+        elif line.startswith("@field"):
+            entry["field"] = True
+        elif line.startswith("@usage"):
+            if "usage" not in entry:
+                entry["usage"] = line.replace("@usage", "")
         elif line.startswith("@"):
             m = re.match("\@(\w*?) (.*)", line)
             if m:
@@ -124,7 +132,10 @@ def process_entry(line, lines):
             else:
                 print("Found unknown tag: " + line)
         else:
-            entry["description"] = entry["description"] + line + " "
+            if "usage" in entry:
+                entry["usage"] = entry["usage"] + line + "\n"
+            else:
+                entry["description"] = entry["description"] + line + " "
 
     entry["has_params"] = len(entry["params"]) > 0
     entry["has_returns"] = len(entry["returns"]) > 0

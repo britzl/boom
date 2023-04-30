@@ -1,13 +1,14 @@
+--- Control the behavior of a game object when it goes out of view
+
 local gameobject = require "boom.gameobject.gameobject"
 local listener = require "boom.events.listener"
 local screen = require "boom.info.screen"
 
 local M = {}
 
----
--- Control the behavior of object when it goes out of view
--- @param options (distance, destroy)
--- @return The component
+--- Create an offscreen component.
+-- @table options (distance, destroy)
+-- @treturn component Offscreen The created component
 function M.offscreen(options)
 	local c = {}
 	c.tag = "offscreen"
@@ -17,9 +18,17 @@ function M.offscreen(options)
 	local destroy = options and options.destroy
 
 	local offscreen_listeners = {}
+
+	--- Register a callback that runs when the object goes out of view
+	-- @class Offscreen
+	-- @function cb Function to call when the object goes out of view
 	c.on_exit_screen = function(cb)
 		return listener.register(offscreen_listeners, "exit_screen", cb)
 	end
+
+	--- Register a callback that runs when the object enters view
+	-- @class Offscreen
+	-- @function cb Function to call when the object enters view
 	c.on_enter_screen = function(cb)
 		return listener.register(offscreen_listeners, "enter_screen", cb)
 	end

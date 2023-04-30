@@ -1,3 +1,11 @@
+--- Position of a game object.
+-- @usage
+-- -- this game object will draw a "bean" sprite at (100, 200)
+-- add({
+--    pos(100, 200),
+--    sprite("bean")
+-- })
+
 local vec2 = require "boom.math.vec2"
 
 local M = {}
@@ -14,11 +22,11 @@ local function to_xy(x, y)
 	local v2 = x
 	return v2.x, v2.y
 end
----
--- Position an object
--- @param x
--- @param y
--- @return The component
+
+--- Create a position component.
+-- @number x
+-- @number y
+-- @treturn component Pos The created component
 function M.pos(x, y)
 	if type(x) == "userdata" then
 		local pos = x
@@ -35,6 +43,10 @@ function M.pos(x, y)
 		go.set_position(c.object.pos, c.object.id)
 	end
 
+	--- Move a number of pixels per second.
+	-- @class Pos
+	-- @number x
+	-- @number y
 	c.move = function(...)
 		local xvel, yvel = to_xy(...)
 		local object = c.object

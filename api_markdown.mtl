@@ -11,13 +11,15 @@
 {{#files}}
 # {{#class}}{{class}}{{/class}}{{^class}}{{module}}{{/class}}
 {{#file_summary}}{{file_summary}} {{/file_summary}}{{file_description}}
+{{#usage}}```
+{{usage}}```{{/usage}}
 
 {{#entries}}
 {{#class}}
-## {{class}}.{{name}}({{#params}}{{name}}{{/params}})
+## {{class}}.{{name}}{{^field}}({{#params}}{{name}}{{/params}}){{/field}}
 {{/class}}
 {{^class}}
-## {{module}}.{{name}}({{#params}}{{name}}{{/params}})
+## {{module}}.{{name}}{{^field}}({{#params}}{{name}}{{/params}}){{/field}}
 {{/class}}
 {{#summary}}{{summary}} {{/summary}}{{description}}
 {{#has_params}}

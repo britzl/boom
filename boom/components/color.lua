@@ -1,9 +1,10 @@
+--- Component to control the color of the game object
+
 local color = require "boom.math.color"
 
 local M = {}
 
----
--- Color of object
+--- Create a color component
 -- @param ... r,g,b components or color
 -- @treturn component ColorComp The color component
 function M.color(...)

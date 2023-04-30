@@ -257,9 +257,10 @@
                     "module": "body"
                 },
                 {
+                    "description": null,
                     "entries": [
                         {
-                            "description": "Color of object",
+                            "description": "",
                             "has_params": true,
                             "has_returns": true,
                             "name": "color",
@@ -276,12 +277,21 @@
                                     "name": "component",
                                     "type": "ColorComp"
                                 }
-                            ]
+                            ],
+                            "summary": "Create a color component"
                         }
                     ],
+                    "file_description": "",
+                    "file_summary": "Component to control the color of the game object",
                     "filename": "boom/components/color.lua",
                     "group": "components",
-                    "module": "color"
+                    "has_params": false,
+                    "has_returns": false,
+                    "module": "color",
+                    "name": null,
+                    "params": [],
+                    "returns": [],
+                    "summary": null
                 },
                 {
                     "entries": [
@@ -596,9 +606,10 @@
                     "summary": null
                 },
                 {
+                    "description": null,
                     "entries": [
                         {
-                            "description": "Control the behavior of object when it goes out of view",
+                            "description": "",
                             "has_params": true,
                             "has_returns": true,
                             "name": "offscreen",
@@ -606,51 +617,116 @@
                                 {
                                     "description": "(distance, destroy)",
                                     "name": "options",
-                                    "type": null
+                                    "type": "table"
                                 }
                             ],
                             "returns": [
                                 {
-                                    "description": "Component",
-                                    "name": "The"
+                                    "description": "The created component",
+                                    "name": "component",
+                                    "type": "Offscreen"
                                 }
-                            ]
+                            ],
+                            "summary": "Create an offscreen component."
+                        },
+                        {
+                            "class": "Offscreen",
+                            "description": "",
+                            "has_params": true,
+                            "has_returns": false,
+                            "name": "on_exit_screen",
+                            "params": [
+                                {
+                                    "description": "Function to call when the object goes out of view",
+                                    "name": "cb",
+                                    "type": "function"
+                                }
+                            ],
+                            "returns": [],
+                            "summary": "Register a callback that runs when the object goes out of view"
+                        },
+                        {
+                            "class": "Offscreen",
+                            "description": "",
+                            "has_params": true,
+                            "has_returns": false,
+                            "name": "on_enter_screen",
+                            "params": [
+                                {
+                                    "description": "Function to call when the object enters view",
+                                    "name": "cb",
+                                    "type": "function"
+                                }
+                            ],
+                            "returns": [],
+                            "summary": "Register a callback that runs when the object enters view"
                         }
                     ],
+                    "file_description": "",
+                    "file_summary": "Control the behavior of a game object when it goes out of view",
                     "filename": "boom/components/offscreen.lua",
                     "group": "components",
-                    "module": "offscreen"
+                    "has_params": false,
+                    "has_returns": false,
+                    "module": "offscreen",
+                    "name": null,
+                    "params": [],
+                    "returns": [],
+                    "summary": null
                 },
                 {
+                    "description": null,
                     "entries": [
                         {
-                            "description": "Opacity of object",
+                            "description": "",
                             "has_params": true,
                             "has_returns": true,
                             "name": "opacity",
                             "params": [
                                 {
-                                    "description": "0.0 to 1.0",
+                                    "description": "The opacity from 0.0 to 1.0",
                                     "name": "opacity",
-                                    "type": null
+                                    "type": "number"
                                 }
                             ],
                             "returns": [
                                 {
-                                    "description": "Component",
-                                    "name": "The"
+                                    "description": "The created component",
+                                    "name": "component",
+                                    "type": "Opacity"
                                 }
-                            ]
+                            ],
+                            "summary": "Create an opacity component."
+                        },
+                        {
+                            "class": "Opacity",
+                            "description": "",
+                            "field": true,
+                            "has_params": false,
+                            "has_returns": false,
+                            "name": "opacity",
+                            "params": [],
+                            "returns": [],
+                            "summary": "The opacity of the component instance."
                         }
                     ],
+                    "file_description": "",
+                    "file_summary": "Component to control the opacity of a game object.",
                     "filename": "boom/components/opacity.lua",
                     "group": "components",
-                    "module": "opacity"
+                    "has_params": false,
+                    "has_returns": false,
+                    "module": "opacity",
+                    "name": null,
+                    "params": [],
+                    "returns": [],
+                    "summary": null
                 },
                 {
+                    "description": null,
                     "entries": [
                         {
-                            "description": "Position an object",
+                            "description": "",
                             "has_params": true,
                             "has_returns": true,
                             "name": "pos",
@@ -658,25 +734,57 @@
                                 {
                                     "description": "",
                                     "name": "x",
-                                    "type": null
+                                    "type": "number"
                                 },
                                 {
                                     "description": "",
                                     "name": "y",
-                                    "type": null
+                                    "type": "number"
                                 }
                             ],
                             "returns": [
                                 {
-                                    "description": "Component",
-                                    "name": "The"
+                                    "description": "The created component",
+                                    "name": "component",
+                                    "type": "Pos"
                                 }
-                            ]
+                            ],
+                            "summary": "Create a position component."
+                        },
+                        {
+                            "class": "Pos",
+                            "description": "",
+                            "has_params": true,
+                            "has_returns": false,
+                            "name": "move",
+                            "params": [
+                                {
+                                    "description": "",
+                                    "name": "x",
+                                    "type": "number"
+                                },
+                                {
+                                    "description": "",
+                                    "name": "y",
+                                    "type": "number"
+                                }
+                            ],
+                            "returns": [],
+                            "summary": "Move a number of pixels per second."
                         }
                     ],
+                    "file_description": "",
+                    "file_summary": "Position of a game object.",
                     "filename": "boom/components/pos.lua",
                     "group": "components",
-                    "module": "pos"
+                    "has_params": false,
+                    "has_returns": false,
+                    "module": "pos",
+                    "name": null,
+                    "params": [],
+                    "returns": [],
+                    "summary": null,
+                    "usage": "-- this game object will draw a \"bean\" sprite at (100, 200)\nadd({\n   pos(100, 200),\n   sprite(\"bean\")\n})\n"
                 },
                 {
                     "entries": [

@@ -1,4 +1,10 @@
 --- Move towards a direction infinitely, and destroys when it leaves the game view.
+-- @usage
+-- projectile = add({
+--     sprite("bullet"),
+--     pos(player.pos),
+--     move(vec2(0, 1), 1200),
+-- })
 
 local gameobject = require "boom.gameobject.gameobject"
 

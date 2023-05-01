@@ -136,11 +136,10 @@ local ANY_KEY = hash("*")
 
 local keymap = {}
 
----
--- Register callback that runs when a certain key is pressed
--- @param key_id The key that must be pressed or nil for any key
--- @param cb The callback
--- @return Cancel callback
+--- Register callback that runs when a certain key is pressed.
+-- @string key_id The key that must be pressed or nil for any key
+-- @function cb The callback
+-- @treturn fn function Cancel callback
 function M.on_key_press(key_id, cb)
 	if not cb then
 		cb = key_id
@@ -155,11 +154,10 @@ function M.on_key_press(key_id, cb)
 	return listener.register(key_pressed_listeners, key_id, cb)
 end
 
----
--- Register callback that runs when a certain key is released
--- @param key_id The key that must be released or nil for any key
--- @param cb The callback
--- @return Cancel callback
+--- Register callback that runs when a certain key is released.
+-- @string key_id The key that must be released or nil for any key
+-- @function cb The callback
+-- @treturn fn function Cancel callback
 function M.on_key_release(key_id, fn)
 	if not fn then
 		fn = key_id
@@ -174,10 +172,9 @@ function M.on_key_release(key_id, fn)
 	return listener.register(key_released_listeners, event, cb)
 end
 
----
--- Check if a certain key is down
--- @param key_id The key that must be down, or nil for any key
--- @return True if down
+--- Check if a certain key is down.
+-- @string key_id The key that must be down, or nil for any key
+-- @treturn down bool True if down
 function M.is_key_down(key_id)
 	key_id = key_id or "*"
 	key_id = hash(key_id)

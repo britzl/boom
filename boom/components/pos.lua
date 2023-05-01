@@ -44,7 +44,7 @@ function M.pos(x, y)
 	end
 
 	--- Move a number of pixels per second.
-	-- @class Pos
+	-- @type Pos
 	-- @number x
 	-- @number y
 	c.move = function(...)

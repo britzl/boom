@@ -17,21 +17,21 @@ function M.health(hp)
 	local on_death_listeners = {}
 
 	--- Register an event that runs when heal() is called.
-	-- @class HealthComp
+	-- @type HealthComp
 	-- @function cb Function to call
 	c.on_heal = function(cb)
 		return listener.register(on_heal_listeners, "heal", cb)
 	end
 
 	--- Register an event that runs when hurt() is called.
-	-- @class HealthComp
+	-- @type HealthComp
 	-- @function cb Function to call
 	c.on_hurt = function(cb)
 		return listener.register(on_hurt_listeners, "hurt", cb)
 	end
 
 	--- Register an event that runs when health is 0 or less.
-	-- @class HealthComp
+	-- @type HealthComp
 	-- @function cb Function to call
 	c.on_death = function(cb)
 		return listener.register(on_death_listeners, "death", cb)
@@ -39,7 +39,7 @@ function M.health(hp)
 
 	--- Increase hp.
 	-- Will trigger on_heal.
-	-- @class HealthComp
+	-- @type HealthComp
 	-- @number n Amount to increase
 	c.heal = function(n)
 		c.object.hp = c.object.hp + n
@@ -48,7 +48,7 @@ function M.health(hp)
 
 	--- Decrease hp.
 	-- Will trigger on_hurt
-	-- @class HealthComp
+	-- @type HealthComp
 	-- @number n Amount to decrease
 	c.hurt = function(n)
 		c.object.hp = c.object.hp - n

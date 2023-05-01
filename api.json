@@ -17,7 +17,8 @@
                                     "type": null
                                 }
                             ],
-                            "returns": []
+                            "returns": [],
+                            "usage": null
                         }
                     ],
                     "file_description": "It is heavily inspired by the Kaboom.js game framework.",
@@ -30,7 +31,8 @@
                     "name": null,
                     "params": [],
                     "returns": [],
-                    "summary": null
+                    "summary": null,
+                    "usage": null
                 }
             ],
             "group": "boom"
@@ -58,7 +60,8 @@
                                     "name": "component",
                                     "type": "Anchor"
                                 }
-                            ]
+                            ],
+                            "usage": null
                         }
                     ],
                     "file_description": "Use this component to offset any rendered component such as a SpriteComp from the center of the game object.",
@@ -71,7 +74,8 @@
                     "name": null,
                     "params": [],
                     "returns": [],
-                    "summary": null
+                    "summary": null,
+                    "usage": null
                 },
                 {
                     "description": null,
@@ -95,10 +99,10 @@
                                     "type": "AreaComp"
                                 }
                             ],
-                            "summary": "Create a collider area and enabled collision detection."
+                            "summary": "Create a collider area and enabled collision detection.",
+                            "usage": null
                         },
                         {
-                            "class": "AreaComp",
                             "description": "",
                             "has_params": false,
                             "has_returns": true,
@@ -111,10 +115,11 @@
                                     "type": "table"
                                 }
                             ],
-                            "summary": "Get all collisions currently happening for this component."
+                            "summary": "Get all collisions currently happening for this component.",
+                            "type": "AreaComp",
+                            "usage": null
                         },
                         {
-                            "class": "AreaComp",
                             "description": "",
                             "has_params": true,
                             "has_returns": true,
@@ -138,10 +143,11 @@
                                     "type": "table"
                                 }
                             ],
-                            "summary": "Check collision between this component and another object."
+                            "summary": "Check collision between this component and another object.",
+                            "type": "AreaComp",
+                            "usage": null
                         },
                         {
-                            "class": "AreaComp",
                             "description": "",
                             "has_params": true,
                             "has_returns": false,
@@ -159,10 +165,11 @@
                                 }
                             ],
                             "returns": [],
-                            "summary": "Register event listener when this component is colliding."
+                            "summary": "Register event listener when this component is colliding.",
+                            "type": "AreaComp",
+                            "usage": null
                         },
                         {
-                            "class": "AreaComp",
                             "description": "",
                             "has_params": true,
                             "has_returns": false,
@@ -175,10 +182,11 @@
                                 }
                             ],
                             "returns": [],
-                            "summary": "Register event listener when this component is clicked."
+                            "summary": "Register event listener when this component is clicked.",
+                            "type": "AreaComp",
+                            "usage": null
                         },
                         {
-                            "class": "AreaComp",
                             "description": "",
                             "has_params": true,
                             "has_returns": true,
@@ -197,7 +205,9 @@
                                     "type": "bool"
                                 }
                             ],
-                            "summary": "Check if a point is within the area of this component."
+                            "summary": "Check if a point is within the area of this component.",
+                            "type": "AreaComp",
+                            "usage": null
                         }
                     ],
                     "file_description": "Use this component to define a collider area and bounds for a game object.",
@@ -210,7 +220,8 @@
                     "name": null,
                     "params": [],
                     "returns": [],
-                    "summary": null
+                    "summary": null,
+                    "usage": null
                 },
                 {
                     "entries": [
@@ -233,10 +244,10 @@
                                     "type": "BodyComp"
                                 }
                             ],
-                            "summary": "Physical body that responds to gravity."
+                            "summary": "Physical body that responds to gravity.",
+                            "usage": null
                         },
                         {
-                            "class": "BodyComp",
                             "description": "",
                             "has_params": true,
                             "has_returns": false,
@@ -249,7 +260,9 @@
                                 }
                             ],
                             "returns": [],
-                            "summary": "Add upward force"
+                            "summary": "Add upward force",
+                            "type": "BodyComp",
+                            "usage": null
                         }
                     ],
                     "filename": "boom/components/body.lua",
@@ -278,7 +291,8 @@
                                     "type": "ColorComp"
                                 }
                             ],
-                            "summary": "Create a color component"
+                            "summary": "Create a color component",
+                            "usage": null
                         }
                     ],
                     "file_description": "",
@@ -291,7 +305,8 @@
                     "name": null,
                     "params": [],
                     "returns": [],
-                    "summary": null
+                    "summary": null,
+                    "usage": null
                 },
                 {
                     "entries": [
@@ -314,10 +329,10 @@
                                     "type": "DoubleJumpComp"
                                 }
                             ],
-                            "summary": "Enables double jump."
+                            "summary": "Enables double jump.",
+                            "usage": null
                         },
                         {
-                            "class": "DoubleJumpComp",
                             "description": "",
                             "has_params": true,
                             "has_returns": false,
@@ -329,7 +344,9 @@
                                     "type": "number"
                                 }
                             ],
-                            "returns": []
+                            "returns": [],
+                            "type": "DoubleJumpComp",
+                            "usage": null
                         }
                     ],
                     "filename": "boom/components/double_jump.lua",
@@ -358,7 +375,8 @@
                                     "type": "FadeInComp"
                                 }
                             ],
-                            "summary": "Fade object in."
+                            "summary": "Fade object in.",
+                            "usage": null
                         }
                     ],
                     "file_description": "",
@@ -371,7 +389,8 @@
                     "name": null,
                     "params": [],
                     "returns": [],
-                    "summary": null
+                    "summary": null,
+                    "usage": null
                 },
                 {
                     "description": null,
@@ -389,7 +408,8 @@
                                     "type": "Fixed"
                                 }
                             ],
-                            "summary": "Create a fixed component"
+                            "summary": "Create a fixed component",
+                            "usage": null
                         }
                     ],
                     "file_description": "",
@@ -402,7 +422,8 @@
                     "name": null,
                     "params": [],
                     "returns": [],
-                    "summary": null
+                    "summary": null,
+                    "usage": null
                 },
                 {
                     "description": null,
@@ -426,10 +447,10 @@
                                     "type": "HealthComp"
                                 }
                             ],
-                            "summary": "Create a health component"
+                            "summary": "Create a health component",
+                            "usage": null
                         },
                         {
-                            "class": "HealthComp",
                             "description": "",
                             "has_params": true,
                             "has_returns": false,
@@ -442,10 +463,11 @@
                                 }
                             ],
                             "returns": [],
-                            "summary": "Register an event that runs when heal() is called."
+                            "summary": "Register an event that runs when heal() is called.",
+                            "type": "HealthComp",
+                            "usage": null
                         },
                         {
-                            "class": "HealthComp",
                             "description": "",
                             "has_params": true,
                             "has_returns": false,
@@ -458,10 +480,11 @@
                                 }
                             ],
                             "returns": [],
-                            "summary": "Register an event that runs when hurt() is called."
+                            "summary": "Register an event that runs when hurt() is called.",
+                            "type": "HealthComp",
+                            "usage": null
                         },
                         {
-                            "class": "HealthComp",
                             "description": "",
                             "has_params": true,
                             "has_returns": false,
@@ -474,10 +497,11 @@
                                 }
                             ],
                             "returns": [],
-                            "summary": "Register an event that runs when health is 0 or less."
+                            "summary": "Register an event that runs when health is 0 or less.",
+                            "type": "HealthComp",
+                            "usage": null
                         },
                         {
-                            "class": "HealthComp",
                             "description": "Will trigger on_heal.",
                             "has_params": true,
                             "has_returns": false,
@@ -490,10 +514,11 @@
                                 }
                             ],
                             "returns": [],
-                            "summary": "Increase hp."
+                            "summary": "Increase hp.",
+                            "type": "HealthComp",
+                            "usage": null
                         },
                         {
-                            "class": "HealthComp",
                             "description": "Will trigger on_hurt",
                             "has_params": true,
                             "has_returns": false,
@@ -506,7 +531,9 @@
                                 }
                             ],
                             "returns": [],
-                            "summary": "Decrease hp."
+                            "summary": "Decrease hp.",
+                            "type": "HealthComp",
+                            "usage": null
                         }
                     ],
                     "file_description": "",
@@ -519,7 +546,8 @@
                     "name": null,
                     "params": [],
                     "returns": [],
-                    "summary": null
+                    "summary": null,
+                    "usage": null
                 },
                 {
                     "description": null,
@@ -548,7 +576,8 @@
                                     "type": "Lifespan"
                                 }
                             ],
-                            "summary": "Create a Lifespan component."
+                            "summary": "Create a Lifespan component.",
+                            "usage": null
                         }
                     ],
                     "file_description": "Use this component when you need a game object to be destroyed after a period of time.",
@@ -561,7 +590,8 @@
                     "name": null,
                     "params": [],
                     "returns": [],
-                    "summary": null
+                    "summary": null,
+                    "usage": null
                 },
                 {
                     "description": null,
@@ -590,7 +620,8 @@
                                     "type": "Move"
                                 }
                             ],
-                            "summary": "Create a move component."
+                            "summary": "Create a move component.",
+                            "usage": null
                         }
                     ],
                     "file_description": "",
@@ -603,7 +634,8 @@
                     "name": null,
                     "params": [],
                     "returns": [],
-                    "summary": null
+                    "summary": null,
+                    "usage": "projectile = add({\n    sprite(\"bullet\"),\n    pos(player.pos),\n    move(vec2(0, 1), 1200),\n})\n"
                 },
                 {
                     "description": null,
@@ -627,10 +659,10 @@
                                     "type": "Offscreen"
                                 }
                             ],
-                            "summary": "Create an offscreen component."
+                            "summary": "Create an offscreen component.",
+                            "usage": null
                         },
                         {
-                            "class": "Offscreen",
                             "description": "",
                             "has_params": true,
                             "has_returns": false,
@@ -643,10 +675,11 @@
                                 }
                             ],
                             "returns": [],
-                            "summary": "Register a callback that runs when the object goes out of view"
+                            "summary": "Register a callback that runs when the object goes out of view",
+                            "type": "Offscreen",
+                            "usage": null
                         },
                         {
-                            "class": "Offscreen",
                             "description": "",
                             "has_params": true,
                             "has_returns": false,
@@ -659,7 +692,9 @@
                                 }
                             ],
                             "returns": [],
-                            "summary": "Register a callback that runs when the object enters view"
+                            "summary": "Register a callback that runs when the object enters view",
+                            "type": "Offscreen",
+                            "usage": null
                         }
                     ],
                     "file_description": "",
@@ -672,7 +707,8 @@
                     "name": null,
                     "params": [],
                     "returns": [],
-                    "summary": null
+                    "summary": null,
+                    "usage": null
                 },
                 {
                     "description": null,
@@ -696,18 +732,21 @@
                                     "type": "Opacity"
                                 }
                             ],
-                            "summary": "Create an opacity component."
+                            "summary": "Create an opacity component.",
+                            "usage": null
                         },
                         {
-                            "class": "Opacity",
                             "description": "",
                             "field": true,
+                            "field_type": "number",
                             "has_params": false,
                             "has_returns": false,
                             "name": "opacity",
                             "params": [],
                             "returns": [],
-                            "summary": "The opacity of the component instance."
+                            "summary": "The opacity of the component instance.",
+                            "type": "Opacity",
+                            "usage": null
                         }
                     ],
                     "file_description": "",
@@ -720,7 +759,8 @@
                     "name": null,
                     "params": [],
                     "returns": [],
-                    "summary": null
+                    "summary": null,
+                    "usage": null
                 },
                 {
                     "description": null,
@@ -749,10 +789,10 @@
                                     "type": "Pos"
                                 }
                             ],
-                            "summary": "Create a position component."
+                            "summary": "Create a position component.",
+                            "usage": null
                         },
                         {
-                            "class": "Pos",
                             "description": "",
                             "has_params": true,
                             "has_returns": false,
@@ -770,7 +810,9 @@
                                 }
                             ],
                             "returns": [],
-                            "summary": "Move a number of pixels per second."
+                            "summary": "Move a number of pixels per second.",
+                            "type": "Pos",
+                            "usage": null
                         }
                     ],
                     "file_description": "",
@@ -805,7 +847,8 @@
                                     "description": "Component",
                                     "name": "The"
                                 }
-                            ]
+                            ],
+                            "usage": null
                         }
                     ],
                     "filename": "boom/components/rotate.lua",
@@ -836,7 +879,8 @@
                                     "description": "Component",
                                     "name": "The"
                                 }
-                            ]
+                            ],
+                            "usage": null
                         }
                     ],
                     "filename": "boom/components/scale.lua",
@@ -846,7 +890,7 @@
                 {
                     "entries": [
                         {
-                            "description": "Render as a sprite",
+                            "description": "",
                             "has_params": true,
                             "has_returns": true,
                             "name": "sprite",
@@ -854,23 +898,91 @@
                                 {
                                     "description": "Which animation or image to use",
                                     "name": "anim",
-                                    "type": null
+                                    "type": "string"
                                 },
                                 {
                                     "description": "Extra options (flip_x, flip_y, width, height)",
                                     "name": "options",
-                                    "type": null
+                                    "type": "table"
                                 }
                             ],
                             "returns": [
                                 {
-                                    "description": "Component",
-                                    "name": "The"
+                                    "description": "The created component",
+                                    "name": "component",
+                                    "type": "Sprite"
                                 }
-                            ]
+                            ],
+                            "summary": "Render a sprite.",
+                            "usage": null
                         },
                         {
-                            "description": "Play an animation",
+                            "description": "",
+                            "field": true,
+                            "field_type": "string",
+                            "has_params": false,
+                            "has_returns": false,
+                            "name": "anim",
+                            "params": [],
+                            "returns": [],
+                            "summary": "The current animation",
+                            "type": "Sprite",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "field": true,
+                            "field_type": "number",
+                            "has_params": false,
+                            "has_returns": false,
+                            "name": "width",
+                            "params": [],
+                            "returns": [],
+                            "summary": "The width of the sprite",
+                            "type": "Sprite",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "field": true,
+                            "field_type": "number",
+                            "has_params": false,
+                            "has_returns": false,
+                            "name": "height",
+                            "params": [],
+                            "returns": [],
+                            "summary": "The height of the sprite",
+                            "type": "Sprite",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "field": true,
+                            "field_type": "bool",
+                            "has_params": false,
+                            "has_returns": false,
+                            "name": "flip_x",
+                            "params": [],
+                            "returns": [],
+                            "summary": "If sprite should be flipped horizontally",
+                            "type": "Sprite",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "field": true,
+                            "field_type": "bool",
+                            "has_params": false,
+                            "has_returns": false,
+                            "name": "flip_y",
+                            "params": [],
+                            "returns": [],
+                            "summary": "If the sprite should be flipped vertically",
+                            "type": "Sprite",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
                             "has_params": true,
                             "has_returns": false,
                             "name": "play",
@@ -878,18 +990,24 @@
                                 {
                                     "description": "The animation to play",
                                     "name": "anim",
-                                    "type": null
+                                    "type": "string"
                                 }
                             ],
-                            "returns": []
+                            "returns": [],
+                            "summary": "Play an animation",
+                            "type": "Sprite",
+                            "usage": null
                         },
                         {
-                            "description": "Stop the current animation",
+                            "description": "",
                             "has_params": false,
                             "has_returns": false,
                             "name": "stop",
                             "params": [],
-                            "returns": []
+                            "returns": [],
+                            "summary": "Stop the current animation",
+                            "type": "Sprite",
+                            "usage": null
                         }
                     ],
                     "filename": "boom/components/sprite.lua",
@@ -899,7 +1017,7 @@
                 {
                     "entries": [
                         {
-                            "description": "Do not get destroyed on scene switch",
+                            "description": "",
                             "has_params": false,
                             "has_returns": true,
                             "name": "stay",
@@ -907,9 +1025,12 @@
                             "returns": [
                                 {
                                     "description": "The created component",
-                                    "name": "component"
+                                    "name": "component",
+                                    "type": "Stay"
                                 }
-                            ]
+                            ],
+                            "summary": "Do not get destroyed on scene switch.",
+                            "usage": null
                         }
                     ],
                     "filename": "boom/components/stay.lua",
@@ -919,7 +1040,7 @@
                 {
                     "entries": [
                         {
-                            "description": "A text component",
+                            "description": "",
                             "has_params": true,
                             "has_returns": true,
                             "name": "text",
@@ -927,20 +1048,36 @@
                                 {
                                     "description": "The text to show",
                                     "name": "text",
-                                    "type": null
+                                    "type": "string"
                                 },
                                 {
                                     "description": "Text options (width, font, align)",
                                     "name": "options",
-                                    "type": null
+                                    "type": "table"
                                 }
                             ],
                             "returns": [
                                 {
-                                    "description": "Component",
-                                    "name": "The"
+                                    "description": "The created component",
+                                    "name": "component",
+                                    "type": "Text"
                                 }
-                            ]
+                            ],
+                            "summary": "Render text.",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "field": true,
+                            "field_type": "string",
+                            "has_params": false,
+                            "has_returns": false,
+                            "name": "text",
+                            "params": [],
+                            "returns": [],
+                            "summary": "The text to render",
+                            "type": "Text",
+                            "usage": null
                         }
                     ],
                     "filename": "boom/components/text.lua",
@@ -948,9 +1085,10 @@
                     "module": "text"
                 },
                 {
+                    "description": null,
                     "entries": [
                         {
-                            "description": "Run certain action after some time.",
+                            "description": "",
                             "has_params": true,
                             "has_returns": true,
                             "name": "timer",
@@ -958,30 +1096,97 @@
                                 {
                                     "description": "Number of seconds to wait",
                                     "name": "n",
-                                    "type": null
+                                    "type": "number"
                                 },
                                 {
                                     "description": "The function to call",
                                     "name": "fn",
-                                    "type": null
+                                    "type": "function"
                                 }
                             ],
                             "returns": [
                                 {
-                                    "description": "Component",
-                                    "name": "The"
+                                    "description": "The created component",
+                                    "name": "component",
+                                    "type": "Timer"
                                 }
-                            ]
+                            ],
+                            "summary": "Run certain action after some time.",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "has_params": true,
+                            "has_returns": false,
+                            "name": "wait",
+                            "params": [
+                                {
+                                    "description": "Seconds",
+                                    "name": "n",
+                                    "type": "number"
+                                },
+                                {
+                                    "description": "The function to call",
+                                    "name": "fn",
+                                    "type": "function"
+                                }
+                            ],
+                            "returns": [],
+                            "summary": "Run a callback function after n seconds",
+                            "type": "Timer",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "has_params": true,
+                            "has_returns": false,
+                            "name": "loop",
+                            "params": [
+                                {
+                                    "description": "Seconds",
+                                    "name": "n",
+                                    "type": "number"
+                                },
+                                {
+                                    "description": "The function to call",
+                                    "name": "fn",
+                                    "type": "function"
+                                }
+                            ],
+                            "returns": [],
+                            "summary": "Run a callback function every n seconds",
+                            "type": "Timer",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "has_params": false,
+                            "has_returns": false,
+                            "name": "cancel",
+                            "params": [],
+                            "returns": [],
+                            "summary": "Cancel the timer",
+                            "type": "Timer",
+                            "usage": null
                         }
                     ],
+                    "file_description": "",
+                    "file_summary": "Run an action once or repeatedly at a set interval",
                     "filename": "boom/components/timer.lua",
                     "group": "components",
-                    "module": "timer"
+                    "has_params": false,
+                    "has_returns": false,
+                    "module": "timer",
+                    "name": null,
+                    "params": [],
+                    "returns": [],
+                    "summary": null,
+                    "usage": null
                 },
                 {
                     "entries": [
                         {
-                            "description": "Determines the draw order for objects. Object will be drawn on top if z value is bigger.",
+                            "description": "Object will be drawn on top if z value is bigger.",
                             "has_params": true,
                             "has_returns": true,
                             "name": "z",
@@ -989,15 +1194,31 @@
                                 {
                                     "description": "Z-value of the object.",
                                     "name": "z",
-                                    "type": null
+                                    "type": "number"
                                 }
                             ],
                             "returns": [
                                 {
-                                    "description": "Component",
-                                    "name": "The"
+                                    "description": "The created component",
+                                    "name": "component",
+                                    "type": "Z"
                                 }
-                            ]
+                            ],
+                            "summary": "Determines the draw order for objects.",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "field": true,
+                            "field_type": "number",
+                            "has_params": false,
+                            "has_returns": false,
+                            "name": "z",
+                            "params": [],
+                            "returns": [],
+                            "summary": "The z value",
+                            "type": "Z",
+                            "usage": null
                         }
                     ],
                     "filename": "boom/components/z.lua",
@@ -1038,7 +1259,8 @@
                                     "description": "Event function",
                                     "name": "Cancel"
                                 }
-                            ]
+                            ],
+                            "usage": null
                         }
                     ],
                     "filename": "boom/events/collision.lua",
@@ -1048,7 +1270,7 @@
                 {
                     "entries": [
                         {
-                            "description": "Register callback that runs when a certain key is pressed",
+                            "description": "",
                             "has_params": true,
                             "has_returns": true,
                             "name": "on_key_press",
@@ -1056,23 +1278,26 @@
                                 {
                                     "description": "The key that must be pressed or nil for any key",
                                     "name": "key_id",
-                                    "type": null
+                                    "type": "string"
                                 },
                                 {
                                     "description": "The callback",
                                     "name": "cb",
-                                    "type": null
+                                    "type": "function"
                                 }
                             ],
                             "returns": [
                                 {
-                                    "description": "Callback",
-                                    "name": "Cancel"
+                                    "description": "Cancel callback",
+                                    "name": "fn",
+                                    "type": "function"
                                 }
-                            ]
+                            ],
+                            "summary": "Register callback that runs when a certain key is pressed.",
+                            "usage": null
                         },
                         {
-                            "description": "Register callback that runs when a certain key is released",
+                            "description": "",
                             "has_params": true,
                             "has_returns": true,
                             "name": "on_key_release",
@@ -1080,23 +1305,26 @@
                                 {
                                     "description": "The key that must be released or nil for any key",
                                     "name": "key_id",
-                                    "type": null
+                                    "type": "string"
                                 },
                                 {
                                     "description": "The callback",
                                     "name": "cb",
-                                    "type": null
+                                    "type": "function"
                                 }
                             ],
                             "returns": [
                                 {
-                                    "description": "Callback",
-                                    "name": "Cancel"
+                                    "description": "Cancel callback",
+                                    "name": "fn",
+                                    "type": "function"
                                 }
-                            ]
+                            ],
+                            "summary": "Register callback that runs when a certain key is released.",
+                            "usage": null
                         },
                         {
-                            "description": "Check if a certain key is down",
+                            "description": "",
                             "has_params": true,
                             "has_returns": true,
                             "name": "is_key_down",
@@ -1104,15 +1332,18 @@
                                 {
                                     "description": "The key that must be down, or nil for any key",
                                     "name": "key_id",
-                                    "type": null
+                                    "type": "string"
                                 }
                             ],
                             "returns": [
                                 {
-                                    "description": "If down",
-                                    "name": "True"
+                                    "description": "True if down",
+                                    "name": "down",
+                                    "type": "bool"
                                 }
-                            ]
+                            ],
+                            "summary": "Check if a certain key is down.",
+                            "usage": null
                         }
                     ],
                     "filename": "boom/events/key.lua",
@@ -1122,7 +1353,7 @@
                 {
                     "entries": [
                         {
-                            "description": "Set mouse click listener",
+                            "description": "",
                             "has_params": true,
                             "has_returns": true,
                             "name": "on_click",
@@ -1130,33 +1361,39 @@
                                 {
                                     "description": "Optional click on object with tag filter",
                                     "name": "tag",
-                                    "type": null
+                                    "type": "string"
                                 },
                                 {
                                     "description": "Callback when mouse button is clicked",
                                     "name": "cb",
-                                    "type": null
+                                    "type": "function"
                                 }
                             ],
                             "returns": [
                                 {
-                                    "description": "Listener function",
-                                    "name": "Cancel"
+                                    "description": "Cancel listener function",
+                                    "name": "fn",
+                                    "type": "function"
                                 }
-                            ]
+                            ],
+                            "summary": "Set mouse click listener.",
+                            "usage": null
                         },
                         {
-                            "description": "Get mouse position (screen coordinates)",
+                            "description": "",
                             "has_params": false,
                             "has_returns": true,
                             "name": "mouse_pos",
                             "params": [],
                             "returns": [
                                 {
-                                    "description": "Position (vec2)",
-                                    "name": "Mouse"
+                                    "description": "Mouse position",
+                                    "name": "pos",
+                                    "type": "vec2"
                                 }
-                            ]
+                            ],
+                            "summary": "Get mouse position (screen coordinates).",
+                            "usage": null
                         }
                     ],
                     "filename": "boom/events/mouse.lua",
@@ -1172,18 +1409,19 @@
                             "name": "on_update",
                             "params": [
                                 {
-                                    "description": "[optional] run event for all objects matching tag",
+                                    "description": "Run event for all objects matching tag (optional)",
                                     "name": "tag",
-                                    "type": null
+                                    "type": "string"
                                 },
                                 {
-                                    "description": "Event function to call. Will receive object and cancel function",
+                                    "description": "The event function to call. Will receive object and cancel function.",
                                     "name": "fn",
-                                    "type": null
+                                    "type": "function"
                                 }
                             ],
                             "returns": [],
-                            "summary": "Run a function every frame"
+                            "summary": "Run a function every frame.",
+                            "usage": null
                         }
                     ],
                     "filename": "boom/events/update.lua",
@@ -1198,7 +1436,7 @@
                 {
                     "entries": [
                         {
-                            "description": "Add a game object with a set of components",
+                            "description": "",
                             "has_params": true,
                             "has_returns": true,
                             "name": "add",
@@ -1215,11 +1453,12 @@
                                     "name": "object",
                                     "type": "GameObject"
                                 }
-                            ]
+                            ],
+                            "summary": "Add a game object with a set of components.",
+                            "usage": null
                         },
                         {
-                            "class": "GameObject",
-                            "description": "Add a game object as a child of this game object",
+                            "description": "",
                             "has_params": true,
                             "has_returns": true,
                             "name": "add",
@@ -1233,22 +1472,26 @@
                             "returns": [
                                 {
                                     "description": "The game object",
-                                    "name": "object"
+                                    "name": "object",
+                                    "type": "table"
                                 }
-                            ]
+                            ],
+                            "summary": "Add a game object as a child of this game object.",
+                            "type": "GameObject",
+                            "usage": null
                         },
                         {
-                            "class": "GameObject",
                             "description": "Destroy this game object",
                             "has_params": false,
                             "has_returns": false,
                             "name": "destroy",
                             "params": [],
-                            "returns": []
+                            "returns": [],
+                            "type": "GameObject",
+                            "usage": null
                         },
                         {
-                            "class": "GameObject",
-                            "description": "Check if there is a certain tag on this game object",
+                            "description": "",
                             "has_params": true,
                             "has_returns": true,
                             "name": "is",
@@ -1265,11 +1508,13 @@
                                     "name": "result",
                                     "type": "bool"
                                 }
-                            ]
+                            ],
+                            "summary": "Check if there is a certain tag on this game object.",
+                            "type": "GameObject",
+                            "usage": null
                         },
                         {
-                            "class": "GameObject",
-                            "description": "Add a component to this game object",
+                            "description": "",
                             "has_params": true,
                             "has_returns": false,
                             "name": "use",
@@ -1280,11 +1525,13 @@
                                     "type": "table"
                                 }
                             ],
-                            "returns": []
+                            "returns": [],
+                            "summary": "Add a component to this game object.",
+                            "type": "GameObject",
+                            "usage": null
                         },
                         {
-                            "class": "GameObject",
-                            "description": "Remove a component from this game object",
+                            "description": "",
                             "has_params": true,
                             "has_returns": false,
                             "name": "unuse",
@@ -1295,11 +1542,13 @@
                                     "type": "string"
                                 }
                             ],
-                            "returns": []
+                            "returns": [],
+                            "summary": "Remove a component from this game object.",
+                            "type": "GameObject",
+                            "usage": null
                         },
                         {
-                            "class": "GameObject",
-                            "description": "Get state for a specific component on this game object",
+                            "description": "",
                             "has_params": true,
                             "has_returns": true,
                             "name": "c",
@@ -1316,10 +1565,13 @@
                                     "name": "state",
                                     "type": "table"
                                 }
-                            ]
+                            ],
+                            "summary": "Get state for a specific component on this game object.",
+                            "type": "GameObject",
+                            "usage": null
                         },
                         {
-                            "description": "Destroy a game object and all of its components",
+                            "description": "",
                             "has_params": true,
                             "has_returns": false,
                             "name": "destroy",
@@ -1327,10 +1579,12 @@
                                 {
                                     "description": "The object to destroy",
                                     "name": "object",
-                                    "type": "table"
+                                    "type": "GameObject"
                                 }
                             ],
-                            "returns": []
+                            "returns": [],
+                            "summary": "Destroy a game object and all of its components.",
+                            "usage": null
                         },
                         {
                             "description": "Destroy all objects with a certain tag",
@@ -1344,10 +1598,11 @@
                                     "type": "string"
                                 }
                             ],
-                            "returns": []
+                            "returns": [],
+                            "usage": null
                         },
                         {
-                            "description": "Get game object with specific id",
+                            "description": "",
                             "has_params": true,
                             "has_returns": true,
                             "name": "object",
@@ -1360,26 +1615,32 @@
                             ],
                             "returns": [
                                 {
-                                    "description": "String The object or nil if it doesn't exist",
-                                    "name": "id"
+                                    "description": "The object or nil if it doesn't exist",
+                                    "name": "id",
+                                    "type": "string"
                                 }
-                            ]
+                            ],
+                            "summary": "Get game object with specific id.",
+                            "usage": null
                         },
                         {
-                            "description": "Get all game objects",
+                            "description": "",
                             "has_params": false,
                             "has_returns": true,
                             "name": "objects",
                             "params": [],
                             "returns": [
                                 {
-                                    "description": "Table All game objects",
-                                    "name": "objects"
+                                    "description": "All game objects",
+                                    "name": "objects",
+                                    "type": "table"
                                 }
-                            ]
+                            ],
+                            "summary": "Get all game objects.",
+                            "usage": null
                         },
                         {
-                            "description": "Get all game objects with the specified tag",
+                            "description": "",
                             "has_params": true,
                             "has_returns": true,
                             "name": "get",
@@ -1392,13 +1653,16 @@
                             ],
                             "returns": [
                                 {
-                                    "description": "Table List of objects",
-                                    "name": "objects"
+                                    "description": "List of objects",
+                                    "name": "objects",
+                                    "type": "table"
                                 }
-                            ]
+                            ],
+                            "summary": "Get all game objects with the specified tag.",
+                            "usage": null
                         },
                         {
-                            "description": "Run callback on every object with a certain tag.",
+                            "description": "",
                             "has_params": true,
                             "has_returns": false,
                             "name": "every",
@@ -1414,7 +1678,9 @@
                                     "type": "function"
                                 }
                             ],
-                            "returns": []
+                            "returns": [],
+                            "summary": "Run callback on every object with a certain tag.",
+                            "usage": null
                         }
                     ],
                     "filename": "boom/gameobject/gameobject.lua",
@@ -1450,7 +1716,8 @@
                                     "description": "Camera position",
                                     "name": "position"
                                 }
-                            ]
+                            ],
+                            "usage": null
                         },
                         {
                             "description": "",
@@ -1470,7 +1737,8 @@
                                     "name": "rotation"
                                 }
                             ],
-                            "summary": "Get or set camera rotation."
+                            "summary": "Get or set camera rotation.",
+                            "usage": null
                         },
                         {
                             "description": "",
@@ -1490,7 +1758,8 @@
                                     "name": "The"
                                 }
                             ],
-                            "summary": "Get or set the camera zoom."
+                            "summary": "Get or set the camera zoom.",
+                            "usage": null
                         }
                     ],
                     "filename": "boom/info/camera.lua",
@@ -1510,7 +1779,8 @@
                                     "description": "The gravity in pixels per seconds",
                                     "name": "gravity"
                                 }
-                            ]
+                            ],
+                            "usage": null
                         },
                         {
                             "description": "Set gravity",
@@ -1524,7 +1794,8 @@
                                     "type": null
                                 }
                             ],
-                            "returns": []
+                            "returns": [],
+                            "usage": null
                         }
                     ],
                     "filename": "boom/info/gravity.lua",
@@ -1544,7 +1815,8 @@
                                     "description": "Of screen",
                                     "name": "Width"
                                 }
-                            ]
+                            ],
+                            "usage": null
                         },
                         {
                             "description": "Get screen height",
@@ -1557,7 +1829,8 @@
                                     "description": "Of screen",
                                     "name": "Height"
                                 }
-                            ]
+                            ],
+                            "usage": null
                         },
                         {
                             "description": "Get screen center position",
@@ -1570,7 +1843,8 @@
                                     "description": "Of screen (vec2)",
                                     "name": "Center"
                                 }
-                            ]
+                            ],
+                            "usage": null
                         }
                     ],
                     "filename": "boom/info/screen.lua",
@@ -1590,7 +1864,8 @@
                                     "description": "Delta time",
                                     "name": "dt"
                                 }
-                            ]
+                            ],
+                            "usage": null
                         },
                         {
                             "description": "Get time since start",
@@ -1603,7 +1878,8 @@
                                     "description": "Time since start in seconds",
                                     "name": "time"
                                 }
-                            ]
+                            ],
+                            "usage": null
                         }
                     ],
                     "filename": "boom/info/time.lua",
@@ -1639,7 +1915,8 @@
                                     "description": "Object with tiles as children",
                                     "name": "Game"
                                 }
-                            ]
+                            ],
+                            "usage": null
                         }
                     ],
                     "filename": "boom/level/level.lua",
@@ -1675,7 +1952,8 @@
                                     "description": "Number",
                                     "name": "Random"
                                 }
-                            ]
+                            ],
+                            "usage": null
                         },
                         {
                             "description": "Same as rand() but floored",
@@ -1699,7 +1977,8 @@
                                     "description": "Integer number",
                                     "name": "Random"
                                 }
-                            ]
+                            ],
+                            "usage": null
                         }
                     ],
                     "filename": "boom/math/random.lua",
@@ -1709,46 +1988,59 @@
                 {
                     "entries": [
                         {
-                            "description": "Tween a value from one to another over a certain duration using a specific easing function",
+                            "description": "The transition will happen over a certain duration using a specific easing function.",
                             "has_params": true,
                             "has_returns": true,
                             "name": "tween",
                             "params": [
                                 {
-                                    "description": "Start value (number or vec2)",
+                                    "description": "Start value",
                                     "name": "from",
-                                    "type": null
+                                    "type": "number"
                                 },
                                 {
-                                    "description": "End value (same as from)",
+                                    "description": "Start value",
+                                    "name": "from",
+                                    "type": "vec2"
+                                },
+                                {
+                                    "description": "End value",
                                     "name": "to",
-                                    "type": null
+                                    "type": "number"
+                                },
+                                {
+                                    "description": "End value",
+                                    "name": "to",
+                                    "type": "vec2"
                                 },
                                 {
                                     "description": "Time in seconds to go from start to end value",
                                     "name": "duration",
-                                    "type": null
+                                    "type": "number"
                                 },
                                 {
                                     "description": "Which easing algorithm to use",
                                     "name": "easing",
-                                    "type": null
+                                    "type": "string"
                                 },
                                 {
                                     "description": "Function to call when the value has changed",
                                     "name": "set_value",
-                                    "type": null
+                                    "type": "function"
                                 }
                             ],
                             "returns": [
                                 {
-                                    "description": "A tween object",
-                                    "name": "tween"
+                                    "description": "A tween object.",
+                                    "name": "component",
+                                    "type": "Tween"
                                 }
-                            ]
+                            ],
+                            "summary": "Tween a value from one to another.",
+                            "usage": null
                         },
                         {
-                            "description": "Register an event when finished",
+                            "description": "",
                             "has_params": true,
                             "has_returns": false,
                             "name": "on_end",
@@ -1756,31 +2048,136 @@
                                 {
                                     "description": "The function to call when the tween has finished",
                                     "name": "fn",
-                                    "type": null
+                                    "type": "function"
                                 }
                             ],
-                            "returns": []
+                            "returns": [],
+                            "summary": "Register an event when finished",
+                            "type": "Tween",
+                            "usage": null
                         },
                         {
-                            "description": "Finish tween now",
+                            "description": "",
                             "has_params": false,
                             "has_returns": false,
                             "name": "finish",
                             "params": [],
-                            "returns": []
+                            "returns": [],
+                            "summary": "Finish tween now.",
+                            "type": "Tween",
+                            "usage": null
                         },
                         {
-                            "description": "Cancel tween",
+                            "description": "",
                             "has_params": false,
                             "has_returns": false,
                             "name": "cancel",
                             "params": [],
-                            "returns": []
+                            "returns": [],
+                            "summary": "Cancel tween.",
+                            "type": "Tween",
+                            "usage": null
                         }
                     ],
                     "filename": "boom/math/tween.lua",
                     "group": "math",
                     "module": "tween"
+                },
+                {
+                    "description": null,
+                    "entries": [
+                        {
+                            "description": "",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "vec2",
+                            "params": [
+                                {
+                                    "description": "Horizontal position",
+                                    "name": "x",
+                                    "type": "number"
+                                },
+                                {
+                                    "description": "Vertical position",
+                                    "name": "y",
+                                    "type": "number"
+                                }
+                            ],
+                            "returns": [
+                                {
+                                    "description": "The created vec2",
+                                    "name": "v2",
+                                    "type": "Vec2"
+                                }
+                            ],
+                            "summary": "Create a Vec2",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "field": true,
+                            "field_type": "Vec2",
+                            "has_params": false,
+                            "has_returns": false,
+                            "name": "UP",
+                            "params": [],
+                            "returns": [],
+                            "summary": "UP vector",
+                            "type": "Vec2",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "field": true,
+                            "field_type": "Vec2",
+                            "has_params": false,
+                            "has_returns": false,
+                            "name": "DOWN",
+                            "params": [],
+                            "returns": [],
+                            "summary": "DOWN vector",
+                            "type": "Vec2",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "field": true,
+                            "field_type": "Vec2",
+                            "has_params": false,
+                            "has_returns": false,
+                            "name": "LEFT",
+                            "params": [],
+                            "returns": [],
+                            "summary": "LEFT vector",
+                            "type": "Vec2",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "field": true,
+                            "field_type": "Vec2",
+                            "has_params": false,
+                            "has_returns": false,
+                            "name": "RIGHT",
+                            "params": [],
+                            "returns": [],
+                            "summary": "RIGHT vector",
+                            "type": "Vec2",
+                            "usage": null
+                        }
+                    ],
+                    "file_description": "",
+                    "file_summary": "Vector type for a 2D point (backed by Defold vmath.vector3())",
+                    "filename": "boom/math/vec2.lua",
+                    "group": "math",
+                    "has_params": false,
+                    "has_returns": false,
+                    "module": "vec2",
+                    "name": null,
+                    "params": [],
+                    "returns": [],
+                    "summary": null,
+                    "usage": null
                 }
             ],
             "group": "math"
@@ -1806,7 +2203,8 @@
                                     "type": null
                                 }
                             ],
-                            "returns": []
+                            "returns": [],
+                            "usage": null
                         },
                         {
                             "description": "Show a scene",
@@ -1820,7 +2218,8 @@
                                     "type": null
                                 }
                             ],
-                            "returns": []
+                            "returns": [],
+                            "usage": null
                         }
                     ],
                     "filename": "boom/scene/scene.lua",
@@ -1856,7 +2255,8 @@
                                     "description": "Call to cancel the timer",
                                     "name": "cancel"
                                 }
-                            ]
+                            ],
+                            "usage": null
                         },
                         {
                             "description": "Run a callback repeatedly with a certain interval",
@@ -1880,7 +2280,8 @@
                                     "description": "Call to cancel the timer",
                                     "name": "cancel"
                                 }
-                            ]
+                            ],
+                            "usage": null
                         }
                     ],
                     "filename": "boom/timer/timer.lua",

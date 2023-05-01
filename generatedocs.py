@@ -61,12 +61,17 @@ def process_entry(line, lines):
     if line.startswith(" "):
         entry["summary"] = capitalize(line.strip())
     entry["description"] = ""
+    entry["usage"] = None
     entry["params"] = []
     entry["returns"] = []
     while len(lines) > 0:
         line = lines.pop(0).strip()
+        
+        # end of entry
+        # try to figure out name of entry (unless it has been explicitly set)
         if not line.startswith("-- "):
-            entry["name"] = get_field_name(line)
+            if "name" not in entry:
+                entry["name"] = get_field_name(line)
             break
         
         line = line[3:]
@@ -120,9 +125,14 @@ def process_entry(line, lines):
                 })
         elif line.startswith("@field"):
             entry["field"] = True
+            m = re.match("\@field (.*)", line)
+            if m:
+                entry["field_type"] = m.groups()[0]
+        elif line.startswith("@name"):
+            line = line.replace("@name", "").strip()
+            entry["name"] = line
         elif line.startswith("@usage"):
-            if "usage" not in entry:
-                entry["usage"] = line.replace("@usage", "")
+            entry["usage"] = line.replace("@usage", "")
         elif line.startswith("@"):
             m = re.match("\@(\w*?) (.*)", line)
             if m:
@@ -132,7 +142,7 @@ def process_entry(line, lines):
             else:
                 print("Found unknown tag: " + line)
         else:
-            if "usage" in entry:
+            if entry.get("usage") is not None:
                 entry["usage"] = entry["usage"] + line + "\n"
             else:
                 entry["description"] = entry["description"] + line + " "

@@ -20,14 +20,14 @@ function M.offscreen(options)
 	local offscreen_listeners = {}
 
 	--- Register a callback that runs when the object goes out of view
-	-- @class Offscreen
+	-- @type Offscreen
 	-- @function cb Function to call when the object goes out of view
 	c.on_exit_screen = function(cb)
 		return listener.register(offscreen_listeners, "exit_screen", cb)
 	end
 
 	--- Register a callback that runs when the object enters view
-	-- @class Offscreen
+	-- @type Offscreen
 	-- @function cb Function to call when the object enters view
 	c.on_enter_screen = function(cb)
 		return listener.register(offscreen_listeners, "enter_screen", cb)

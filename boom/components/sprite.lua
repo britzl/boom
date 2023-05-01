@@ -15,18 +15,37 @@ function M.__init(config)
 	sprite_screen_material = config.sprite_screen_material
 end
 
----
--- Render as a sprite
--- @param anim Which animation or image to use
--- @param options Extra options (flip_x, flip_y, width, height)
--- @return The component
+--- Render a sprite.
+-- @string anim Which animation or image to use
+-- @table options Extra options (flip_x, flip_y, width, height)
+-- @treturn component Sprite The created component
 function M.sprite(anim, options)
 	local c = {}
 	c.tag = "sprite"
+
+	--- The current animation
+	-- @type Sprite
+	-- @field string
 	c.anim = anim
+
+	--- The width of the sprite
+	-- @type Sprite
+	-- @field number
 	c.width = 1
+
+	--- The height of the sprite
+	-- @type Sprite
+	-- @field number
 	c.height = 1
+
+	--- If sprite should be flipped horizontally
+	-- @type Sprite
+	-- @field bool
 	c.flip_x = options.flip_x
+
+	--- If the sprite should be flipped vertically
+	-- @type Sprite
+	-- @field bool
 	c.flip_y = options.flip_y
 
 	c.init = function()
@@ -98,9 +117,9 @@ function M.sprite(anim, options)
 		sprite.set_hflip(url, object.flip_x)
 	end
 
-	---
-	-- Play an animation
-	-- @param anim The animation to play
+	--- Play an animation
+	-- @type Sprite
+	-- @string anim The animation to play
 	c.play = function(anim)
 		local object = c.object
 		if object.anim ~= anim then
@@ -109,8 +128,8 @@ function M.sprite(anim, options)
 		end
 	end
 
-	---
-	-- Stop the current animation
+	--- Stop the current animation
+	-- @type Sprite
 	c.stop = function()
 		go.set(c.__url, "playback_rate", 0)
 	end

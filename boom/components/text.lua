@@ -12,14 +12,17 @@ local LABEL_LEFT = hash("/label_left")
 local LABEL_RIGHT = hash("/label_right")
 local LABEL_CENTER = hash("/label_center")
 
----
--- A text component
--- @param text The text to show
--- @param options Text options (width, font, align)
--- @return The component
+--- Render text.
+-- @string text The text to show
+-- @table options Text options (width, font, align)
+-- @treturn component Text The created component
 function M.text(text, options)
 	local c = {}
 	c.tag = "text"
+
+	--- The text to render
+	-- @type Text
+	-- @field string
 	c.text = text
 
 	local width = options and options.width or sys.get_config_int("display.width")

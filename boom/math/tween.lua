@@ -15,15 +15,17 @@ function M.__update()
 	end
 end
 
----
--- Tween a value from one to another over a certain duration using a specific
--- easing function
--- @param from Start value (number or vec2)
--- @param to End value (same as from)
--- @param duration Time in seconds to go from start to end value
--- @param easing Which easing algorithm to use
--- @param set_value Function to call when the value has changed
--- @return tween A tween object
+--- Tween a value from one to another.
+-- The transition will happen over a certain duration using a specific
+-- easing function.
+-- @number from Start value
+-- @vec2 from Start value
+-- @number to End value
+-- @vec2 to End value
+-- @number duration Time in seconds to go from start to end value
+-- @string easing Which easing algorithm to use
+-- @function set_value Function to call when the value has changed
+-- @treturn component Tween A tween object.
 function M.tween(from, to, duration, easing, set_value)
 	assert(from)
 	assert(to)
@@ -49,17 +51,18 @@ function M.tween(from, to, duration, easing, set_value)
 
 
 	local tween_controller = {}
-	---
-	-- Register an event when finished
-	-- @param fn The function to call when the tween has finished
+	
+	--- Register an event when finished
+	-- @type Tween
+	-- @function fn The function to call when the tween has finished
 	tween_controller.on_end = function(fn)
 		if tweens[id] then
 			tween.finish_cb = fn
 		end
 	end
 
-	---
-	-- Finish tween now
+	--- Finish tween now.
+	-- @type Tween
 	tween_controller.finish = function()
 		if tweens[id] then
 			set_value(to)
@@ -72,8 +75,8 @@ function M.tween(from, to, duration, easing, set_value)
 		end
 	end
 
-	---
-	-- Cancel tween
+	--- Cancel tween.
+	-- @type Tween
 	tween_controller.cancel = function()
 		if tweens[id] then
 			go.cancel_animations(url)

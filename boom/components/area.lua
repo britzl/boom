@@ -79,14 +79,14 @@ function M.area(options)
 	end
 
 	--- Get all collisions currently happening for this component.
-	-- @class AreaComp
+	-- @type AreaComp
 	-- @treturn collisions table List of collisions
 	c.get_collisions = function()
 		return registered_collisions
 	end
 
 	--- Check collision between this component and another object.
-	-- @class AreaComp
+	-- @type AreaComp
 	-- @tparam other_object GameObject The game object to check collisions with.
 	-- @treturn collision bool Return true if colliding with the other object
 	-- @treturn data table Collision data
@@ -98,7 +98,7 @@ function M.area(options)
 	end
 
 	--- Register event listener when this component is colliding.
-	-- @class AreaComp
+	-- @type AreaComp
 	-- @string tag Optional tag which colliding object must have, nil for all collisions
 	-- @function cb Function to call when collision is detected
 	c.on_collide = function(tag, cb)
@@ -109,7 +109,7 @@ function M.area(options)
 	end
 
 	--- Register event listener when this component is clicked.
-	-- @class AreaComp
+	-- @type AreaComp
 	-- @function cb Function to call when clicked
 	c.on_click = function(cb)
 		local cancel = mouse.on_click(c.object.id, function(object, cancel)
@@ -120,7 +120,7 @@ function M.area(options)
 
 
 	--- Check if a point is within the area of this component.
-	-- @class AreaComp
+	-- @type AreaComp
 	-- @param point The point to check
 	-- @treturn result bool Will return true if point is within area
 	c.has_point = function(point)

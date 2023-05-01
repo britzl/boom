@@ -84,8 +84,7 @@ local function unuse(object, tag)
 end
 
 
----
--- Add a game object with a set of components
+--- Add a game object with a set of components.
 -- @table comps The components for the game object
 -- @treturn object GameObject The created game object
 function M.add(comps)
@@ -115,11 +114,10 @@ function M.add(comps)
 		use(object, comp)
 	end
 
-	---
-	-- Add a game object as a child of this game object
-	-- @class GameObject
+	--- Add a game object as a child of this game object.
+	-- @type GameObject
 	-- @table comps The game object components
-	-- @return object The game object
+	-- @treturn object table The game object
 	object.add = function(comps)
 		local child = M.add(comps)
 		child.parent = object.id
@@ -130,39 +128,35 @@ function M.add(comps)
 
 	---
 	-- Destroy this game object
-	-- @class GameObject
+	-- @type GameObject
 	object.destroy = function()
 		M.destroy(object)
 	end
 
-	---
-	-- Check if there is a certain tag on this game object
-	-- @class GameObject
+	--- Check if there is a certain tag on this game object.
+	-- @type GameObject
 	-- @string tag The tag to check
 	-- @treturn result bool Returns true if the tag exists on the game object
 	object.is = function(tag)
 		return object.tags[tag] ~= nil
 	end
 
-	---
-	-- Add a component to this game object
-	-- @class GameObject
+	--- Add a component to this game object.
+	-- @type GameObject
 	-- @table comp The component to use
 	object.use = function(comp)
 		use(object, comp)
 	end
 
-	---
-	-- Remove a component from this game object
-	-- @class GameObject
+	--- Remove a component from this game object.
+	-- @type GameObject
 	-- @string tag The component tag to remove
 	object.unuse = function(tag)
 		unuse(object, tag)
 	end
 
-	---
-	-- Get state for a specific component on this game object
-	-- @class GameObject
+	--- Get state for a specific component on this game object.
+	-- @type GameObject
 	-- @string tag The component to get state for
 	-- @treturn state table The component state
 	object.c = function(tag)
@@ -199,9 +193,8 @@ function M.add(comps)
 	return object
 end
 
----
--- Destroy a game object and all of its components
--- @table object The object to destroy
+--- Destroy a game object and all of its components.
+-- @tparam object GameObject The object to destroy
 function M.destroy(object)
 	assert(object)
 	if object.destroyed then
@@ -243,25 +236,22 @@ function M.destroy_all(tag)
 	end
 end
 
---- 
--- Get game object with specific id
+--- Get game object with specific id.
 -- @string id
--- @return id string The object or nil if it doesn't exist
+-- @treturn id string The object or nil if it doesn't exist
 function M.object(id)
 	return objects[id]
 end
 
----
--- Get all game objects
--- @return objects table All game objects
+--- Get all game objects.
+-- @treturn objects table All game objects
 function M.objects()
 	return objects
 end
 
----
--- Get all game objects with the specified tag
+--- Get all game objects with the specified tag.
 -- @string tag The tag to get objects for, nil to get all objects
--- @return objects table List of objects
+-- @treturn objects table List of objects
 function M.get(tag)
 	if not tag then
 		return objects
@@ -275,8 +265,7 @@ function M.get(tag)
 	return tagged
 end
 
----
--- Run callback on every object with a certain tag.
+--- Run callback on every object with a certain tag.
 -- @string tag The tag that must exist on the object
 -- @function cb The callback to run
 function M.every(tag, cb)

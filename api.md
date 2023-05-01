@@ -40,17 +40,21 @@
 * math
   * [random](#random)
   * [tween](#tween)
+  * [vec2](#vec2)
 * scene
   * [scene](#scene)
 * timer
   * [timer](#timer)
 
 # boom
+*File: `boom/boom.lua`*
+
 Boom is a game framework built on top of Defold. It is heavily inspired by the Kaboom.js game framework.
 
 
-## boom.boom(game)
+## boom(game, )
 Start a boom game Call this from your own game script
+
 
 PARAMS
 * `game` - Game loop function
@@ -59,11 +63,14 @@ PARAMS
 ---
 
 # anchor
+*File: `boom/components/anchor.lua`*
+
 Anchor component. Use this component to offset any rendered component such as a SpriteComp from the center of the game object.
 
 
-## anchor.anchor(anchor)
+## anchor(anchor, )
 Anchor point for render.
+
 
 PARAMS
 * `anchor` [`string`] - Anchor (center, topleft, left, topright, right, bottomright, bottom, bottomleft)
@@ -75,11 +82,14 @@ RETURNS
 ---
 
 # area
+*File: `boom/components/area.lua`*
+
 Area component. Use this component to define a collider area and bounds for a game object.
 
 
-## area.area(options)
+## area(options, )
 Create a collider area and enabled collision detection. This will create an area component which is used to describe an area which can collide with other area components.
+
 
 PARAMS
 * `options` [`table`] - Component options (width and height)
@@ -91,12 +101,14 @@ RETURNS
 ## AreaComp.get_collisions()
 Get all collisions currently happening for this component. 
 
+
 RETURNS
 * `collisions` [`table`] - List of collisions
 
 
-## AreaComp.check_collision(other_object)
+## AreaComp.check_collision(other_object, )
 Check collision between this component and another object. 
+
 
 PARAMS
 * `other_object` [`GameObject`] - The game object to check collisions with.
@@ -106,23 +118,26 @@ RETURNS
 * `data` [`table`] - Collision data
 
 
-## AreaComp.on_collide(tagcb)
+## AreaComp.on_collide(tag, cb, )
 Register event listener when this component is colliding. 
+
 
 PARAMS
 * `tag` [`string`] - Optional tag which colliding object must have, nil for all collisions
 * `cb` [`function`] - Function to call when collision is detected
 
 
-## AreaComp.on_click(cb)
+## AreaComp.on_click(cb, )
 Register event listener when this component is clicked. 
+
 
 PARAMS
 * `cb` [`function`] - Function to call when clicked
 
 
-## AreaComp.has_point(point)
+## AreaComp.has_point(point, )
 Check if a point is within the area of this component. 
+
 
 PARAMS
 * `point` - The point to check
@@ -134,11 +149,14 @@ RETURNS
 ---
 
 # body
+*File: `boom/components/body.lua`*
 
 
 
-## body.body(options)
+
+## body(options, )
 Physical body that responds to gravity. Requires AreaComp and PosComp components on the game object. This also makes the object solid.
+
 
 PARAMS
 * `options` [`table`] - Component options (jump_force, is_static)
@@ -147,8 +165,9 @@ RETURNS
 * `component` [`BodyComp`] - The body component
 
 
-## BodyComp.jump(force)
+## BodyComp.jump(force, )
 Add upward force 
+
 
 PARAMS
 * `force` [`number`] - The upward force to apply
@@ -157,11 +176,14 @@ PARAMS
 ---
 
 # color
+*File: `boom/components/color.lua`*
+
 Component to control the color of the game object 
 
 
-## color.color(...)
+## color(..., )
 Create a color component 
+
 
 PARAMS
 * `...` - R,g,b components or color
@@ -173,11 +195,14 @@ RETURNS
 ---
 
 # double_jump
+*File: `boom/components/double_jump.lua`*
 
 
 
-## double_jump.double_jump(options)
+
+## double_jump(options, )
 Enables double jump. Requires &quot;body&quot; component
+
 
 PARAMS
 * `options` [`table`] - Component options
@@ -186,7 +211,8 @@ RETURNS
 * `component` [`DoubleJumpComp`] - The double jump component
 
 
-## DoubleJumpComp.double_jump(force)
+## DoubleJumpComp.double_jump(force, )
+
 
 
 PARAMS
@@ -196,11 +222,14 @@ PARAMS
 ---
 
 # fadein
+*File: `boom/components/fadein.lua`*
+
 Fade in game object visual components such as sprites. 
 
 
-## fadein.fadein(time)
+## fadein(time, )
 Fade object in. 
+
 
 PARAMS
 * `time` [`number`] - In seconds
@@ -212,11 +241,14 @@ RETURNS
 ---
 
 # fixed
+*File: `boom/components/fixed.lua`*
+
 Make object unaffected by camera. 
 
 
-## fixed.fixed()
+## fixed()
 Create a fixed component 
+
 
 RETURNS
 * `component` [`Fixed`] - The component
@@ -225,11 +257,14 @@ RETURNS
 ---
 
 # health
+*File: `boom/components/health.lua`*
+
 Handles health related logic. 
 
 
-## health.health(hp)
+## health(hp, )
 Create a health component 
+
 
 PARAMS
 * `hp` [`number`] - Initial health
@@ -238,36 +273,41 @@ RETURNS
 * `component` [`HealthComp`] - The health component
 
 
-## HealthComp.on_heal(cb)
+## HealthComp.on_heal(cb, )
 Register an event that runs when heal() is called. 
 
+
 PARAMS
 * `cb` [`function`] - Function to call
 
 
-## HealthComp.on_hurt(cb)
+## HealthComp.on_hurt(cb, )
 Register an event that runs when hurt() is called. 
 
+
 PARAMS
 * `cb` [`function`] - Function to call
 
 
-## HealthComp.on_death(cb)
+## HealthComp.on_death(cb, )
 Register an event that runs when health is 0 or less. 
 
+
 PARAMS
 * `cb` [`function`] - Function to call
 
 
-## HealthComp.heal(n)
+## HealthComp.heal(n, )
 Increase hp. Will trigger on_heal.
+
 
 PARAMS
 * `n` [`number`] - Amount to increase
 
 
-## HealthComp.hurt(n)
+## HealthComp.hurt(n, )
 Decrease hp. Will trigger on_hurt
+
 
 PARAMS
 * `n` [`number`] - Amount to decrease
@@ -276,11 +316,14 @@ PARAMS
 ---
 
 # lifespan
+*File: `boom/components/lifespan.lua`*
+
 Destroy the game object after certain amount of time. Use this component when you need a game object to be destroyed after a period of time.
 
 
-## lifespan.lifespan(timeoptions)
+## lifespan(time, options, )
 Create a Lifespan component. 
+
 
 PARAMS
 * `time` [`number`] - In seconds
@@ -293,11 +336,20 @@ RETURNS
 ---
 
 # move
+*File: `boom/components/move.lua`*
+
 Move towards a direction infinitely, and destroys when it leaves the game view. 
+```
+projectile = add({
+    sprite("bullet"),
+    pos(player.pos),
+    move(vec2(0, 1), 1200),
+})
+```
 
-
-## move.move(directionspeed)
+## move(direction, speed, )
 Create a move component. 
+
 
 PARAMS
 * `direction` [`vec2`] - Direction of movement.
@@ -310,11 +362,14 @@ RETURNS
 ---
 
 # offscreen
+*File: `boom/components/offscreen.lua`*
+
 Control the behavior of a game object when it goes out of view 
 
 
-## offscreen.offscreen(options)
+## offscreen(options, )
 Create an offscreen component. 
+
 
 PARAMS
 * `options` [`table`] - (distance, destroy)
@@ -323,15 +378,17 @@ RETURNS
 * `component` [`Offscreen`] - The created component
 
 
-## Offscreen.on_exit_screen(cb)
+## Offscreen.on_exit_screen(cb, )
 Register a callback that runs when the object goes out of view 
+
 
 PARAMS
 * `cb` [`function`] - Function to call when the object goes out of view
 
 
-## Offscreen.on_enter_screen(cb)
+## Offscreen.on_enter_screen(cb, )
 Register a callback that runs when the object enters view 
+
 
 PARAMS
 * `cb` [`function`] - Function to call when the object enters view
@@ -340,11 +397,14 @@ PARAMS
 ---
 
 # opacity
+*File: `boom/components/opacity.lua`*
+
 Component to control the opacity of a game object. 
 
 
-## opacity.opacity(opacity)
+## opacity(opacity, )
 Create an opacity component. 
+
 
 PARAMS
 * `opacity` [`number`] - The opacity from 0.0 to 1.0
@@ -353,24 +413,28 @@ RETURNS
 * `component` [`Opacity`] - The created component
 
 
-## Opacity.opacity
+## Opacity.opacity [`number`]
 The opacity of the component instance. 
+
 
 
 ---
 
 # pos
+*File: `boom/components/pos.lua`*
+
 Position of a game object. 
 ```
--- this game object will draw a &quot;bean&quot; sprite at (100, 200)
+-- this game object will draw a "bean" sprite at (100, 200)
 add({
    pos(100, 200),
-   sprite(&quot;bean&quot;)
+   sprite("bean")
 })
 ```
 
-## pos.pos(xy)
+## pos(x, y, )
 Create a position component. 
+
 
 PARAMS
 * `x` [`number`] - 
@@ -380,8 +444,9 @@ RETURNS
 * `component` [`Pos`] - The created component
 
 
-## Pos.move(xy)
+## Pos.move(x, y, )
 Move a number of pixels per second. 
+
 
 PARAMS
 * `x` [`number`] - 
@@ -391,11 +456,14 @@ PARAMS
 ---
 
 # rotate
+*File: `boom/components/rotate.lua`*
 
 
 
-## rotate.rotate(angle)
+
+## rotate(angle, )
 Apply rotation to object
+
 
 PARAMS
 * `angle` - Angle in degrees
@@ -407,11 +475,14 @@ RETURNS
 ---
 
 # scale
+*File: `boom/components/scale.lua`*
 
 
 
-## scale.scale(xy)
+
+## scale(x, y, )
 Apply a scale to the object
+
 
 PARAMS
 * `x` - 
@@ -424,102 +495,180 @@ RETURNS
 ---
 
 # sprite
+*File: `boom/components/sprite.lua`*
 
 
 
-## sprite.sprite(animoptions)
-Render as a sprite
+
+## sprite(anim, options, )
+Render a sprite. 
+
 
 PARAMS
-* `anim` - Which animation or image to use
-* `options` - Extra options (flip_x, flip_y, width, height)
+* `anim` [`string`] - Which animation or image to use
+* `options` [`table`] - Extra options (flip_x, flip_y, width, height)
 
 RETURNS
-* `The` - Component
+* `component` [`Sprite`] - The created component
 
 
-## sprite.play(anim)
-Play an animation
+## Sprite.anim [`string`]
+The current animation 
+
+
+
+## Sprite.width [`number`]
+The width of the sprite 
+
+
+
+## Sprite.height [`number`]
+The height of the sprite 
+
+
+
+## Sprite.flip_x [`bool`]
+If sprite should be flipped horizontally 
+
+
+
+## Sprite.flip_y [`bool`]
+If the sprite should be flipped vertically 
+
+
+
+## Sprite.play(anim, )
+Play an animation 
+
 
 PARAMS
-* `anim` - The animation to play
+* `anim` [`string`] - The animation to play
 
 
-## sprite.stop()
-Stop the current animation
+## Sprite.stop()
+Stop the current animation 
+
 
 
 ---
 
 # stay
+*File: `boom/components/stay.lua`*
 
 
 
-## stay.stay()
-Do not get destroyed on scene switch
+
+## stay()
+Do not get destroyed on scene switch. 
+
 
 RETURNS
-* `component` - The created component
+* `component` [`Stay`] - The created component
 
 
 ---
 
 # text
+*File: `boom/components/text.lua`*
 
 
 
-## text.text(textoptions)
-A text component
+
+## text(text, options, )
+Render text. 
+
 
 PARAMS
-* `text` - The text to show
-* `options` - Text options (width, font, align)
+* `text` [`string`] - The text to show
+* `options` [`table`] - Text options (width, font, align)
 
 RETURNS
-* `The` - Component
+* `component` [`Text`] - The created component
+
+
+## Text.text [`string`]
+The text to render 
+
 
 
 ---
 
 # timer
+*File: `boom/components/timer.lua`*
+
+Run an action once or repeatedly at a set interval 
 
 
+## timer(n, fn, )
+Run certain action after some time. 
 
-## timer.timer(nfn)
-Run certain action after some time.
 
 PARAMS
-* `n` - Number of seconds to wait
-* `fn` - The function to call
+* `n` [`number`] - Number of seconds to wait
+* `fn` [`function`] - The function to call
 
 RETURNS
-* `The` - Component
+* `component` [`Timer`] - The created component
+
+
+## Timer.wait(n, fn, )
+Run a callback function after n seconds 
+
+
+PARAMS
+* `n` [`number`] - Seconds
+* `fn` [`function`] - The function to call
+
+
+## Timer.loop(n, fn, )
+Run a callback function every n seconds 
+
+
+PARAMS
+* `n` [`number`] - Seconds
+* `fn` [`function`] - The function to call
+
+
+## Timer.cancel()
+Cancel the timer 
+
 
 
 ---
 
 # z
+*File: `boom/components/z.lua`*
 
 
 
-## z.z(z)
+
+## z(z, )
 Determines the draw order for objects. Object will be drawn on top if z value is bigger.
 
+
 PARAMS
-* `z` - Z-value of the object.
+* `z` [`number`] - Z-value of the object.
 
 RETURNS
-* `The` - Component
+* `component` [`Z`] - The created component
+
+
+## Z.z [`number`]
+The z value 
+
 
 
 ---
 
 # collision
+*File: `boom/events/collision.lua`*
 
 
 
-## collision.on_collide(tag1tag2fn)
+
+## on_collide(tag1, tag2, fn, )
 Register an event that runs when two game objects collide
+
 
 PARAMS
 * `tag1` - Tag which the first game object must have
@@ -533,87 +682,102 @@ RETURNS
 ---
 
 # key
+*File: `boom/events/key.lua`*
 
 
 
-## key.on_key_press(key_idcb)
-Register callback that runs when a certain key is pressed
+
+## on_key_press(key_id, cb, )
+Register callback that runs when a certain key is pressed. 
+
 
 PARAMS
-* `key_id` - The key that must be pressed or nil for any key
-* `cb` - The callback
+* `key_id` [`string`] - The key that must be pressed or nil for any key
+* `cb` [`function`] - The callback
 
 RETURNS
-* `Cancel` - Callback
+* `fn` [`function`] - Cancel callback
 
 
-## key.on_key_release(key_idcb)
-Register callback that runs when a certain key is released
+## on_key_release(key_id, cb, )
+Register callback that runs when a certain key is released. 
+
 
 PARAMS
-* `key_id` - The key that must be released or nil for any key
-* `cb` - The callback
+* `key_id` [`string`] - The key that must be released or nil for any key
+* `cb` [`function`] - The callback
 
 RETURNS
-* `Cancel` - Callback
+* `fn` [`function`] - Cancel callback
 
 
-## key.is_key_down(key_id)
-Check if a certain key is down
+## is_key_down(key_id, )
+Check if a certain key is down. 
+
 
 PARAMS
-* `key_id` - The key that must be down, or nil for any key
+* `key_id` [`string`] - The key that must be down, or nil for any key
 
 RETURNS
-* `True` - If down
+* `down` [`bool`] - True if down
 
 
 ---
 
 # mouse
+*File: `boom/events/mouse.lua`*
 
 
 
-## mouse.on_click(tagcb)
-Set mouse click listener
+
+## on_click(tag, cb, )
+Set mouse click listener. 
+
 
 PARAMS
-* `tag` - Optional click on object with tag filter
-* `cb` - Callback when mouse button is clicked
+* `tag` [`string`] - Optional click on object with tag filter
+* `cb` [`function`] - Callback when mouse button is clicked
 
 RETURNS
-* `Cancel` - Listener function
+* `fn` [`function`] - Cancel listener function
 
 
-## mouse.mouse_pos()
-Get mouse position (screen coordinates)
+## mouse_pos()
+Get mouse position (screen coordinates). 
+
 
 RETURNS
-* `Mouse` - Position (vec2)
+* `pos` [`vec2`] - Mouse position
 
 
 ---
 
 # update
+*File: `boom/events/update.lua`*
 
 
 
-## update.on_update(tagfn)
-Run a function every frame Register an event that runs every frame, optionally for all game objects with certain tag
+
+## on_update(tag, fn, )
+Run a function every frame. Register an event that runs every frame, optionally for all game objects with certain tag
+
 
 PARAMS
-* `tag` - [optional] run event for all objects matching tag
-* `fn` - Event function to call. Will receive object and cancel function
+* `tag` [`string`] - Run event for all objects matching tag (optional)
+* `fn` [`function`] - The event function to call. Will receive object and cancel function.
 
 
 ---
 
 # gameobject
+*File: `boom/gameobject/gameobject.lua`*
 
 
 
-## gameobject.add(comps)
-Add a game object with a set of components
+
+## add(comps, )
+Add a game object with a set of components. 
+
 
 PARAMS
 * `comps` [`table`] - The components for the game object
@@ -622,22 +786,25 @@ RETURNS
 * `object` [`GameObject`] - The created game object
 
 
-## GameObject.add(comps)
-Add a game object as a child of this game object
+## GameObject.add(comps, )
+Add a game object as a child of this game object. 
+
 
 PARAMS
 * `comps` [`table`] - The game object components
 
 RETURNS
-* `object` - The game object
+* `object` [`table`] - The game object
 
 
 ## GameObject.destroy()
 Destroy this game object
 
 
-## GameObject.is(tag)
-Check if there is a certain tag on this game object
+
+## GameObject.is(tag, )
+Check if there is a certain tag on this game object. 
+
 
 PARAMS
 * `tag` [`string`] - The tag to check
@@ -646,22 +813,25 @@ RETURNS
 * `result` [`bool`] - Returns true if the tag exists on the game object
 
 
-## GameObject.use(comp)
-Add a component to this game object
+## GameObject.use(comp, )
+Add a component to this game object. 
+
 
 PARAMS
 * `comp` [`table`] - The component to use
 
 
-## GameObject.unuse(tag)
-Remove a component from this game object
+## GameObject.unuse(tag, )
+Remove a component from this game object. 
+
 
 PARAMS
 * `tag` [`string`] - The component tag to remove
 
 
-## GameObject.c(tag)
-Get state for a specific component on this game object
+## GameObject.c(tag, )
+Get state for a specific component on this game object. 
+
 
 PARAMS
 * `tag` [`string`] - The component to get state for
@@ -670,49 +840,55 @@ RETURNS
 * `state` [`table`] - The component state
 
 
-## gameobject.destroy(object)
-Destroy a game object and all of its components
+## destroy(object, )
+Destroy a game object and all of its components. 
+
 
 PARAMS
-* `object` [`table`] - The object to destroy
+* `object` [`GameObject`] - The object to destroy
 
 
-## gameobject.destroy_all(tag)
+## destroy_all(tag, )
 Destroy all objects with a certain tag
+
 
 PARAMS
 * `tag` [`string`] - The tag to destroy or nil to destroy all objects
 
 
-## gameobject.object(id)
-Get game object with specific id
+## object(id, )
+Get game object with specific id. 
+
 
 PARAMS
 * `id` [`string`] - 
 
 RETURNS
-* `id` - String The object or nil if it doesn&#x27;t exist
+* `id` [`string`] - The object or nil if it doesn&#x27;t exist
 
 
-## gameobject.objects()
-Get all game objects
+## objects()
+Get all game objects. 
+
 
 RETURNS
-* `objects` - Table All game objects
+* `objects` [`table`] - All game objects
 
 
-## gameobject.get(tag)
-Get all game objects with the specified tag
+## get(tag, )
+Get all game objects with the specified tag. 
+
 
 PARAMS
 * `tag` [`string`] - The tag to get objects for, nil to get all objects
 
 RETURNS
-* `objects` - Table List of objects
+* `objects` [`table`] - List of objects
 
 
-## gameobject.every(tagcb)
-Run callback on every object with a certain tag.
+## every(tag, cb, )
+Run callback on every object with a certain tag. 
+
 
 PARAMS
 * `tag` [`string`] - The tag that must exist on the object
@@ -722,11 +898,14 @@ PARAMS
 ---
 
 # camera
+*File: `boom/info/camera.lua`*
 
 
 
-## camera.cam_pos(xy)
+
+## cam_pos(x, y, )
 Get or set camera position.
+
 
 PARAMS
 * `x` - Or vec2
@@ -736,8 +915,9 @@ RETURNS
 * `position` - Camera position
 
 
-## camera.cam_rot(angle)
+## cam_rot(angle, )
 Get or set camera rotation. 
+
 
 PARAMS
 * `angle` - The angle to set or nil to get current rotation
@@ -746,8 +926,9 @@ RETURNS
 * `rotation` - The camera rotation in degrees
 
 
-## camera.cam_zoom(zoom)
+## cam_zoom(zoom, )
 Get or set the camera zoom. 
+
 
 PARAMS
 * `zoom` - The zoom to set or nil to get the current zoom.
@@ -759,18 +940,22 @@ RETURNS
 ---
 
 # gravity
+*File: `boom/info/gravity.lua`*
 
 
 
-## gravity.get_gravity()
+
+## get_gravity()
 Get gravity
+
 
 RETURNS
 * `gravity` - The gravity in pixels per seconds
 
 
-## gravity.set_gravity(gravity)
+## set_gravity(gravity, )
 Set gravity
+
 
 PARAMS
 * `gravity` - Gravity in pixels per seconds
@@ -779,25 +964,30 @@ PARAMS
 ---
 
 # screen
+*File: `boom/info/screen.lua`*
 
 
 
-## screen.width()
+
+## width()
 Get screen width
+
 
 RETURNS
 * `Width` - Of screen
 
 
-## screen.height()
+## height()
 Get screen height
+
 
 RETURNS
 * `Height` - Of screen
 
 
-## screen.center()
+## center()
 Get screen center position
+
 
 RETURNS
 * `Center` - Of screen (vec2)
@@ -806,18 +996,22 @@ RETURNS
 ---
 
 # time
+*File: `boom/info/time.lua`*
 
 
 
-## time.dt()
+
+## dt()
 Get the delta time
+
 
 RETURNS
 * `dt` - Delta time
 
 
-## time.time()
+## time()
 Get time since start
+
 
 RETURNS
 * `time` - Time since start in seconds
@@ -826,11 +1020,14 @@ RETURNS
 ---
 
 # level
+*File: `boom/level/level.lua`*
 
 
 
-## level.add_level(mapoptions)
+
+## add_level(map, options, )
 Construct a level based on symbols
+
 
 PARAMS
 * `map` - List of strings presenting horizontal rows of tiles
@@ -843,11 +1040,14 @@ RETURNS
 ---
 
 # random
+*File: `boom/math/random.lua`*
 
 
 
-## random.rand(ab)
+
+## rand(a, b, )
 Get a random number. If called with no arguments the function returns a number between 0 and 1. If called with a single argument &#x27;a&#x27; a number between 0 and &#x27;a&#x27; is returned. If called with two arguments &#x27;a&#x27; and &#x27;b&#x27; a number between &#x27;a&#x27; and &#x27;b&#x27; is returned.
+
 
 PARAMS
 * `a` - 
@@ -857,8 +1057,9 @@ RETURNS
 * `Random` - Number
 
 
-## random.randi(ab)
+## randi(a, b, )
 Same as rand() but floored
+
 
 PARAMS
 * `a` - 
@@ -871,54 +1072,106 @@ RETURNS
 ---
 
 # tween
+*File: `boom/math/tween.lua`*
 
 
 
-## tween.tween(fromtodurationeasingset_value)
-Tween a value from one to another over a certain duration using a specific easing function
+
+## tween(from, from, to, to, duration, easing, set_value, )
+Tween a value from one to another. The transition will happen over a certain duration using a specific easing function.
+
 
 PARAMS
-* `from` - Start value (number or vec2)
-* `to` - End value (same as from)
-* `duration` - Time in seconds to go from start to end value
-* `easing` - Which easing algorithm to use
-* `set_value` - Function to call when the value has changed
+* `from` [`number`] - Start value
+* `from` [`vec2`] - Start value
+* `to` [`number`] - End value
+* `to` [`vec2`] - End value
+* `duration` [`number`] - Time in seconds to go from start to end value
+* `easing` [`string`] - Which easing algorithm to use
+* `set_value` [`function`] - Function to call when the value has changed
 
 RETURNS
-* `tween` - A tween object
+* `component` [`Tween`] - A tween object.
 
 
-## tween.on_end(fn)
-Register an event when finished
+## Tween.on_end(fn, )
+Register an event when finished 
+
 
 PARAMS
-* `fn` - The function to call when the tween has finished
+* `fn` [`function`] - The function to call when the tween has finished
 
 
-## tween.finish()
-Finish tween now
+## Tween.finish()
+Finish tween now. 
 
 
-## tween.cancel()
-Cancel tween
+
+## Tween.cancel()
+Cancel tween. 
+
+
+
+---
+
+# vec2
+*File: `boom/math/vec2.lua`*
+
+Vector type for a 2D point (backed by Defold vmath.vector3()) 
+
+
+## vec2(x, y, )
+Create a Vec2 
+
+
+PARAMS
+* `x` [`number`] - Horizontal position
+* `y` [`number`] - Vertical position
+
+RETURNS
+* `v2` [`Vec2`] - The created vec2
+
+
+## Vec2.UP [`Vec2`]
+UP vector 
+
+
+
+## Vec2.DOWN [`Vec2`]
+DOWN vector 
+
+
+
+## Vec2.LEFT [`Vec2`]
+LEFT vector 
+
+
+
+## Vec2.RIGHT [`Vec2`]
+RIGHT vector 
+
 
 
 ---
 
 # scene
+*File: `boom/scene/scene.lua`*
 
 
 
-## scene.scene(idfn)
+
+## scene(id, fn, )
 Create a scene
+
 
 PARAMS
 * `id` - Unique id of the scene
 * `fn` - The scene code
 
 
-## scene.show(id)
+## show(id, )
 Show a scene
+
 
 PARAMS
 * `id` - Id of the scene to show
@@ -927,11 +1180,14 @@ PARAMS
 ---
 
 # timer
+*File: `boom/timer/timer.lua`*
 
 
 
-## timer.wait(secondscb)
+
+## wait(seconds, cb, )
 Run a callback after a certain nummber of seconds
+
 
 PARAMS
 * `seconds` - Number of seconds to wait
@@ -941,8 +1197,9 @@ RETURNS
 * `cancel` - Call to cancel the timer
 
 
-## timer.loop(secondscb)
+## loop(seconds, cb, )
 Run a callback repeatedly with a certain interval
+
 
 PARAMS
 * `seconds` - Interval between calls

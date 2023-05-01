@@ -13,7 +13,7 @@ function M.double_jump(options)
 	c.num_jumps = options and options.num_jumps or 1
 
 	---
-	-- @class DoubleJumpComp
+	-- @type DoubleJumpComp
 	-- @number force The upward force to apply
 	c.double_jump = function(force)
 		local object = c.object

@@ -10,8 +10,8 @@ function M.opacity(opacity)
 	c.tag = "opacity"
 
 	--- The opacity of the component instance.
-	-- @class Opacity
-	-- @field
+	-- @type Opacity
+	-- @field number
 	c.opacity = opacity
 	return c
 end

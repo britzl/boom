@@ -10,11 +10,10 @@ local click_listeners = {}
 
 local mouse_pos = vec2()
 
----
--- Set mouse click listener
--- @param tag Optional click on object with tag filter
--- @param cb Callback when mouse button is clicked
--- @return Cancel listener function
+--- Set mouse click listener.
+-- @string tag Optional click on object with tag filter
+-- @function cb Callback when mouse button is clicked
+-- @treturn fn function Cancel listener function
 function M.on_click(tag, cb)
 	if not cb then
 		cb = tag
@@ -41,9 +40,8 @@ function M.on_click(tag, cb)
 	end
 end
 
----
--- Get mouse position (screen coordinates)
--- @return Mouse position (vec2)
+--- Get mouse position (screen coordinates).
+-- @treturn pos vec2 Mouse position
 function M.mouse_pos()
 	return mouse_pos
 end

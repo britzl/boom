@@ -53,7 +53,7 @@ function M.body(options)
 	end
 
 	--- Add upward force
-	-- @class BodyComp
+	-- @type BodyComp
 	-- @number force The upward force to apply
 	c.jump = function(force)
 		local object = c.object

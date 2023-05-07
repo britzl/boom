@@ -104,6 +104,7 @@ function M.add(comps)
 	object.tags = {}
 	object.children = {}
 	object.properties = {}
+	object.dirty = true
 
 	-- set the game object id as a tag
 	object.tags[id] = true

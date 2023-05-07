@@ -1,0 +1,1265 @@
+- name: boom
+  type: table
+  desc: Boom is a game framework built on top of Defold. It is heavily inspired by the Kaboom.js game framework.
+
+  members:
+  - name: boom
+    type: function
+    desc: Start a boom game Call this from your own game script
+
+    parameters:
+    - name: game
+      type: None
+      desc: Game loop function
+
+
+- name: anchor
+  type: table
+  desc: Anchor component. Use this component to offset any rendered component such as a SpriteComp from the center of the game object.
+
+  members:
+  - name: anchor
+    type: function
+    desc: Anchor point for render.
+
+    parameters:
+    - name: anchor
+      type: string
+      desc: Anchor (center, topleft, left, topright, right, bottomright, bottom, bottomleft)
+
+    return:
+    - name: component
+      type: Anchor
+      desc: The anchor component.
+
+- name: area
+  type: table
+  desc: Area component. Use this component to define a collider area and bounds for a game object.
+
+  members:
+  - name: area
+    type: function
+    desc: Create a collider area and enabled collision detection. This will create an area component which is used to describe an area which can collide with other area components.
+
+    parameters:
+    - name: options
+      type: table
+      desc: Component options (width and height)
+
+    return:
+    - name: area
+      type: AreaComp
+      desc: The area component
+
+  - name: get_collisions
+    type: function
+    desc: Get all collisions currently happening for this component. 
+
+
+    return:
+    - name: collisions
+      type: table
+      desc: List of collisions
+
+  - name: check_collision
+    type: function
+    desc: Check collision between this component and another object. 
+
+    parameters:
+    - name: other_object
+      type: GameObject
+      desc: The game object to check collisions with.
+
+    return:
+    - name: collision
+      type: bool
+      desc: Return true if colliding with the other object
+    - name: data
+      type: table
+      desc: Collision data
+
+  - name: on_collide
+    type: function
+    desc: Register event listener when this component is colliding. 
+
+    parameters:
+    - name: tag
+      type: string
+      desc: Optional tag which colliding object must have, nil for all collisions
+    - name: cb
+      type: function
+      desc: Function to call when collision is detected
+
+
+  - name: on_click
+    type: function
+    desc: Register event listener when this component is clicked. 
+
+    parameters:
+    - name: cb
+      type: function
+      desc: Function to call when clicked
+
+
+  - name: has_point
+    type: function
+    desc: Check if a point is within the area of this component. 
+
+    parameters:
+    - name: point
+      type: None
+      desc: The point to check
+
+    return:
+    - name: result
+      type: bool
+      desc: Will return true if point is within area
+
+- name: body
+  type: table
+  desc: 
+
+  members:
+  - name: body
+    type: function
+    desc: Physical body that responds to gravity. Requires AreaComp and PosComp components on the game object. This also makes the object solid.
+
+    parameters:
+    - name: options
+      type: table
+      desc: Component options (jump_force, is_static)
+
+    return:
+    - name: component
+      type: BodyComp
+      desc: The body component
+
+  - name: jump
+    type: function
+    desc: Add upward force 
+
+    parameters:
+    - name: force
+      type: number
+      desc: The upward force to apply
+
+
+- name: color
+  type: table
+  desc: Component to control the color of the game object 
+
+  members:
+  - name: color
+    type: function
+    desc: Create a color component 
+
+    parameters:
+    - name: ...
+      type: None
+      desc: R,g,b components or color
+
+    return:
+    - name: component
+      type: ColorComp
+      desc: The color component
+
+- name: double_jump
+  type: table
+  desc: 
+
+  members:
+  - name: double_jump
+    type: function
+    desc: Enables double jump. Requires &quot;body&quot; component
+
+    parameters:
+    - name: options
+      type: table
+      desc: Component options
+
+    return:
+    - name: component
+      type: DoubleJumpComp
+      desc: The double jump component
+
+  - name: double_jump
+    type: function
+    desc: 
+
+    parameters:
+    - name: force
+      type: number
+      desc: The upward force to apply
+
+
+- name: fadein
+  type: table
+  desc: Fade in game object visual components such as sprites. 
+
+  members:
+  - name: fadein
+    type: function
+    desc: Fade object in. 
+
+    parameters:
+    - name: time
+      type: number
+      desc: In seconds
+
+    return:
+    - name: component
+      type: FadeInComp
+      desc: The fade in component.
+
+- name: fixed
+  type: table
+  desc: Make object unaffected by camera. 
+
+  members:
+  - name: fixed
+    type: function
+    desc: Create a fixed component 
+
+
+    return:
+    - name: component
+      type: Fixed
+      desc: The component
+
+- name: health
+  type: table
+  desc: Handles health related logic. 
+
+  members:
+  - name: health
+    type: function
+    desc: Create a health component 
+
+    parameters:
+    - name: hp
+      type: number
+      desc: Initial health
+
+    return:
+    - name: component
+      type: HealthComp
+      desc: The health component
+
+  - name: on_heal
+    type: function
+    desc: Register an event that runs when heal() is called. 
+
+    parameters:
+    - name: cb
+      type: function
+      desc: Function to call
+
+
+  - name: on_hurt
+    type: function
+    desc: Register an event that runs when hurt() is called. 
+
+    parameters:
+    - name: cb
+      type: function
+      desc: Function to call
+
+
+  - name: on_death
+    type: function
+    desc: Register an event that runs when health is 0 or less. 
+
+    parameters:
+    - name: cb
+      type: function
+      desc: Function to call
+
+
+  - name: heal
+    type: function
+    desc: Increase hp. Will trigger on_heal.
+
+    parameters:
+    - name: n
+      type: number
+      desc: Amount to increase
+
+
+  - name: hurt
+    type: function
+    desc: Decrease hp. Will trigger on_hurt
+
+    parameters:
+    - name: n
+      type: number
+      desc: Amount to decrease
+
+
+- name: lifespan
+  type: table
+  desc: Destroy the game object after certain amount of time. Use this component when you need a game object to be destroyed after a period of time.
+
+  members:
+  - name: lifespan
+    type: function
+    desc: Create a Lifespan component. 
+
+    parameters:
+    - name: time
+      type: number
+      desc: In seconds
+    - name: options
+      type: table
+      desc: (fade)
+
+    return:
+    - name: component
+      type: Lifespan
+      desc: The created component
+
+- name: move
+  type: table
+  desc: Move towards a direction infinitely, and destroys when it leaves the game view. 
+
+  members:
+  - name: move
+    type: function
+    desc: Create a move component. 
+
+    parameters:
+    - name: direction
+      type: vec2
+      desc: Direction of movement.
+    - name: speed
+      type: number
+      desc: Speed of movement in pixels per second.
+
+    return:
+    - name: component
+      type: Move
+      desc: The created component.
+
+- name: offscreen
+  type: table
+  desc: Control the behavior of a game object when it goes out of view 
+
+  members:
+  - name: offscreen
+    type: function
+    desc: Create an offscreen component. 
+
+    parameters:
+    - name: options
+      type: table
+      desc: (distance, destroy)
+
+    return:
+    - name: component
+      type: Offscreen
+      desc: The created component
+
+  - name: on_exit_screen
+    type: function
+    desc: Register a callback that runs when the object goes out of view 
+
+    parameters:
+    - name: cb
+      type: function
+      desc: Function to call when the object goes out of view
+
+
+  - name: on_enter_screen
+    type: function
+    desc: Register a callback that runs when the object enters view 
+
+    parameters:
+    - name: cb
+      type: function
+      desc: Function to call when the object enters view
+
+
+- name: opacity
+  type: table
+  desc: Component to control the opacity of a game object. 
+
+  members:
+  - name: opacity
+    type: function
+    desc: Create an opacity component. 
+
+    parameters:
+    - name: opacity
+      type: number
+      desc: The opacity from 0.0 to 1.0
+
+    return:
+    - name: component
+      type: Opacity
+      desc: The created component
+
+
+- name: pos
+  type: table
+  desc: Position of a game object. 
+
+  members:
+  - name: pos
+    type: function
+    desc: Create a position component. 
+
+    parameters:
+    - name: x
+      type: number
+      desc: 
+    - name: y
+      type: number
+      desc: 
+
+    return:
+    - name: component
+      type: Pos
+      desc: The created component
+
+  - name: move
+    type: function
+    desc: Move a number of pixels per second. 
+
+    parameters:
+    - name: x
+      type: number
+      desc: 
+    - name: y
+      type: number
+      desc: 
+
+
+- name: rotate
+  type: table
+  desc: 
+
+  members:
+  - name: rotate
+    type: function
+    desc: Apply rotation to object
+
+    parameters:
+    - name: angle
+      type: None
+      desc: Angle in degrees
+
+    return:
+    - name: The
+      type: 
+      desc: Component
+
+- name: scale
+  type: table
+  desc: 
+
+  members:
+  - name: scale
+    type: function
+    desc: Apply a scale to the object
+
+    parameters:
+    - name: x
+      type: None
+      desc: 
+    - name: y
+      type: None
+      desc: 
+
+    return:
+    - name: The
+      type: 
+      desc: Component
+
+- name: sprite
+  type: table
+  desc: 
+
+  members:
+  - name: sprite
+    type: function
+    desc: Render a sprite. 
+
+    parameters:
+    - name: anim
+      type: string
+      desc: Which animation or image to use
+    - name: options
+      type: table
+      desc: Extra options (flip_x, flip_y, width, height)
+
+    return:
+    - name: component
+      type: Sprite
+      desc: The created component
+
+
+
+
+
+
+  - name: play
+    type: function
+    desc: Play an animation 
+
+    parameters:
+    - name: anim
+      type: string
+      desc: The animation to play
+
+
+  - name: stop
+    type: function
+    desc: Stop the current animation 
+
+
+
+- name: stay
+  type: table
+  desc: 
+
+  members:
+  - name: stay
+    type: function
+    desc: Do not get destroyed on scene switch. 
+
+
+    return:
+    - name: component
+      type: Stay
+      desc: The created component
+
+- name: text
+  type: table
+  desc: 
+
+  members:
+  - name: text
+    type: function
+    desc: Render text. 
+
+    parameters:
+    - name: text
+      type: string
+      desc: The text to show
+    - name: options
+      type: table
+      desc: Text options (width, font, align)
+
+    return:
+    - name: component
+      type: Text
+      desc: The created component
+
+
+- name: timer
+  type: table
+  desc: Run an action once or repeatedly at a set interval 
+
+  members:
+  - name: timer
+    type: function
+    desc: Run certain action after some time. 
+
+    parameters:
+    - name: n
+      type: number
+      desc: Number of seconds to wait
+    - name: fn
+      type: function
+      desc: The function to call
+
+    return:
+    - name: component
+      type: Timer
+      desc: The created component
+
+  - name: wait
+    type: function
+    desc: Run a callback function after n seconds 
+
+    parameters:
+    - name: n
+      type: number
+      desc: Seconds
+    - name: fn
+      type: function
+      desc: The function to call
+
+
+  - name: loop
+    type: function
+    desc: Run a callback function every n seconds 
+
+    parameters:
+    - name: n
+      type: number
+      desc: Seconds
+    - name: fn
+      type: function
+      desc: The function to call
+
+
+  - name: cancel
+    type: function
+    desc: Cancel the timer 
+
+
+
+- name: z
+  type: table
+  desc: 
+
+  members:
+  - name: z
+    type: function
+    desc: Determines the draw order for objects. Object will be drawn on top if z value is bigger.
+
+    parameters:
+    - name: z
+      type: number
+      desc: Z-value of the object.
+
+    return:
+    - name: component
+      type: Z
+      desc: The created component
+
+
+- name: collision
+  type: table
+  desc: 
+
+  members:
+  - name: on_collide
+    type: function
+    desc: Register an event that runs when two game objects collide
+
+    parameters:
+    - name: tag1
+      type: None
+      desc: Tag which the first game object must have
+    - name: tag2
+      type: None
+      desc: Optional tag which the second game object must have
+    - name: fn
+      type: None
+      desc: Will receive (collision, cancel) as args
+
+    return:
+    - name: Cancel
+      type: 
+      desc: Event function
+
+- name: key
+  type: table
+  desc: 
+
+  members:
+  - name: on_key_press
+    type: function
+    desc: Register callback that runs when a certain key is pressed. 
+
+    parameters:
+    - name: key_id
+      type: string
+      desc: The key that must be pressed or nil for any key
+    - name: cb
+      type: function
+      desc: The callback
+
+    return:
+    - name: fn
+      type: function
+      desc: Cancel callback
+
+  - name: on_key_release
+    type: function
+    desc: Register callback that runs when a certain key is released. 
+
+    parameters:
+    - name: key_id
+      type: string
+      desc: The key that must be released or nil for any key
+    - name: cb
+      type: function
+      desc: The callback
+
+    return:
+    - name: fn
+      type: function
+      desc: Cancel callback
+
+  - name: is_key_down
+    type: function
+    desc: Check if a certain key is down. 
+
+    parameters:
+    - name: key_id
+      type: string
+      desc: The key that must be down, or nil for any key
+
+    return:
+    - name: down
+      type: bool
+      desc: True if down
+
+- name: mouse
+  type: table
+  desc: 
+
+  members:
+  - name: on_click
+    type: function
+    desc: Set mouse click listener. 
+
+    parameters:
+    - name: tag
+      type: string
+      desc: Optional click on object with tag filter
+    - name: cb
+      type: function
+      desc: Callback when mouse button is clicked
+
+    return:
+    - name: fn
+      type: function
+      desc: Cancel listener function
+
+  - name: mouse_pos
+    type: function
+    desc: Get mouse position (screen coordinates). 
+
+
+    return:
+    - name: pos
+      type: vec2
+      desc: Mouse position
+
+- name: update
+  type: table
+  desc: 
+
+  members:
+  - name: on_update
+    type: function
+    desc: Run a function every frame. Register an event that runs every frame, optionally for all game objects with certain tag
+
+    parameters:
+    - name: tag
+      type: string
+      desc: Run event for all objects matching tag (optional)
+    - name: fn
+      type: function
+      desc: The event function to call. Will receive object and cancel function.
+
+
+- name: gameobject
+  type: table
+  desc: 
+
+  members:
+  - name: add
+    type: function
+    desc: Add a game object with a set of components. 
+
+    parameters:
+    - name: comps
+      type: table
+      desc: The components for the game object
+
+    return:
+    - name: object
+      type: GameObject
+      desc: The created game object
+
+  - name: add
+    type: function
+    desc: Add a game object as a child of this game object. 
+
+    parameters:
+    - name: comps
+      type: table
+      desc: The game object components
+
+    return:
+    - name: object
+      type: table
+      desc: The game object
+
+  - name: destroy
+    type: function
+    desc: Destroy this game object
+
+
+
+  - name: is
+    type: function
+    desc: Check if there is a certain tag on this game object. 
+
+    parameters:
+    - name: tag
+      type: string
+      desc: The tag to check
+
+    return:
+    - name: result
+      type: bool
+      desc: Returns true if the tag exists on the game object
+
+  - name: use
+    type: function
+    desc: Add a component to this game object. 
+
+    parameters:
+    - name: comp
+      type: table
+      desc: The component to use
+
+
+  - name: unuse
+    type: function
+    desc: Remove a component from this game object. 
+
+    parameters:
+    - name: tag
+      type: string
+      desc: The component tag to remove
+
+
+  - name: c
+    type: function
+    desc: Get state for a specific component on this game object. 
+
+    parameters:
+    - name: tag
+      type: string
+      desc: The component to get state for
+
+    return:
+    - name: state
+      type: table
+      desc: The component state
+
+  - name: destroy
+    type: function
+    desc: Destroy a game object and all of its components. 
+
+    parameters:
+    - name: object
+      type: GameObject
+      desc: The object to destroy
+
+
+  - name: destroy_all
+    type: function
+    desc: Destroy all objects with a certain tag
+
+    parameters:
+    - name: tag
+      type: string
+      desc: The tag to destroy or nil to destroy all objects
+
+
+  - name: object
+    type: function
+    desc: Get game object with specific id. 
+
+    parameters:
+    - name: id
+      type: string
+      desc: 
+
+    return:
+    - name: id
+      type: string
+      desc: The object or nil if it doesn&#x27;t exist
+
+  - name: objects
+    type: function
+    desc: Get all game objects. 
+
+
+    return:
+    - name: objects
+      type: table
+      desc: All game objects
+
+  - name: get
+    type: function
+    desc: Get all game objects with the specified tag. 
+
+    parameters:
+    - name: tag
+      type: string
+      desc: The tag to get objects for, nil to get all objects
+
+    return:
+    - name: objects
+      type: table
+      desc: List of objects
+
+  - name: every
+    type: function
+    desc: Run callback on every object with a certain tag. 
+
+    parameters:
+    - name: tag
+      type: string
+      desc: The tag that must exist on the object
+    - name: cb
+      type: function
+      desc: The callback to run
+
+
+- name: camera
+  type: table
+  desc: 
+
+  members:
+  - name: cam_pos
+    type: function
+    desc: Get or set camera position.
+
+    parameters:
+    - name: x
+      type: None
+      desc: Or vec2
+    - name: y
+      type: None
+      desc: 
+
+    return:
+    - name: position
+      type: 
+      desc: Camera position
+
+  - name: cam_rot
+    type: function
+    desc: Get or set camera rotation. 
+
+    parameters:
+    - name: angle
+      type: None
+      desc: The angle to set or nil to get current rotation
+
+    return:
+    - name: rotation
+      type: 
+      desc: The camera rotation in degrees
+
+  - name: cam_zoom
+    type: function
+    desc: Get or set the camera zoom. 
+
+    parameters:
+    - name: zoom
+      type: None
+      desc: The zoom to set or nil to get the current zoom.
+
+    return:
+    - name: The
+      type: 
+      desc: Camera zoom
+
+- name: gravity
+  type: table
+  desc: 
+
+  members:
+  - name: get_gravity
+    type: function
+    desc: Get gravity
+
+
+    return:
+    - name: gravity
+      type: 
+      desc: The gravity in pixels per seconds
+
+  - name: set_gravity
+    type: function
+    desc: Set gravity
+
+    parameters:
+    - name: gravity
+      type: None
+      desc: Gravity in pixels per seconds
+
+
+- name: screen
+  type: table
+  desc: 
+
+  members:
+  - name: width
+    type: function
+    desc: Get screen width
+
+
+    return:
+    - name: Width
+      type: 
+      desc: Of screen
+
+  - name: height
+    type: function
+    desc: Get screen height
+
+
+    return:
+    - name: Height
+      type: 
+      desc: Of screen
+
+  - name: center
+    type: function
+    desc: Get screen center position
+
+
+    return:
+    - name: Center
+      type: 
+      desc: Of screen (vec2)
+
+- name: time
+  type: table
+  desc: 
+
+  members:
+  - name: dt
+    type: function
+    desc: Get the delta time
+
+
+    return:
+    - name: dt
+      type: 
+      desc: Delta time
+
+  - name: time
+    type: function
+    desc: Get time since start
+
+
+    return:
+    - name: time
+      type: 
+      desc: Time since start in seconds
+
+- name: level
+  type: table
+  desc: 
+
+  members:
+  - name: add_level
+    type: function
+    desc: Construct a level based on symbols
+
+    parameters:
+    - name: map
+      type: None
+      desc: List of strings presenting horizontal rows of tiles
+    - name: options
+      type: None
+      desc: Level options (tile_width, tile_height, pos, tiles)
+
+    return:
+    - name: Game
+      type: 
+      desc: Object with tiles as children
+
+- name: random
+  type: table
+  desc: 
+
+  members:
+  - name: rand
+    type: function
+    desc: Get a random number. If called with no arguments the function returns a number between 0 and 1. If called with a single argument &#x27;a&#x27; a number between 0 and &#x27;a&#x27; is returned. If called with two arguments &#x27;a&#x27; and &#x27;b&#x27; a number between &#x27;a&#x27; and &#x27;b&#x27; is returned.
+
+    parameters:
+    - name: a
+      type: None
+      desc: 
+    - name: b
+      type: None
+      desc: 
+
+    return:
+    - name: Random
+      type: 
+      desc: Number
+
+  - name: randi
+    type: function
+    desc: Same as rand() but floored
+
+    parameters:
+    - name: a
+      type: None
+      desc: 
+    - name: b
+      type: None
+      desc: 
+
+    return:
+    - name: Random
+      type: 
+      desc: Integer number
+
+- name: tween
+  type: table
+  desc: 
+
+  members:
+  - name: tween
+    type: function
+    desc: Tween a value from one to another. The transition will happen over a certain duration using a specific easing function.
+
+    parameters:
+    - name: from
+      type: number
+      desc: Start value
+    - name: from
+      type: vec2
+      desc: Start value
+    - name: to
+      type: number
+      desc: End value
+    - name: to
+      type: vec2
+      desc: End value
+    - name: duration
+      type: number
+      desc: Time in seconds to go from start to end value
+    - name: easing
+      type: string
+      desc: Which easing algorithm to use
+    - name: set_value
+      type: function
+      desc: Function to call when the value has changed
+
+    return:
+    - name: component
+      type: Tween
+      desc: A tween object.
+
+  - name: on_end
+    type: function
+    desc: Register an event when finished 
+
+    parameters:
+    - name: fn
+      type: function
+      desc: The function to call when the tween has finished
+
+
+  - name: finish
+    type: function
+    desc: Finish tween now. 
+
+
+
+  - name: cancel
+    type: function
+    desc: Cancel tween. 
+
+
+
+- name: vec2
+  type: table
+  desc: Vector type for a 2D point (backed by Defold vmath.vector3()) 
+
+  members:
+  - name: vec2
+    type: function
+    desc: Create a Vec2 
+
+    parameters:
+    - name: x
+      type: number
+      desc: Horizontal position
+    - name: y
+      type: number
+      desc: Vertical position
+
+    return:
+    - name: v2
+      type: Vec2
+      desc: The created vec2
+
+
+
+
+
+- name: scene
+  type: table
+  desc: 
+
+  members:
+  - name: scene
+    type: function
+    desc: Create a scene
+
+    parameters:
+    - name: id
+      type: None
+      desc: Unique id of the scene
+    - name: fn
+      type: None
+      desc: The scene code
+
+
+  - name: show
+    type: function
+    desc: Show a scene
+
+    parameters:
+    - name: id
+      type: None
+      desc: Id of the scene to show
+
+
+- name: timer
+  type: table
+  desc: 
+
+  members:
+  - name: wait
+    type: function
+    desc: Run a callback after a certain nummber of seconds
+
+    parameters:
+    - name: seconds
+      type: None
+      desc: Number of seconds to wait
+    - name: cb
+      type: None
+      desc: Function to call
+
+    return:
+    - name: cancel
+      type: 
+      desc: Call to cancel the timer
+
+  - name: loop
+    type: function
+    desc: Run a callback repeatedly with a certain interval
+
+    parameters:
+    - name: seconds
+      type: None
+      desc: Interval between calls
+    - name: cb
+      type: None
+      desc: Function to call
+
+    return:
+    - name: cancel
+      type: 
+      desc: Call to cancel the timer
+

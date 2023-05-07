@@ -210,3 +210,4 @@ with open("api.json", "w", encoding='utf-8') as f:
     json.dump(api, f, indent=4, sort_keys=True)
 
 render(api, "api_markdown.mtl", "api.md")
+render(api, "api_script.mtl", os.path.join("boom", "api", "boom.script_api"))

@@ -225,8 +225,7 @@ function M.destroy(object)
 	end
 end
 
----
--- Destroy all objects with a certain tag
+--- Destroy all objects with a certain tag.
 -- @string tag The tag to destroy or nil to destroy all objects
 function M.destroy_all(tag)
 	for _,object in pairs(objects) do

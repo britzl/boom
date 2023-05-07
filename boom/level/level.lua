@@ -5,11 +5,10 @@ local pos = require "boom.components.pos"
 local M = {}
 
 
----
--- Construct a level based on symbols
--- @param map List of strings presenting horizontal rows of tiles
--- @param options Level options (tile_width, tile_height, pos, tiles)
--- @return Game object with tiles as children
+--- Construct a level based on symbols.
+-- @table map List of strings presenting horizontal rows of tiles
+-- @table options Level options (tile_width, tile_height, pos, tiles)
+-- @treturn GameObject level Game object with tiles as children
 function M.add_level(map, options)
 	local level = gameobject.add({ options.pos and pos.pos(options.pos) or pos.pos(0, 0) })
 	local tile_width = options.tile_width

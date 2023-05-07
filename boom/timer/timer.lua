@@ -11,11 +11,10 @@ local function cancel(handle)
 	end
 end
 
----
--- Run a callback after a certain nummber of seconds
--- @param seconds Number of seconds to wait
--- @param cb Function to call
--- @return cancel Call to cancel the timer
+--- Run a callback after a certain nummber of seconds.
+-- @number seconds Number of seconds to wait
+-- @function cb Function to call
+-- @treturn function cancel Call to cancel the timer
 function M.wait(seconds, cb)
 	print("WAIT", seconds)
 	local handle = timer.delay(seconds, false, function(self, handle, dt)
@@ -26,11 +25,10 @@ function M.wait(seconds, cb)
 	return function() cancel(handle) end
 end
 
----
--- Run a callback repeatedly with a certain interval
--- @param seconds Interval between calls
--- @param cb Function to call
--- @return cancel Call to cancel the timer
+--- Run a callback repeatedly with a certain interval
+-- @number seconds Interval between calls
+-- @function cb Function to call
+-- @treturn function cancel Call to cancel the timer
 function M.loop(seconds, cb)
 	local handle = timer.delay(seconds, true, function(self, handle, dt)
 		cb()

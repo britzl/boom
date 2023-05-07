@@ -210,7 +210,7 @@ function M.destroy(object)
 	objects_to_delete[#objects_to_delete + 1] = object.id
 
 	-- destroy object components
-	for tag,comp in pairs(object.comps) do
+	for i,comp in ipairs(object.comps) do
 		destroy_component(comp)
 	end
 
@@ -300,7 +300,7 @@ function M.__update(dt)
 		if not object.destroyed and object.dirty then
 			--print("update", object.name)
 			object.dirty = false
-			for tag,comp in pairs(object.comps) do
+			for i,comp in ipairs(object.comps) do
 				if comp.update then comp.update(dt) end
 			end
 		end

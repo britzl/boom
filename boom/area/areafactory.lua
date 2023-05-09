@@ -25,7 +25,6 @@ function M.rect(width, height, properties)
 	local position = vmath.vector3(0)
 	local scale = vmath.vector3(math.min(width, height))
 	local url = "areafactory#rect" .. w .. "x" .. h
-	print(url)
 	local id = factory.create(url, position, rotation, properties, scale)
 	return id
 end

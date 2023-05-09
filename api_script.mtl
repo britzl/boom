@@ -1,35 +1,28 @@
 {{#groups}}
 {{#files}}
-- name: {{#type}}{{type}}{{/type}}{{^type}}{{module}}{{/type}}
-  type: table
-  desc: {{#file_summary}}{{file_summary}} {{/file_summary}}{{file_description}}
-
-  members:
-  {{#entries}}
-  {{^field}}
+{{#entries}}
+{{^field}}
+- name: {{#type}}{{type}}.{{/type}}{{name}}
+  type: function
+  desc: {{#summary}}{{summary}} {{/summary}}{{description}}
+  {{#has_params}}
+  parameters:
+  {{#params}}
   - name: {{name}}
-    type: function
-    desc: {{#summary}}{{summary}} {{/summary}}{{description}}
+    type: {{type}}
+    desc: {{description}}
+  {{/params}}
+  {{/has_params}}
+  {{#has_returns}}
+  return:
+  {{#returns}}
+  - name: {{name}}
+    type: {{type}}
+    desc: {{description}}
+  {{/returns}}
+  {{/has_returns}}
+{{/field}}
 
-    {{#has_params}}
-    parameters:
-    {{#params}}
-    - name: {{name}}
-      type: {{type}}
-      desc: {{description}}
-    {{/params}}
-    {{/has_params}}
-
-    {{#has_returns}}
-    return:
-    {{#returns}}
-    - name: {{name}}
-      type: {{type}}
-      desc: {{description}}
-    {{/returns}}
-    {{/has_returns}}
-  {{/field}}
-
-  {{/entries}}
+{{/entries}}
 {{/files}}
 {{/groups}}

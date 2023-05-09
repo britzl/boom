@@ -53,11 +53,11 @@ Boom is a game framework built on top of Defold. It is heavily inspired by the K
 
 
 ## boom(game, )
-Start a boom game Call this from your own game script
+Start a boom game. Call this from your own game script
 
 
 PARAMS
-* `game` - Game loop function
+* `game` [`function`] - Game loop function
 
 
 ---
@@ -667,16 +667,16 @@ The z value
 
 
 ## on_collide(tag1, tag2, fn, )
-Register an event that runs when two game objects collide
+Register an event that runs when two game objects collide. 
 
 
 PARAMS
-* `tag1` - Tag which the first game object must have
-* `tag2` - Optional tag which the second game object must have
-* `fn` - Will receive (collision, cancel) as args
+* `tag1` [`string`] - Tag which the first game object must have
+* `tag2` [`string`] - Optional tag which the second game object must have
+* `fn` [`function`] - Will receive (collision, cancel) as args
 
 RETURNS
-* `Cancel` - Event function
+* `function` [`cancel`] - Cancel event function
 
 
 ---
@@ -849,7 +849,7 @@ PARAMS
 
 
 ## destroy_all(tag, )
-Destroy all objects with a certain tag
+Destroy all objects with a certain tag. 
 
 
 PARAMS
@@ -946,19 +946,19 @@ RETURNS
 
 
 ## get_gravity()
-Get gravity
+Get gravity 
 
 
 RETURNS
-* `gravity` - The gravity in pixels per seconds
+* `string` [`gravity`] - The gravity in pixels per seconds
 
 
 ## set_gravity(gravity, )
-Set gravity
+Set gravity 
 
 
 PARAMS
-* `gravity` - Gravity in pixels per seconds
+* `gravity` [`number`] - Gravity in pixels per seconds
 
 
 ---
@@ -1026,15 +1026,15 @@ RETURNS
 
 
 ## add_level(map, options, )
-Construct a level based on symbols
+Construct a level based on symbols. 
 
 
 PARAMS
-* `map` - List of strings presenting horizontal rows of tiles
-* `options` - Level options (tile_width, tile_height, pos, tiles)
+* `map` [`table`] - List of strings presenting horizontal rows of tiles
+* `options` [`table`] - Level options (tile_width, tile_height, pos, tiles)
 
 RETURNS
-* `Game` - Object with tiles as children
+* `GameObject` [`level`] - Game object with tiles as children
 
 
 ---
@@ -1050,23 +1050,23 @@ Get a random number. If called with no arguments the function returns a number b
 
 
 PARAMS
-* `a` - 
-* `b` - 
+* `a` [`number`] - 
+* `b` [`number`] - 
 
 RETURNS
-* `Random` - Number
+* `number` [`Random`] - Number
 
 
 ## randi(a, b, )
-Same as rand() but floored
+Same as rand() but floored. 
 
 
 PARAMS
-* `a` - 
-* `b` - 
+* `a` [`number`] - 
+* `b` [`number`] - 
 
 RETURNS
-* `Random` - Integer number
+* `number` [`Random`] - Integer number
 
 
 ---
@@ -1161,20 +1161,21 @@ RIGHT vector
 
 
 ## scene(id, fn, )
-Create a scene
+Create a scene. 
 
 
 PARAMS
-* `id` - Unique id of the scene
-* `fn` - The scene code
+* `id` [`string`] - Unique id of the scene
+* `fn` [`function`] - The scene code
 
 
-## show(id, )
-Show a scene
+## show(id, ..., )
+Show a scene. 
 
 
 PARAMS
-* `id` - Id of the scene to show
+* `id` [`string`] - Id of the scene to show
+* `...` - Additional arguments to pass to the scene function
 
 
 ---
@@ -1186,27 +1187,27 @@ PARAMS
 
 
 ## wait(seconds, cb, )
-Run a callback after a certain nummber of seconds
+Run a callback after a certain nummber of seconds. 
 
 
 PARAMS
-* `seconds` - Number of seconds to wait
-* `cb` - Function to call
+* `seconds` [`number`] - Number of seconds to wait
+* `cb` [`function`] - Function to call
 
 RETURNS
-* `cancel` - Call to cancel the timer
+* `function` [`cancel`] - Call to cancel the timer
 
 
 ## loop(seconds, cb, )
-Run a callback repeatedly with a certain interval
+Run a callback repeatedly with a certain interval 
 
 
 PARAMS
-* `seconds` - Interval between calls
-* `cb` - Function to call
+* `seconds` [`number`] - Interval between calls
+* `cb` [`function`] - Function to call
 
 RETURNS
-* `cancel` - Call to cancel the timer
+* `function` [`cancel`] - Call to cancel the timer
 
 
 ---

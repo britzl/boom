@@ -165,7 +165,6 @@ def process_lines(lines):
 
 
 groups_lookup = {}
-groups = []
 files = find_files("boom", "*.lua")
 for filename in files:
     with open(filename, encoding='utf-8', errors='ignore') as f:
@@ -184,13 +183,15 @@ for filename in files:
         
         file_entries = process_lines(lines)
         if file_entries:
-            if "module" not in file_description:
-                file_description["module"] = os.path.basename(filename).replace(".lua", "")
+            # components, events, info etc
             if "group" not in file_description:
                 group_name = os.path.dirname(filename).replace("boom/", "")
                 file_description["group"] = group_name
-            file_description["filename"] = filename
+            if "module" not in file_description:
+                module = os.path.basename(filename).replace(".lua", "")
+                file_description["module"] = module
             file_description["entries"] = file_entries
+            file_description["filename"] = filename
 
             group_name = file_description["group"]
             if group_name not in groups_lookup:
@@ -200,6 +201,8 @@ for filename in files:
                 }
             groups_lookup[group_name]["files"].append(file_description)
 
+
+groups = []
 for group_name in groups_lookup.keys():
     group = groups_lookup.get(group_name)
     groups.append(group)

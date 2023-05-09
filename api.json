@@ -6,7 +6,7 @@
                     "description": null,
                     "entries": [
                         {
-                            "description": "Start a boom game Call this from your own game script",
+                            "description": "Start a boom game. Call this from your own game script",
                             "has_params": true,
                             "has_returns": false,
                             "name": "boom",
@@ -14,7 +14,7 @@
                                 {
                                     "description": "Game loop function",
                                     "name": "game",
-                                    "type": null
+                                    "type": "function"
                                 }
                             ],
                             "returns": [],
@@ -1233,7 +1233,7 @@
                 {
                     "entries": [
                         {
-                            "description": "Register an event that runs when two game objects collide",
+                            "description": "",
                             "has_params": true,
                             "has_returns": true,
                             "name": "on_collide",
@@ -1241,25 +1241,27 @@
                                 {
                                     "description": "Tag which the first game object must have",
                                     "name": "tag1",
-                                    "type": null
+                                    "type": "string"
                                 },
                                 {
                                     "description": "Optional tag which the second game object must have",
                                     "name": "tag2",
-                                    "type": null
+                                    "type": "string"
                                 },
                                 {
                                     "description": "Will receive (collision, cancel) as args",
                                     "name": "fn",
-                                    "type": null
+                                    "type": "function"
                                 }
                             ],
                             "returns": [
                                 {
-                                    "description": "Event function",
-                                    "name": "Cancel"
+                                    "description": "Cancel event function",
+                                    "name": "function",
+                                    "type": "cancel"
                                 }
                             ],
+                            "summary": "Register an event that runs when two game objects collide.",
                             "usage": null
                         }
                     ],
@@ -1587,7 +1589,7 @@
                             "usage": null
                         },
                         {
-                            "description": "Destroy all objects with a certain tag",
+                            "description": "",
                             "has_params": true,
                             "has_returns": false,
                             "name": "destroy_all",
@@ -1599,6 +1601,7 @@
                                 }
                             ],
                             "returns": [],
+                            "summary": "Destroy all objects with a certain tag.",
                             "usage": null
                         },
                         {
@@ -1769,7 +1772,7 @@
                 {
                     "entries": [
                         {
-                            "description": "Get gravity",
+                            "description": "",
                             "has_params": false,
                             "has_returns": true,
                             "name": "get_gravity",
@@ -1777,13 +1780,15 @@
                             "returns": [
                                 {
                                     "description": "The gravity in pixels per seconds",
-                                    "name": "gravity"
+                                    "name": "string",
+                                    "type": "gravity"
                                 }
                             ],
+                            "summary": "Get gravity",
                             "usage": null
                         },
                         {
-                            "description": "Set gravity",
+                            "description": "",
                             "has_params": true,
                             "has_returns": false,
                             "name": "set_gravity",
@@ -1791,10 +1796,11 @@
                                 {
                                     "description": "Gravity in pixels per seconds",
                                     "name": "gravity",
-                                    "type": null
+                                    "type": "number"
                                 }
                             ],
                             "returns": [],
+                            "summary": "Set gravity",
                             "usage": null
                         }
                     ],
@@ -1894,7 +1900,7 @@
                 {
                     "entries": [
                         {
-                            "description": "Construct a level based on symbols",
+                            "description": "",
                             "has_params": true,
                             "has_returns": true,
                             "name": "add_level",
@@ -1902,20 +1908,22 @@
                                 {
                                     "description": "List of strings presenting horizontal rows of tiles",
                                     "name": "map",
-                                    "type": null
+                                    "type": "table"
                                 },
                                 {
                                     "description": "Level options (tile_width, tile_height, pos, tiles)",
                                     "name": "options",
-                                    "type": null
+                                    "type": "table"
                                 }
                             ],
                             "returns": [
                                 {
-                                    "description": "Object with tiles as children",
-                                    "name": "Game"
+                                    "description": "Game object with tiles as children",
+                                    "name": "GameObject",
+                                    "type": "level"
                                 }
                             ],
+                            "summary": "Construct a level based on symbols.",
                             "usage": null
                         }
                     ],
@@ -1931,7 +1939,7 @@
                 {
                     "entries": [
                         {
-                            "description": "Get a random number. If called with no arguments the function returns a number between 0 and 1. If called with a single argument 'a' a number between 0 and 'a' is returned. If called with two arguments 'a' and 'b' a number between 'a' and 'b' is returned.",
+                            "description": "If called with no arguments the function returns a number between 0 and 1. If called with a single argument 'a' a number between 0 and 'a' is returned. If called with two arguments 'a' and 'b' a number between 'a' and 'b' is returned.",
                             "has_params": true,
                             "has_returns": true,
                             "name": "rand",
@@ -1939,24 +1947,26 @@
                                 {
                                     "description": "",
                                     "name": "a",
-                                    "type": null
+                                    "type": "number"
                                 },
                                 {
                                     "description": "",
                                     "name": "b",
-                                    "type": null
+                                    "type": "number"
                                 }
                             ],
                             "returns": [
                                 {
                                     "description": "Number",
-                                    "name": "Random"
+                                    "name": "number",
+                                    "type": "Random"
                                 }
                             ],
+                            "summary": "Get a random number.",
                             "usage": null
                         },
                         {
-                            "description": "Same as rand() but floored",
+                            "description": "",
                             "has_params": true,
                             "has_returns": true,
                             "name": "randi",
@@ -1964,20 +1974,22 @@
                                 {
                                     "description": "",
                                     "name": "a",
-                                    "type": null
+                                    "type": "number"
                                 },
                                 {
                                     "description": "",
                                     "name": "b",
-                                    "type": null
+                                    "type": "number"
                                 }
                             ],
                             "returns": [
                                 {
                                     "description": "Integer number",
-                                    "name": "Random"
+                                    "name": "number",
+                                    "type": "Random"
                                 }
                             ],
+                            "summary": "Same as rand() but floored.",
                             "usage": null
                         }
                     ],
@@ -2187,7 +2199,7 @@
                 {
                     "entries": [
                         {
-                            "description": "Create a scene",
+                            "description": "",
                             "has_params": true,
                             "has_returns": false,
                             "name": "scene",
@@ -2195,19 +2207,20 @@
                                 {
                                     "description": "Unique id of the scene",
                                     "name": "id",
-                                    "type": null
+                                    "type": "string"
                                 },
                                 {
                                     "description": "The scene code",
                                     "name": "fn",
-                                    "type": null
+                                    "type": "function"
                                 }
                             ],
                             "returns": [],
+                            "summary": "Create a scene.",
                             "usage": null
                         },
                         {
-                            "description": "Show a scene",
+                            "description": "",
                             "has_params": true,
                             "has_returns": false,
                             "name": "show",
@@ -2215,10 +2228,16 @@
                                 {
                                     "description": "Id of the scene to show",
                                     "name": "id",
+                                    "type": "string"
+                                },
+                                {
+                                    "description": "Additional arguments to pass to the scene function",
+                                    "name": "...",
                                     "type": null
                                 }
                             ],
                             "returns": [],
+                            "summary": "Show a scene.",
                             "usage": null
                         }
                     ],
@@ -2234,7 +2253,7 @@
                 {
                     "entries": [
                         {
-                            "description": "Run a callback after a certain nummber of seconds",
+                            "description": "",
                             "has_params": true,
                             "has_returns": true,
                             "name": "wait",
@@ -2242,24 +2261,26 @@
                                 {
                                     "description": "Number of seconds to wait",
                                     "name": "seconds",
-                                    "type": null
+                                    "type": "number"
                                 },
                                 {
                                     "description": "Function to call",
                                     "name": "cb",
-                                    "type": null
+                                    "type": "function"
                                 }
                             ],
                             "returns": [
                                 {
                                     "description": "Call to cancel the timer",
-                                    "name": "cancel"
+                                    "name": "function",
+                                    "type": "cancel"
                                 }
                             ],
+                            "summary": "Run a callback after a certain nummber of seconds.",
                             "usage": null
                         },
                         {
-                            "description": "Run a callback repeatedly with a certain interval",
+                            "description": "",
                             "has_params": true,
                             "has_returns": true,
                             "name": "loop",
@@ -2267,20 +2288,22 @@
                                 {
                                     "description": "Interval between calls",
                                     "name": "seconds",
-                                    "type": null
+                                    "type": "number"
                                 },
                                 {
                                     "description": "Function to call",
                                     "name": "cb",
-                                    "type": null
+                                    "type": "function"
                                 }
                             ],
                             "returns": [
                                 {
                                     "description": "Call to cancel the timer",
-                                    "name": "cancel"
+                                    "name": "function",
+                                    "type": "cancel"
                                 }
                             ],
+                            "summary": "Run a callback repeatedly with a certain interval",
                             "usage": null
                         }
                     ],

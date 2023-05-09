@@ -84,6 +84,7 @@ function M.body(options)
 				object.is_jumping = acc.y > 0
 				object.is_falling = acc.y < 0
 				object.pos = object.pos + acc * dt
+				object.dirty = true
 			end
 			correction.x = 0
 			correction.y = 0

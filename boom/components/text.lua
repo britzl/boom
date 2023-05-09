@@ -78,8 +78,7 @@ function M.text(text, options)
 			go.set(url, "color", text_color)
 		end
 
-		-- worth checking if text has changed?
-		label.set_text(url, object.text)
+		label.set_text(url, object.text or "")
 
 		local scale = object.scale
 		if scale then

@@ -223,7 +223,10 @@ function M.area(options)
 			cancel()
 			registered_events[i] = nil
 		end
-		go.delete(area_id)
+		if area_id then
+			go.delete(area_id)
+			area_id = nil
+		end
 	end
 
 	return c

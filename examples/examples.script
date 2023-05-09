@@ -2,6 +2,7 @@ go.property("upheaval", resource.font("/examples/assets/upheaval.font"))
 go.property("shmup", resource.atlas("/examples/assets/shmup.atlas"))
 go.property("breakout", resource.atlas("/examples/assets/breakout.atlas"))
 go.property("platformer", resource.atlas("/examples/assets/platformer.atlas"))
+go.property("flappy", resource.atlas("/examples/assets/flappy.atlas"))
 go.property("ui", resource.atlas("/examples/assets/ui.atlas"))
 
 local boom = require("boom.boom")
@@ -11,6 +12,7 @@ local breakout = require "examples.breakout.breakout"
 local platformer = require "examples.platformer.platformer"
 local shmupgame = require "examples.shmup.game"
 local shmupgameover = require "examples.shmup.gameover"
+local flappy = require "examples.flappy.flappy"
 
 function init(self)
 	boom(function()
@@ -19,6 +21,7 @@ function init(self)
 		scene("platformer", platformer)
 		scene("shmup", shmupgame)
 		scene("shmup-gameover", shmupgameover)
-		show("platformer")
+		scene("flappy", flappy)
+		show("flappy")
 	end)
 end

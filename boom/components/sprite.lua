@@ -76,6 +76,17 @@ function M.sprite(anim, options)
 		end
 	end
 
+	c.pre_update = function(dt)
+		local object = c.object
+		local url = c.__url
+		local size = go.get(url, "size")
+		local width = options and options.width or size.x
+		local height = options and options.height or size.y
+
+		object.width = width
+		object.height = height
+	end
+
 	c.update = function(dt)
 		local object = c.object
 		local url = c.__url
@@ -91,12 +102,6 @@ function M.sprite(anim, options)
 			go.set(url, "tint", tint)
 		end
 
-		local size = go.get(url, "size")
-		local width = options and options.width or size.x
-		local height = options and options.height or size.y
-		object.width = width
-		object.height = height
-
 		local scale = object.scale
 		if scale then
 			go.set(url, "scale", scale)
@@ -105,8 +110,8 @@ function M.sprite(anim, options)
 		local anchor = object.anchor
 		if anchor then
 			local p = vec2()
-			local w = width * (scale and scale.x or 1)
-			local h = height * (scale and scale.y or 1)
+			local w = object.width * (scale and scale.x or 1)
+			local h = object.height * (scale and scale.y or 1)
 			p.x = (w / 2) * anchor.x
 			p.y = (h / 2) * anchor.y
 			p.z = object.z or 0

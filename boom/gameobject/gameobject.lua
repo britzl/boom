@@ -3,6 +3,9 @@ local M = {}
 local objects = {}
 local objects_to_delete = {}
 local components_on_input = {}
+local components_update = {}
+local components_pre_update = {}
+local components_post_update = {}
 
 local GAMEOBJECT_FACTORY = nil
 
@@ -14,11 +17,21 @@ local LABEL_CENTER = hash("/label_center")
 
 
 local function destroy_component(comp)
-	if comp.destroy then
-		comp.destroy()
+	local object = comp.object
+	if comp.update then
+		object.update[comp.update] = nil
+	end
+	if comp.pre_update then
+		object.pre_update[comp.pre_update] = nil
+	end
+	if comp.post_update then
+		object.post_update[comp.post_update] = nil
 	end
 	if comp.on_input then
 		components_on_input[comp] = nil
+	end
+	if comp.destroy then
+		comp.destroy()
 	end
 end
 
@@ -45,7 +58,13 @@ local function use(object, comp_or_tag)
 		-- ignore component lifecycle functions init, update and destroy
 		-- handle component lifecycle functions on_input
 		-- for all others we set the component key and value on the object itself
-		if k == "update" or k == "init" or k == "destroy" or k == "tag" or k:sub(1,2) == "__" then
+		if k == "update" then
+			object.update[v] = true
+		elseif k == "pre_update" then
+			object.pre_update[v] = true
+		elseif k == "post_update" then
+			object.post_update[v] = true
+		elseif k == "init" or k == "destroy" or k == "tag" or k:sub(1,2) == "__" then
 			-- no-op
 		elseif k == "on_input" then
 			components_on_input[comp] = v
@@ -105,7 +124,10 @@ function M.add(comps)
 	object.children = {}
 	object.properties = {}
 	object.dirty = true
-
+	object.update = {}
+	object.pre_update = {}
+	object.post_update = {}
+	
 	-- set the game object id as a tag
 	object.tags[id] = true
 
@@ -300,8 +322,14 @@ function M.__update(dt)
 		if not object.destroyed and object.dirty then
 			--print("update", object.name)
 			object.dirty = false
-			for i,comp in ipairs(object.comps) do
-				if comp.update then comp.update(dt) end
+			for fn,_ in pairs(object.pre_update) do
+				fn(dt)
+			end
+			for fn,_ in pairs(object.update) do
+				fn(dt)
+			end
+			for fn,_ in pairs(object.post_update) do
+				fn(dt)
 			end
 		end
 	end

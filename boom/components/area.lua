@@ -31,20 +31,38 @@ function M.area(options)
 	local c = {}
 	c.tag = "area"
 
-	local shape = options and options.shape or "rect"
-	local radius = options and options.radius or 10
-	local width = options and options.width or 20
-	local height = options and options.height or 20
+	local radius = 0
+	local width = 0
+	local height = 0
+	local shape = "auto"
+	if options then
+		if options.width and options.height then
+			shape = "rect"
+			width = options.width
+			height = options.height
+		elseif options.radius then
+			shape = "circle"
+			radius = options.radius
+		end
+	end
+
 	local area_id = nil
+	local area_width = nil
+	local area_height = nil
 
 	local registered_collisions = {}
-
 	local registered_events = {}
 
-
 	local function create_area(object, w, h)
+		if area_width == w and area_height == h then return end
+		area_width = w
+		area_height = h
 		if area_id then
 			go.delete(area_id)
+			area_id = nil
+		end
+		if w == 0 or h == 0 then
+			return
 		end
 		local is_static = object.is_static
 		local properties = {
@@ -52,7 +70,8 @@ function M.area(options)
 			area_mask = true,
 			static_mask = (is_static ~= true),
 		}
-		if shape == "rect" then
+		if shape == "rect"
+		or shape == "auto" then
 			area_id = areafactory.rect(w, h, properties)
 		elseif shape == "circle" then
 			area_id = areafactory.circle(w, properties)
@@ -63,7 +82,8 @@ function M.area(options)
 	c.init = function()
 		local object = c.object
 
-		if shape == "rect" then
+		if shape == "rect"
+		or shape == "auto" then
 			object.local_area = rect.create()
 			object.world_area = rect.create()
 			create_area(object, width, height)
@@ -131,7 +151,8 @@ function M.area(options)
 		local object = c.object
 		local angle = object.angle or 0
 
-		if shape == "rect" then
+		if shape == "rect"
+		or shape == "auto" then
 			return rect.point_inside(point, object.local_area, object.world_area.center, angle)
 		elseif shape == "cirlce" then
 			return circle.point_inside(point, object.local_area, object.world_area.center, angle)
@@ -149,15 +170,37 @@ function M.area(options)
 		local anchor = object.anchor or V2_ZERO
 		local scale = object.scale or V2_ONE
 
-		if shape == "rect" then
-			local w = (object.width or width) * scale.x
-			local h = (object.height or height) * scale.y
+		if shape == "circle" then
+			local r = (object.radius or radius) * scale.x
+
+			-- resize collision object and shape
+			create_area(object, r)
+			circle.resize(object.local_area, r)
+
+			-- create world space circle
+			local center = object.pos or V2_ZERO
+			local offset = vec2(r * anchor.x, r * anchor.y)
+			circle.copy(object.local_area, object.world_area)
+
+			go.set_position(offset, area_id)
+
+			circle.create(object.local_area)
+			circle.offset_inline(object.world_area, offset)
+			circle.offset_inline(object.world_area, center)
+		else
+			local w, h
+			if shape == "auto" then
+				w = (object.width or width) * scale.x
+				h = (object.height or height) * scale.y
+			else
+				w = width * scale.x
+				h = height * scale.y
+			end
 			local w2 = w / 2
 			local h2 = h / 2
 
-			-- resize collision object
+			-- resize collision object and shape
 			create_area(object, w, h)
-
 			rect.resize(object.local_area, w, h)
 
 			-- create world space rotated rect and offset rect
@@ -171,23 +214,6 @@ function M.area(options)
 			rect.offset_inline(object.world_area, offset)
 			rect.rotate_inline(object.world_area, angle)
 			rect.offset_inline(object.world_area, center)
-		elseif shape == "circle" then
-			local r = (object.radius or radius) * scale.x
-
-			-- resize collision object
-			create_area(object, r)
-
-			circle.resize(object.local_area, r)
-
-			local center = object.pos or V2_ZERO
-			local offset = vec2(r * anchor.x, r * anchor.y)
-			circle.copy(object.local_area, object.world_area)
-
-			go.set_position(offset, area_id)
-
-			circle.create(object.local_area)
-			circle.offset_inline(object.world_area, offset)
-			circle.offset_inline(object.world_area, center)
 		end
 	end
 

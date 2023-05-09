@@ -1,3 +1,4 @@
+local gameobject = require "boom.gameobject.gameobject"
 local listener = require "boom.events.listener"
 
 local M = {}

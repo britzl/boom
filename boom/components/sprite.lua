@@ -41,12 +41,12 @@ function M.sprite(anim, options)
 	--- If sprite should be flipped horizontally
 	-- @type Sprite
 	-- @field bool
-	c.flip_x = options.flip_x
+	c.flip_x = options and options.flip_x
 
 	--- If the sprite should be flipped vertically
 	-- @type Sprite
 	-- @field bool
-	c.flip_y = options.flip_y
+	c.flip_y = options and options.flip_y
 
 	c.init = function()
 		local url = msg.url(nil, c.object.ids[SPRITE], "sprite")

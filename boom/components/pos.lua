@@ -52,14 +52,18 @@ function M.pos(x, y)
 		local object = c.object
 		object.vel.x = xvel
 		object.vel.y = yvel
+		object.dirty = true
 	end
 
 	c.update = function(dt)
 		local object = c.object
-		local pos = object.pos
 		local vel = object.vel
-		pos.x = pos.x + vel.x * dt
-		pos.y = pos.y + vel.y * dt
+		local pos = object.pos
+		if vel.x ~= 0 or vel.y ~= 0 then
+			pos.x = pos.x + vel.x * dt
+			pos.y = pos.y + vel.y * dt
+			object.dirty = true
+		end
 		go.set_position(pos, object.id)
 	end
 

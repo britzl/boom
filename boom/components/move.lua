@@ -31,16 +31,10 @@ function M.move(direction, speed)
 
 	c.update = function(dt)
 		local object = c.object
-		local pos = object.pos
-		if pos.x < 0 then
-			gameobject.destroy(object)
-		elseif pos.x > WIDTH then
-			gameobject.destroy(object)
-		elseif pos.y < 0 then
-			gameobject.destroy(object)
-		elseif pos.y > HEIGHT then
-			gameobject.destroy(object)
+		if object.speed == 0 or (object.direction.x == 0 and object.direction.y == 0) then
+			return
 		end
+		object.move(object.direction.x * object.speed, object.direction.y * object.speed)
 	end
 
 	return c

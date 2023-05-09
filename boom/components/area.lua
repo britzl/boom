@@ -6,6 +6,7 @@ local mouse = require "boom.events.mouse"
 local vec2 = require "boom.math.vec2"
 local rect = require "boom.area.rect"
 local circle = require "boom.area.circle"
+local areafactory = require "boom.area.areafactory"
 
 local M = {}
 
@@ -40,37 +41,41 @@ function M.area(options)
 
 	local registered_events = {}
 
-	c.init = function()
-		local object = c.object
 
-		if shape == "rect" then
-			object.local_area = rect.create()
-			object.world_area = rect.create()
-		elseif shape == "circle" then
-			object.local_area = circle.create()
-			object.world_area = circle.create()
-		else
-			error("Unknown shape " .. shape)
+	local function create_area(object, w, h)
+		if area_id then
+			go.delete(area_id)
 		end
-
 		local is_static = object.is_static
-		local pos = vmath.vector3(0)
-		local rotation = nil
 		local properties = {
 			group = is_static and hash("static") or hash("area"),
 			area_mask = true,
 			static_mask = (is_static ~= true),
 		}
 		if shape == "rect" then
-			local scale = vmath.vector3(math.min(width, height))
-			area_id = factory.create(AREA_RECT, pos, rotation, properties, scale)
+			area_id = areafactory.rect(w, h, properties)
 		elseif shape == "circle" then
-			local scale = vmath.vector3(radius * 2)
-			area_id = factory.create(AREA_CIRCLE, pos, rotation, properties, scale)
+			area_id = areafactory.circle(w, properties)
 		end
 		go.set_parent(area_id, object.id, false)
+	end
 
-		if not is_static then
+	c.init = function()
+		local object = c.object
+
+		if shape == "rect" then
+			object.local_area = rect.create()
+			object.world_area = rect.create()
+			create_area(object, width, height)
+		elseif shape == "circle" then
+			object.local_area = circle.create()
+			object.world_area = circle.create()
+			create_area(object, radius)
+		else
+			error("Unknown shape " .. shape)
+		end
+
+		if not object.is_static then
 			local cancel = collisions.on_object_collision(object, nil, function(data, cancel)
 				registered_collisions[#registered_collisions + 1] = data
 			end)
@@ -118,7 +123,6 @@ function M.area(options)
 		registered_events[#registered_events + 1] = cancel
 	end
 
-
 	--- Check if a point is within the area of this component.
 	-- @type AreaComp
 	-- @param point The point to check
@@ -152,7 +156,7 @@ function M.area(options)
 			local h2 = h / 2
 
 			-- resize collision object
-			go.set_scale(math.min(w, h), area_id)
+			create_area(object, w, h)
 
 			rect.resize(object.local_area, w, h)
 
@@ -171,7 +175,7 @@ function M.area(options)
 			local r = (object.radius or radius) * scale.x
 
 			-- resize collision object
-			go.set_scale(r * 2, area_id)
+			create_area(object, r)
 
 			circle.resize(object.local_area, r)
 

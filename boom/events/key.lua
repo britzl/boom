@@ -134,7 +134,16 @@ local ALL_KEYS = {
 
 local ANY_KEY = hash("*")
 
-local keymap = {}
+local keymap = {
+	[ANY_KEY] = {
+		pressed = false
+	}
+}
+for key,_ in pairs(ALL_KEYS) do
+	keymap[key] = {
+		pressed = false
+	}
+end
 
 --- Register callback that runs when a certain key is pressed.
 -- @string key_id The key that must be pressed or nil for any key

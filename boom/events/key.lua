@@ -158,9 +158,9 @@ end
 -- @string key_id The key that must be released or nil for any key
 -- @function cb The callback
 -- @treturn fn function Cancel callback
-function M.on_key_release(key_id, fn)
-	if not fn then
-		fn = key_id
+function M.on_key_release(key_id, cb)
+	if not cb then
+		cb = key_id
 		key_id = "*"
 	end
 	key_id = hash(key_id)
@@ -169,7 +169,7 @@ function M.on_key_release(key_id, fn)
 		key = {}
 		keymap[key_id] = key
 	end
-	return listener.register(key_released_listeners, event, cb)
+	return listener.register(key_released_listeners, key_id, cb)
 end
 
 --- Check if a certain key is down.
@@ -185,7 +185,7 @@ end
 
 local function handle_input(action_id, action)
 	local key = keymap[action_id]
-	if not key then
+	if key == nil then
 		return
 	end
 	if action.pressed then

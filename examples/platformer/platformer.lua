@@ -39,7 +39,7 @@ end
 local function littleblue()
 	return {
 		sprite("littleblue", { atlas = "platformer" }),
-		area({ shape = "circle" }),
+		area({ shape = "auto-circle" }),
 		anchor("bottom"),
 		body(),
 		z(1),
@@ -62,7 +62,7 @@ end
 return function()
 	cam_zoom(2)
 	set_background(0, 0.5, 1, 1)
-	set_gravity(300)
+	set_gravity(600)
 
 	local map = {
 		"                      !                                                                            [======]   [=]!               !           [=]    [!!]                                                          XX",
@@ -109,12 +109,18 @@ return function()
 
 	local player = add({
 		sprite("character_0001", { atlas = "platformer" }),
-		area({ shape = "circle" }),
+		area({ shape = "auto-circle" }),
 		anchor("bottom"),
 		body(),
 		pos(40, 60),
 		"player",
 		{ name = "player" },
+	})
+
+	local fpstext = add({
+		pos(10,10),
+		text(""),
+		fixed()
 	})
 
 	player.on_collide("bump", function(data)
@@ -153,16 +159,10 @@ return function()
 		end
 	end)
 
-	on_key_press("key_space", function() if player.is_grounded then player.jump(220) end end)
-	on_key_press("key_left", function()
-		player.move(-60, player.vel.y)
-		player.play("player_walk")
-		player.flip_x = false
-	end)
-	on_key_press("key_right", function()
-		player.move(60, player.vel.y)
-		player.play("player_walk")
-		player.flip_x = true
+	on_key_press("key_space", function()
+		if player.is_grounded then
+			player.jump(320)
+		end
 	end)
 
 	on_update(function(cancel)
@@ -174,7 +174,16 @@ return function()
 			end
 		end
 
-		if not is_key_down("key_left") and not is_key_down("key_right") then
+		local run = is_key_down("key_lshift") and 2 or 1
+		if is_key_down("key_right") then
+			player.move(80 * run, player.vel.y)
+			player.play("player_walk")
+			player.flip_x = true
+		elseif is_key_down("key_left") then
+			player.move(-80 * run, player.vel.y)
+			player.play("player_walk")
+			player.flip_x = false
+		else
 			player.move(0, player.vel.y)
 			player.play("player_idle")
 		end
@@ -182,6 +191,8 @@ return function()
 		if player.pos.x < 0 then player.pos.x = 0 end
 
 		cam_pos(player.pos.x, 169)
+
+		fpstext.text = fps()
 	end)
 
 	--inspect()

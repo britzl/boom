@@ -38,8 +38,16 @@ function M.add(modules)
 			on_input[#on_input + 1] = module.__on_input
 			module.__on_input = nil
 		end
-		for name,fn in pairs(module) do
-			_G[name] = fn
+		for key,val in pairs(module) do
+			local t = type(val)
+			if t == "function" then
+				_G[key] = val
+			elseif t == "table" then
+				_G[key] = val
+				for k,v in pairs(val) do
+					_G[k] = v
+				end
+			end
 		end
 	end
 end

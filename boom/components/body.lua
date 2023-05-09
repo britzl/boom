@@ -41,11 +41,13 @@ function M.body(options)
 				object.pos = object.pos + comp
 				correction = correction + comp
 
-				local bump = normal.y <= -1
-				local ground = normal.y >= 1
+				local bump = normal.y <= -0.9
+				local ground = normal.y >= 0.9
 				object.is_grounded = ground
 
-				if bump or ground then
+				if bump and acc.y > 0 then
+					acc.y = 0
+				elseif ground and acc.y < 0 then
 					acc.y = 0
 				end
 			end
@@ -63,6 +65,13 @@ function M.body(options)
 	end
 
 	if not c.is_static then
+		c.pre_update = function()
+			local object = c.object
+			if object.is_grounded == true then
+				object.is_grounded = false
+			end
+		end
+
 		c.update = function(dt)
 			local object = c.object
 			if not object.is_grounded then
@@ -75,9 +84,6 @@ function M.body(options)
 				object.is_jumping = acc.y > 0
 				object.is_falling = acc.y < 0
 				object.pos = object.pos + acc * dt
-			end
-			if object.is_grounded == true then
-				object.is_grounded = false
 			end
 			correction.x = 0
 			correction.y = 0

@@ -21,7 +21,8 @@ end
 
 --- Show a scene.
 -- @string id Id of the scene to show
-function M.show(id)
+-- @param ... Additional arguments to pass to the scene function
+function M.show(id, ...)
 	assert(id, "You must provide a scene id")
 	assert(scenes[id], "There is no scene with id " .. id)
 
@@ -49,7 +50,7 @@ function M.show(id)
 
 	-- run new scene
 	local scene = scenes[id]
-	scene.fn()
+	scene.fn(...)
 end
 
 

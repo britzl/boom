@@ -30,9 +30,9 @@ local function start_game()
 end
 
 ---
--- Start a boom game
+-- Start a boom game.
 -- Call this from your own game script
--- @param game Game loop function
+-- @tparam game function Game loop function
 function M.boom(game)
 	game_fn = game
 	config.game_url = msg.url()

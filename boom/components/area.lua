@@ -25,7 +25,7 @@ end
 --- Create a collider area and enabled collision detection.
 -- This will create an area component which is used to describe an area which
 -- can collide with other area components.
--- @table options Component options (width and height)
+-- @table options Component options (shape, width, height, radius)
 -- @treturn area AreaComp The area component
 function M.area(options)
 	local c = {}
@@ -34,7 +34,7 @@ function M.area(options)
 	local radius = 0
 	local width = 0
 	local height = 0
-	local shape = "auto"
+	local shape = options and options.shape or "auto"
 	if options then
 		if options.width and options.height then
 			shape = "rect"
@@ -73,7 +73,8 @@ function M.area(options)
 		if shape == "rect"
 		or shape == "auto" then
 			area_id = areafactory.rect(w, h, properties)
-		elseif shape == "circle" then
+		elseif shape == "circle"
+		or shape == "auto-circle" then
 			area_id = areafactory.circle(w, properties)
 		end
 		go.set_parent(area_id, object.id, false)
@@ -87,7 +88,8 @@ function M.area(options)
 			object.local_area = rect.create()
 			object.world_area = rect.create()
 			create_area(object, width, height)
-		elseif shape == "circle" then
+		elseif shape == "circle"
+		or shape == "auto-circle" then
 			object.local_area = circle.create()
 			object.world_area = circle.create()
 			create_area(object, radius)
@@ -154,7 +156,8 @@ function M.area(options)
 		if shape == "rect"
 		or shape == "auto" then
 			return rect.point_inside(point, object.local_area, object.world_area.center, angle)
-		elseif shape == "cirlce" then
+		elseif shape == "cirlce"
+		or shape == "auto-circle" then
 			return circle.point_inside(point, object.local_area, object.world_area.center, angle)
 		end
 	end
@@ -170,8 +173,16 @@ function M.area(options)
 		local anchor = object.anchor or V2_ZERO
 		local scale = object.scale or V2_ONE
 
-		if shape == "circle" then
-			local r = (object.radius or radius) * scale.x
+		if shape == "circle"
+		or shape == "auto-circle" then
+			local r
+			if shape == "auto-circle" then
+				local w = object.width and (object.width / 2) or radius
+				local h = object.height and (object.height / 2) or radius
+				r = math.min(w, h) * scale.x
+			else
+				r = radius * scale.x
+			end
 
 			-- resize collision object and shape
 			create_area(object, r)

@@ -26,7 +26,7 @@ end
 --- Create a position component.
 -- @number x
 -- @number y
--- @treturn Pos component The created component
+-- @treturn PosComp component The created component
 function M.pos(x, y)
 	if type(x) == "userdata" then
 		local pos = x
@@ -44,7 +44,7 @@ function M.pos(x, y)
 	end
 
 	--- Move a number of pixels per second.
-	-- @type Pos
+	-- @type PosComp
 	-- @number x
 	-- @number y
 	c.move = function(...)

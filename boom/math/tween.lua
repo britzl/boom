@@ -25,7 +25,7 @@ end
 -- @number duration Time in seconds to go from start to end value
 -- @string easing Which easing algorithm to use
 -- @function set_value Function to call when the value has changed
--- @treturn component Tween A tween object.
+-- @treturn TweenController controller A tween controller object.
 function M.tween(from, to, duration, easing, set_value)
 	assert(from)
 	assert(to)
@@ -53,7 +53,7 @@ function M.tween(from, to, duration, easing, set_value)
 	local tween_controller = {}
 	
 	--- Register an event when finished
-	-- @type Tween
+	-- @type TweenController
 	-- @function fn The function to call when the tween has finished
 	tween_controller.on_end = function(fn)
 		if tweens[id] then
@@ -62,7 +62,7 @@ function M.tween(from, to, duration, easing, set_value)
 	end
 
 	--- Finish tween now.
-	-- @type Tween
+	-- @type TweenController
 	tween_controller.finish = function()
 		if tweens[id] then
 			set_value(to)
@@ -76,7 +76,7 @@ function M.tween(from, to, duration, easing, set_value)
 	end
 
 	--- Cancel tween.
-	-- @type Tween
+	-- @type TweenController
 	tween_controller.cancel = function()
 		if tweens[id] then
 			go.cancel_animations(url)

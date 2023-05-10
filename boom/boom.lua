@@ -32,7 +32,7 @@ end
 ---
 -- Start a boom game.
 -- Call this from your own game script
--- @tparam game function Game loop function
+-- @tparam function game Game loop function
 function M.boom(game)
 	game_fn = game
 	config.game_url = msg.url()
@@ -41,7 +41,7 @@ end
 
 -- initialize boom
 -- called from boom.script
--- @param url URL of the boom.script (only used for unit tests)
+-- @tparam url URL of the boom.script (only used for unit tests)
 function M.init(url, skip_systems)
 	config.boom_url = url or msg.url()
 	config.label_screen_material = go.get(config.boom_url, "label_screen_material")

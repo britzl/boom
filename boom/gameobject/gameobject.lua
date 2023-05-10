@@ -98,7 +98,7 @@ end
 
 --- Add a game object with a set of components.
 -- @table comps The components for the game object
--- @treturn object GameObject The created game object
+-- @treturn GameObject object The created game object
 function M.add(comps)
 	local ids = collectionfactory.create(GAMEOBJECT_FACTORY)
 	local id = ids[ROOT]
@@ -129,7 +129,7 @@ function M.add(comps)
 	--- Add a game object as a child of this game object.
 	-- @type GameObject
 	-- @table comps The game object components
-	-- @treturn object table The game object
+	-- @treturn table GameObject The game object
 	object.add = function(comps)
 		local child = M.add(comps)
 		child.parent = object.id
@@ -148,7 +148,7 @@ function M.add(comps)
 	--- Check if there is a certain tag on this game object.
 	-- @type GameObject
 	-- @string tag The tag to check
-	-- @treturn result bool Returns true if the tag exists on the game object
+	-- @treturn bool result Returns true if the tag exists on the game object
 	object.is = function(tag)
 		return object.tags[tag] ~= nil
 	end
@@ -170,7 +170,7 @@ function M.add(comps)
 	--- Get state for a specific component on this game object.
 	-- @type GameObject
 	-- @string tag The component to get state for
-	-- @treturn state table The component state
+	-- @treturn table state The component state
 	object.c = function(tag)
 		return object.comps[tag]
 	end
@@ -206,7 +206,7 @@ function M.add(comps)
 end
 
 --- Destroy a game object and all of its components.
--- @tparam object GameObject The object to destroy
+-- @tparam GameObject object The object to destroy
 function M.destroy(object)
 	assert(object)
 	if object.destroyed then
@@ -262,7 +262,7 @@ end
 
 --- Get all game objects with the specified tag.
 -- @string tag The tag to get objects for, nil to get all objects
--- @treturn objects table List of objects
+-- @treturn table objects List of objects
 function M.get(tag)
 	if not tag then
 		return objects
@@ -331,9 +331,7 @@ function M.__on_input(action_id, action)
 end
 
 function M.__destroy()
-	for id,object in pairs(objects) do
-		go.delete(id, true)
-	end
+	M.destroy_all()
 	objects = {}
 	objects_to_delete = {}
 end

@@ -7,7 +7,7 @@ local timer = _G.timer
 --- Run certain action after some time.
 -- @number n Number of seconds to wait
 -- @function fn The function to call
--- @treturn component Timer The created component
+-- @treturn TimerComp component The created component
 function M.timer(n, fn)
 	local c = {}
 	c.tag = "timer"
@@ -35,7 +35,7 @@ function M.timer(n, fn)
 	end
 
 	--- Run a callback function after n seconds
-	-- @type Timer
+	-- @type TimerComp
 	-- @number n Seconds
 	-- @function fn The function to call
 	c.wait = function(n, fn)
@@ -43,7 +43,7 @@ function M.timer(n, fn)
 	end
 
 	--- Run a callback function every n seconds
-	-- @type Timer
+	-- @type TimerComp
 	-- @number n Seconds
 	-- @function fn The function to call
 	c.loop = function(n, fn)
@@ -51,7 +51,7 @@ function M.timer(n, fn)
 	end
 
 	--- Cancel the timer
-	-- @type Timer
+	-- @type TimerComp
 	c.cancel = function(n, fn)
 		cancel_timer()
 	end

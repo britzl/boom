@@ -4,7 +4,7 @@ local M = {}
 
 --- Fade object in.
 -- @number time In seconds
--- @treturn component FadeInComp The fade in component.
+-- @treturn FadeInComp component The fade in component.
 function M.fadein(time)
 	local c = {}
 	c.tag = "fadein"

@@ -103,8 +103,8 @@ def process_entry(line, lines):
             line = line.replace("@treturn", "").strip()
             m = re.match("(\w*?) (\w*?) (.*)", line)
             if m:
-                return_name = m.groups()[0]
-                return_type = m.groups()[1]
+                return_type = m.groups()[0]
+                return_name = m.groups()[1]
                 return_desc = m.groups()[2]
                 entry["returns"].append({
                     "name": return_name,
@@ -115,8 +115,8 @@ def process_entry(line, lines):
             line = line.replace("@tparam", "").strip()
             m = re.match("(\w*?) (\w*?) (.*)", line)
             if m:
-                param_name = m.groups()[0]
-                param_type = m.groups()[1]
+                param_type = m.groups()[0]
+                param_name = m.groups()[1]
                 param_desc = m.groups()[2]
                 entry["params"].append({
                     "name": param_name,

@@ -3,13 +3,13 @@ local M = {}
 --- Determines the draw order for objects.
 -- Object will be drawn on top if z value is bigger.
 -- @number z Z-value of the object.
--- @treturn component Z The created component
+-- @treturn ZComp component The created component
 function M.z(z)
 	local c = {}
 	c.tag = "z"
 
 	--- The z value
-	-- @type Z
+	-- @type ZComp
 	-- @field number
 	c.z = z
 	return c

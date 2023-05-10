@@ -76,7 +76,7 @@ PARAMS
 * `anchor` [`string`] - Anchor (center, topleft, left, topright, right, bottomright, bottom, bottomleft)
 
 RETURNS
-* `component` [`Anchor`] - The anchor component.
+* `component` [`AnchorComp`] - The anchor component.
 
 
 ---
@@ -92,7 +92,7 @@ Create a collider area and enabled collision detection. This will create an area
 
 
 PARAMS
-* `options` [`table`] - Component options (width and height)
+* `options` [`table`] - Component options (shape, width, height, radius)
 
 RETURNS
 * `area` [`AreaComp`] - The area component
@@ -106,15 +106,15 @@ RETURNS
 * `collisions` [`table`] - List of collisions
 
 
-## AreaComp.check_collision(other_object, )
+## AreaComp.check_collision(GameObject, )
 Check collision between this component and another object. 
 
 
 PARAMS
-* `other_object` [`GameObject`] - The game object to check collisions with.
+* `GameObject` [`other_object`] - The game object to check collisions with.
 
 RETURNS
-* `collision` [`bool`] - Return true if colliding with the other object
+* `bool` [`collision`] - Return true if colliding with the other object
 * `data` [`table`] - Collision data
 
 
@@ -251,7 +251,7 @@ Create a fixed component
 
 
 RETURNS
-* `component` [`Fixed`] - The component
+* `component` [`FixedComp`] - The component
 
 
 ---
@@ -330,7 +330,7 @@ PARAMS
 * `options` [`table`] - (fade)
 
 RETURNS
-* `component` [`Lifespan`] - The created component
+* `component` [`LifespanComp`] - The created component
 
 
 ---
@@ -356,7 +356,7 @@ PARAMS
 * `speed` [`number`] - Speed of movement in pixels per second.
 
 RETURNS
-* `component` [`Move`] - The created component.
+* `component` [`MoveComp`] - The created component.
 
 
 ---
@@ -375,10 +375,10 @@ PARAMS
 * `options` [`table`] - (distance, destroy)
 
 RETURNS
-* `component` [`Offscreen`] - The created component
+* `component` [`OffscreenComp`] - The created component
 
 
-## Offscreen.on_exit_screen(cb, )
+## OffscreenComp.on_exit_screen(cb, )
 Register a callback that runs when the object goes out of view 
 
 
@@ -386,7 +386,7 @@ PARAMS
 * `cb` [`function`] - Function to call when the object goes out of view
 
 
-## Offscreen.on_enter_screen(cb, )
+## OffscreenComp.on_enter_screen(cb, )
 Register a callback that runs when the object enters view 
 
 
@@ -410,10 +410,10 @@ PARAMS
 * `opacity` [`number`] - The opacity from 0.0 to 1.0
 
 RETURNS
-* `component` [`Opacity`] - The created component
+* `component` [`OpacityComp`] - The created component
 
 
-## Opacity.opacity [`number`]
+## OpacityComp.opacity [`number`]
 The opacity of the component instance. 
 
 
@@ -509,30 +509,30 @@ PARAMS
 * `options` [`table`] - Extra options (flip_x, flip_y, width, height)
 
 RETURNS
-* `component` [`Sprite`] - The created component
+* `component` [`SpriteComp`] - The created component
 
 
-## Sprite.anim [`string`]
+## SpriteComp.anim [`string`]
 The current animation 
 
 
 
-## Sprite.width [`number`]
+## SpriteComp.width [`number`]
 The width of the sprite 
 
 
 
-## Sprite.height [`number`]
+## SpriteComp.height [`number`]
 The height of the sprite 
 
 
 
-## Sprite.flip_x [`bool`]
+## SpriteComp.flip_x [`bool`]
 If sprite should be flipped horizontally 
 
 
 
-## Sprite.flip_y [`bool`]
+## SpriteComp.flip_y [`bool`]
 If the sprite should be flipped vertically 
 
 
@@ -563,7 +563,7 @@ Do not get destroyed on scene switch.
 
 
 RETURNS
-* `component` [`Stay`] - The created component
+* `component` [`StayComp`] - The created component
 
 
 ---
@@ -583,10 +583,10 @@ PARAMS
 * `options` [`table`] - Text options (width, font, align)
 
 RETURNS
-* `component` [`Text`] - The created component
+* `component` [`TextComp`] - The created component
 
 
-## Text.text [`string`]
+## TextComp.text [`string`]
 The text to render 
 
 
@@ -608,10 +608,10 @@ PARAMS
 * `fn` [`function`] - The function to call
 
 RETURNS
-* `component` [`Timer`] - The created component
+* `component` [`TimerComp`] - The created component
 
 
-## Timer.wait(n, fn, )
+## TimerComp.wait(n, fn, )
 Run a callback function after n seconds 
 
 
@@ -620,7 +620,7 @@ PARAMS
 * `fn` [`function`] - The function to call
 
 
-## Timer.loop(n, fn, )
+## TimerComp.loop(n, fn, )
 Run a callback function every n seconds 
 
 
@@ -629,7 +629,7 @@ PARAMS
 * `fn` [`function`] - The function to call
 
 
-## Timer.cancel()
+## TimerComp.cancel()
 Cancel the timer 
 
 
@@ -650,10 +650,10 @@ PARAMS
 * `z` [`number`] - Z-value of the object.
 
 RETURNS
-* `component` [`Z`] - The created component
+* `component` [`ZComp`] - The created component
 
 
-## Z.z [`number`]
+## ZComp.z [`number`]
 The z value 
 
 
@@ -676,7 +676,7 @@ PARAMS
 * `fn` [`function`] - Will receive (collision, cancel) as args
 
 RETURNS
-* `function` [`cancel`] - Cancel event function
+* `cancel` [`function`] - Cancel event function
 
 
 ---
@@ -794,7 +794,7 @@ PARAMS
 * `comps` [`table`] - The game object components
 
 RETURNS
-* `object` [`table`] - The game object
+* `GameObject` [`table`] - The game object
 
 
 ## GameObject.destroy()
@@ -864,7 +864,7 @@ PARAMS
 * `id` [`string`] - 
 
 RETURNS
-* `id` [`string`] - The object or nil if it doesn&#x27;t exist
+* `string` [`id`] - The object or nil if it doesn&#x27;t exist
 
 
 ## objects()
@@ -872,7 +872,7 @@ Get all game objects.
 
 
 RETURNS
-* `objects` [`table`] - All game objects
+* `table` [`objects`] - All game objects
 
 
 ## get(tag, )
@@ -950,7 +950,7 @@ Get gravity
 
 
 RETURNS
-* `string` [`gravity`] - The gravity in pixels per seconds
+* `gravity` [`number`] - The gravity in pixels per seconds
 
 
 ## set_gravity(gravity, )
@@ -1034,7 +1034,7 @@ PARAMS
 * `options` [`table`] - Level options (tile_width, tile_height, pos, tiles)
 
 RETURNS
-* `GameObject` [`level`] - Game object with tiles as children
+* `level` [`GameObject`] - Game object with tiles as children
 
 
 ---
@@ -1054,7 +1054,7 @@ PARAMS
 * `b` [`number`] - 
 
 RETURNS
-* `number` [`Random`] - Number
+* `number` [`number`] - Random number
 
 
 ## randi(a, b, )
@@ -1066,7 +1066,7 @@ PARAMS
 * `b` [`number`] - 
 
 RETURNS
-* `number` [`Random`] - Integer number
+* `number` [`number`] - Random integer number
 
 
 ---
@@ -1091,10 +1091,10 @@ PARAMS
 * `set_value` [`function`] - Function to call when the value has changed
 
 RETURNS
-* `component` [`Tween`] - A tween object.
+* `controller` [`TweenController`] - A tween controller object.
 
 
-## Tween.on_end(fn, )
+## TweenController.on_end(fn, )
 Register an event when finished 
 
 
@@ -1102,12 +1102,12 @@ PARAMS
 * `fn` [`function`] - The function to call when the tween has finished
 
 
-## Tween.finish()
+## TweenController.finish()
 Finish tween now. 
 
 
 
-## Tween.cancel()
+## TweenController.cancel()
 Cancel tween. 
 
 
@@ -1195,7 +1195,7 @@ PARAMS
 * `cb` [`function`] - Function to call
 
 RETURNS
-* `function` [`cancel`] - Call to cancel the timer
+* `cancel` [`function`] - Call to cancel the timer
 
 
 ## loop(seconds, cb, )
@@ -1207,7 +1207,7 @@ PARAMS
 * `cb` [`function`] - Function to call
 
 RETURNS
-* `function` [`cancel`] - Call to cancel the timer
+* `cancel` [`function`] - Call to cancel the timer
 
 
 ---

@@ -6,7 +6,7 @@ local M = {}
 
 --- Create a color component
 -- @param ... r,g,b components or color
--- @treturn component ColorComp The color component
+-- @treturn ColorComp component The color component
 function M.color(...)
 	local c = {}
 	c.tag = "color"

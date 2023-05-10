@@ -58,7 +58,7 @@
                                 {
                                     "description": "The anchor component.",
                                     "name": "component",
-                                    "type": "Anchor"
+                                    "type": "AnchorComp"
                                 }
                             ],
                             "usage": null
@@ -87,7 +87,7 @@
                             "name": "area",
                             "params": [
                                 {
-                                    "description": "Component options (width and height)",
+                                    "description": "Component options (shape, width, height, radius)",
                                     "name": "options",
                                     "type": "table"
                                 }
@@ -127,15 +127,15 @@
                             "params": [
                                 {
                                     "description": "The game object to check collisions with.",
-                                    "name": "other_object",
-                                    "type": "GameObject"
+                                    "name": "GameObject",
+                                    "type": "other_object"
                                 }
                             ],
                             "returns": [
                                 {
                                     "description": "Return true if colliding with the other object",
-                                    "name": "collision",
-                                    "type": "bool"
+                                    "name": "bool",
+                                    "type": "collision"
                                 },
                                 {
                                     "description": "Collision data",
@@ -405,7 +405,7 @@
                                 {
                                     "description": "The component",
                                     "name": "component",
-                                    "type": "Fixed"
+                                    "type": "FixedComp"
                                 }
                             ],
                             "summary": "Create a fixed component",
@@ -573,7 +573,7 @@
                                 {
                                     "description": "The created component",
                                     "name": "component",
-                                    "type": "Lifespan"
+                                    "type": "LifespanComp"
                                 }
                             ],
                             "summary": "Create a Lifespan component.",
@@ -617,7 +617,7 @@
                                 {
                                     "description": "The created component.",
                                     "name": "component",
-                                    "type": "Move"
+                                    "type": "MoveComp"
                                 }
                             ],
                             "summary": "Create a move component.",
@@ -656,7 +656,7 @@
                                 {
                                     "description": "The created component",
                                     "name": "component",
-                                    "type": "Offscreen"
+                                    "type": "OffscreenComp"
                                 }
                             ],
                             "summary": "Create an offscreen component.",
@@ -676,7 +676,7 @@
                             ],
                             "returns": [],
                             "summary": "Register a callback that runs when the object goes out of view",
-                            "type": "Offscreen",
+                            "type": "OffscreenComp",
                             "usage": null
                         },
                         {
@@ -693,7 +693,7 @@
                             ],
                             "returns": [],
                             "summary": "Register a callback that runs when the object enters view",
-                            "type": "Offscreen",
+                            "type": "OffscreenComp",
                             "usage": null
                         }
                     ],
@@ -729,7 +729,7 @@
                                 {
                                     "description": "The created component",
                                     "name": "component",
-                                    "type": "Opacity"
+                                    "type": "OpacityComp"
                                 }
                             ],
                             "summary": "Create an opacity component.",
@@ -745,7 +745,7 @@
                             "params": [],
                             "returns": [],
                             "summary": "The opacity of the component instance.",
-                            "type": "Opacity",
+                            "type": "OpacityComp",
                             "usage": null
                         }
                     ],
@@ -910,7 +910,7 @@
                                 {
                                     "description": "The created component",
                                     "name": "component",
-                                    "type": "Sprite"
+                                    "type": "SpriteComp"
                                 }
                             ],
                             "summary": "Render a sprite.",
@@ -926,7 +926,7 @@
                             "params": [],
                             "returns": [],
                             "summary": "The current animation",
-                            "type": "Sprite",
+                            "type": "SpriteComp",
                             "usage": null
                         },
                         {
@@ -939,7 +939,7 @@
                             "params": [],
                             "returns": [],
                             "summary": "The width of the sprite",
-                            "type": "Sprite",
+                            "type": "SpriteComp",
                             "usage": null
                         },
                         {
@@ -952,7 +952,7 @@
                             "params": [],
                             "returns": [],
                             "summary": "The height of the sprite",
-                            "type": "Sprite",
+                            "type": "SpriteComp",
                             "usage": null
                         },
                         {
@@ -965,7 +965,7 @@
                             "params": [],
                             "returns": [],
                             "summary": "If sprite should be flipped horizontally",
-                            "type": "Sprite",
+                            "type": "SpriteComp",
                             "usage": null
                         },
                         {
@@ -978,7 +978,7 @@
                             "params": [],
                             "returns": [],
                             "summary": "If the sprite should be flipped vertically",
-                            "type": "Sprite",
+                            "type": "SpriteComp",
                             "usage": null
                         },
                         {
@@ -1026,7 +1026,7 @@
                                 {
                                     "description": "The created component",
                                     "name": "component",
-                                    "type": "Stay"
+                                    "type": "StayComp"
                                 }
                             ],
                             "summary": "Do not get destroyed on scene switch.",
@@ -1060,7 +1060,7 @@
                                 {
                                     "description": "The created component",
                                     "name": "component",
-                                    "type": "Text"
+                                    "type": "TextComp"
                                 }
                             ],
                             "summary": "Render text.",
@@ -1076,7 +1076,7 @@
                             "params": [],
                             "returns": [],
                             "summary": "The text to render",
-                            "type": "Text",
+                            "type": "TextComp",
                             "usage": null
                         }
                     ],
@@ -1108,7 +1108,7 @@
                                 {
                                     "description": "The created component",
                                     "name": "component",
-                                    "type": "Timer"
+                                    "type": "TimerComp"
                                 }
                             ],
                             "summary": "Run certain action after some time.",
@@ -1133,7 +1133,7 @@
                             ],
                             "returns": [],
                             "summary": "Run a callback function after n seconds",
-                            "type": "Timer",
+                            "type": "TimerComp",
                             "usage": null
                         },
                         {
@@ -1155,7 +1155,7 @@
                             ],
                             "returns": [],
                             "summary": "Run a callback function every n seconds",
-                            "type": "Timer",
+                            "type": "TimerComp",
                             "usage": null
                         },
                         {
@@ -1166,7 +1166,7 @@
                             "params": [],
                             "returns": [],
                             "summary": "Cancel the timer",
-                            "type": "Timer",
+                            "type": "TimerComp",
                             "usage": null
                         }
                     ],
@@ -1201,7 +1201,7 @@
                                 {
                                     "description": "The created component",
                                     "name": "component",
-                                    "type": "Z"
+                                    "type": "ZComp"
                                 }
                             ],
                             "summary": "Determines the draw order for objects.",
@@ -1217,7 +1217,7 @@
                             "params": [],
                             "returns": [],
                             "summary": "The z value",
-                            "type": "Z",
+                            "type": "ZComp",
                             "usage": null
                         }
                     ],
@@ -1257,8 +1257,8 @@
                             "returns": [
                                 {
                                     "description": "Cancel event function",
-                                    "name": "function",
-                                    "type": "cancel"
+                                    "name": "cancel",
+                                    "type": "function"
                                 }
                             ],
                             "summary": "Register an event that runs when two game objects collide.",
@@ -1474,7 +1474,7 @@
                             "returns": [
                                 {
                                     "description": "The game object",
-                                    "name": "object",
+                                    "name": "GameObject",
                                     "type": "table"
                                 }
                             ],
@@ -1619,8 +1619,8 @@
                             "returns": [
                                 {
                                     "description": "The object or nil if it doesn't exist",
-                                    "name": "id",
-                                    "type": "string"
+                                    "name": "string",
+                                    "type": "id"
                                 }
                             ],
                             "summary": "Get game object with specific id.",
@@ -1635,8 +1635,8 @@
                             "returns": [
                                 {
                                     "description": "All game objects",
-                                    "name": "objects",
-                                    "type": "table"
+                                    "name": "table",
+                                    "type": "objects"
                                 }
                             ],
                             "summary": "Get all game objects.",
@@ -1780,8 +1780,8 @@
                             "returns": [
                                 {
                                     "description": "The gravity in pixels per seconds",
-                                    "name": "string",
-                                    "type": "gravity"
+                                    "name": "gravity",
+                                    "type": "number"
                                 }
                             ],
                             "summary": "Get gravity",
@@ -1919,8 +1919,8 @@
                             "returns": [
                                 {
                                     "description": "Game object with tiles as children",
-                                    "name": "GameObject",
-                                    "type": "level"
+                                    "name": "level",
+                                    "type": "GameObject"
                                 }
                             ],
                             "summary": "Construct a level based on symbols.",
@@ -1957,9 +1957,9 @@
                             ],
                             "returns": [
                                 {
-                                    "description": "Number",
+                                    "description": "Random number",
                                     "name": "number",
-                                    "type": "Random"
+                                    "type": "number"
                                 }
                             ],
                             "summary": "Get a random number.",
@@ -1984,9 +1984,9 @@
                             ],
                             "returns": [
                                 {
-                                    "description": "Integer number",
+                                    "description": "Random integer number",
                                     "name": "number",
-                                    "type": "Random"
+                                    "type": "number"
                                 }
                             ],
                             "summary": "Same as rand() but floored.",
@@ -2043,9 +2043,9 @@
                             ],
                             "returns": [
                                 {
-                                    "description": "A tween object.",
-                                    "name": "component",
-                                    "type": "Tween"
+                                    "description": "A tween controller object.",
+                                    "name": "controller",
+                                    "type": "TweenController"
                                 }
                             ],
                             "summary": "Tween a value from one to another.",
@@ -2065,7 +2065,7 @@
                             ],
                             "returns": [],
                             "summary": "Register an event when finished",
-                            "type": "Tween",
+                            "type": "TweenController",
                             "usage": null
                         },
                         {
@@ -2076,7 +2076,7 @@
                             "params": [],
                             "returns": [],
                             "summary": "Finish tween now.",
-                            "type": "Tween",
+                            "type": "TweenController",
                             "usage": null
                         },
                         {
@@ -2087,7 +2087,7 @@
                             "params": [],
                             "returns": [],
                             "summary": "Cancel tween.",
-                            "type": "Tween",
+                            "type": "TweenController",
                             "usage": null
                         }
                     ],
@@ -2272,8 +2272,8 @@
                             "returns": [
                                 {
                                     "description": "Call to cancel the timer",
-                                    "name": "function",
-                                    "type": "cancel"
+                                    "name": "cancel",
+                                    "type": "function"
                                 }
                             ],
                             "summary": "Run a callback after a certain nummber of seconds.",
@@ -2299,8 +2299,8 @@
                             "returns": [
                                 {
                                     "description": "Call to cancel the timer",
-                                    "name": "function",
-                                    "type": "cancel"
+                                    "name": "cancel",
+                                    "type": "function"
                                 }
                             ],
                             "summary": "Run a callback repeatedly with a certain interval",

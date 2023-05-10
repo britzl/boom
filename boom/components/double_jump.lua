@@ -5,7 +5,7 @@ local M = {}
 --- Enables double jump.
 -- Requires "body" component
 -- @table options Component options
--- @treturn component DoubleJumpComp The double jump component
+-- @treturn DoubleJumpComp component The double jump component
 function M.double_jump(options)
 	local c = {}
 	c.tag = "double_jump"

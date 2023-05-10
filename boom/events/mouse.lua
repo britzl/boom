@@ -13,7 +13,7 @@ local mouse_pos = vec2()
 --- Set mouse click listener.
 -- @string tag Optional click on object with tag filter
 -- @function cb Callback when mouse button is clicked
--- @treturn fn function Cancel listener function
+-- @treturn function fn Cancel listener function
 function M.on_click(tag, cb)
 	if not cb then
 		cb = tag
@@ -41,7 +41,7 @@ function M.on_click(tag, cb)
 end
 
 --- Get mouse position (screen coordinates).
--- @treturn pos vec2 Mouse position
+-- @treturn vec2 pos Mouse position
 function M.mouse_pos()
 	return mouse_pos
 end

@@ -15,7 +15,7 @@
     desc: Anchor (center, topleft, left, topright, right, bottomright, bottom, bottomleft)
   return:
   - name: component
-    type: Anchor
+    type: AnchorComp
     desc: The anchor component.
 
 - name: area
@@ -24,7 +24,7 @@
   parameters:
   - name: options
     type: table
-    desc: Component options (width and height)
+    desc: Component options (shape, width, height, radius)
   return:
   - name: area
     type: AreaComp
@@ -42,12 +42,12 @@
   type: function
   desc: Check collision between this component and another object. 
   parameters:
-  - name: other_object
-    type: GameObject
+  - name: GameObject
+    type: other_object
     desc: The game object to check collisions with.
   return:
-  - name: collision
-    type: bool
+  - name: bool
+    type: collision
     desc: Return true if colliding with the other object
   - name: data
     type: table
@@ -153,7 +153,7 @@
   desc: Create a fixed component 
   return:
   - name: component
-    type: Fixed
+    type: FixedComp
     desc: The component
 
 - name: health
@@ -220,7 +220,7 @@
     desc: (fade)
   return:
   - name: component
-    type: Lifespan
+    type: LifespanComp
     desc: The created component
 
 - name: move
@@ -235,7 +235,7 @@
     desc: Speed of movement in pixels per second.
   return:
   - name: component
-    type: Move
+    type: MoveComp
     desc: The created component.
 
 - name: offscreen
@@ -247,10 +247,10 @@
     desc: (distance, destroy)
   return:
   - name: component
-    type: Offscreen
+    type: OffscreenComp
     desc: The created component
 
-- name: Offscreen.on_exit_screen
+- name: OffscreenComp.on_exit_screen
   type: function
   desc: Register a callback that runs when the object goes out of view 
   parameters:
@@ -258,7 +258,7 @@
     type: function
     desc: Function to call when the object goes out of view
 
-- name: Offscreen.on_enter_screen
+- name: OffscreenComp.on_enter_screen
   type: function
   desc: Register a callback that runs when the object enters view 
   parameters:
@@ -275,7 +275,7 @@
     desc: The opacity from 0.0 to 1.0
   return:
   - name: component
-    type: Opacity
+    type: OpacityComp
     desc: The created component
 
 
@@ -344,7 +344,7 @@
     desc: Extra options (flip_x, flip_y, width, height)
   return:
   - name: component
-    type: Sprite
+    type: SpriteComp
     desc: The created component
 
 
@@ -369,7 +369,7 @@
   desc: Do not get destroyed on scene switch. 
   return:
   - name: component
-    type: Stay
+    type: StayComp
     desc: The created component
 
 - name: text
@@ -384,7 +384,7 @@
     desc: Text options (width, font, align)
   return:
   - name: component
-    type: Text
+    type: TextComp
     desc: The created component
 
 
@@ -400,10 +400,10 @@
     desc: The function to call
   return:
   - name: component
-    type: Timer
+    type: TimerComp
     desc: The created component
 
-- name: Timer.wait
+- name: TimerComp.wait
   type: function
   desc: Run a callback function after n seconds 
   parameters:
@@ -414,7 +414,7 @@
     type: function
     desc: The function to call
 
-- name: Timer.loop
+- name: TimerComp.loop
   type: function
   desc: Run a callback function every n seconds 
   parameters:
@@ -425,7 +425,7 @@
     type: function
     desc: The function to call
 
-- name: Timer.cancel
+- name: TimerComp.cancel
   type: function
   desc: Cancel the timer 
 
@@ -438,7 +438,7 @@
     desc: Z-value of the object.
   return:
   - name: component
-    type: Z
+    type: ZComp
     desc: The created component
 
 
@@ -456,8 +456,8 @@
     type: function
     desc: Will receive (collision, cancel) as args
   return:
-  - name: function
-    type: cancel
+  - name: cancel
+    type: function
     desc: Cancel event function
 
 - name: on_key_press
@@ -556,7 +556,7 @@
     type: table
     desc: The game object components
   return:
-  - name: object
+  - name: GameObject
     type: table
     desc: The game object
 
@@ -628,16 +628,16 @@
     type: string
     desc: 
   return:
-  - name: id
-    type: string
+  - name: string
+    type: id
     desc: The object or nil if it doesn&#x27;t exist
 
 - name: objects
   type: function
   desc: Get all game objects. 
   return:
-  - name: objects
-    type: table
+  - name: table
+    type: objects
     desc: All game objects
 
 - name: get
@@ -706,8 +706,8 @@
   type: function
   desc: Get gravity 
   return:
-  - name: string
-    type: gravity
+  - name: gravity
+    type: number
     desc: The gravity in pixels per seconds
 
 - name: set_gravity
@@ -769,8 +769,8 @@
     type: table
     desc: Level options (tile_width, tile_height, pos, tiles)
   return:
-  - name: GameObject
-    type: level
+  - name: level
+    type: GameObject
     desc: Game object with tiles as children
 
 - name: rand
@@ -785,8 +785,8 @@
     desc: 
   return:
   - name: number
-    type: Random
-    desc: Number
+    type: number
+    desc: Random number
 
 - name: randi
   type: function
@@ -800,8 +800,8 @@
     desc: 
   return:
   - name: number
-    type: Random
-    desc: Integer number
+    type: number
+    desc: Random integer number
 
 - name: tween
   type: function
@@ -829,11 +829,11 @@
     type: function
     desc: Function to call when the value has changed
   return:
-  - name: component
-    type: Tween
-    desc: A tween object.
+  - name: controller
+    type: TweenController
+    desc: A tween controller object.
 
-- name: Tween.on_end
+- name: TweenController.on_end
   type: function
   desc: Register an event when finished 
   parameters:
@@ -841,11 +841,11 @@
     type: function
     desc: The function to call when the tween has finished
 
-- name: Tween.finish
+- name: TweenController.finish
   type: function
   desc: Finish tween now. 
 
-- name: Tween.cancel
+- name: TweenController.cancel
   type: function
   desc: Cancel tween. 
 
@@ -901,8 +901,8 @@
     type: function
     desc: Function to call
   return:
-  - name: function
-    type: cancel
+  - name: cancel
+    type: function
     desc: Call to cancel the timer
 
 - name: loop
@@ -916,7 +916,7 @@
     type: function
     desc: Function to call
   return:
-  - name: function
-    type: cancel
+  - name: cancel
+    type: function
     desc: Call to cancel the timer
 

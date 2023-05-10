@@ -7,7 +7,7 @@ local M = {}
 -- number between 'a' and 'b' is returned.
 -- @number a
 -- @number b
--- @treturn number Random number
+-- @treturn number number Random number
 function M.rand(a, b)
 	local r = math.random()
 	if not a then return r end
@@ -18,7 +18,7 @@ end
 --- Same as rand() but floored.
 -- @number a
 -- @number b
--- @treturn number Random integer number
+-- @treturn number number Random integer number
 function M.randi(a, b)
 	return math.floor(M.rand(a, b))
 end

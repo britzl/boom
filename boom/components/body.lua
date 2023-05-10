@@ -7,7 +7,7 @@ local M = {}
 -- Requires AreaComp and PosComp components on the game object. This also makes
 -- the object solid.
 -- @table options Component options (jump_force, is_static)
--- @treturn component BodyComp The body component
+-- @treturn BodyComp component The body component
 function M.body(options)
 	local c = {}
 	c.tag = "body"

@@ -16,7 +16,7 @@ local M = {}
 --- Create a move component.
 -- @vec2 direction Direction of movement.
 -- @number speed Speed of movement in pixels per second.
--- @treturn component Move The created component.
+-- @treturn MoveComp component The created component.
 function M.move(direction, speed)
 	local c = {}
 	c.tag = "move"

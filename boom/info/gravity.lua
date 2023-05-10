@@ -3,7 +3,7 @@ local M = {}
 local gravity = 800
 
 --- Get gravity
--- @treturn string gravity The gravity in pixels per seconds
+-- @treturn number gravity The gravity in pixels per seconds
 function M.get_gravity()
 	return gravity
 end

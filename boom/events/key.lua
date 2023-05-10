@@ -148,7 +148,7 @@ end
 --- Register callback that runs when a certain key is pressed.
 -- @string key_id The key that must be pressed or nil for any key
 -- @function cb The callback
--- @treturn fn function Cancel callback
+-- @treturn function fn Cancel callback
 function M.on_key_press(key_id, cb)
 	if not cb then
 		cb = key_id
@@ -166,7 +166,7 @@ end
 --- Register callback that runs when a certain key is released.
 -- @string key_id The key that must be released or nil for any key
 -- @function cb The callback
--- @treturn fn function Cancel callback
+-- @treturn function fn Cancel callback
 function M.on_key_release(key_id, cb)
 	if not cb then
 		cb = key_id
@@ -183,7 +183,7 @@ end
 
 --- Check if a certain key is down.
 -- @string key_id The key that must be down, or nil for any key
--- @treturn down bool True if down
+-- @treturn bool down True if down
 function M.is_key_down(key_id)
 	key_id = key_id or "*"
 	key_id = hash(key_id)

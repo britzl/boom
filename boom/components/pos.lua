@@ -26,7 +26,7 @@ end
 --- Create a position component.
 -- @number x
 -- @number y
--- @treturn component Pos The created component
+-- @treturn Pos component The created component
 function M.pos(x, y)
 	if type(x) == "userdata" then
 		local pos = x

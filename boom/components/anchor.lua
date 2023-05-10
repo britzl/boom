@@ -23,7 +23,7 @@ local ANCHORS = {
 ---
 -- Anchor point for render.
 -- @string anchor Anchor (center, topleft, left, topright, right, bottomright, bottom, bottomleft)
--- @treturn component Anchor The anchor component.
+-- @treturn AnchorComp component The anchor component.
 function M.anchor(anchor)
 	local c = {}
 	c.tag = "anchor"

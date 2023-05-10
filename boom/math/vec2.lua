@@ -8,7 +8,7 @@ local vec2 = {}
 -- @name vec2
 -- @number x Horizontal position
 -- @number y Vertical position
--- @treturn v2 Vec2 The created vec2
+-- @treturn Vec2 v2 The created vec2
 local function new(x, y)
 	if type(x) == "userdata" then
 		return vmath.vector3(x)

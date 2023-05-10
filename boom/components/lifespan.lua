@@ -7,7 +7,7 @@ local M = {}
 --- Create a Lifespan component.
 -- @number time In seconds
 -- @table options (fade)
--- @treturn component Lifespan The created component
+-- @treturn LifespanComp component The created component
 function M.lifespan(time, options)
 	assert(time and time > 0)
 	local c = {}

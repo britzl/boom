@@ -6,7 +6,7 @@ local M = {}
 
 --- Create a health component
 -- @number hp Initial health
--- @treturn component HealthComp The health component
+-- @treturn HealthComp component The health component
 function M.health(hp)
 	local c = {}
 	c.tag = "health"

@@ -4,29 +4,24 @@
 local collisions = require "boom.collisions"
 local mouse = require "boom.events.mouse"
 local vec2 = require "boom.math.vec2"
-local rect = require "boom.area.rect"
-local circle = require "boom.area.circle"
-local areafactory = require "boom.area.areafactory"
+local rect = require "boom.components.area.rect"
+local circle = require "boom.components.area.circle"
+local areafactory = require "boom.components.area.areafactory"
 
 local M = {}
-
-local AREA_RECT = nil
-local AREA_CIRCLE = nil
 
 local V2_ZERO = vec2(0)
 local V2_ONE = vec2(1)
 
 
 function M.__init()
-	AREA_RECT = msg.url("#arearectfactory")
-	AREA_CIRCLE = msg.url("#areacirclefactory")
 end
 
 --- Create a collider area and enabled collision detection.
 -- This will create an area component which is used to describe an area which
 -- can collide with other area components.
 -- @table options Component options (shape, width, height, radius)
--- @treturn area AreaComp The area component
+-- @treturn AreaComp area The area component
 function M.area(options)
 	local c = {}
 	c.tag = "area"
@@ -107,7 +102,7 @@ function M.area(options)
 
 	--- Get all collisions currently happening for this component.
 	-- @type AreaComp
-	-- @treturn collisions table List of collisions
+	-- @treturn table collisions List of collisions
 	c.get_collisions = function()
 		return registered_collisions
 	end
@@ -116,7 +111,7 @@ function M.area(options)
 	-- @type AreaComp
 	-- @tparam other_object GameObject The game object to check collisions with.
 	-- @treturn collision bool Return true if colliding with the other object
-	-- @treturn data table Collision data
+	-- @treturn table data Collision data
 	c.check_collision = function(other_object)
 		for i=1,#registered_collisions do
 			local collision = registered_collisions[i]
@@ -148,7 +143,7 @@ function M.area(options)
 	--- Check if a point is within the area of this component.
 	-- @type AreaComp
 	-- @param point The point to check
-	-- @treturn result bool Will return true if point is within area
+	-- @treturn bool result Will return true if point is within area
 	c.has_point = function(point)
 		local object = c.object
 		local angle = object.angle or 0

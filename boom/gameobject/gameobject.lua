@@ -3,17 +3,10 @@ local M = {}
 local objects = {}
 local objects_to_delete = {}
 local components_on_input = {}
-local components_update = {}
-local components_pre_update = {}
-local components_post_update = {}
 
 local GAMEOBJECT_FACTORY = nil
 
 local ROOT = hash("/root")
-local SPRITE = hash("/sprite")
-local LABEL_LEFT = hash("/label_left")
-local LABEL_RIGHT = hash("/label_right")
-local LABEL_CENTER = hash("/label_center")
 
 
 local function destroy_component(comp)
@@ -109,10 +102,6 @@ end
 function M.add(comps)
 	local ids = collectionfactory.create(GAMEOBJECT_FACTORY)
 	local id = ids[ROOT]
-	msg.post(ids[SPRITE], "disable")
-	msg.post(ids[LABEL_LEFT], "disable")
-	msg.post(ids[LABEL_RIGHT], "disable")
-	msg.post(ids[LABEL_CENTER], "disable")
 
 	local object = {}
 	objects[id] = object

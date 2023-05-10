@@ -1,27 +1,29 @@
 local M = {}
 
+local text_left_factory_url = nil
+local text_right_factory_url = nil
+local text_center_factory_url = nil
 local game_url = nil
 local label_screen_material = nil
 
 function M.__init(config)
+	text_left_factory_url = "#textleftfactory"
+	text_right_factory_url = "#textrightfactory"
+	text_center_factory_url = "#textcenterfactory"
 	game_url = config.game_url
 	label_screen_material = config.label_screen_material
 end
 
-local LABEL_LEFT = hash("/label_left")
-local LABEL_RIGHT = hash("/label_right")
-local LABEL_CENTER = hash("/label_center")
-
 --- Render text.
 -- @string text The text to show
 -- @table options Text options (width, font, align)
--- @treturn component Text The created component
+-- @treturn TextComp component The created component
 function M.text(text, options)
 	local c = {}
 	c.tag = "text"
 
 	--- The text to render
-	-- @type Text
+	-- @type TextComp
 	-- @field string
 	c.text = text
 
@@ -34,17 +36,17 @@ function M.text(text, options)
 		local object = c.object
 		local url = nil
 		if align == "left" then
-			go.delete(object.ids[LABEL_RIGHT])
-			go.delete(object.ids[LABEL_CENTER])
-			url = msg.url(nil, object.ids[LABEL_LEFT], "label")
+			local id = factory.create(text_left_factory_url)
+			go.set_parent(id, object.id, false)
+			url = msg.url(nil, id, "label")
 		elseif align == "right" then
-			go.delete(object.ids[LABEL_LEFT])
-			go.delete(object.ids[LABEL_CENTER])
-			url = msg.url(nil, object.ids[LABEL_RIGHT], "label")
+			local id = factory.create(text_right_factory_url)
+			go.set_parent(id, object.id, false)
+			url = msg.url(nil, id, "label")
 		elseif align == "center" then
-			go.delete(object.ids[LABEL_LEFT])
-			go.delete(object.ids[LABEL_RIGHT])
-			url = msg.url(nil, object.ids[LABEL_CENTER], "label")
+			local id = factory.create(text_center_factory_url)
+			go.set_parent(id, object.id, false)
+			url = msg.url(nil, id, "label")
 		else
 			error("This should not happen")
 		end
@@ -84,6 +86,10 @@ function M.text(text, options)
 		if scale then
 			go.set(url, "scale", scale)
 		end
+	end
+
+	c.destroy = function()
+		go.delete(c.__url)
 	end
 
 	return c

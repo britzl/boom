@@ -41,3 +41,11 @@ You create a Boom game object like this:
 
 The above piece of code creates a "player" game object with a sprite and a position. 
 
+## API Reference
+
+Full [API reference here](api.md).
+
+
+## Examples
+
+Several examples of how to use Boom can be found in the [`examples/`](examples) folder.

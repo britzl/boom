@@ -352,7 +352,7 @@
 
 
 
-- name: Sprite.play
+- name: SpriteComp.play
   type: function
   desc: Play an animation 
   parameters:
@@ -360,7 +360,7 @@
     type: string
     desc: The animation to play
 
-- name: Sprite.stop
+- name: SpriteComp.stop
   type: function
   desc: Stop the current animation 
 

@@ -995,7 +995,7 @@
                             ],
                             "returns": [],
                             "summary": "Play an animation",
-                            "type": "Sprite",
+                            "type": "SpriteComp",
                             "usage": null
                         },
                         {
@@ -1006,7 +1006,7 @@
                             "params": [],
                             "returns": [],
                             "summary": "Stop the current animation",
-                            "type": "Sprite",
+                            "type": "SpriteComp",
                             "usage": null
                         }
                     ],

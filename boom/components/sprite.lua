@@ -134,7 +134,7 @@ function M.sprite(anim, options)
 	end
 
 	--- Play an animation
-	-- @type Sprite
+	-- @type SpriteComp
 	-- @string anim The animation to play
 	c.play = function(anim)
 		local object = c.object
@@ -145,7 +145,7 @@ function M.sprite(anim, options)
 	end
 
 	--- Stop the current animation
-	-- @type Sprite
+	-- @type SpriteComp
 	c.stop = function()
 		go.set(c.__url, "playback_rate", 0)
 	end

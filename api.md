@@ -54,7 +54,7 @@
 Boom is a game framework built on top of Defold. It is heavily inspired by the Kaboom.js game framework.
 
 
-### boom(game, )
+### boom(game)
 Start a boom game. Call this from your own game script
 
 
@@ -72,7 +72,7 @@ PARAMS
 Anchor component. Use this component to offset any rendered component such as a SpriteComp from the center of the game object.
 
 
-### anchor(anchor, )
+### anchor(anchor)
 Anchor point for render.
 
 
@@ -91,7 +91,7 @@ RETURNS
 Area component. Use this component to define a collider area and bounds for a game object.
 
 
-### area(options, )
+### area(options)
 Create a collider area and enabled collision detection. This will create an area component which is used to describe an area which can collide with other area components.
 
 
@@ -110,7 +110,7 @@ RETURNS
 * `collisions` [`table`] - List of collisions
 
 
-### AreaComp.check_collision(GameObject, )
+### AreaComp.check_collision(GameObject)
 Check collision between this component and another object. 
 
 
@@ -122,7 +122,7 @@ RETURNS
 * `data` [`table`] - Collision data
 
 
-### AreaComp.on_collide(tag, cb, )
+### AreaComp.on_collide(tag,cb)
 Register event listener when this component is colliding. 
 
 
@@ -131,7 +131,7 @@ PARAMS
 * `cb` [`function`] - Function to call when collision is detected
 
 
-### AreaComp.on_click(cb, )
+### AreaComp.on_click(cb)
 Register event listener when this component is clicked. 
 
 
@@ -139,7 +139,7 @@ PARAMS
 * `cb` [`function`] - Function to call when clicked
 
 
-### AreaComp.has_point(point, )
+### AreaComp.has_point(point)
 Check if a point is within the area of this component. 
 
 
@@ -158,7 +158,7 @@ RETURNS
 
 
 
-### body(options, )
+### body(options)
 Physical body that responds to gravity. Requires AreaComp and PosComp components on the game object. This also makes the object solid.
 
 
@@ -169,7 +169,7 @@ RETURNS
 * `component` [`BodyComp`] - The body component
 
 
-### BodyComp.jump(force, )
+### BodyComp.jump(force)
 Add upward force 
 
 
@@ -185,7 +185,7 @@ PARAMS
 Component to control the color of the game object 
 
 
-### color(..., )
+### color(...)
 Create a color component 
 
 
@@ -204,7 +204,7 @@ RETURNS
 
 
 
-### double_jump(options, )
+### double_jump(options)
 Enables double jump. Requires &quot;body&quot; component
 
 
@@ -215,7 +215,7 @@ RETURNS
 * `component` [`DoubleJumpComp`] - The double jump component
 
 
-### DoubleJumpComp.double_jump(force, )
+### DoubleJumpComp.double_jump(force)
 
 
 
@@ -231,7 +231,7 @@ PARAMS
 Fade in game object visual components such as sprites. 
 
 
-### fadein(time, )
+### fadein(time)
 Fade object in. 
 
 
@@ -266,7 +266,7 @@ RETURNS
 Handles health related logic. 
 
 
-### health(hp, )
+### health(hp)
 Create a health component 
 
 
@@ -277,7 +277,7 @@ RETURNS
 * `component` [`HealthComp`] - The health component
 
 
-### HealthComp.on_heal(cb, )
+### HealthComp.on_heal(cb)
 Register an event that runs when heal() is called. 
 
 
@@ -285,7 +285,7 @@ PARAMS
 * `cb` [`function`] - Function to call
 
 
-### HealthComp.on_hurt(cb, )
+### HealthComp.on_hurt(cb)
 Register an event that runs when hurt() is called. 
 
 
@@ -293,7 +293,7 @@ PARAMS
 * `cb` [`function`] - Function to call
 
 
-### HealthComp.on_death(cb, )
+### HealthComp.on_death(cb)
 Register an event that runs when health is 0 or less. 
 
 
@@ -301,7 +301,7 @@ PARAMS
 * `cb` [`function`] - Function to call
 
 
-### HealthComp.heal(n, )
+### HealthComp.heal(n)
 Increase hp. Will trigger on_heal.
 
 
@@ -309,7 +309,7 @@ PARAMS
 * `n` [`number`] - Amount to increase
 
 
-### HealthComp.hurt(n, )
+### HealthComp.hurt(n)
 Decrease hp. Will trigger on_hurt
 
 
@@ -325,7 +325,7 @@ PARAMS
 Destroy the game object after certain amount of time. Use this component when you need a game object to be destroyed after a period of time.
 
 
-### lifespan(time, options, )
+### lifespan(time,options)
 Create a Lifespan component. 
 
 
@@ -351,7 +351,7 @@ projectile = add({
 })
 ```
 
-### move(direction, speed, )
+### move(direction,speed)
 Create a move component. 
 
 
@@ -371,7 +371,7 @@ RETURNS
 Control the behavior of a game object when it goes out of view 
 
 
-### offscreen(options, )
+### offscreen(options)
 Create an offscreen component. 
 
 
@@ -382,7 +382,7 @@ RETURNS
 * `component` [`OffscreenComp`] - The created component
 
 
-### OffscreenComp.on_exit_screen(cb, )
+### OffscreenComp.on_exit_screen(cb)
 Register a callback that runs when the object goes out of view 
 
 
@@ -390,7 +390,7 @@ PARAMS
 * `cb` [`function`] - Function to call when the object goes out of view
 
 
-### OffscreenComp.on_enter_screen(cb, )
+### OffscreenComp.on_enter_screen(cb)
 Register a callback that runs when the object enters view 
 
 
@@ -406,7 +406,7 @@ PARAMS
 Component to control the opacity of a game object. 
 
 
-### opacity(opacity, )
+### opacity(opacity)
 Create an opacity component. 
 
 
@@ -436,7 +436,7 @@ add({
 })
 ```
 
-### pos(x, y, )
+### pos(x,y)
 Create a position component. 
 
 
@@ -448,7 +448,7 @@ RETURNS
 * `component` [`Pos`] - The created component
 
 
-### Pos.move(x, y, )
+### Pos.move(x,y)
 Move a number of pixels per second. 
 
 
@@ -465,7 +465,7 @@ PARAMS
 
 
 
-### rotate(angle, )
+### rotate(angle)
 Apply rotation to object
 
 
@@ -484,7 +484,7 @@ RETURNS
 
 
 
-### scale(x, y, )
+### scale(x,y)
 Apply a scale to the object
 
 
@@ -504,7 +504,7 @@ RETURNS
 
 
 
-### sprite(anim, options, )
+### sprite(anim,options)
 Render a sprite. 
 
 
@@ -541,7 +541,7 @@ If the sprite should be flipped vertically
 
 
 
-### SpriteComp.play(anim, )
+### SpriteComp.play(anim)
 Play an animation 
 
 
@@ -578,7 +578,7 @@ RETURNS
 
 
 
-### text(text, options, )
+### text(text,options)
 Render text. 
 
 
@@ -603,7 +603,7 @@ The text to render
 Run an action once or repeatedly at a set interval 
 
 
-### timer(n, fn, )
+### timer(n,fn)
 Run certain action after some time. 
 
 
@@ -615,7 +615,7 @@ RETURNS
 * `component` [`TimerComp`] - The created component
 
 
-### TimerComp.wait(n, fn, )
+### TimerComp.wait(n,fn)
 Run a callback function after n seconds 
 
 
@@ -624,7 +624,7 @@ PARAMS
 * `fn` [`function`] - The function to call
 
 
-### TimerComp.loop(n, fn, )
+### TimerComp.loop(n,fn)
 Run a callback function every n seconds 
 
 
@@ -646,7 +646,7 @@ Cancel the timer
 
 
 
-### z(z, )
+### z(z)
 Determines the draw order for objects. Object will be drawn on top if z value is bigger.
 
 
@@ -672,7 +672,7 @@ The z value
 
 
 
-### on_collide(tag1, tag2, fn, )
+### on_collide(tag1,tag2,fn)
 Register an event that runs when two game objects collide. 
 
 
@@ -693,7 +693,7 @@ RETURNS
 
 
 
-### on_key_press(key_id, cb, )
+### on_key_press(key_id,cb)
 Register callback that runs when a certain key is pressed. 
 
 
@@ -705,7 +705,7 @@ RETURNS
 * `fn` [`function`] - Cancel callback
 
 
-### on_key_release(key_id, cb, )
+### on_key_release(key_id,cb)
 Register callback that runs when a certain key is released. 
 
 
@@ -717,7 +717,7 @@ RETURNS
 * `fn` [`function`] - Cancel callback
 
 
-### is_key_down(key_id, )
+### is_key_down(key_id)
 Check if a certain key is down. 
 
 
@@ -736,7 +736,7 @@ RETURNS
 
 
 
-### on_click(tag, cb, )
+### on_click(tag,cb)
 Set mouse click listener. 
 
 
@@ -764,7 +764,7 @@ RETURNS
 
 
 
-### on_update(tag, fn, )
+### on_update(tag,fn)
 Run a function every frame. Register an event that runs every frame, optionally for all game objects with certain tag
 
 
@@ -783,7 +783,7 @@ PARAMS
 
 
 
-### add(comps, )
+### add(comps)
 Add a game object with a set of components. 
 
 
@@ -794,7 +794,7 @@ RETURNS
 * `object` [`GameObject`] - The created game object
 
 
-### GameObject.add(comps, )
+### GameObject.add(comps)
 Add a game object as a child of this game object. 
 
 
@@ -810,7 +810,7 @@ Destroy this game object
 
 
 
-### GameObject.is(tag, )
+### GameObject.is(tag)
 Check if there is a certain tag on this game object. 
 
 
@@ -821,7 +821,7 @@ RETURNS
 * `result` [`bool`] - Returns true if the tag exists on the game object
 
 
-### GameObject.use(comp, )
+### GameObject.use(comp)
 Add a component to this game object. 
 
 
@@ -829,7 +829,7 @@ PARAMS
 * `comp` [`table`] - The component to use
 
 
-### GameObject.unuse(tag, )
+### GameObject.unuse(tag)
 Remove a component from this game object. 
 
 
@@ -837,7 +837,7 @@ PARAMS
 * `tag` [`string`] - The component tag to remove
 
 
-### GameObject.c(tag, )
+### GameObject.c(tag)
 Get state for a specific component on this game object. 
 
 
@@ -848,7 +848,7 @@ RETURNS
 * `state` [`table`] - The component state
 
 
-### destroy(object, )
+### destroy(object)
 Destroy a game object and all of its components. 
 
 
@@ -856,7 +856,7 @@ PARAMS
 * `object` [`GameObject`] - The object to destroy
 
 
-### destroy_all(tag, )
+### destroy_all(tag)
 Destroy all objects with a certain tag. 
 
 
@@ -864,7 +864,7 @@ PARAMS
 * `tag` [`string`] - The tag to destroy or nil to destroy all objects
 
 
-### object(id, )
+### object(id)
 Get game object with specific id. 
 
 
@@ -883,7 +883,7 @@ RETURNS
 * `table` [`objects`] - All game objects
 
 
-### get(tag, )
+### get(tag)
 Get all game objects with the specified tag. 
 
 
@@ -894,7 +894,7 @@ RETURNS
 * `objects` [`table`] - List of objects
 
 
-### every(tag, cb, )
+### every(tag,cb)
 Run callback on every object with a certain tag. 
 
 
@@ -913,7 +913,7 @@ PARAMS
 
 
 
-### cam_pos(x, y, )
+### cam_pos(x,y)
 Get or set camera position.
 
 
@@ -925,7 +925,7 @@ RETURNS
 * `position` - Camera position
 
 
-### cam_rot(angle, )
+### cam_rot(angle)
 Get or set camera rotation. 
 
 
@@ -936,7 +936,7 @@ RETURNS
 * `rotation` - The camera rotation in degrees
 
 
-### cam_zoom(zoom, )
+### cam_zoom(zoom)
 Get or set the camera zoom. 
 
 
@@ -963,7 +963,7 @@ RETURNS
 * `gravity` [`number`] - The gravity in pixels per seconds
 
 
-### set_gravity(gravity, )
+### set_gravity(gravity)
 Set gravity 
 
 
@@ -1037,7 +1037,7 @@ RETURNS
 
 
 
-### add_level(map, options, )
+### add_level(map,options)
 Construct a level based on symbols. 
 
 
@@ -1059,7 +1059,7 @@ RETURNS
 
 
 
-### rand(a, b, )
+### rand(a,b)
 Get a random number. If called with no arguments the function returns a number between 0 and 1. If called with a single argument &#x27;a&#x27; a number between 0 and &#x27;a&#x27; is returned. If called with two arguments &#x27;a&#x27; and &#x27;b&#x27; a number between &#x27;a&#x27; and &#x27;b&#x27; is returned.
 
 
@@ -1071,7 +1071,7 @@ RETURNS
 * `number` [`number`] - Random number
 
 
-### randi(a, b, )
+### randi(a,b)
 Same as rand() but floored. 
 
 
@@ -1091,7 +1091,7 @@ RETURNS
 
 
 
-### tween(from, from, to, to, duration, easing, set_value, )
+### tween(from,from,to,to,duration,easing,set_value)
 Tween a value from one to another. The transition will happen over a certain duration using a specific easing function.
 
 
@@ -1108,7 +1108,7 @@ RETURNS
 * `controller` [`TweenController`] - A tween controller object.
 
 
-### TweenController.on_end(fn, )
+### TweenController.on_end(fn)
 Register an event when finished 
 
 
@@ -1134,7 +1134,7 @@ Cancel tween.
 Vector type for a 2D point (backed by Defold vmath.vector3()) 
 
 
-### vec2(x, y, )
+### vec2(x,y)
 Create a Vec2 
 
 
@@ -1176,7 +1176,7 @@ RIGHT vector
 
 
 
-### scene(id, fn, )
+### scene(id,fn)
 Create a scene. 
 
 
@@ -1185,7 +1185,7 @@ PARAMS
 * `fn` [`function`] - The scene code
 
 
-### show(id, ..., )
+### show(id,...)
 Show a scene. 
 
 
@@ -1204,7 +1204,7 @@ PARAMS
 
 
 
-### wait(seconds, cb, )
+### wait(seconds,cb)
 Run a callback after a certain nummber of seconds. 
 
 
@@ -1216,7 +1216,7 @@ RETURNS
 * `cancel` [`function`] - Call to cancel the timer
 
 
-### loop(seconds, cb, )
+### loop(seconds,cb)
 Run a callback repeatedly with a certain interval 
 
 

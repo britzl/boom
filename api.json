@@ -17,6 +17,7 @@
                                     "type": "function"
                                 }
                             ],
+                            "params_string": "game",
                             "returns": [],
                             "usage": null
                         }
@@ -54,6 +55,7 @@
                                     "type": "string"
                                 }
                             ],
+                            "params_string": "anchor",
                             "returns": [
                                 {
                                     "description": "The anchor component.",
@@ -92,6 +94,7 @@
                                     "type": "table"
                                 }
                             ],
+                            "params_string": "options",
                             "returns": [
                                 {
                                     "description": "The area component",
@@ -131,6 +134,7 @@
                                     "type": "other_object"
                                 }
                             ],
+                            "params_string": "GameObject",
                             "returns": [
                                 {
                                     "description": "Return true if colliding with the other object",
@@ -164,6 +168,7 @@
                                     "type": "function"
                                 }
                             ],
+                            "params_string": "tag,cb",
                             "returns": [],
                             "summary": "Register event listener when this component is colliding.",
                             "type": "AreaComp",
@@ -181,6 +186,7 @@
                                     "type": "function"
                                 }
                             ],
+                            "params_string": "cb",
                             "returns": [],
                             "summary": "Register event listener when this component is clicked.",
                             "type": "AreaComp",
@@ -198,6 +204,7 @@
                                     "type": null
                                 }
                             ],
+                            "params_string": "point",
                             "returns": [
                                 {
                                     "description": "Will return true if point is within area",
@@ -237,6 +244,7 @@
                                     "type": "table"
                                 }
                             ],
+                            "params_string": "options",
                             "returns": [
                                 {
                                     "description": "The body component",
@@ -259,6 +267,7 @@
                                     "type": "number"
                                 }
                             ],
+                            "params_string": "force",
                             "returns": [],
                             "summary": "Add upward force",
                             "type": "BodyComp",
@@ -284,6 +293,7 @@
                                     "type": null
                                 }
                             ],
+                            "params_string": "...",
                             "returns": [
                                 {
                                     "description": "The color component",
@@ -322,6 +332,7 @@
                                     "type": "table"
                                 }
                             ],
+                            "params_string": "options",
                             "returns": [
                                 {
                                     "description": "The double jump component",
@@ -344,6 +355,7 @@
                                     "type": "number"
                                 }
                             ],
+                            "params_string": "force",
                             "returns": [],
                             "type": "DoubleJumpComp",
                             "usage": null
@@ -368,6 +380,7 @@
                                     "type": "number"
                                 }
                             ],
+                            "params_string": "time",
                             "returns": [
                                 {
                                     "description": "The fade in component.",
@@ -440,6 +453,7 @@
                                     "type": "number"
                                 }
                             ],
+                            "params_string": "hp",
                             "returns": [
                                 {
                                     "description": "The health component",
@@ -462,6 +476,7 @@
                                     "type": "function"
                                 }
                             ],
+                            "params_string": "cb",
                             "returns": [],
                             "summary": "Register an event that runs when heal() is called.",
                             "type": "HealthComp",
@@ -479,6 +494,7 @@
                                     "type": "function"
                                 }
                             ],
+                            "params_string": "cb",
                             "returns": [],
                             "summary": "Register an event that runs when hurt() is called.",
                             "type": "HealthComp",
@@ -496,6 +512,7 @@
                                     "type": "function"
                                 }
                             ],
+                            "params_string": "cb",
                             "returns": [],
                             "summary": "Register an event that runs when health is 0 or less.",
                             "type": "HealthComp",
@@ -513,6 +530,7 @@
                                     "type": "number"
                                 }
                             ],
+                            "params_string": "n",
                             "returns": [],
                             "summary": "Increase hp.",
                             "type": "HealthComp",
@@ -530,6 +548,7 @@
                                     "type": "number"
                                 }
                             ],
+                            "params_string": "n",
                             "returns": [],
                             "summary": "Decrease hp.",
                             "type": "HealthComp",
@@ -569,6 +588,7 @@
                                     "type": "table"
                                 }
                             ],
+                            "params_string": "time,options",
                             "returns": [
                                 {
                                     "description": "The created component",
@@ -613,6 +633,7 @@
                                     "type": "number"
                                 }
                             ],
+                            "params_string": "direction,speed",
                             "returns": [
                                 {
                                     "description": "The created component.",
@@ -652,6 +673,7 @@
                                     "type": "table"
                                 }
                             ],
+                            "params_string": "options",
                             "returns": [
                                 {
                                     "description": "The created component",
@@ -674,6 +696,7 @@
                                     "type": "function"
                                 }
                             ],
+                            "params_string": "cb",
                             "returns": [],
                             "summary": "Register a callback that runs when the object goes out of view",
                             "type": "OffscreenComp",
@@ -691,6 +714,7 @@
                                     "type": "function"
                                 }
                             ],
+                            "params_string": "cb",
                             "returns": [],
                             "summary": "Register a callback that runs when the object enters view",
                             "type": "OffscreenComp",
@@ -725,6 +749,7 @@
                                     "type": "number"
                                 }
                             ],
+                            "params_string": "opacity",
                             "returns": [
                                 {
                                     "description": "The created component",
@@ -782,6 +807,7 @@
                                     "type": "number"
                                 }
                             ],
+                            "params_string": "x,y",
                             "returns": [
                                 {
                                     "description": "The created component",
@@ -809,6 +835,7 @@
                                     "type": "number"
                                 }
                             ],
+                            "params_string": "x,y",
                             "returns": [],
                             "summary": "Move a number of pixels per second.",
                             "type": "Pos",
@@ -842,6 +869,7 @@
                                     "type": null
                                 }
                             ],
+                            "params_string": "angle",
                             "returns": [
                                 {
                                     "description": "Component",
@@ -874,6 +902,7 @@
                                     "type": null
                                 }
                             ],
+                            "params_string": "x,y",
                             "returns": [
                                 {
                                     "description": "Component",
@@ -906,6 +935,7 @@
                                     "type": "table"
                                 }
                             ],
+                            "params_string": "anim,options",
                             "returns": [
                                 {
                                     "description": "The created component",
@@ -993,6 +1023,7 @@
                                     "type": "string"
                                 }
                             ],
+                            "params_string": "anim",
                             "returns": [],
                             "summary": "Play an animation",
                             "type": "SpriteComp",
@@ -1056,6 +1087,7 @@
                                     "type": "table"
                                 }
                             ],
+                            "params_string": "text,options",
                             "returns": [
                                 {
                                     "description": "The created component",
@@ -1104,6 +1136,7 @@
                                     "type": "function"
                                 }
                             ],
+                            "params_string": "n,fn",
                             "returns": [
                                 {
                                     "description": "The created component",
@@ -1131,6 +1164,7 @@
                                     "type": "function"
                                 }
                             ],
+                            "params_string": "n,fn",
                             "returns": [],
                             "summary": "Run a callback function after n seconds",
                             "type": "TimerComp",
@@ -1153,6 +1187,7 @@
                                     "type": "function"
                                 }
                             ],
+                            "params_string": "n,fn",
                             "returns": [],
                             "summary": "Run a callback function every n seconds",
                             "type": "TimerComp",
@@ -1197,6 +1232,7 @@
                                     "type": "number"
                                 }
                             ],
+                            "params_string": "z",
                             "returns": [
                                 {
                                     "description": "The created component",
@@ -1254,6 +1290,7 @@
                                     "type": "function"
                                 }
                             ],
+                            "params_string": "tag1,tag2,fn",
                             "returns": [
                                 {
                                     "description": "Cancel event function",
@@ -1288,6 +1325,7 @@
                                     "type": "function"
                                 }
                             ],
+                            "params_string": "key_id,cb",
                             "returns": [
                                 {
                                     "description": "Cancel callback",
@@ -1315,6 +1353,7 @@
                                     "type": "function"
                                 }
                             ],
+                            "params_string": "key_id,cb",
                             "returns": [
                                 {
                                     "description": "Cancel callback",
@@ -1337,6 +1376,7 @@
                                     "type": "string"
                                 }
                             ],
+                            "params_string": "key_id",
                             "returns": [
                                 {
                                     "description": "True if down",
@@ -1371,6 +1411,7 @@
                                     "type": "function"
                                 }
                             ],
+                            "params_string": "tag,cb",
                             "returns": [
                                 {
                                     "description": "Cancel listener function",
@@ -1421,6 +1462,7 @@
                                     "type": "function"
                                 }
                             ],
+                            "params_string": "tag,fn",
                             "returns": [],
                             "summary": "Run a function every frame.",
                             "usage": null
@@ -1449,6 +1491,7 @@
                                     "type": "table"
                                 }
                             ],
+                            "params_string": "comps",
                             "returns": [
                                 {
                                     "description": "The created game object",
@@ -1471,6 +1514,7 @@
                                     "type": "table"
                                 }
                             ],
+                            "params_string": "comps",
                             "returns": [
                                 {
                                     "description": "The game object",
@@ -1504,6 +1548,7 @@
                                     "type": "string"
                                 }
                             ],
+                            "params_string": "tag",
                             "returns": [
                                 {
                                     "description": "Returns true if the tag exists on the game object",
@@ -1527,6 +1572,7 @@
                                     "type": "table"
                                 }
                             ],
+                            "params_string": "comp",
                             "returns": [],
                             "summary": "Add a component to this game object.",
                             "type": "GameObject",
@@ -1544,6 +1590,7 @@
                                     "type": "string"
                                 }
                             ],
+                            "params_string": "tag",
                             "returns": [],
                             "summary": "Remove a component from this game object.",
                             "type": "GameObject",
@@ -1561,6 +1608,7 @@
                                     "type": "string"
                                 }
                             ],
+                            "params_string": "tag",
                             "returns": [
                                 {
                                     "description": "The component state",
@@ -1584,6 +1632,7 @@
                                     "type": "GameObject"
                                 }
                             ],
+                            "params_string": "object",
                             "returns": [],
                             "summary": "Destroy a game object and all of its components.",
                             "usage": null
@@ -1600,6 +1649,7 @@
                                     "type": "string"
                                 }
                             ],
+                            "params_string": "tag",
                             "returns": [],
                             "summary": "Destroy all objects with a certain tag.",
                             "usage": null
@@ -1616,6 +1666,7 @@
                                     "type": "string"
                                 }
                             ],
+                            "params_string": "id",
                             "returns": [
                                 {
                                     "description": "The object or nil if it doesn't exist",
@@ -1654,6 +1705,7 @@
                                     "type": "string"
                                 }
                             ],
+                            "params_string": "tag",
                             "returns": [
                                 {
                                     "description": "List of objects",
@@ -1681,6 +1733,7 @@
                                     "type": "function"
                                 }
                             ],
+                            "params_string": "tag,cb",
                             "returns": [],
                             "summary": "Run callback on every object with a certain tag.",
                             "usage": null
@@ -1714,6 +1767,7 @@
                                     "type": null
                                 }
                             ],
+                            "params_string": "x,y",
                             "returns": [
                                 {
                                     "description": "Camera position",
@@ -1734,6 +1788,7 @@
                                     "type": null
                                 }
                             ],
+                            "params_string": "angle",
                             "returns": [
                                 {
                                     "description": "The camera rotation in degrees",
@@ -1755,6 +1810,7 @@
                                     "type": null
                                 }
                             ],
+                            "params_string": "zoom",
                             "returns": [
                                 {
                                     "description": "Camera zoom",
@@ -1799,6 +1855,7 @@
                                     "type": "number"
                                 }
                             ],
+                            "params_string": "gravity",
                             "returns": [],
                             "summary": "Set gravity",
                             "usage": null
@@ -1916,6 +1973,7 @@
                                     "type": "table"
                                 }
                             ],
+                            "params_string": "map,options",
                             "returns": [
                                 {
                                     "description": "Game object with tiles as children",
@@ -1955,6 +2013,7 @@
                                     "type": "number"
                                 }
                             ],
+                            "params_string": "a,b",
                             "returns": [
                                 {
                                     "description": "Random number",
@@ -1982,6 +2041,7 @@
                                     "type": "number"
                                 }
                             ],
+                            "params_string": "a,b",
                             "returns": [
                                 {
                                     "description": "Random integer number",
@@ -2041,6 +2101,7 @@
                                     "type": "function"
                                 }
                             ],
+                            "params_string": "from,from,to,to,duration,easing,set_value",
                             "returns": [
                                 {
                                     "description": "A tween controller object.",
@@ -2063,6 +2124,7 @@
                                     "type": "function"
                                 }
                             ],
+                            "params_string": "fn",
                             "returns": [],
                             "summary": "Register an event when finished",
                             "type": "TweenController",
@@ -2115,6 +2177,7 @@
                                     "type": "number"
                                 }
                             ],
+                            "params_string": "x,y",
                             "returns": [
                                 {
                                     "description": "The created vec2",
@@ -2215,6 +2278,7 @@
                                     "type": "function"
                                 }
                             ],
+                            "params_string": "id,fn",
                             "returns": [],
                             "summary": "Create a scene.",
                             "usage": null
@@ -2236,6 +2300,7 @@
                                     "type": null
                                 }
                             ],
+                            "params_string": "id,...",
                             "returns": [],
                             "summary": "Show a scene.",
                             "usage": null
@@ -2269,6 +2334,7 @@
                                     "type": "function"
                                 }
                             ],
+                            "params_string": "seconds,cb",
                             "returns": [
                                 {
                                     "description": "Call to cancel the timer",
@@ -2296,6 +2362,7 @@
                                     "type": "function"
                                 }
                             ],
+                            "params_string": "seconds,cb",
                             "returns": [
                                 {
                                     "description": "Call to cancel the timer",

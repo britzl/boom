@@ -147,7 +147,14 @@ def process_entry(line, lines):
             else:
                 entry["description"] = entry["description"] + line + " "
 
-    entry["has_params"] = len(entry["params"]) > 0
+    has_params = len(entry["params"]) > 0
+    if has_params:
+        params = []
+        for p in entry["params"]:
+            params.append(p["name"])
+        entry["params_string"] = ",".join(params)
+
+    entry["has_params"] = has_params
     entry["has_returns"] = len(entry["returns"]) > 0
     entry["description"] = capitalize(entry["description"].strip())
     return entry

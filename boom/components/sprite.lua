@@ -126,7 +126,7 @@ function M.sprite(anim, options)
 			p.x = (w / 2) * anchor.x
 			p.y = (h / 2) * anchor.y
 			p.z = object.z or 0
-			go.set_position(p, url)
+			go.set_position(p.tov3(), url)
 		end
 
 		sprite.set_vflip(url, object.flip_y)

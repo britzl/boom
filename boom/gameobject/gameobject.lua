@@ -1,3 +1,6 @@
+--local observe = require("boom.internal.observe")
+local observable = require("boom.internal.observable")
+
 local M = {}
 
 local objects = {}
@@ -116,7 +119,7 @@ function M.add(comps)
 	object.update = {}
 	object.pre_update = {}
 	object.post_update = {}
-	
+
 	-- set the game object id as a tag
 	object.tags[id] = true
 
@@ -175,24 +178,16 @@ function M.add(comps)
 		return object.comps[tag]
 	end
 
-	local properties = object.properties
-	local mt = {}
-	mt.__index = function(t, k)
-		local v = rawget(t, k)
-		if v then return v end
-		if properties[k] ~= nil then return properties[k] end
-	end
-	mt.__newindex = function(t, k, v)
-		local current = rawget(t, k)
-		if current then
-			rawset(t, k, v)
-		elseif properties[k] ~= v then
-			properties[k] = v
-			rawset(object, "dirty", true)
-			--print("object", rawget(object, "id"), "became dirty when setting", k, "to", v)
-		end
-	end
-	object = setmetatable(object, mt)
+	-- observe all object properties for changes and when a
+	-- changed property is detected the "dirty" flag of the
+	-- object is set and the object will be updated
+	observable.create(object, object.properties)
+	observable.observe(object, object, function(k,v)
+		rawset(object, "dirty", true)
+	end)
+	--[[observe(object, object.properties, function(k,v)
+		rawset(object, "dirty", true)
+	end)--]]
 
 	-- init components
 	for i=1,#object.comps do
@@ -306,7 +301,9 @@ function M.__update(dt)
 		end
 	end
 
-	-- update active objects
+	-- update objects
+	-- only objects with their "dirty" flag set will be updated
+	-- see note in add()
 	for id,object in pairs(objects) do
 		if not object.destroyed and object.dirty then
 			--print("update", object.name)

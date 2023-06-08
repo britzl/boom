@@ -32,15 +32,22 @@ function M.pos(x, y)
 		local pos = x
 		x = pos.x
 		y = pos.y
+	elseif type(x) == "table" then
+		local pos = x
+		x = pos.x
+		y = pos.y
 	end
-	local c = {
-		tag = "pos",
-		pos = vec2(x, y),
-		vel = vec2(0, 0),
-	}
+
+	local c = {}
+	c.tag = "pos"
+	c.pos = vec2(x, y)
+	c.vel = vec2(0, 0)
+
+	local v3 = vmath.vector3(x, y, 0)
 
 	c.init = function()
-		go.set_position(c.object.pos, c.object.id)
+		go.set_position(v3, c.object.id)
+		--go.set_position(c.object.pos, c.object.id)
 	end
 
 	--- Move a number of pixels per second.
@@ -64,7 +71,10 @@ function M.pos(x, y)
 			pos.y = pos.y + vel.y * dt
 			object.dirty = true
 		end
-		go.set_position(pos, object.id)
+		v3.x = pos.x
+		v3.y = pos.y
+		go.set_position(v3, object.id)
+		--go.set_position(pos, object.id)
 	end
 
 	return c

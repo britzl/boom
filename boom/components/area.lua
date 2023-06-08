@@ -188,7 +188,7 @@ function M.area(options)
 			local offset = vec2(r * anchor.x, r * anchor.y)
 			circle.copy(object.local_area, object.world_area)
 
-			go.set_position(offset, area_id)
+			go.set_position(offset.tov3(), area_id)
 
 			circle.create(object.local_area)
 			circle.offset_inline(object.world_area, offset)
@@ -214,7 +214,7 @@ function M.area(options)
 			local angle = object.angle or 0
 			local offset = vec2(w2 * anchor.x, h2 * anchor.y)
 
-			go.set_position(offset, area_id)
+			go.set_position(offset.tov3(), area_id)
 
 			rect.copy(object.local_area, object.world_area)
 			rect.offset_inline(object.world_area, offset)

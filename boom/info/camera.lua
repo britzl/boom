@@ -24,7 +24,7 @@ function M.cam_pos(...)
 	if not pos then
 		return go.get_position(CAMERA_ID)
 	end
-	go.set_position(pos, CAMERA_ID)
+	go.set_position(pos.tov3(), CAMERA_ID)
 end
 
 --- Get or set camera rotation.
@@ -51,7 +51,8 @@ end
 function M.__init()
 	msg.post(CAMERA_ID, "acquire_camera_focus")
 	--msg.post("@render:", "use_camera_projection")
-	local pos = vec2(screen.width() / 2, screen.height() / 2)
+	--local pos = vec2(screen.width() / 2, screen.height() / 2)
+	local pos = vmath.vector3(screen.width() / 2, screen.height() / 2, 0)
 	go.set_position(pos, CAMERA_ID)
 end
 

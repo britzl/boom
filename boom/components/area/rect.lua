@@ -47,7 +47,7 @@ end
 
 function M.point_inside(p, rect, center, angle)
 	-- rotate distance vector from area center to point onto rect
-	local distance = center - p
+	local distance = center.tov3() - p.tov3()
 	point.rotate_point_inline(distance, -angle)
 
 	local topleft = rect.topleft

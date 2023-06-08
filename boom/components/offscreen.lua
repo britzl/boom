@@ -1,4 +1,14 @@
 --- Control the behavior of a game object when it goes out of view
+--
+-- @usage
+-- -- move towards a direction infinitely
+-- local projectile = add({
+--     sprite("bullet"),
+--     pos(player.pos),
+--     move(vec2(0, 1), 1200),
+--     offscreen({ destroy = true })
+-- })
+
 
 local gameobject = require "boom.gameobject.gameobject"
 local listener = require "boom.events.listener"

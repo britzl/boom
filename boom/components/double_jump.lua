@@ -3,14 +3,19 @@ local gravity = require "boom.info.gravity"
 local M = {}
 
 --- Enables double jump.
--- Requires "body" component
--- @table options Component options
+-- Requires "body" component.
+-- @table options Component options (num_jumps)
 -- @treturn DoubleJumpComp component The double jump component
 function M.double_jump(options)
 	local c = {}
 	c.tag = "double_jump"
 
 	c.num_jumps = options and options.num_jumps or 1
+
+	c.init = function()
+		local object = c.object
+		assert(object.comps.body, "Component 'double_jump' requires component 'body'")
+	end
 
 	---
 	-- @type DoubleJumpComp

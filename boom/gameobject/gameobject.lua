@@ -200,6 +200,9 @@ function M.add(comps)
 	return object
 end
 
+
+
+
 --- Destroy a game object and all of its components.
 -- @tparam GameObject object The object to destroy
 function M.destroy(object)

@@ -22,6 +22,6 @@ function init(self)
 		scene("shmup", shmupgame)
 		scene("shmup-gameover", shmupgameover)
 		scene("flappy", flappy)
-		show("platformer")
+		show("examples")
 	end)
 end

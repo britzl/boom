@@ -1,5 +1,13 @@
 --- Area component.
 -- Use this component to define a collider area and bounds for a game object.
+-- The area can be either a rectangle or a circle. The size can either be set
+-- manually or based on the size of a renderable component, such as a sprite.
+--
+-- @usage
+-- local player = add({
+--     sprite("player"),
+--     area("auto")
+-- })
 
 local collisions = require "boom.collisions"
 local mouse = require "boom.events.mouse"

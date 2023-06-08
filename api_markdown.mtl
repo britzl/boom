@@ -15,7 +15,9 @@
 *File: `{{filename}}`*
 
 {{#file_summary}}{{file_summary}} {{/file_summary}}{{file_description}}
-{{#usage}}```
+{{#usage}}
+
+```lua
 {{{usage}}}```{{/usage}}
 
 {{#entries}}

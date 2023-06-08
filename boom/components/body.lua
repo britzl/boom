@@ -1,3 +1,17 @@
+---Body component.
+-- Use this component to create a physical body that responds to gravity.
+--
+-- @usage
+-- gravity(600)
+-- local player = add({
+--     sprite("player"),
+--     area("auto"),
+--     body()
+-- })
+--
+-- player.jump(300)
+
+
 local gravity = require "boom.info.gravity"
 local collisions = require "boom.collisions"
 
@@ -54,7 +68,7 @@ function M.body(options)
 		end)
 	end
 
-	--- Add upward force
+	--- Add upward force.
 	-- @type BodyComp
 	-- @number force The upward force to apply
 	c.jump = function(force)

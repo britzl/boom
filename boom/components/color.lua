@@ -1,4 +1,9 @@
---- Component to control the color of the game object
+--- Component to control the color of the game object.
+-- @usage
+-- local bullet = add({
+--     sprite("red-bullet"),
+--     color(1, 0, 0)
+-- })
 
 local color = require "boom.math.color"
 

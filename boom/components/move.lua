@@ -1,12 +1,12 @@
---- Move towards a direction infinitely, and destroys when it leaves the game view.
+--- Component to move a game object in a direction of travel and at a specific speed.
+--
 -- @usage
--- projectile = add({
+-- -- move towards a direction infinitely
+-- local projectile = add({
 --     sprite("bullet"),
 --     pos(player.pos),
 --     move(vec2(0, 1), 1200),
 -- })
-
-local gameobject = require "boom.gameobject.gameobject"
 
 local WIDTH = sys.get_config_int("display.width")
 local HEIGHT = sys.get_config_int("display.width")

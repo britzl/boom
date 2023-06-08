@@ -1,4 +1,20 @@
 --- Handles health related logic.
+-- @usage
+-- local enemy = add({
+--     sprite("monster"),
+--     area("auto"),
+--     pos(100, 100),
+--     health(3)
+-- })
+--
+-- enemy.on_collide("bullet", function(collision)
+--    enemy.hurt(1)
+-- end)
+--
+-- enemy.on_death(function()
+--     destroy(enemy)
+-- end)
+
 
 local listener = require "boom.events.listener"
 

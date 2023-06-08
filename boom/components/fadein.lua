@@ -1,4 +1,9 @@
 --- Fade in game object visual components such as sprites.
+-- @usage
+-- add({
+--     text("Hello World"),
+--     fadein(2)
+-- })
 
 local M = {}
 

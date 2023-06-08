@@ -39,5 +39,4 @@ return function()
 	on_update(function()
 		foo.pos = mouse_pos()
 	end)
-	
 end

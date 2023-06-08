@@ -71,6 +71,12 @@ PARAMS
 
 Anchor component. Use this component to offset any rendered component such as a SpriteComp from the center of the game object.
 
+```lua
+local bullet = add({
+    sprite("bullet"),
+    anchor("left")
+})
+```
 
 ### anchor(anchor)
 Anchor point for render.
@@ -88,8 +94,14 @@ RETURNS
 ## area
 *File: `boom/components/area.lua`*
 
-Area component. Use this component to define a collider area and bounds for a game object.
+Area component. Use this component to define a collider area and bounds for a game object. The area can be either a rectangle or a circle. The size can either be set manually or based on the size of a renderable component, such as a sprite.
 
+```lua
+local player = add({
+    sprite("player"),
+    area("auto")
+})
+```
 
 ### area(options)
 Create a collider area and enabled collision detection. This will create an area component which is used to describe an area which can collide with other area components.
@@ -170,7 +182,7 @@ RETURNS
 
 
 ### BodyComp.jump(force)
-Add upward force 
+Add upward force. 
 
 
 PARAMS
@@ -182,8 +194,14 @@ PARAMS
 ## color
 *File: `boom/components/color.lua`*
 
-Component to control the color of the game object 
+Component to control the color of the game object. 
 
+```lua
+local bullet = add({
+    sprite("red-bullet"),
+    color(1, 0, 0)
+})
+```
 
 ### color(...)
 Create a color component 
@@ -205,11 +223,11 @@ RETURNS
 
 
 ### double_jump(options)
-Enables double jump. Requires &quot;body&quot; component
+Enables double jump. Requires &quot;body&quot; component.
 
 
 PARAMS
-* `options` [`table`] - Component options
+* `options` [`table`] - Component options (num_jumps)
 
 RETURNS
 * `component` [`DoubleJumpComp`] - The double jump component
@@ -230,6 +248,12 @@ PARAMS
 
 Fade in game object visual components such as sprites. 
 
+```lua
+add({
+    text("Hello World"),
+    fadein(2)
+})
+```
 
 ### fadein(time)
 Fade object in. 
@@ -249,6 +273,14 @@ RETURNS
 
 Make object unaffected by camera. 
 
+```lua
+local score = 100
+local score_text = add({
+    text("SCORE: " .. score),
+    anchor("topleft"),
+    pos(5, height() - 5)
+})
+```
 
 ### fixed()
 Create a fixed component 
@@ -265,6 +297,22 @@ RETURNS
 
 Handles health related logic. 
 
+```lua
+local enemy = add({
+    sprite("monster"),
+    area("auto"),
+    pos(100, 100),
+    health(3)
+})
+
+enemy.on_collide("bullet", function(collision)
+   enemy.hurt(1)
+end)
+
+enemy.on_death(function()
+    destroy(enemy)
+end)
+```
 
 ### health(hp)
 Create a health component 
@@ -324,6 +372,12 @@ PARAMS
 
 Destroy the game object after certain amount of time. Use this component when you need a game object to be destroyed after a period of time.
 
+```lua
+add({
+    text("Gone in 90 seconds"),
+    lifespan(90, { fade = true })
+})
+```
 
 ### lifespan(time,options)
 Create a Lifespan component. 
@@ -342,8 +396,11 @@ RETURNS
 ## move
 *File: `boom/components/move.lua`*
 
-Move towards a direction infinitely, and destroys when it leaves the game view. 
-```
+Component to move a game object in a direction of travel and at a specific speed. 
+
+```lua
+-- move towards a direction infinitely, and
+-- destroys when it leaves the game view.
 projectile = add({
     sprite("bullet"),
     pos(player.pos),
@@ -428,7 +485,8 @@ The opacity of the component instance.
 *File: `boom/components/pos.lua`*
 
 Position of a game object. 
-```
+
+```lua
 -- this game object will draw a "bean" sprite at (100, 200)
 add({
    pos(100, 200),
@@ -445,10 +503,10 @@ PARAMS
 * `y` [`number`] - 
 
 RETURNS
-* `component` [`Pos`] - The created component
+* `component` [`PosComp`] - The created component
 
 
-### Pos.move(x,y)
+### PosComp.move(x,y)
 Move a number of pixels per second. 
 
 

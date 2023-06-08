@@ -98,7 +98,7 @@
 
 - name: BodyComp.jump
   type: function
-  desc: Add upward force 
+  desc: Add upward force. 
   parameters:
   - name: force
     type: number
@@ -118,11 +118,11 @@
 
 - name: double_jump
   type: function
-  desc: Enables double jump. Requires &quot;body&quot; component
+  desc: Enables double jump. Requires &quot;body&quot; component.
   parameters:
   - name: options
     type: table
-    desc: Component options
+    desc: Component options (num_jumps)
   return:
   - name: component
     type: DoubleJumpComp
@@ -291,10 +291,10 @@
     desc: 
   return:
   - name: component
-    type: Pos
+    type: PosComp
     desc: The created component
 
-- name: Pos.move
+- name: PosComp.move
   type: function
   desc: Move a number of pixels per second. 
   parameters:

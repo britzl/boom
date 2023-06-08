@@ -69,7 +69,7 @@ def process_entry(line, lines):
         
         # end of entry
         # try to figure out name of entry (unless it has been explicitly set)
-        if not line.startswith("-- "):
+        if not line.strip().startswith("--"):
             if "name" not in entry:
                 entry["name"] = get_field_name(line)
             break

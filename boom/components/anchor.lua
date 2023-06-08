@@ -1,6 +1,13 @@
 --- Anchor component.
 -- Use this component to offset any rendered component such as a SpriteComp from the
 -- center of the game object.
+--
+-- @usage
+-- local bullet = add({
+--     sprite("bullet"),
+--     anchor("left")
+-- })
+
 
 local vec2 = require "boom.math.vec2"
 

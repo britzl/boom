@@ -1,4 +1,11 @@
 --- Make object unaffected by camera.
+-- @usage
+-- local score = 100
+-- local score_text = add({
+--     text("SCORE: " .. score),
+--     anchor("topleft"),
+--     pos(5, height() - 5)
+-- })
 
 local M = {}
 

@@ -1,5 +1,13 @@
 --- Destroy the game object after certain amount of time.
 -- Use this component when you need a game object to be destroyed after a period of time.
+--
+-- @usage
+-- add({
+--     text("Gone in 90 seconds"),
+--     lifespan(90, { fade = true })
+-- })
+
+
 local gameobject = require "boom.gameobject.gameobject"
 
 local M = {}

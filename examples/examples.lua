@@ -7,9 +7,7 @@ return function()
 			sprite("grey_button00", { atlas = "ui" }),
 			pos(p),
 			area(),
-			--rotate(math.random(0,180)),
 			scale(1),
-			--anchor("center"),
 			"button",
 		})
 		btn.add({
@@ -21,22 +19,11 @@ return function()
 		return btn
 	end
 
-	local BUTTONS = { "shmup", "breakout", "platformer" }
+	local BUTTONS = { "shmup", "breakout", "platformer", "flappy" }
 
 	for i=1,#BUTTONS do
 		local b = BUTTONS[i]
 		local p = vec2(width() / 2, height() - i * 60)
 		BUTTONS[b] = add_button(b, p, function() show(b) end)
 	end
-
-	local foo = add_button("foo", vec2(), function() end)
-
-	on_click("button", function(o)
-		print("a button was clicked")
-	end)
-
-	local shmup = BUTTONS.shmup
-	on_update(function()
-		foo.pos = mouse_pos()
-	end)
 end

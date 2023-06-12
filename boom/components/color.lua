@@ -5,7 +5,7 @@
 --     color(1, 0, 0)
 -- })
 
-local color = require "boom.math.color"
+local rgb = require "boom.math.rgb"
 
 local M = {}
 
@@ -15,7 +15,7 @@ local M = {}
 function M.color(...)
 	local c = {}
 	c.tag = "color"
-	c.color = color(...)
+	c.color = rgb(...)
 	return c
 end
 

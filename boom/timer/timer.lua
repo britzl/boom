@@ -16,7 +16,6 @@ end
 -- @function cb Function to call
 -- @treturn function cancel Call to cancel the timer
 function M.wait(seconds, cb)
-	print("WAIT", seconds)
 	local handle = timer.delay(seconds, false, function(self, handle, dt)
 		timers[handle] = nil
 		cb()

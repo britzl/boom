@@ -56,7 +56,7 @@ function M.create(object, properties)
 		local current = properties[k]
 		if current ~= v then
 			if is_observable(current) then
- 				stop_observing(current, o)
+				stop_observing(current, o)
 			end
 			properties[k] = v
 			if is_observable(v) then

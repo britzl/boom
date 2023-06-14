@@ -26,10 +26,6 @@ default_texture_min_filter = nearest
 default_texture_mag_filter = nearest
 max_debug_vertices = 100000
 
-[render]
-clear_color_red = 1.0
-clear_color_green = 0.0
-
 [label]
 max_count = 30000
 

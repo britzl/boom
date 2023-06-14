@@ -1158,6 +1158,26 @@ RETURNS
 Color in RGBA format. 
 
 
+### Color.r [`number`]
+The red color component 
+
+
+
+### Color.g [`number`]
+The green color component 
+
+
+
+### Color.b [`number`]
+The blue color component 
+
+
+
+### Color.a [`number`]
+The alpha (tranparency) of the color 
+
+
+
 ### Color.clone()
 Clone the Color. 
 

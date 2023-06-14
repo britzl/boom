@@ -7,9 +7,25 @@ local new = nil
 new = function(r, g, b, a)
 	local color = {}
 	local properties = {}
+	
+	--- The red color component
+	-- @type Color
+	-- @field number
 	properties.r = r or 1.0
+
+	--- The green color component
+	-- @type Color
+	-- @field number
 	properties.g = g or 1.0
+
+	--- The blue color component
+	-- @type Color
+	-- @field number
 	properties.b = b or 1.0
+
+	--- The alpha (tranparency) of the color
+	-- @type Color
+	-- @field number
 	properties.a = a or 1.0
 
 	--- Clone the Color.

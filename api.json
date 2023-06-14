@@ -2062,6 +2062,58 @@
                     "entries": [
                         {
                             "description": "",
+                            "field": true,
+                            "field_type": "number",
+                            "has_params": false,
+                            "has_returns": false,
+                            "name": "r",
+                            "params": [],
+                            "returns": [],
+                            "summary": "The red color component",
+                            "type": "Color",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "field": true,
+                            "field_type": "number",
+                            "has_params": false,
+                            "has_returns": false,
+                            "name": "g",
+                            "params": [],
+                            "returns": [],
+                            "summary": "The green color component",
+                            "type": "Color",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "field": true,
+                            "field_type": "number",
+                            "has_params": false,
+                            "has_returns": false,
+                            "name": "b",
+                            "params": [],
+                            "returns": [],
+                            "summary": "The blue color component",
+                            "type": "Color",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "field": true,
+                            "field_type": "number",
+                            "has_params": false,
+                            "has_returns": false,
+                            "name": "a",
+                            "params": [],
+                            "returns": [],
+                            "summary": "The alpha (tranparency) of the color",
+                            "type": "Color",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
                             "has_params": false,
                             "has_returns": true,
                             "name": "clone",

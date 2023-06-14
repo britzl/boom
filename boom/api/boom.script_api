@@ -803,6 +803,10 @@
     type: number
     desc: Random integer number
 
+
+
+
+
 - name: Color.clone
   type: function
   desc: Clone the Color. 

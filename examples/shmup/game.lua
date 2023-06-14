@@ -1,3 +1,4 @@
+
 return function()
 	print("game")
 	set_background(0, 0.5, 1, 1)
@@ -17,12 +18,21 @@ return function()
 			move(vec2.DOWN, 100),
 			area(),
 			health(3),
+			color(),
 			offscreen({ destroy = true, distance = 100}),
 			"enemy",
 		})
 		enemy.on_collide("bullet", function(collision)
 			destroy(collision.target)
 			enemy.hurt(1)
+			enemy.color.r = 5
+			enemy.color.g = 5
+			enemy.color.b = 5
+			wait(0.1, function()
+				enemy.color.r = 1
+				enemy.color.g = 1
+				enemy.color.b = 1
+			end)
 		end)
 		enemy.on_death(function()
 			destroy(enemy)
@@ -30,7 +40,6 @@ return function()
 			score.text = "Score: " .. tostring(score.score)
 		end)
 	end)
-
 
 	local player = add({
 		sprite("ship_0002", { atlas = "shmup" }),

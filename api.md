@@ -39,6 +39,7 @@
   * [level](#level)
 * math
   * [random](#random)
+  * [rgb](#rgb)
   * [tween](#tween)
   * [vec2](#vec2)
 * scene
@@ -399,9 +400,8 @@ RETURNS
 Component to move a game object in a direction of travel and at a specific speed. 
 
 ```lua
--- move towards a direction infinitely, and
--- destroys when it leaves the game view.
-projectile = add({
+-- move towards a direction infinitely
+local projectile = add({
     sprite("bullet"),
     pos(player.pos),
     move(vec2(0, 1), 1200),
@@ -427,6 +427,15 @@ RETURNS
 
 Control the behavior of a game object when it goes out of view 
 
+```lua
+-- move towards a direction infinitely
+local projectile = add({
+    sprite("bullet"),
+    pos(player.pos),
+    move(vec2(0, 1), 1200),
+    offscreen({ destroy = true })
+})
+```
 
 ### offscreen(options)
 Create an offscreen component. 
@@ -1139,6 +1148,102 @@ PARAMS
 
 RETURNS
 * `number` [`number`] - Random integer number
+
+
+---
+
+## rgb
+*File: `boom/math/rgb.lua`*
+
+Color in RGBA format. 
+
+
+### Color.clone()
+Clone the Color. 
+
+
+RETURNS
+* `color` [`Color`] - The cloned color.
+
+
+### Color.lighten(n)
+Lighten the Color. 
+
+
+PARAMS
+* `n` [`number`] - Amount to lighten color by
+
+RETURNS
+* `color` [`Color`] - The lighter color.
+
+
+### Color.darken(n)
+Darkens the Color. 
+
+
+PARAMS
+* `n` [`number`] - Amount to darken color by
+
+RETURNS
+* `color` [`Color`] - The darker color.
+
+
+### Color.invert()
+Invert the Color. 
+
+
+RETURNS
+* `color` [`Color`] - The inverted color.
+
+
+### rgb.RED [`Color`]
+Red color. 
+
+
+
+### rgb.GREEN [`Color`]
+Green color. 
+
+
+
+### rgb.BLUE [`Color`]
+Blue color. 
+
+
+
+### rgb.BLACK [`Color`]
+Black color. 
+
+
+
+### rgb.WHITE [`Color`]
+White color. 
+
+
+
+### rgb.from_hex(hex)
+Create Color from a hex string.
+
+
+PARAMS
+* `hex` [`string`] - Hex string in RGB, RGBA, RRGGBB or RRGGBBAA format (with optional initial #).
+
+RETURNS
+* `color` [`Color`] - The created color.
+
+
+### rgb(r,g,b,a)
+Create a Color. 
+
+
+PARAMS
+* `r` [`number`] - Red component (0.0 to 1.0)
+* `g` [`number`] - Green component (0.0 to 1.0)
+* `b` [`number`] - Blue component (0.0 to 1.0)
+* `a` [`number`] - Alpha component (0.0 to 1.0)
+
+RETURNS
+* `color` [`Color`] - The created color.
 
 
 ---

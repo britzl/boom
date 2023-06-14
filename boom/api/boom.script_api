@@ -803,6 +803,84 @@
     type: number
     desc: Random integer number
 
+- name: Color.clone
+  type: function
+  desc: Clone the Color. 
+  return:
+  - name: color
+    type: Color
+    desc: The cloned color.
+
+- name: Color.lighten
+  type: function
+  desc: Lighten the Color. 
+  parameters:
+  - name: n
+    type: number
+    desc: Amount to lighten color by
+  return:
+  - name: color
+    type: Color
+    desc: The lighter color.
+
+- name: Color.darken
+  type: function
+  desc: Darkens the Color. 
+  parameters:
+  - name: n
+    type: number
+    desc: Amount to darken color by
+  return:
+  - name: color
+    type: Color
+    desc: The darker color.
+
+- name: Color.invert
+  type: function
+  desc: Invert the Color. 
+  return:
+  - name: color
+    type: Color
+    desc: The inverted color.
+
+
+
+
+
+
+- name: rgb.from_hex
+  type: function
+  desc: Create Color from a hex string.
+  parameters:
+  - name: hex
+    type: string
+    desc: Hex string in RGB, RGBA, RRGGBB or RRGGBBAA format (with optional initial #).
+  return:
+  - name: color
+    type: Color
+    desc: The created color.
+
+- name: rgb
+  type: function
+  desc: Create a Color. 
+  parameters:
+  - name: r
+    type: number
+    desc: Red component (0.0 to 1.0)
+  - name: g
+    type: number
+    desc: Green component (0.0 to 1.0)
+  - name: b
+    type: number
+    desc: Blue component (0.0 to 1.0)
+  - name: a
+    type: number
+    desc: Alpha component (0.0 to 1.0)
+  return:
+  - name: color
+    type: Color
+    desc: The created color.
+
 - name: tween
   type: function
   desc: Tween a value from one to another. The transition will happen over a certain duration using a specific easing function.

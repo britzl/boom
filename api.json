@@ -656,7 +656,7 @@
                     "params": [],
                     "returns": [],
                     "summary": null,
-                    "usage": "-- move towards a direction infinitely, and\n-- destroys when it leaves the game view.\nprojectile = add({\n    sprite(\"bullet\"),\n    pos(player.pos),\n    move(vec2(0, 1), 1200),\n})\n"
+                    "usage": "-- move towards a direction infinitely\nlocal projectile = add({\n    sprite(\"bullet\"),\n    pos(player.pos),\n    move(vec2(0, 1), 1200),\n})\n"
                 },
                 {
                     "description": null,
@@ -732,7 +732,7 @@
                     "params": [],
                     "returns": [],
                     "summary": null,
-                    "usage": null
+                    "usage": "-- move towards a direction infinitely\nlocal projectile = add({\n    sprite(\"bullet\"),\n    pos(player.pos),\n    move(vec2(0, 1), 1200),\n    offscreen({ destroy = true })\n})\n"
                 },
                 {
                     "description": null,
@@ -2056,6 +2056,231 @@
                     "filename": "boom/math/random.lua",
                     "group": "math",
                     "module": "random"
+                },
+                {
+                    "description": null,
+                    "entries": [
+                        {
+                            "description": "",
+                            "has_params": false,
+                            "has_returns": true,
+                            "name": "clone",
+                            "params": [],
+                            "returns": [
+                                {
+                                    "description": "The cloned color.",
+                                    "name": "color",
+                                    "type": "Color"
+                                }
+                            ],
+                            "summary": "Clone the Color.",
+                            "type": "Color",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "lighten",
+                            "params": [
+                                {
+                                    "description": "Amount to lighten color by",
+                                    "name": "n",
+                                    "type": "number"
+                                }
+                            ],
+                            "params_string": "n",
+                            "returns": [
+                                {
+                                    "description": "The lighter color.",
+                                    "name": "color",
+                                    "type": "Color"
+                                }
+                            ],
+                            "summary": "Lighten the Color.",
+                            "type": "Color",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "darken",
+                            "params": [
+                                {
+                                    "description": "Amount to darken color by",
+                                    "name": "n",
+                                    "type": "number"
+                                }
+                            ],
+                            "params_string": "n",
+                            "returns": [
+                                {
+                                    "description": "The darker color.",
+                                    "name": "color",
+                                    "type": "Color"
+                                }
+                            ],
+                            "summary": "Darkens the Color.",
+                            "type": "Color",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "has_params": false,
+                            "has_returns": true,
+                            "name": "invert",
+                            "params": [],
+                            "returns": [
+                                {
+                                    "description": "The inverted color.",
+                                    "name": "color",
+                                    "type": "Color"
+                                }
+                            ],
+                            "summary": "Invert the Color.",
+                            "type": "Color",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "field": true,
+                            "field_type": "Color",
+                            "has_params": false,
+                            "has_returns": false,
+                            "name": "RED",
+                            "params": [],
+                            "returns": [],
+                            "summary": "Red color.",
+                            "type": "rgb",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "field": true,
+                            "field_type": "Color",
+                            "has_params": false,
+                            "has_returns": false,
+                            "name": "GREEN",
+                            "params": [],
+                            "returns": [],
+                            "summary": "Green color.",
+                            "type": "rgb",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "field": true,
+                            "field_type": "Color",
+                            "has_params": false,
+                            "has_returns": false,
+                            "name": "BLUE",
+                            "params": [],
+                            "returns": [],
+                            "summary": "Blue color.",
+                            "type": "rgb",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "field": true,
+                            "field_type": "Color",
+                            "has_params": false,
+                            "has_returns": false,
+                            "name": "BLACK",
+                            "params": [],
+                            "returns": [],
+                            "summary": "Black color.",
+                            "type": "rgb",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "field": true,
+                            "field_type": "Color",
+                            "has_params": false,
+                            "has_returns": false,
+                            "name": "WHITE",
+                            "params": [],
+                            "returns": [],
+                            "summary": "White color.",
+                            "type": "rgb",
+                            "usage": null
+                        },
+                        {
+                            "description": "Create Color from a hex string.",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "from_hex",
+                            "params": [
+                                {
+                                    "description": "Hex string in RGB, RGBA, RRGGBB or RRGGBBAA format (with optional initial #).",
+                                    "name": "hex",
+                                    "type": "string"
+                                }
+                            ],
+                            "params_string": "hex",
+                            "returns": [
+                                {
+                                    "description": "The created color.",
+                                    "name": "color",
+                                    "type": "Color"
+                                }
+                            ],
+                            "type": "rgb",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "rgb",
+                            "params": [
+                                {
+                                    "description": "Red component (0.0 to 1.0)",
+                                    "name": "r",
+                                    "type": "number"
+                                },
+                                {
+                                    "description": "Green component (0.0 to 1.0)",
+                                    "name": "g",
+                                    "type": "number"
+                                },
+                                {
+                                    "description": "Blue component (0.0 to 1.0)",
+                                    "name": "b",
+                                    "type": "number"
+                                },
+                                {
+                                    "description": "Alpha component (0.0 to 1.0)",
+                                    "name": "a",
+                                    "type": "number"
+                                }
+                            ],
+                            "params_string": "r,g,b,a",
+                            "returns": [
+                                {
+                                    "description": "The created color.",
+                                    "name": "color",
+                                    "type": "Color"
+                                }
+                            ],
+                            "summary": "Create a Color.",
+                            "usage": null
+                        }
+                    ],
+                    "file_description": "",
+                    "file_summary": "Color in RGBA format.",
+                    "filename": "boom/math/rgb.lua",
+                    "group": "math",
+                    "has_params": false,
+                    "has_returns": false,
+                    "module": "rgb",
+                    "name": null,
+                    "params": [],
+                    "returns": [],
+                    "summary": null,
+                    "usage": null
                 },
                 {
                     "entries": [

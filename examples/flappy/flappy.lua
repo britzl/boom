@@ -1,5 +1,5 @@
 local function game()
-	set_gravity(1000)
+	set_gravity(2000)
 
 	local score = 0
 
@@ -45,7 +45,7 @@ local function game()
 		local offset = rand(-170, 170)
 		add({
 			sprite("column", { atlas = "flappy" }),
-			pos(width() - 20, height() + 40 - offset),
+			pos(width() + 20, height() + 40 - offset),
 			area(),
 			offscreen({ destroy = true, distance = 200 }),
 			scale(3),
@@ -55,7 +55,7 @@ local function game()
 		})
 		add({
 			sprite("column", { atlas = "flappy" }),
-			pos(width() - 20, 0 - 40 - offset),
+			pos(width() + 20, 0 - 40 - offset),
 			area(),
 			offscreen({ destroy = true, distance = 200 }),
 			scale(3),

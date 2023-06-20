@@ -75,8 +75,11 @@ def process_entry(line, lines):
             break
         
         line = line[3:]
+        # generic parameter
         if line.startswith("@param"):
             entry["params"].append(parse_param(line, "param"))
+
+        # typed parameter
         elif line.startswith("@number"):
             entry["params"].append(parse_param(line, "number"))
         elif line.startswith("@string"):
@@ -89,6 +92,8 @@ def process_entry(line, lines):
             entry["params"].append(parse_param(line, "bool"))
         elif line.startswith("@vec2"):
             entry["params"].append(parse_param(line, "vec2"))
+
+        # generic return
         elif line.startswith("@return"):
             line = line.replace("@return", "").strip()
             m = re.match("(\w*?) (.*)", line)
@@ -99,6 +104,7 @@ def process_entry(line, lines):
                     "name": return_name,
                     "description": capitalize(return_desc)
                 })
+        # typed return
         elif line.startswith("@treturn"):
             line = line.replace("@treturn", "").strip()
             m = re.match("(\w*?) (\w*?) (.*)", line)
@@ -111,6 +117,7 @@ def process_entry(line, lines):
                     "type": return_type,
                     "description": capitalize(return_desc)
                 })
+        # table parameter
         elif line.startswith("@tparam"):
             line = line.replace("@tparam", "").strip()
             m = re.match("(\w*?) (\w*?) (.*)", line)

@@ -40,6 +40,15 @@ local function new(x, y)
 
 	local v2 = {}
 
+	--- Get distance between another vector.
+	-- @type Vec2
+	-- @treturn number distance The distance.
+	v2.dist = function(p)
+		local dx = properties.x - p.x
+		local dy = properties.y - p.y
+		return math.sqrt(dx * dx + dy * dy)
+	end
+
 	observable.create(v2, properties)
 	local mt = getmetatable(v2) or {}
 	mt.__sub = function(o1, o2)

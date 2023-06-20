@@ -3,10 +3,14 @@ local gameobject = require "boom.gameobject.gameobject"
 local vec2 = require "boom.math.vec2"
 
 local MOUSE_BUTTON_1 = hash("mouse_button_1")
+local MOUSE_MOVE = hash("mouse_move")
 
 local M = {}
 
 local click_listeners = {}
+local press_listener = {}
+local release_listener = {}
+local move_listener = {}
 
 local mouse_pos = vec2()
 
@@ -40,6 +44,27 @@ function M.on_click(tag, cb)
 	end
 end
 
+--- Register callback that runs when left mouse button is pressed.
+-- @function cb The callback
+-- @treturn function fn Cancel callback
+function M.on_mouse_press(cb)
+	return listener.register(press_listener, MOUSE_BUTTON_1, cb)
+end
+
+--- Register callback that runs when left mouse button is released.
+-- @function cb The callback
+-- @treturn function fn Cancel callback
+function M.on_mouse_release(cb)
+	return listener.register(release_listener, MOUSE_BUTTON_1, cb)
+end
+
+--- Register callback that runs when the mouse is moved.
+-- @function cb The callback
+-- @treturn function fn Cancel callback
+function M.on_mouse_move(cb)
+	return listener.register(move_listener, MOUSE_MOVE, cb)
+end
+
 --- Get mouse position (screen coordinates).
 -- @treturn vec2 pos Mouse position
 function M.mouse_pos()
@@ -50,15 +75,25 @@ function M.__on_input(action_id, action)
 	if not action_id then
 		mouse_pos.x = action.x
 		mouse_pos.y = action.y
+		listener.trigger(move_listener, MOUSE_MOVE, action)
 	elseif action_id == MOUSE_BUTTON_1 then
 		mouse_pos.x = action.x
 		mouse_pos.y = action.y
-		listener.trigger(click_listeners, action_id, action)
+		listener.trigger(move_listener, MOUSE_MOVE, action)
+		if action.pressed then
+			listener.trigger(press_listener, action_id, action)
+		elseif action.released then
+			listener.trigger(click_listeners, action_id, action)
+			listener.trigger(release_listener, action_id, action)
+		end
 	end
 end
 
 function M.__destroy()
 	click_listeners = {}
+	release_listener = {}
+	press_listener = {}
+	move_listener = {}
 end
 
 return M

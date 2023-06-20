@@ -1424,6 +1424,75 @@
                         },
                         {
                             "description": "",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "on_mouse_press",
+                            "params": [
+                                {
+                                    "description": "The callback",
+                                    "name": "cb",
+                                    "type": "function"
+                                }
+                            ],
+                            "params_string": "cb",
+                            "returns": [
+                                {
+                                    "description": "Cancel callback",
+                                    "name": "fn",
+                                    "type": "function"
+                                }
+                            ],
+                            "summary": "Register callback that runs when left mouse button is pressed.",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "on_mouse_release",
+                            "params": [
+                                {
+                                    "description": "The callback",
+                                    "name": "cb",
+                                    "type": "function"
+                                }
+                            ],
+                            "params_string": "cb",
+                            "returns": [
+                                {
+                                    "description": "Cancel callback",
+                                    "name": "fn",
+                                    "type": "function"
+                                }
+                            ],
+                            "summary": "Register callback that runs when left mouse button is released.",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "on_mouse_move",
+                            "params": [
+                                {
+                                    "description": "The callback",
+                                    "name": "cb",
+                                    "type": "function"
+                                }
+                            ],
+                            "params_string": "cb",
+                            "returns": [
+                                {
+                                    "description": "Cancel callback",
+                                    "name": "fn",
+                                    "type": "function"
+                                }
+                            ],
+                            "summary": "Register callback that runs when the mouse is moved.",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
                             "has_params": false,
                             "has_returns": true,
                             "name": "mouse_pos",
@@ -2343,26 +2412,6 @@
                             "name": "tween",
                             "params": [
                                 {
-                                    "description": "Start value",
-                                    "name": "from",
-                                    "type": "number"
-                                },
-                                {
-                                    "description": "Start value",
-                                    "name": "from",
-                                    "type": "vec2"
-                                },
-                                {
-                                    "description": "End value",
-                                    "name": "to",
-                                    "type": "number"
-                                },
-                                {
-                                    "description": "End value",
-                                    "name": "to",
-                                    "type": "vec2"
-                                },
-                                {
                                     "description": "Time in seconds to go from start to end value",
                                     "name": "duration",
                                     "type": "number"
@@ -2378,7 +2427,7 @@
                                     "type": "function"
                                 }
                             ],
-                            "params_string": "from,from,to,to,duration,easing,set_value",
+                            "params_string": "duration,easing,set_value",
                             "returns": [
                                 {
                                     "description": "A tween controller object.",
@@ -2463,6 +2512,23 @@
                                 }
                             ],
                             "summary": "Create a Vec2",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "has_params": false,
+                            "has_returns": true,
+                            "name": "dist",
+                            "params": [],
+                            "returns": [
+                                {
+                                    "description": "The distance.",
+                                    "name": "distance",
+                                    "type": "number"
+                                }
+                            ],
+                            "summary": "Get distance between another vector.",
+                            "type": "Vec2",
                             "usage": null
                         },
                         {

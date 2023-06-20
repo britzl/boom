@@ -517,6 +517,42 @@
     type: function
     desc: Cancel listener function
 
+- name: on_mouse_press
+  type: function
+  desc: Register callback that runs when left mouse button is pressed. 
+  parameters:
+  - name: cb
+    type: function
+    desc: The callback
+  return:
+  - name: fn
+    type: function
+    desc: Cancel callback
+
+- name: on_mouse_release
+  type: function
+  desc: Register callback that runs when left mouse button is released. 
+  parameters:
+  - name: cb
+    type: function
+    desc: The callback
+  return:
+  - name: fn
+    type: function
+    desc: Cancel callback
+
+- name: on_mouse_move
+  type: function
+  desc: Register callback that runs when the mouse is moved. 
+  parameters:
+  - name: cb
+    type: function
+    desc: The callback
+  return:
+  - name: fn
+    type: function
+    desc: Cancel callback
+
 - name: mouse_pos
   type: function
   desc: Get mouse position (screen coordinates). 
@@ -889,18 +925,6 @@
   type: function
   desc: Tween a value from one to another. The transition will happen over a certain duration using a specific easing function.
   parameters:
-  - name: from
-    type: number
-    desc: Start value
-  - name: from
-    type: vec2
-    desc: Start value
-  - name: to
-    type: number
-    desc: End value
-  - name: to
-    type: vec2
-    desc: End value
   - name: duration
     type: number
     desc: Time in seconds to go from start to end value
@@ -945,6 +969,14 @@
   - name: v2
     type: Vec2
     desc: The created vec2
+
+- name: Vec2.dist
+  type: function
+  desc: Get distance between another vector. 
+  return:
+  - name: distance
+    type: number
+    desc: The distance.
 
 
 

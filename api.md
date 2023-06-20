@@ -815,6 +815,39 @@ RETURNS
 * `fn` [`function`] - Cancel listener function
 
 
+### on_mouse_press(cb)
+Register callback that runs when left mouse button is pressed. 
+
+
+PARAMS
+* `cb` [`function`] - The callback
+
+RETURNS
+* `fn` [`function`] - Cancel callback
+
+
+### on_mouse_release(cb)
+Register callback that runs when left mouse button is released. 
+
+
+PARAMS
+* `cb` [`function`] - The callback
+
+RETURNS
+* `fn` [`function`] - Cancel callback
+
+
+### on_mouse_move(cb)
+Register callback that runs when the mouse is moved. 
+
+
+PARAMS
+* `cb` [`function`] - The callback
+
+RETURNS
+* `fn` [`function`] - Cancel callback
+
+
 ### mouse_pos()
 Get mouse position (screen coordinates). 
 
@@ -1274,15 +1307,11 @@ RETURNS
 
 
 
-### tween(from,from,to,to,duration,easing,set_value)
+### tween(duration,easing,set_value)
 Tween a value from one to another. The transition will happen over a certain duration using a specific easing function.
 
 
 PARAMS
-* `from` [`number`] - Start value
-* `from` [`vec2`] - Start value
-* `to` [`number`] - End value
-* `to` [`vec2`] - End value
 * `duration` [`number`] - Time in seconds to go from start to end value
 * `easing` [`string`] - Which easing algorithm to use
 * `set_value` [`function`] - Function to call when the value has changed
@@ -1327,6 +1356,14 @@ PARAMS
 
 RETURNS
 * `v2` [`Vec2`] - The created vec2
+
+
+### Vec2.dist()
+Get distance between another vector. 
+
+
+RETURNS
+* `distance` [`number`] - The distance.
 
 
 ### Vec2.UP [`Vec2`]

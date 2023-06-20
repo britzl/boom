@@ -55,6 +55,9 @@ local function new(x, y)
 			return new(o1.x * o2.x, o1.y * o2.y)
 		end
 	end
+	mt.__tostring = function(v)
+		return ("vec2(%f, %f)"):format(properties.x, properties.y)
+	end
 	return setmetatable(v2, mt)
 end
 

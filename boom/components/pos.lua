@@ -28,11 +28,12 @@ end
 -- @number y
 -- @treturn PosComp component The created component
 function M.pos(x, y)
-	if type(x) == "userdata" then
+	local typex = type(x)
+	if typex == "userdata" then
 		local pos = x
 		x = pos.x
 		y = pos.y
-	elseif type(x) == "table" then
+	elseif typex == "table" then
 		local pos = x
 		x = pos.x
 		y = pos.y
@@ -59,7 +60,6 @@ function M.pos(x, y)
 		local object = c.object
 		object.vel.x = xvel
 		object.vel.y = yvel
-		object.dirty = true
 	end
 
 	c.update = function(dt)
@@ -69,7 +69,6 @@ function M.pos(x, y)
 		if vel.x ~= 0 or vel.y ~= 0 then
 			pos.x = pos.x + vel.x * dt
 			pos.y = pos.y + vel.y * dt
-			object.dirty = true
 		end
 		v3.x = pos.x
 		v3.y = pos.y

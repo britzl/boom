@@ -13,6 +13,7 @@ local platformer = require "examples.platformer.platformer"
 local shmupgame = require "examples.shmup.game"
 local shmupgameover = require "examples.shmup.gameover"
 local flappy = require "examples.flappy.flappy"
+local tween = require "examples.tween.tween"
 
 function init(self)
 	boom(function()
@@ -22,6 +23,7 @@ function init(self)
 		scene("shmup", shmupgame)
 		scene("shmup-gameover", shmupgameover)
 		scene("flappy", flappy)
+		scene("tween", tween)
 		show("examples")
 	end)
 end

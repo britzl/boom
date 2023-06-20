@@ -18,10 +18,8 @@ end
 --- Tween a value from one to another.
 -- The transition will happen over a certain duration using a specific
 -- easing function.
--- @number from Start value
--- @vec2 from Start value
--- @number to End value
--- @vec2 to End value
+-- @tparam number|vec2 from Start value
+-- @tparam number|vec2 to End value
 -- @number duration Time in seconds to go from start to end value
 -- @string easing Which easing algorithm to use
 -- @function set_value Function to call when the value has changed
@@ -31,10 +29,19 @@ function M.tween(from, to, duration, easing, set_value)
 	assert(to)
 	assert(duration and duration >= 0)
 	assert(set_value)
+	local typefrom = type(from)
+	local typeto = type(to)
+	if typefrom == "table" then
+		from = from.tov3()
+	end
+	if typeto == "table" then
+		to = to.tov3()
+	end
+
 	local delay = 0
 	local id = factory.create(TWEEN_FACTORY)
 	local url = msg.url(nil, id, "tween")
-	local property = type(from) == "number" and "value.x" or "value"
+	local property = typefrom == "number" and "value.x" or "value"
 	easing = easing or go.EASING_LINEAR
 
 	local tween = {
@@ -51,7 +58,7 @@ function M.tween(from, to, duration, easing, set_value)
 
 
 	local tween_controller = {}
-	
+
 	--- Register an event when finished
 	-- @type TweenController
 	-- @function fn The function to call when the tween has finished

@@ -7,7 +7,7 @@ local new = nil
 new = function(r, g, b, a)
 	local color = {}
 	local properties = {}
-	
+
 	--- The red color component
 	-- @type Color
 	-- @field number

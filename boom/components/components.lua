@@ -18,4 +18,5 @@ return {
 	require("boom.components.fixed"),
 	require("boom.components.body"),
 	require("boom.components.z"),
+	require("boom.components.double_jump"),
 }

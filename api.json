@@ -357,6 +357,7 @@
                             ],
                             "params_string": "force",
                             "returns": [],
+                            "summary": "Performs double jump (the initial jump only happens if player is grounded)",
                             "type": "DoubleJumpComp",
                             "usage": null
                         }
@@ -752,7 +753,7 @@
                             "params_string": "opacity",
                             "returns": [
                                 {
-                                    "description": "The created component",
+                                    "description": "The created component.",
                                     "name": "component",
                                     "type": "OpacityComp"
                                 }
@@ -856,6 +857,7 @@
                     "usage": "-- this game object will draw a \"bean\" sprite at (100, 200)\nadd({\n   pos(100, 200),\n   sprite(\"bean\")\n})\n"
                 },
                 {
+                    "description": null,
                     "entries": [
                         {
                             "description": "Apply rotation to object",
@@ -866,24 +868,35 @@
                                 {
                                     "description": "Angle in degrees",
                                     "name": "angle",
-                                    "type": null
+                                    "type": "number"
                                 }
                             ],
                             "params_string": "angle",
                             "returns": [
                                 {
-                                    "description": "Component",
-                                    "name": "The"
+                                    "description": "The created component.",
+                                    "name": "component",
+                                    "type": "RotateComp"
                                 }
                             ],
                             "usage": null
                         }
                     ],
+                    "file_description": "",
+                    "file_summary": "Rotate a gameobject",
                     "filename": "boom/components/rotate.lua",
                     "group": "components",
-                    "module": "rotate"
+                    "has_params": false,
+                    "has_returns": false,
+                    "module": "rotate",
+                    "name": null,
+                    "params": [],
+                    "returns": [],
+                    "summary": null,
+                    "usage": null
                 },
                 {
+                    "description": null,
                     "entries": [
                         {
                             "description": "Apply a scale to the object",
@@ -905,18 +918,74 @@
                             "params_string": "x,y",
                             "returns": [
                                 {
-                                    "description": "Component",
-                                    "name": "The"
+                                    "description": "Component The scale component.",
+                                    "name": "ScaleComp"
                                 }
                             ],
                             "usage": null
+                        },
+                        {
+                            "description": "",
+                            "has_params": true,
+                            "has_returns": false,
+                            "name": "scale_to",
+                            "params": [
+                                {
+                                    "description": "",
+                                    "name": "x",
+                                    "type": "number"
+                                },
+                                {
+                                    "description": "",
+                                    "name": "y",
+                                    "type": "number"
+                                }
+                            ],
+                            "params_string": "x,y",
+                            "returns": [],
+                            "summary": "Set new scale.",
+                            "type": "ScaleComp",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "has_params": true,
+                            "has_returns": false,
+                            "name": "scale_by",
+                            "params": [
+                                {
+                                    "description": "",
+                                    "name": "x",
+                                    "type": "number"
+                                },
+                                {
+                                    "description": "",
+                                    "name": "y",
+                                    "type": "number"
+                                }
+                            ],
+                            "params_string": "x,y",
+                            "returns": [],
+                            "summary": "Change scale.",
+                            "type": "ScaleComp",
+                            "usage": null
                         }
                     ],
+                    "file_description": "",
+                    "file_summary": "Scale a gameobject",
                     "filename": "boom/components/scale.lua",
                     "group": "components",
-                    "module": "scale"
+                    "has_params": false,
+                    "has_returns": false,
+                    "module": "scale",
+                    "name": null,
+                    "params": [],
+                    "returns": [],
+                    "summary": null,
+                    "usage": null
                 },
                 {
+                    "description": null,
                     "entries": [
                         {
                             "description": "",
@@ -1041,11 +1110,21 @@
                             "usage": null
                         }
                     ],
+                    "file_description": "",
+                    "file_summary": "Render as a sprite.",
                     "filename": "boom/components/sprite.lua",
                     "group": "components",
-                    "module": "sprite"
+                    "has_params": false,
+                    "has_returns": false,
+                    "module": "sprite",
+                    "name": null,
+                    "params": [],
+                    "returns": [],
+                    "summary": null,
+                    "usage": "local player = add({\n    sprite(\"player\", { atlas = \"playercharacter\" })\n})\n\nplayer.play(\"walk\")\n"
                 },
                 {
+                    "description": null,
                     "entries": [
                         {
                             "description": "",
@@ -1064,11 +1143,21 @@
                             "usage": null
                         }
                     ],
+                    "file_description": "",
+                    "file_summary": "Do not destroy the game object on scene change.",
                     "filename": "boom/components/stay.lua",
                     "group": "components",
-                    "module": "stay"
+                    "has_params": false,
+                    "has_returns": false,
+                    "module": "stay",
+                    "name": null,
+                    "params": [],
+                    "returns": [],
+                    "summary": null,
+                    "usage": null
                 },
                 {
+                    "description": null,
                     "entries": [
                         {
                             "description": "",
@@ -1112,9 +1201,18 @@
                             "usage": null
                         }
                     ],
+                    "file_description": "",
+                    "file_summary": "Render as text",
                     "filename": "boom/components/text.lua",
                     "group": "components",
-                    "module": "text"
+                    "has_params": false,
+                    "has_returns": false,
+                    "module": "text",
+                    "name": null,
+                    "params": [],
+                    "returns": [],
+                    "summary": null,
+                    "usage": "local score = add({\n    text(\"Score: 0\")\n})\nscore.text = \"Score: 1\"\n"
                 },
                 {
                     "description": null,

@@ -130,7 +130,7 @@
 
 - name: DoubleJumpComp.double_jump
   type: function
-  desc: 
+  desc: Performs double jump (the initial jump only happens if player is grounded) 
   parameters:
   - name: force
     type: number
@@ -276,7 +276,7 @@
   return:
   - name: component
     type: OpacityComp
-    desc: The created component
+    desc: The created component.
 
 
 - name: pos
@@ -310,12 +310,12 @@
   desc: Apply rotation to object
   parameters:
   - name: angle
-    type: None
+    type: number
     desc: Angle in degrees
   return:
-  - name: The
-    type: 
-    desc: Component
+  - name: component
+    type: RotateComp
+    desc: The created component.
 
 - name: scale
   type: function
@@ -328,9 +328,31 @@
     type: None
     desc: 
   return:
-  - name: The
+  - name: ScaleComp
     type: 
-    desc: Component
+    desc: Component The scale component.
+
+- name: ScaleComp.scale_to
+  type: function
+  desc: Set new scale. 
+  parameters:
+  - name: x
+    type: number
+    desc: 
+  - name: y
+    type: number
+    desc: 
+
+- name: ScaleComp.scale_by
+  type: function
+  desc: Change scale. 
+  parameters:
+  - name: x
+    type: number
+    desc: 
+  - name: y
+    type: number
+    desc: 
 
 - name: sprite
   type: function

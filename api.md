@@ -235,7 +235,7 @@ RETURNS
 
 
 ### DoubleJumpComp.double_jump(force)
-
+Performs double jump (the initial jump only happens if player is grounded) 
 
 
 PARAMS
@@ -480,7 +480,7 @@ PARAMS
 * `opacity` [`number`] - The opacity from 0.0 to 1.0
 
 RETURNS
-* `component` [`OpacityComp`] - The created component
+* `component` [`OpacityComp`] - The created component.
 
 
 ### OpacityComp.opacity [`number`]
@@ -529,7 +529,7 @@ PARAMS
 ## rotate
 *File: `boom/components/rotate.lua`*
 
-
+Rotate a gameobject 
 
 
 ### rotate(angle)
@@ -537,10 +537,10 @@ Apply rotation to object
 
 
 PARAMS
-* `angle` - Angle in degrees
+* `angle` [`number`] - Angle in degrees
 
 RETURNS
-* `The` - Component
+* `component` [`RotateComp`] - The created component.
 
 
 ---
@@ -548,7 +548,7 @@ RETURNS
 ## scale
 *File: `boom/components/scale.lua`*
 
-
+Scale a gameobject 
 
 
 ### scale(x,y)
@@ -560,7 +560,25 @@ PARAMS
 * `y` - 
 
 RETURNS
-* `The` - Component
+* `ScaleComp` - Component The scale component.
+
+
+### ScaleComp.scale_to(x,y)
+Set new scale. 
+
+
+PARAMS
+* `x` [`number`] - 
+* `y` [`number`] - 
+
+
+### ScaleComp.scale_by(x,y)
+Change scale. 
+
+
+PARAMS
+* `x` [`number`] - 
+* `y` [`number`] - 
 
 
 ---
@@ -568,8 +586,15 @@ RETURNS
 ## sprite
 *File: `boom/components/sprite.lua`*
 
+Render as a sprite. 
 
+```lua
+local player = add({
+    sprite("player", { atlas = "playercharacter" })
+})
 
+player.play("walk")
+```
 
 ### sprite(anim,options)
 Render a sprite. 
@@ -626,7 +651,7 @@ Stop the current animation
 ## stay
 *File: `boom/components/stay.lua`*
 
-
+Do not destroy the game object on scene change. 
 
 
 ### stay()
@@ -642,8 +667,14 @@ RETURNS
 ## text
 *File: `boom/components/text.lua`*
 
+Render as text 
 
-
+```lua
+local score = add({
+    text("Score: 0")
+})
+score.text = "Score: 1"
+```
 
 ### text(text,options)
 Render text. 

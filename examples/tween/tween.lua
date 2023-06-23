@@ -5,6 +5,12 @@ return function()
 		pos(center()),
 	})
 
+	add({
+		text("Click to animate to position"),
+		pos(width() / 2,  20),
+		scale(2)
+	})
+
 	on_mouse_press(function()
 		local dist = mouse_pos().dist(player.pos)
 		local duration = dist / 300

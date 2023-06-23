@@ -1,5 +1,5 @@
 local gameobject = require "boom.gameobject.gameobject"
-local systems = require "boom.systems"
+local systems = require "boom.internal.systems"
 
 local M = {}
 

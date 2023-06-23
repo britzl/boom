@@ -1,4 +1,4 @@
-local collisions = require "boom.collisions"
+local collisions = require "boom.internal.collisions"
 
 local M = {}
 

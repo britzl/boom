@@ -1,3 +1,13 @@
+--- Render as text
+--
+-- @usage
+-- local score = add({
+--     text("Score: 0")
+-- })
+-- score.text = "Score: 1"
+
+local callable = require "boom.internal.callable"
+
 local M = {}
 
 local text_left_factory_url = nil
@@ -6,10 +16,14 @@ local text_center_factory_url = nil
 local game_url = nil
 local label_screen_material = nil
 
+local QUAT_ZERO = vmath.quat()
+local V3_ZERO = vmath.vector3(0)
+local V3_ONE = vmath.vector3(1)
+
 function M.__init(config)
-	text_left_factory_url = "#textleftfactory"
-	text_right_factory_url = "#textrightfactory"
-	text_center_factory_url = "#textcenterfactory"
+	text_left_factory_url = msg.url("#textleftfactory")
+	text_right_factory_url = msg.url("#textrightfactory")
+	text_center_factory_url = msg.url("#textcenterfactory")
 	game_url = config.game_url
 	label_screen_material = config.label_screen_material
 end
@@ -35,16 +49,20 @@ function M.text(text, options)
 	c.init = function()
 		local object = c.object
 		local url = nil
+		local pos = V3_ZERO
+		local rot = QUAT_ZERO
+		local props = nil
+		local scale = V3_ONE
 		if align == "left" then
-			local id = factory.create(text_left_factory_url)
+			local id = factory.create(text_left_factory_url, pos, rot, props, scale)
 			go.set_parent(id, object.id, false)
 			url = msg.url(nil, id, "label")
 		elseif align == "right" then
-			local id = factory.create(text_right_factory_url)
+			local id = factory.create(text_right_factory_url, pos, rot, props, scale)
 			go.set_parent(id, object.id, false)
 			url = msg.url(nil, id, "label")
 		elseif align == "center" then
-			local id = factory.create(text_center_factory_url)
+			local id = factory.create(text_center_factory_url, pos, rot, props, scale)
 			go.set_parent(id, object.id, false)
 			url = msg.url(nil, id, "label")
 		else
@@ -84,7 +102,9 @@ function M.text(text, options)
 
 		local scale = object.scale
 		if scale then
-			go.set(url, "scale", scale)
+			local sv3 = scale.tov3()
+			sv3.z = 1
+			go.set_scale(sv3, url)
 		end
 	end
 
@@ -95,4 +115,4 @@ function M.text(text, options)
 	return c
 end
 
-return M
+return callable.make(M, M.text)

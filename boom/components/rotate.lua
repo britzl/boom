@@ -1,3 +1,7 @@
+--- Rotate a gameobject
+
+local callable = require "boom.internal.callable"
+
 local M = {}
 
 local function update_rotation(object)
@@ -6,8 +10,8 @@ end
 
 ---
 -- Apply rotation to object
--- @param angle Angle in degrees
--- @return The component
+-- @number angle Angle in degrees
+-- @treturn RotateComp component The created component.
 function M.rotate(angle)
 	local c = {}
 	c.tag = "rotate"
@@ -24,4 +28,4 @@ function M.rotate(angle)
 	return c
 end
 
-return M
+return callable.make(M, M.rotate)

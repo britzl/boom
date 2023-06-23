@@ -5,6 +5,8 @@
 --     fadein(2)
 -- })
 
+local callable = require "boom.internal.callable"
+
 local M = {}
 
 --- Fade object in.
@@ -34,4 +36,4 @@ function M.fadein(time)
 	return c
 end
 
-return M
+return callable.make(M, M.fadein)

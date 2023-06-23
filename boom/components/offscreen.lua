@@ -10,6 +10,7 @@
 -- })
 
 
+local callable = require "boom.internal.callable"
 local gameobject = require "boom.gameobject.gameobject"
 local listener = require "boom.events.listener"
 local screen = require "boom.info.screen"
@@ -80,4 +81,4 @@ function M.offscreen(options)
 	return c
 end
 
-return M
+return callable.make(M, M.offscreen)

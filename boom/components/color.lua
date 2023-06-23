@@ -6,6 +6,7 @@
 -- })
 
 local rgb = require "boom.math.rgb"
+local callable = require "boom.internal.callable"
 
 local M = {}
 
@@ -19,4 +20,4 @@ function M.color(...)
 	return c
 end
 
-return M
+return callable.make(M, M.color)

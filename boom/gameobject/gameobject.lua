@@ -7,6 +7,10 @@ local objects = {}
 local objects_to_delete = {}
 local components_on_input = {}
 
+local QUAT_ZERO = vmath.quat()
+local V3_ZERO = vmath.vector3(0)
+local V3_ONE = vmath.vector3(1)
+
 local GAMEOBJECT_FACTORY = nil
 
 local ROOT = hash("/root")
@@ -98,12 +102,15 @@ local function unuse(object, tag)
 	object.tags[tag] = nil
 end
 
-
 --- Add a game object with a set of components.
 -- @table comps The components for the game object
 -- @treturn GameObject object The created game object
 function M.add(comps)
-	local ids = collectionfactory.create(GAMEOBJECT_FACTORY)
+	local pos = V3_ZERO
+	local rot = QUAT_ZERO
+	local props = nil
+	local scale = V3_ONE
+	local ids = collectionfactory.create(GAMEOBJECT_FACTORY, pos, rot, props, scale)
 	local id = ids[ROOT]
 
 	local object = {}

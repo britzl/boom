@@ -13,7 +13,8 @@
 
 
 local gravity = require "boom.info.gravity"
-local collisions = require "boom.collisions"
+local collisions = require "boom.internal.collisions"
+local callable = require "boom.internal.callable"
 
 local M = {}
 
@@ -115,7 +116,4 @@ function M.body(options)
 	return c
 end
 
-
-
-
-return M
+return callable.make(M, M.body)

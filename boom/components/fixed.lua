@@ -7,6 +7,8 @@
 --     pos(5, height() - 5)
 -- })
 
+local callable = require "boom.internal.callable"
+
 local M = {}
 
 --- Create a fixed component
@@ -17,4 +19,4 @@ function M.fixed(...)
 	return c
 end
 
-return M
+return callable.make(M, M.fixed)

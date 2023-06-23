@@ -1,5 +1,7 @@
 --- Run an action once or repeatedly at a set interval
 
+local callable = require "boom.internal.callable"
+
 local M = {}
 
 local timer = _G.timer
@@ -67,4 +69,4 @@ function M.timer(n, fn)
 end
 
 
-return M
+return callable.make(M, M.timer)

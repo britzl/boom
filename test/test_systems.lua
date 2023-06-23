@@ -1,4 +1,4 @@
-local systems = require("boom.systems")
+local systems = require("boom.internal.systems")
 
 local function create_system(name)
 	local s = {}

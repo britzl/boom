@@ -1,3 +1,5 @@
+local callable = require "boom.internal.callable"
+
 local M = {}
 
 --- Determines the draw order for objects.
@@ -15,4 +17,4 @@ function M.z(z)
 	return c
 end
 
-return M
+return callable.make(M, M.z)

@@ -70,7 +70,6 @@ local function game()
 
 end
 
-
 local function lose(score)
 	add({
 		sprite("glide", { atlas = "flappy" }),
@@ -99,7 +98,6 @@ end
 
 return function()
 	set_background(0.2, 0.4, 1.0)
-	
 
 	scene("game", game)
 	scene("lose", lose)

@@ -1,0 +1,5 @@
+local areafactory = require "boom.components.area.areafactory"
+
+function init(self)
+	areafactory.init()
+end

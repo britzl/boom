@@ -7,7 +7,7 @@
 --     lifespan(90, { fade = true })
 -- })
 
-
+local callable = require "boom.internal.callable"
 local gameobject = require "boom.gameobject.gameobject"
 
 local M = {}
@@ -48,4 +48,4 @@ function M.lifespan(time, options)
 	return c
 end
 
-return M
+return callable.make(M, M.lifespan)

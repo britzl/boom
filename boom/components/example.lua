@@ -1,3 +1,5 @@
+local callable = require "boom.internal.callable"
+
 local M = {}
 
 -- this function will be run once on game startup in the context of the
@@ -27,4 +29,4 @@ function M.example(foo, bar)
 	return c
 end
 
-return M
+return callable.make(M, M.example)

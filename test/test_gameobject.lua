@@ -5,7 +5,7 @@ return function()
 	describe("gameobject", function()
 
 		before(function()
-			gameobject.__init(msg.url("test:/boom/boom#gameobjectfactory"))
+			gameobject.__init({}, msg.url("test:/boom/boom#gameobjectfactory"))
 		end)
 
 		after(function()

@@ -11,6 +11,8 @@
 local WIDTH = sys.get_config_int("display.width")
 local HEIGHT = sys.get_config_int("display.width")
 
+local callable = require "boom.internal.callable"
+
 local M = {}
 
 --- Create a move component.
@@ -41,4 +43,4 @@ function M.move(direction, speed)
 end
 
 
-return M
+return callable.make(M, M.move)

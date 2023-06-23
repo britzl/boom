@@ -2,8 +2,7 @@ go.property("group", hash("area"))
 go.property("area_mask", true)
 go.property("static_mask", false)
 
-local COLLISION_RESPONSE = hash("collision_response")
-local CONTACT_POINT_RESPONSE = hash("contact_point_response")
+local collisions = require "boom.internal.collisions"
 
 function init(self)
 	physics.set_group("#collisionobject", self.group)
@@ -12,9 +11,5 @@ function init(self)
 end
 
 function on_message(self, message_id, message, sender)
-	if message_id == COLLISION_RESPONSE then
-		msg.post("/boom/boom#boom", message_id, message)
-	elseif message_id == CONTACT_POINT_RESPONSE then
-		msg.post("/boom/boom#boom", message_id, message)
-	end
+	collisions.on_message(message_id, message, sender)
 end

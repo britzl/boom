@@ -1,3 +1,7 @@
+--- Do not destroy the game object on scene change.
+
+local callable = require "boom.internal.callable"
+
 local M = {}
 
 --- Do not get destroyed on scene switch.
@@ -8,4 +12,4 @@ function M.stay()
 	return c
 end
 
-return M
+return callable.make(M, M.stay)

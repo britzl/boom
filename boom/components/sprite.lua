@@ -1,11 +1,22 @@
+--- Render as a sprite.
+--
+-- @usage
+-- local player = add({
+--     sprite("player", { atlas = "playercharacter" })
+-- })
+--
+-- player.play("walk")
+
+local callable = require "boom.internal.callable"
 local vec2 = require "boom.math.vec2"
 
 local M = {}
 
 local sprite = _G.sprite
 
-local SPRITE = hash("/sprite")
-local V2_ZERO = vec2()
+local QUAT_ZERO = vmath.quat()
+local V3_ZERO = vmath.vector3(0)
+local V3_ONE = vmath.vector3(1)
 
 local factory_url = nil
 local game_url = nil
@@ -53,7 +64,11 @@ function M.sprite(anim, options)
 	c.init = function()
 		local object = c.object
 
-		local id = factory.create(factory_url)
+		local pos = V3_ZERO
+		local rot = QUAT_ZERO
+		local props = nil
+		local scale = V3_ONE
+		local id = factory.create(factory_url, pos, rot, props, scale)
 		go.set_parent(id, object.id, false)
 
 		local url = msg.url(nil, id, "sprite")
@@ -115,7 +130,9 @@ function M.sprite(anim, options)
 
 		local scale = object.scale
 		if scale then
-			go.set(url, "scale", scale)
+			local sv3 = scale.tov3()
+			sv3.z = 1
+			go.set_scale(sv3, url)
 		end
 
 		local anchor = object.anchor
@@ -152,4 +169,4 @@ function M.sprite(anim, options)
 	return c
 end
 
-return M
+return callable.make(M, M.sprite)

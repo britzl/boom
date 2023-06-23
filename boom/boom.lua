@@ -10,9 +10,8 @@ local info = require "boom.info.info"
 local scene = require "boom.scene.scene"
 local level = require "boom.level.level"
 local debug = require "boom.debug.debug"
-local collisions = require "boom.collisions"
 
-local systems = require "boom.systems"
+local systems = require "boom.internal.systems"
 
 
 local M = {}
@@ -85,7 +84,6 @@ end
 -- called from boom.script
 function M.on_message(message_id, message, sender)
 	--message_queue.queue(message_id, message, sender)
-	collisions.on_message(message_id, message, sender)
 	systems.on_message(message_id, message, sender)
 end
 

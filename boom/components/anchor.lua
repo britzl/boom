@@ -10,6 +10,7 @@
 
 
 local vec2 = require "boom.math.vec2"
+local callable = require "boom.internal.callable"
 
 local M = {}
 
@@ -38,4 +39,4 @@ function M.anchor(anchor)
 	return c
 end
 
-return M
+return callable.make(M, M.anchor)

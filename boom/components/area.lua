@@ -9,12 +9,14 @@
 --     area("auto")
 -- })
 
-local collisions = require "boom.collisions"
+local collisions = require "boom.internal.collisions"
 local mouse = require "boom.events.mouse"
 local vec2 = require "boom.math.vec2"
 local rect = require "boom.components.area.rect"
 local circle = require "boom.components.area.circle"
 local areafactory = require "boom.components.area.areafactory"
+
+local callable = require "boom.internal.callable"
 
 local M = {}
 
@@ -246,4 +248,4 @@ function M.area(options)
 	return c
 end
 
-return M
+return callable.make(M, M.area)

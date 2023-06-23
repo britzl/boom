@@ -7,6 +7,7 @@
 -- })
 
 local vec2 = require "boom.math.vec2"
+local callable = require "boom.internal.callable"
 
 local M = {}
 
@@ -79,4 +80,4 @@ function M.pos(x, y)
 	return c
 end
 
-return M
+return callable.make(M, M.pos)

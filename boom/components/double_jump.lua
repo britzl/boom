@@ -1,4 +1,4 @@
-local gravity = require "boom.info.gravity"
+local callable = require "boom.internal.callable"
 
 local M = {}
 
@@ -35,4 +35,4 @@ function M.double_jump(options)
 	return c
 end
 
-return M
+return callable.make(M, M.double_jump)

@@ -15,7 +15,7 @@
 --     destroy(enemy)
 -- end)
 
-
+local callable = require "boom.internal.callable"
 local listener = require "boom.events.listener"
 
 local M = {}
@@ -84,4 +84,4 @@ function M.health(hp)
 	return c
 end
 
-return M
+return callable.make(M, M.health)

@@ -9,7 +9,7 @@ local function create_system(name)
 	s.on_input_count = 0
 	s.destroy_count = 0
 	s.__init = function(...)
-		s.init_count = init_count + 1
+		s.init_count = s.init_count + 1
 		s.init_args = { ... }
 	end
 	s.__update = function(...)

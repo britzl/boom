@@ -21,7 +21,7 @@ function M.rotate(angle)
 		update_rotation(c.object)
 	end
 	c.rotate = function(angle)
-		c.angle = angle
+		c.object.angle = angle
 		update_rotation(c.object)
 	end
 

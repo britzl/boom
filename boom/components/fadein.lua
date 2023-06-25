@@ -15,6 +15,7 @@ local M = {}
 function M.fadein(time)
 	local c = {}
 	c.tag = "fadein"
+	time = time or 1
 
 	c.init = function()
 		local object = c.object

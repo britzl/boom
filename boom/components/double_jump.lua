@@ -10,7 +10,11 @@ function M.double_jump(options)
 	local c = {}
 	c.tag = "double_jump"
 
+	--- Maximum number of jumps.
+	-- @type DoubleJumpComp
+	-- @field number
 	c.num_jumps = options and options.num_jumps or 2
+
 	local jump_count = 0
 
 	c.init = function()

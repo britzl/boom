@@ -16,6 +16,10 @@ local M = {}
 function M.color(...)
 	local c = {}
 	c.tag = "color"
+
+	--- Current color.
+	-- @type ColorComp
+	-- @field Color
 	c.color = rgb(...)
 	return c
 end

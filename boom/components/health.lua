@@ -21,12 +21,16 @@ local listener = require "boom.events.listener"
 local M = {}
 
 --- Create a health component
--- @number hp Initial health
+-- @number hp Initial health (default: 1)
 -- @treturn HealthComp component The health component
 function M.health(hp)
 	local c = {}
 	c.tag = "health"
-	c.hp = hp
+
+	--- Current hp.
+	-- @type HealthComp
+	-- @field number
+	c.hp = hp or 1
 
 	local on_heal_listeners = {}
 	local on_hurt_listeners = {}

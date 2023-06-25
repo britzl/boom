@@ -27,10 +27,29 @@ function M.body(options)
 	local c = {}
 	c.tag = "body"
 
+	--- If the body is in contact with ground.
+	-- @type BodyComp
+	-- @field boolean
 	c.is_grounded = false
+
+	--- If the body is falling (velocity is pointing down).
+	-- @type BodyComp
+	-- @field boolean
 	c.is_falling = false
+
+	--- If the body is jumping (velocity is pointing up).
+	-- @type BodyComp
+	-- @field boolean
 	c.is_jumping = false
+
+	--- The upward velocity applied to the body when jumping.
+	-- @type BodyComp
+	-- @field number
 	c.jump_force = options and options.jump_force or 800
+
+	--- If the body is static and not affected by gravity.
+	-- @type BodyComp
+	-- @field boolean
 	c.is_static = options and options.is_static or false
 
 	local acc = vec2()

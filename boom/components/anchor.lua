@@ -19,13 +19,17 @@ local V2_ONE = vec2(1)
 
 local ANCHORS = {
 	center = vec2(0),
-	topleft = vec2(1, -1),
-	left = vec2(1, 0),
-	topright = vec2(-1, -1),
-	right = vec2(-1, 0),
-	bottomright = vec2(-1, 1),
-	bottom = vec2(0, 1),
-	bottomleft = vec2(1, 0),
+
+	topleft = vec2(-1, 1),
+	top = vec2(0, 1),
+	topright = vec2(1, 1),
+
+	left = vec2(-1, 0),
+	right = vec2(1, 0),
+
+	bottomleft = vec2(-1, -1),
+	bottom = vec2(0, -1),
+	bottomright = vec2(1, -1),
 }
 
 ---
@@ -35,6 +39,10 @@ local ANCHORS = {
 function M.anchor(anchor)
 	local c = {}
 	c.tag = "anchor"
+
+	--- Anchor point.
+	-- @type AnchorComp
+	-- @field string
 	c.anchor = ANCHORS[anchor] or V2_ZERO
 	return c
 end

@@ -64,6 +64,19 @@
                                 }
                             ],
                             "usage": null
+                        },
+                        {
+                            "description": "",
+                            "field": true,
+                            "field_type": "string",
+                            "has_params": false,
+                            "has_returns": false,
+                            "name": "anchor",
+                            "params": [],
+                            "returns": [],
+                            "summary": "Anchor point.",
+                            "type": "AnchorComp",
+                            "usage": null
                         }
                     ],
                     "file_description": "Use this component to offset any rendered component such as a SpriteComp from the center of the game object.",
@@ -257,6 +270,71 @@
                         },
                         {
                             "description": "",
+                            "field": true,
+                            "field_type": "boolean",
+                            "has_params": false,
+                            "has_returns": false,
+                            "name": "is_grounded",
+                            "params": [],
+                            "returns": [],
+                            "summary": "If the body is in contact with ground.",
+                            "type": "BodyComp",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "field": true,
+                            "field_type": "boolean",
+                            "has_params": false,
+                            "has_returns": false,
+                            "name": "is_falling",
+                            "params": [],
+                            "returns": [],
+                            "summary": "If the body is falling (velocity is pointing down).",
+                            "type": "BodyComp",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "field": true,
+                            "field_type": "boolean",
+                            "has_params": false,
+                            "has_returns": false,
+                            "name": "is_jumping",
+                            "params": [],
+                            "returns": [],
+                            "summary": "If the body is jumping (velocity is pointing up).",
+                            "type": "BodyComp",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "field": true,
+                            "field_type": "number",
+                            "has_params": false,
+                            "has_returns": false,
+                            "name": "jump_force",
+                            "params": [],
+                            "returns": [],
+                            "summary": "The upward velocity applied to the body when jumping.",
+                            "type": "BodyComp",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "field": true,
+                            "field_type": "boolean",
+                            "has_params": false,
+                            "has_returns": false,
+                            "name": "is_static",
+                            "params": [],
+                            "returns": [],
+                            "summary": "If the body is static and not affected by gravity.",
+                            "type": "BodyComp",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
                             "has_params": true,
                             "has_returns": false,
                             "name": "jump",
@@ -303,6 +381,19 @@
                             ],
                             "summary": "Create a color component",
                             "usage": null
+                        },
+                        {
+                            "description": "",
+                            "field": true,
+                            "field_type": "Color",
+                            "has_params": false,
+                            "has_returns": false,
+                            "name": "color",
+                            "params": [],
+                            "returns": [],
+                            "summary": "Current color.",
+                            "type": "ColorComp",
+                            "usage": null
                         }
                     ],
                     "file_description": "",
@@ -341,6 +432,19 @@
                                 }
                             ],
                             "summary": "Enables double jump.",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "field": true,
+                            "field_type": "number",
+                            "has_params": false,
+                            "has_returns": false,
+                            "name": "num_jumps",
+                            "params": [],
+                            "returns": [],
+                            "summary": "Maximum number of jumps.",
+                            "type": "DoubleJumpComp",
                             "usage": null
                         },
                         {
@@ -449,7 +553,7 @@
                             "name": "health",
                             "params": [
                                 {
-                                    "description": "Initial health",
+                                    "description": "Initial health (default: 1)",
                                     "name": "hp",
                                     "type": "number"
                                 }
@@ -463,6 +567,19 @@
                                 }
                             ],
                             "summary": "Create a health component",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "field": true,
+                            "field_type": "number",
+                            "has_params": false,
+                            "has_returns": false,
+                            "name": "hp",
+                            "params": [],
+                            "returns": [],
+                            "summary": "Current hp.",
+                            "type": "HealthComp",
                             "usage": null
                         },
                         {

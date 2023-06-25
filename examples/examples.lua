@@ -19,7 +19,7 @@ return function()
 		return btn
 	end
 
-	local BUTTONS = { "shmup", "breakout", "platformer", "flappy", "tween" }
+	local BUTTONS = { "shmup", "breakout", "platformer", "flappy", "tween", "components" }
 
 	for i=1,#BUTTONS do
 		local b = BUTTONS[i]

@@ -90,6 +90,11 @@ RETURNS
 * `component` [`AnchorComp`] - The anchor component.
 
 
+### AnchorComp.anchor [`string`]
+Anchor point. 
+
+
+
 ---
 
 ## area
@@ -182,6 +187,31 @@ RETURNS
 * `component` [`BodyComp`] - The body component
 
 
+### BodyComp.is_grounded [`boolean`]
+If the body is in contact with ground. 
+
+
+
+### BodyComp.is_falling [`boolean`]
+If the body is falling (velocity is pointing down). 
+
+
+
+### BodyComp.is_jumping [`boolean`]
+If the body is jumping (velocity is pointing up). 
+
+
+
+### BodyComp.jump_force [`number`]
+The upward velocity applied to the body when jumping. 
+
+
+
+### BodyComp.is_static [`boolean`]
+If the body is static and not affected by gravity. 
+
+
+
 ### BodyComp.jump(force)
 Add upward force. 
 
@@ -215,6 +245,11 @@ RETURNS
 * `component` [`ColorComp`] - The color component
 
 
+### ColorComp.color [`Color`]
+Current color. 
+
+
+
 ---
 
 ## double_jump
@@ -232,6 +267,11 @@ PARAMS
 
 RETURNS
 * `component` [`DoubleJumpComp`] - The double jump component
+
+
+### DoubleJumpComp.num_jumps [`number`]
+Maximum number of jumps. 
+
 
 
 ### DoubleJumpComp.double_jump(force)
@@ -320,10 +360,15 @@ Create a health component
 
 
 PARAMS
-* `hp` [`number`] - Initial health
+* `hp` [`number`] - Initial health (default: 1)
 
 RETURNS
 * `component` [`HealthComp`] - The health component
+
+
+### HealthComp.hp [`number`]
+Current hp. 
+
 
 
 ### HealthComp.on_heal(cb)

@@ -117,7 +117,7 @@ def process_entry(line, lines):
                     "type": return_type,
                     "description": capitalize(return_desc)
                 })
-        # table parameter
+        # typed parameter
         elif line.startswith("@tparam"):
             line = line.replace("@tparam", "").strip()
             m = re.match("(\w*?) (\w*?) (.*)", line)

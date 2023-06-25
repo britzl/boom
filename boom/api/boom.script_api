@@ -18,6 +18,7 @@
     type: AnchorComp
     desc: The anchor component.
 
+
 - name: area
   type: function
   desc: Create a collider area and enabled collision detection. This will create an area component which is used to describe an area which can collide with other area components.
@@ -96,6 +97,11 @@
     type: BodyComp
     desc: The body component
 
+
+
+
+
+
 - name: BodyComp.jump
   type: function
   desc: Add upward force. 
@@ -116,6 +122,7 @@
     type: ColorComp
     desc: The color component
 
+
 - name: double_jump
   type: function
   desc: Enables double jump. Requires &quot;body&quot; component.
@@ -127,6 +134,7 @@
   - name: component
     type: DoubleJumpComp
     desc: The double jump component
+
 
 - name: DoubleJumpComp.double_jump
   type: function
@@ -162,11 +170,12 @@
   parameters:
   - name: hp
     type: number
-    desc: Initial health
+    desc: Initial health (default: 1)
   return:
   - name: component
     type: HealthComp
     desc: The health component
+
 
 - name: HealthComp.on_heal
   type: function

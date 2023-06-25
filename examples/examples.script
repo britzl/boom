@@ -14,6 +14,7 @@ local shmupgame = require "examples.shmup.game"
 local shmupgameover = require "examples.shmup.gameover"
 local flappy = require "examples.flappy.flappy"
 local tween = require "examples.tween.tween"
+local components = require "examples.components.components"
 
 function init(self)
 	boom(function()
@@ -24,6 +25,7 @@ function init(self)
 		scene("shmup-gameover", shmupgameover)
 		scene("flappy", flappy)
 		scene("tween", tween)
+		scene("components", components)
 		show("examples")
 	end)
 end

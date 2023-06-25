@@ -2,8 +2,16 @@ local listener = require "boom.events.listener"
 local gameobject = require "boom.gameobject.gameobject"
 local vec2 = require "boom.math.vec2"
 
-local MOUSE_BUTTON_1 = hash("mouse_button_1")
+local MOUSE_BUTTON_LEFT = hash("mouse_button_left")
+local MOUSE_BUTTON_MIDDLE = hash("mouse_button_middle")
+local MOUSE_BUTTON_RIGHT = hash("mouse_button_right")
 local MOUSE_MOVE = hash("mouse_move")
+
+
+local BUTTONS = {}
+BUTTONS.left = MOUSE_BUTTON_LEFT
+BUTTONS.right = MOUSE_BUTTON_RIGHT
+BUTTONS.middle = MOUSE_BUTTON_MIDDLE
 
 local M = {}
 
@@ -25,7 +33,7 @@ function M.on_click(tag, cb)
 	end
 
 	if tag then
-		return listener.register(click_listeners, MOUSE_BUTTON_1, function(action)
+		return listener.register(click_listeners, MOUSE_BUTTON_LEFT, function(action)
 			if not action.released then return end
 			local objects = gameobject.get("area")
 			for i=1,#objects do
@@ -36,7 +44,7 @@ function M.on_click(tag, cb)
 			end
 		end)
 	else
-		return listener.register(click_listeners, MOUSE_BUTTON_1, function(action)
+		return listener.register(click_listeners, MOUSE_BUTTON_LEFT, function(action)
 			if action.released then
 				cb()
 			end
@@ -45,17 +53,29 @@ function M.on_click(tag, cb)
 end
 
 --- Register callback that runs when left mouse button is pressed.
+-- @string button Optional button ("left", "right", "middle", default is "left")
 -- @function cb The callback
 -- @treturn function fn Cancel callback
-function M.on_mouse_press(cb)
-	return listener.register(press_listener, MOUSE_BUTTON_1, cb)
+function M.on_mouse_press(button, cb)
+	if not cb then
+		cb = button
+		button = "left"
+	end
+	button = BUTTONS[button] or MOUSE_BUTTON_LEFT
+	return listener.register(press_listener, button, cb)
 end
 
 --- Register callback that runs when left mouse button is released.
+-- @string button Optional button ("left", "right", "middle", default is "left")
 -- @function cb The callback
 -- @treturn function fn Cancel callback
-function M.on_mouse_release(cb)
-	return listener.register(release_listener, MOUSE_BUTTON_1, cb)
+function M.on_mouse_release(button, cb)
+	if not cb then
+		cb = button
+		button = "left"
+	end
+	button = BUTTONS[button] or MOUSE_BUTTON_LEFT
+	return listener.register(release_listener, button, cb)
 end
 
 --- Register callback that runs when the mouse is moved.
@@ -76,7 +96,9 @@ function M.__on_input(action_id, action)
 		mouse_pos.x = action.x
 		mouse_pos.y = action.y
 		listener.trigger(move_listener, MOUSE_MOVE, action)
-	elseif action_id == MOUSE_BUTTON_1 then
+	elseif action_id == MOUSE_BUTTON_LEFT
+	or action_id == MOUSE_BUTTON_MIDDLE
+	or action_id == MOUSE_BUTTON_RIGHT then
 		mouse_pos.x = action.x
 		mouse_pos.y = action.y
 		listener.trigger(move_listener, MOUSE_MOVE, action)

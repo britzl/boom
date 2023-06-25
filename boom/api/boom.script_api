@@ -170,7 +170,7 @@
   parameters:
   - name: hp
     type: number
-    desc: Initial health (default: 1)
+    desc: Initial health (default is 1)
   return:
   - name: component
     type: HealthComp
@@ -552,6 +552,9 @@
   type: function
   desc: Register callback that runs when left mouse button is pressed. 
   parameters:
+  - name: button
+    type: string
+    desc: Optional button (&quot;left&quot;, &quot;right&quot;, &quot;middle&quot;, default is &quot;left&quot;)
   - name: cb
     type: function
     desc: The callback
@@ -564,6 +567,9 @@
   type: function
   desc: Register callback that runs when left mouse button is released. 
   parameters:
+  - name: button
+    type: string
+    desc: Optional button (&quot;left&quot;, &quot;right&quot;, &quot;middle&quot;, default is &quot;left&quot;)
   - name: cb
     type: function
     desc: The callback

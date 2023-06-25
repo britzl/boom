@@ -553,7 +553,7 @@
                             "name": "health",
                             "params": [
                                 {
-                                    "description": "Initial health (default: 1)",
+                                    "description": "Initial health (default is 1)",
                                     "name": "hp",
                                     "type": "number"
                                 }
@@ -1644,12 +1644,17 @@
                             "name": "on_mouse_press",
                             "params": [
                                 {
+                                    "description": "Optional button (\"left\", \"right\", \"middle\", default is \"left\")",
+                                    "name": "button",
+                                    "type": "string"
+                                },
+                                {
                                     "description": "The callback",
                                     "name": "cb",
                                     "type": "function"
                                 }
                             ],
-                            "params_string": "cb",
+                            "params_string": "button,cb",
                             "returns": [
                                 {
                                     "description": "Cancel callback",
@@ -1667,12 +1672,17 @@
                             "name": "on_mouse_release",
                             "params": [
                                 {
+                                    "description": "Optional button (\"left\", \"right\", \"middle\", default is \"left\")",
+                                    "name": "button",
+                                    "type": "string"
+                                },
+                                {
                                     "description": "The callback",
                                     "name": "cb",
                                     "type": "function"
                                 }
                             ],
-                            "params_string": "cb",
+                            "params_string": "button,cb",
                             "returns": [
                                 {
                                     "description": "Cancel callback",

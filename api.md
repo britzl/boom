@@ -360,7 +360,7 @@ Create a health component
 
 
 PARAMS
-* `hp` [`number`] - Initial health (default: 1)
+* `hp` [`number`] - Initial health (default is 1)
 
 RETURNS
 * `component` [`HealthComp`] - The health component
@@ -891,22 +891,24 @@ RETURNS
 * `fn` [`function`] - Cancel listener function
 
 
-### on_mouse_press(cb)
+### on_mouse_press(button,cb)
 Register callback that runs when left mouse button is pressed. 
 
 
 PARAMS
+* `button` [`string`] - Optional button (&quot;left&quot;, &quot;right&quot;, &quot;middle&quot;, default is &quot;left&quot;)
 * `cb` [`function`] - The callback
 
 RETURNS
 * `fn` [`function`] - Cancel callback
 
 
-### on_mouse_release(cb)
+### on_mouse_release(button,cb)
 Register callback that runs when left mouse button is released. 
 
 
 PARAMS
+* `button` [`string`] - Optional button (&quot;left&quot;, &quot;right&quot;, &quot;middle&quot;, default is &quot;left&quot;)
 * `cb` [`function`] - The callback
 
 RETURNS

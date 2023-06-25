@@ -36,10 +36,10 @@ function M.__update()
 					msg.post("@render:", "draw_line", { start_point = P1, end_point = P2, color = GREEN })
 				end
 			else
-				msg.post("@render:", "draw_line", { start_point = world_area.topleft,     end_point = world_area.topright, color = GREEN })
-				msg.post("@render:", "draw_line", { start_point = world_area.topright,    end_point = world_area.bottomright, color = GREEN })
-				msg.post("@render:", "draw_line", { start_point = world_area.bottomright, end_point = world_area.bottomleft, color = GREEN })
-				msg.post("@render:", "draw_line", { start_point = world_area.bottomleft,  end_point = world_area.topleft, color = GREEN })
+				msg.post("@render:", "draw_line", { start_point = world_area.topleft.tov3(),     end_point = world_area.topright.tov3(), color = GREEN })
+				msg.post("@render:", "draw_line", { start_point = world_area.topright.tov3(),    end_point = world_area.bottomright.tov3(), color = GREEN })
+				msg.post("@render:", "draw_line", { start_point = world_area.bottomright.tov3(), end_point = world_area.bottomleft.tov3(), color = GREEN })
+				msg.post("@render:", "draw_line", { start_point = world_area.bottomleft.tov3(),  end_point = world_area.topleft.tov3(), color = GREEN })
 			end
 		end
 

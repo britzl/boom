@@ -25,7 +25,7 @@ end
 
 function M.point_inside(p, circle, center, angle)
 	-- rotate distance vector from area center to point onto rect
-	local distance = vmath.length(center - p)
+	local distance = center.dist(p)
 	return distance <= circle.radius
 end
 

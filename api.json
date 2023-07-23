@@ -120,6 +120,19 @@
                         },
                         {
                             "description": "",
+                            "field": true,
+                            "field_type": "url",
+                            "has_params": false,
+                            "has_returns": false,
+                            "name": "area_url",
+                            "params": [],
+                            "returns": [],
+                            "summary": "Url of the collision object used by the area",
+                            "type": "AreaComp",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
                             "has_params": false,
                             "has_returns": true,
                             "name": "get_collisions",

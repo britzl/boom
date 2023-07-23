@@ -120,6 +120,11 @@ RETURNS
 * `area` [`AreaComp`] - The area component
 
 
+### AreaComp.area_url [`url`]
+Url of the collision object used by the area 
+
+
+
 ### AreaComp.get_collisions()
 Get all collisions currently happening for this component. 
 

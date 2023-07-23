@@ -15,7 +15,7 @@ function M.circle(radius, properties)
 	local rotation = nil
 	local scale = vmath.vector3(radius * 2)
 	local id = factory.create(circle_factory_url, position, rotation, properties, scale)
-	return id
+	return msg.url(nil, id, "collisionobject")
 end
 
 
@@ -34,7 +34,7 @@ function M.rect(width, height, properties)
 	local scale = vmath.vector3(math.min(width, height))
 	local url = rect_factories[h]
 	local id = factory.create(url, position, rotation, properties, scale)
-	return id
+	return msg.url(nil, id, "collisionobject")
 end
 
 

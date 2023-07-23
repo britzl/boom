@@ -36,6 +36,11 @@ function M.area(options)
 	local c = {}
 	c.tag = "area"
 
+	--- Url of the collision object used by the area
+	-- @type AreaComp
+	-- @field url
+	c.area_url = nil
+
 	local radius = 0
 	local width = 0
 	local height = 0
@@ -51,7 +56,6 @@ function M.area(options)
 		end
 	end
 
-	local area_id = nil
 	local area_width = nil
 	local area_height = nil
 
@@ -62,9 +66,9 @@ function M.area(options)
 		if area_width == w and area_height == h then return end
 		area_width = w
 		area_height = h
-		if area_id then
-			go.delete(area_id)
-			area_id = nil
+		if object.area_url then
+			go.delete(object.area_url)
+			object.area_url = nil
 		end
 		if w == 0 or h == 0 then
 			return
@@ -77,12 +81,12 @@ function M.area(options)
 		}
 		if shape == "rect"
 		or shape == "auto" then
-			area_id = areafactory.rect(w, h, properties)
+			object.area_url = areafactory.rect(w, h, properties)
 		elseif shape == "circle"
 		or shape == "auto-circle" then
-			area_id = areafactory.circle(w, properties)
+			object.area_url = areafactory.circle(w, properties)
 		end
-		go.set_parent(area_id, object.id, false)
+		go.set_parent(object.area_url, object.id, false)
 	end
 
 	c.init = function()
@@ -103,7 +107,7 @@ function M.area(options)
 		end
 
 		if not object.is_static then
-			local cancel = collisions.on_object_collision(object, nil, function(data, cancel)
+			local cancel = collisions.on_object_collision(object, nil, function(data, _)
 				registered_collisions[#registered_collisions + 1] = data
 			end)
 			registered_events[#registered_events + 1] = cancel
@@ -177,6 +181,7 @@ function M.area(options)
 		local object = c.object
 		local anchor = object.anchor or V2_ZERO
 		local scale = object.scale or V2_ONE
+		local area_url = object.area_url
 
 		if shape == "circle"
 		or shape == "auto-circle" then
@@ -198,7 +203,7 @@ function M.area(options)
 			local offset = vec2(r * anchor.x, r * anchor.y)
 			circle.copy(object.local_area, object.world_area)
 
-			go.set_position(offset.tov3(), area_id)
+			go.set_position(offset.tov3(), area_url)
 
 			circle.create(object.local_area)
 			circle.offset_inline(object.world_area, offset)
@@ -224,7 +229,7 @@ function M.area(options)
 			local angle = object.angle or 0
 			local offset = vec2(w2 * anchor.x, h2 * anchor.y)
 
-			go.set_position(offset.tov3(), area_id)
+			go.set_position(offset.tov3(), area_url)
 
 			rect.copy(object.local_area, object.world_area)
 			rect.offset_inline(object.world_area, offset)
@@ -234,14 +239,15 @@ function M.area(options)
 	end
 
 	c.destroy = function()
+		local object = c.object
 		for i = #registered_events,1,-1 do
 			local cancel = registered_events[i]
 			cancel()
 			registered_events[i] = nil
 		end
-		if area_id then
-			go.delete(area_id)
-			area_id = nil
+		if object.area_url then
+			go.delete(object.area_url)
+			object.area_url = nil
 		end
 	end
 

@@ -12,7 +12,7 @@ local function game()
 	local player = add({
 		sprite("glide", { atlas = "flappy" }),
 		pos(width() / 2, height() / 2),
-		area({ shape = "circle", radius = 10 }),
+		area({ shape = "circle", radius = 6 }),
 		scale(3),
 		body()
 	})

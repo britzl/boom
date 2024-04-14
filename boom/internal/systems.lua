@@ -52,10 +52,13 @@ function M.add(modules)
 	end
 end
 
+local current_config = nil
 function M.init(config)
+	config = config or current_config
 	for _,fn in ipairs(init) do
 		fn(config)
 	end
+	current_config = config
 end
 
 function M.destroy()

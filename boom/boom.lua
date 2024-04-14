@@ -11,6 +11,7 @@ local scene = require "boom.scene.scene"
 local level = require "boom.level.level"
 local debug = require "boom.debug.debug"
 
+local collisions = require "boom.internal.collisions"
 local systems = require "boom.internal.systems"
 
 
@@ -56,6 +57,7 @@ function M.init(url, skip_systems)
 		systems.add({ level })
 		systems.add({ scene })
 		systems.add({ timer })
+		systems.add({ collisions })
 	end
 
 	systems.init(config)

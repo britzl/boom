@@ -48,6 +48,9 @@ function M.show(id, ...)
 		objects[object.id] = object
 	end
 
+	-- init all systems again
+	systems.init()
+
 	-- run new scene
 	local scene = scenes[id]
 	scene.fn(...)

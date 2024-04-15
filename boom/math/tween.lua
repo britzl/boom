@@ -8,7 +8,7 @@ function M.__init()
 	TWEEN_FACTORY = msg.url("#tweenfactory")
 end
 
-function M.__update()
+function M.__update(dt)
 	for _,tween in pairs(tweens) do
 		local value = go.get(tween.url, tween.property)
 		tween.set_value(value)
@@ -94,7 +94,6 @@ function M.tween(from, to, duration, easing, set_value)
 
 	go.set(url, property, from)
 	go.animate(url, property, go.PLAYBACK_ONCE_FORWARD, to, easing, duration, delay, tween_controller.finish)
-
 	return tween_controller
 end
 

@@ -1130,6 +1130,28 @@ RETURNS
 * `The` - Camera zoom
 
 
+### to_screen(p)
+Transform a point from world position to screen position.
+
+
+PARAMS
+* `p` - Point
+
+RETURNS
+* `position` - Screen position
+
+
+### to_world(p)
+Transform a point from screen position to world position.
+
+
+PARAMS
+* `p` - Point
+
+RETURNS
+* `position` - World position
+
+
 ---
 
 ## gravity

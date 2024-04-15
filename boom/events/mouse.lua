@@ -1,5 +1,6 @@
 local listener = require "boom.events.listener"
 local gameobject = require "boom.gameobject.gameobject"
+local camera = require "boom.info.camera"
 local vec2 = require "boom.math.vec2"
 
 local MOUSE_BUTTON_LEFT = hash("mouse_button_left")
@@ -21,6 +22,7 @@ local release_listener = {}
 local move_listener = {}
 
 local mouse_pos = vec2()
+local world_pos = vec2()
 
 --- Set mouse click listener.
 -- @string tag Optional click on object with tag filter
@@ -38,7 +40,7 @@ function M.on_click(tag, cb)
 			local objects = gameobject.get("area")
 			for i=1,#objects do
 				local object = objects[i]
-				if object.tags[tag] and object.has_point(mouse_pos) then
+				if object.tags[tag] and object.has_point(world_pos) then
 					cb(object)
 				end
 			end
@@ -95,12 +97,14 @@ function M.__on_input(action_id, action)
 	if not action_id then
 		mouse_pos.x = action.x
 		mouse_pos.y = action.y
+		world_pos = camera.to_world(mouse_pos)
 		listener.trigger(move_listener, MOUSE_MOVE, action)
 	elseif action_id == MOUSE_BUTTON_LEFT
 	or action_id == MOUSE_BUTTON_MIDDLE
 	or action_id == MOUSE_BUTTON_RIGHT then
 		mouse_pos.x = action.x
 		mouse_pos.y = action.y
+		world_pos = camera.to_world(mouse_pos)
 		listener.trigger(move_listener, MOUSE_MOVE, action)
 		if action.pressed then
 			listener.trigger(press_listener, action_id, action)

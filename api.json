@@ -2126,6 +2126,48 @@
                             ],
                             "summary": "Get or set the camera zoom.",
                             "usage": null
+                        },
+                        {
+                            "description": "Transform a point from world position to screen position.",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "to_screen",
+                            "params": [
+                                {
+                                    "description": "Point",
+                                    "name": "p",
+                                    "type": null
+                                }
+                            ],
+                            "params_string": "p",
+                            "returns": [
+                                {
+                                    "description": "Screen position",
+                                    "name": "position"
+                                }
+                            ],
+                            "usage": null
+                        },
+                        {
+                            "description": "Transform a point from screen position to world position.",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "to_world",
+                            "params": [
+                                {
+                                    "description": "Point",
+                                    "name": "p",
+                                    "type": null
+                                }
+                            ],
+                            "params_string": "p",
+                            "returns": [
+                                {
+                                    "description": "World position",
+                                    "name": "position"
+                                }
+                            ],
+                            "usage": null
                         }
                     ],
                     "filename": "boom/info/camera.lua",

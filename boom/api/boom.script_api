@@ -776,6 +776,30 @@
     type: 
     desc: Camera zoom
 
+- name: to_screen
+  type: function
+  desc: Transform a point from world position to screen position.
+  parameters:
+  - name: p
+    type: None
+    desc: Point
+  return:
+  - name: position
+    type: 
+    desc: Screen position
+
+- name: to_world
+  type: function
+  desc: Transform a point from screen position to world position.
+  parameters:
+  - name: p
+    type: None
+    desc: Point
+  return:
+  - name: position
+    type: 
+    desc: World position
+
 - name: get_gravity
   type: function
   desc: Get gravity 

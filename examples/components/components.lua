@@ -125,6 +125,18 @@ local function health_example(x, y)
 	end)
 end
 
+
+local function mouse_pos_example(x, y)
+	local mouse_pos_txt = add({ text("MOUSE", { align = "center" }), pos(x, y + 20) })
+	local world_pos_txt = add({ text("WORLD", { align = "center" }), pos(x, y + 30) })
+	on_mouse_move(function()
+		local mp = mouse_pos()
+		local wp = to_world(mp)
+		mouse_pos_txt.text = string.format("MOUSE: %.2f,%.2f", mp.x, mp.y)
+		world_pos_txt.text = string.format("WORLD: %.2f,%.2f", wp.x, wp.y)
+	end)
+end
+
 return function()
 	local examples = {
 		{ name = "anchor", fn = anchor_example, desc = "left, right, top, bottom" },
@@ -134,6 +146,7 @@ return function()
 		{ name = "double_jump", fn = double_jump_example, desc = "click to double jump" },
 		{ name = "fadein", fn = fadein_example, desc = "" },
 		{ name = "health", fn = health_example, desc = "lmb = damage, rmb = heal" },
+		{ name = "mouse_pos", fn = mouse_pos_example, desc = "mouse" },
 	}
 
 	for i,ex in ipairs(examples) do

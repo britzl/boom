@@ -20,10 +20,16 @@ local QUAT_ZERO = vmath.quat()
 local V3_ZERO = vmath.vector3(0)
 local V3_ONE = vmath.vector3(1)
 
+local function create_factory_url(config, fragment)
+	local url = msg.url(config.boom_url)
+	url.fragment = fragment
+	return url
+end
+
 function M.__init(config)
-	text_left_factory_url = msg.url("#textleftfactory")
-	text_right_factory_url = msg.url("#textrightfactory")
-	text_center_factory_url = msg.url("#textcenterfactory")
+	text_left_factory_url = create_factory_url(config, "textleftfactory")
+	text_right_factory_url = create_factory_url(config, "textrightfactory")
+	text_center_factory_url = create_factory_url(config, "textcenterfactory")
 	game_url = config.game_url
 	label_screen_material = config.label_screen_material
 end

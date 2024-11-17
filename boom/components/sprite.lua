@@ -23,7 +23,9 @@ local game_url = nil
 local sprite_screen_material = nil
 
 function M.__init(config)
-	factory_url = msg.url("#spritefactory")
+	local url = msg.url(config.boom_url)
+	url.fragment = "spritefactory"
+	factory_url = url
 	game_url = config.game_url
 	sprite_screen_material = config.sprite_screen_material
 end

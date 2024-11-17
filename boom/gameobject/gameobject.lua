@@ -295,7 +295,11 @@ end
 --[[ lifecycle functions ]]
 
 function M.__init(config, url)
-	GAMEOBJECT_FACTORY = url or msg.url("#gameobjectfactory")
+	if not url then
+		url = msg.url(config.boom_url)
+		url.fragment = "gameobjectfactory"
+	end
+	GAMEOBJECT_FACTORY = url
 end
 
 function M.__update(dt)

@@ -19,12 +19,14 @@ local M = {}
 
 
 local initialized = false
+local started = false
 local game_fn = nil
 local config = {}
 
 local function start_game()
-	if initialized and game_fn then
+	if initialized and game_fn and not started then
 		--setfenv(game, ENV)
+		started = true
 		game_fn()
 	end
 end
@@ -43,6 +45,12 @@ end
 -- called from boom.script
 -- @tparam url URL of the boom.script (only used for unit tests)
 function M.init(url, skip_systems)
+	if initialized then
+		print("Boom is already initialized")
+		return
+	end
+	initialized = true
+
 	config.boom_url = url or msg.url()
 	config.label_screen_material = go.get(config.boom_url, "label_screen_material")
 	config.sprite_screen_material = go.get(config.boom_url, "sprite_screen_material")
@@ -61,7 +69,6 @@ function M.init(url, skip_systems)
 	end
 
 	systems.init(config)
-	initialized = true
 	start_game()
 end
 

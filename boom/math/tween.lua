@@ -4,8 +4,10 @@ local TWEEN_FACTORY = nil
 
 local tweens = {}
 
-function M.__init()
-	TWEEN_FACTORY = msg.url("#tweenfactory")
+function M.__init(config)
+	local url = msg.url(config.boom_url)
+	url.fragment = "tweenfactory"
+	TWEEN_FACTORY = url
 end
 
 function M.__update(dt)

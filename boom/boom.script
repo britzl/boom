@@ -10,7 +10,9 @@ function init(self)
 	msg.post("#collisionobject_static", "disable")
 	math.randomseed(os.time())
 	if not self.test then
-		boom.init()
+		timer.delay(0, false, function()
+			boom.init()
+		end)
 	end
 end
 

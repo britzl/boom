@@ -118,7 +118,7 @@ end
 
 
 function M.__init()
-	physics.set_listener(function(self, event, data)
+	physics.set_event_listener(function(self, event, data)
 		if event == HASH_CONTACT_POINT_EVENT then
 			handle_contact_point_event(data)
 		end
@@ -127,7 +127,7 @@ end
 
 
 function M.__destroy()
-	physics.set_listener(nil)
+	physics.set_event_listener(nil)
 end
 
 return M
